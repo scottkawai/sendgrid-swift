@@ -105,12 +105,41 @@ class SendGrid {
         self.replyto = address
     }
     
+    func addCC(address: String) {
+        self.addCCs([address])
+    }
+    
     func addCCs(addresses: [String]) {
         if self.cc != nil {
             self.cc! += addresses
         } else {
             self.cc = addresses
         }
+    }
+    
+    func setCCs(addresses: [String]) {
+        self.cc = nil
+        self.addCCs(addresses)
+    }
+    
+    func addBCC(address: String) {
+        self.addBCCs([address])
+    }
+    
+    func addBCCs(addresses: [String]) {
+        if self.hasRecipientsInSmtpApi {
+            Logger.warn("The BCC option will not work when specifying recipients in the X-SMTPAPI header. Set the `hasRecipientsInSmtpApi` to false before adding BCC addresses so that the 'To' addresses get added to the normal 'To' header instead of the X-SMTPAPI header.")
+        }
+        if self.bcc != nil {
+            self.bcc! += addresses
+        } else {
+            self.bcc = addresses
+        }
+    }
+    
+    func setBCCs(addresses: [String]) {
+        self.bcc = nil
+        self.addBCCs(addresses)
     }
     
     func setTextBody(text: String) {
