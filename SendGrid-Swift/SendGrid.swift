@@ -105,6 +105,27 @@ class SendGrid {
         self.replyto = address
     }
     
+    func addCCs(addresses: [String]) {
+        if self.cc != nil {
+            self.cc! += addresses
+        } else {
+            self.cc = addresses
+        }
+    }
+    
+    func setTextBody(text: String) {
+        self.text = text
+    }
+    
+    func setHtmlBody(html: String) {
+        self.html = html
+    }
+    
+    func setBody(text: String, html: String) {
+        self.setTextBody(text)
+        self.setHtmlBody(html)
+    }
+    
     func send(completionHandler: ((NSURLResponse!, NSData!, NSError!) -> Void)?) {
         let url = NSURL(string: "https://api.sendgrid.com/api/mail.send.json")!
         let request = NSMutableURLRequest(URL: url)
@@ -183,6 +204,10 @@ class SendGrid {
         
         request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         let queue:NSOperationQueue = NSOperationQueue()
-        //NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler: completionHandler)
+//        NSURLConnection.sendAsynchronousRequest(request, queue: queue) { (response, data, error) -> Void in
+//            if let handler = completionHandler {
+//                handler(response, data, error)
+//            }
+//        }
     }
 }
