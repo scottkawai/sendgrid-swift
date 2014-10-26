@@ -86,50 +86,75 @@ class SendGrid {
         addToParamsIfPresent("replyto", email.replyto)
         addToParamsIfPresent("headers", email.headers)
         
-        var body = ""
+        var body = NSMutableData()
+        let boundary = "0xKhTmLbOuNdArY"
+        var contentType = "multipart/form-data; boundary=\(boundary)"
+        request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+        
+        var addBoundary = { () -> Void in
+            var b = "--\(boundary)\r\n"
+            if let data = b.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                body.appendData(data)
+            }
+        }
+        
+        var addDisposition: ((param: String, filename: String?) -> Void) = { (param, filename) -> Void in
+            var d = "Content-Disposition: form-data; name=\"\(param)\";"
+            if let f = filename {
+                d += " filename=\"\(filename)\""
+            }
+            d += "\r\n\r\n"
+            if let data = d.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                body.appendData(data)
+            }
+        }
+        
+        var addParamValue: ((value: String) -> Void) = { (value) -> Void in
+            var v = "\(value)\r\n"
+            if let data = v.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                body.appendData(data)
+            }
+        }
+        
         for (paramName, paramValue) in params {
-            if paramName == "headers" {
-                if countElements(body) > 0 { body += "&" }
-                var error: NSError?
-                var data = NSJSONSerialization.dataWithJSONObject(paramValue, options: nil, error: &error)
-                if let err = error {
-                    Logger.error("Error converting headers to JSON - \(err.localizedDescription)")
-                } else if let d = data {
-                    if let json = NSString(data: d, encoding: NSUTF8StringEncoding) {
-                        if let encoded = json.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
-                            body += "headers=\(encoded)"
-                        }
-                    }
-                }
-            }else if let arr = paramValue as? [String] {
+            if let arr = paramValue as? [String] {
                 for value in arr {
-                    if let encoded = value.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
-                        if countElements(body) > 0 { body += "&" }
-                        body += paramName + "[]=" + encoded
-                    }
+                    addBoundary()
+                    addDisposition(param: "\(paramName)[]", filename: nil)
+                    addParamValue(value: value)
                 }
             } else {
-                if let encoded = paramValue.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
-                    if countElements(body) > 0 { body += "&" }
-                    body += paramName + "=" + encoded
+                addBoundary()
+                addDisposition(param: paramName, filename: nil)
+                if paramName == "headers" {
+                    var error: NSError?
+                    var data = NSJSONSerialization.dataWithJSONObject(paramValue, options: nil, error: &error)
+                    if let err = error {
+                        Logger.error("Error converting headers to JSON - \(err.localizedDescription)")
+                    } else if let d = data {
+                        if let json = NSString(data: d, encoding: NSUTF8StringEncoding) {
+                            addParamValue(value: json)
+                        }
+                    }
+                } else if let value = paramValue as? String {
+                    addParamValue(value: value)
                 }
             }
         }
         
-        // SMTPAPI
-        if email.smtpapi.hasSmtpApi {
-            body += "&x-smtpapi=" + email.smtpapi.jsonValue.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        if let data = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+            body.appendData(data)
         }
         
-        println(body)
+        println(NSString(data: body, encoding: NSUTF8StringEncoding)!)
         
-        request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        request.HTTPBody = body
         let queue:NSOperationQueue = NSOperationQueue()
-        //        NSURLConnection.sendAsynchronousRequest(request, queue: queue) { (response, data, error) -> Void in
-        //            if let handler = completionHandler {
-        //                handler(response, data, error)
-        //            }
-        //        }
+        NSURLConnection.sendAsynchronousRequest(request, queue: queue) { (response, data, error) -> Void in
+            if let handler = completionHandler {
+                handler(response, data, error)
+            }
+        }
     }
     
     
@@ -149,6 +174,7 @@ class SendGrid {
         var cc: [String]?
         var bcc: [String]?
         var replyto: String?
+        var attachments: [String:NSData]?
         
         let smtpapi = SmtpApi()
         var hasRecipientsInSmtpApi = true
@@ -187,6 +213,8 @@ class SendGrid {
                         println("[**ERROR**] SendGrid addTos: The number of email addresses provided didn't match the number of names provided.")
                         return
                     }
+                } else if self.toname != nil {
+                    self.toname?.append("")
                 }
                 
                 self.to! += addresses
@@ -283,6 +311,14 @@ class SendGrid {
         func setHeaders(keyValuePairs: [String:String]) {
             self.headers = nil
             self.addHeaders(keyValuePairs)
+        }
+        
+        func addAttachment(filename: String, data: NSData) {
+            if self.attachments == nil {
+                self.attachments = [filename: data]
+            } else {
+                self.attachments![filename] = data
+            }
         }
     }
 }
