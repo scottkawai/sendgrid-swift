@@ -29,7 +29,7 @@ class SendGrid {
     var fromname: String?
     var text: String?
     var html: String?
-    var headers = []
+    var headers: [String:String]?
     var cc: [String]?
     var bcc: [String]?
     var replyto: String?
@@ -155,6 +155,25 @@ class SendGrid {
         self.setHtmlBody(html)
     }
     
+    func addHeader(key: String, value: String) {
+        self.addHeaders([key: value])
+    }
+    
+    func addHeaders(keyValuePairs: [String:String]) {
+        if self.headers == nil {
+            self.headers = keyValuePairs
+        } else {
+            for (key, value) in keyValuePairs {
+                self.headers![key] = value
+            }
+        }
+    }
+    
+    func setHeaders(keyValuePairs: [String:String]) {
+        self.headers = nil
+        self.addHeaders(keyValuePairs)
+    }
+    
     func send(completionHandler: ((NSURLResponse!, NSData!, NSError!) -> Void)?) {
         let url = NSURL(string: "https://api.sendgrid.com/api/mail.send.json")!
         let request = NSMutableURLRequest(URL: url)
@@ -206,10 +225,24 @@ class SendGrid {
         addToParamsIfPresent("cc", self.cc)
         addToParamsIfPresent("bcc", self.bcc)
         addToParamsIfPresent("replyto", self.replyto)
+        addToParamsIfPresent("headers", self.headers)
         
         var body = ""
         for (paramName, paramValue) in params {
-            if let arr = paramValue as? [String] {
+            if paramName == "headers" {
+                if countElements(body) > 0 { body += "&" }
+                var error: NSError?
+                var data = NSJSONSerialization.dataWithJSONObject(paramValue, options: nil, error: &error)
+                if let err = error {
+                    Logger.error("Error converting headers to JSON - \(err.localizedDescription)")
+                } else if let d = data {
+                    if let json = NSString(data: d, encoding: NSUTF8StringEncoding) {
+                        if let encoded = json.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
+                            body += "headers=\(encoded)"
+                        }
+                    }
+                }
+            }else if let arr = paramValue as? [String] {
                 for value in arr {
                     if let encoded = value.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
                         if countElements(body) > 0 { body += "&" }
@@ -233,10 +266,10 @@ class SendGrid {
         
         request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         let queue:NSOperationQueue = NSOperationQueue()
-//        NSURLConnection.sendAsynchronousRequest(request, queue: queue) { (response, data, error) -> Void in
-//            if let handler = completionHandler {
-//                handler(response, data, error)
-//            }
-//        }
+        //        NSURLConnection.sendAsynchronousRequest(request, queue: queue) { (response, data, error) -> Void in
+        //            if let handler = completionHandler {
+        //                handler(response, data, error)
+        //            }
+        //        }
     }
 }
