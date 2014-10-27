@@ -236,7 +236,7 @@ class SendGrid {
                     if countElements(addresses) == countElements(toNames) {
                         self.toname! += toNames
                     } else {
-                        println("[**ERROR**] SendGrid addTos: The number of email addresses provided didn't match the number of names provided.")
+                        Logger.error("SendGrid addTos: The number of email addresses provided didn't match the number of names provided.")
                         return
                     }
                 } else if self.toname != nil {
@@ -353,6 +353,45 @@ class SendGrid {
                     self.content![filename] = c
                 }
             }
+        }
+        
+        // MARK: SMTPAPI CONVENIENCE METHODS
+        //=========================================================================
+        
+        func addSubstitution(key: String, values: [String]) {
+            self.smtpapi.addSubstitution(key, values: values)
+        }
+        
+        func addSection(key: String, value: String) {
+            self.smtpapi.addSection(key, value: value)
+        }
+        
+        func addUniqueArgument(key: String, value: String) {
+            self.smtpapi.addUniqueArgument(key, value: value)
+        }
+        
+        func addCategory(category: String) {
+            self.addCategories([category])
+        }
+        
+        func addCategories(categories: [String]) {
+            self.smtpapi.addCategories(categories)
+        }
+        
+        func addFilter(filter: SendGridFilter, setting: String, value: Any) {
+            self.smtpapi.addFilter(filter, setting: setting, value: value)
+        }
+        
+        func setSendAt(date: NSDate) {
+            self.smtpapi.setSendAt(date)
+        }
+        
+        func setSendEachAt(dates: [NSDate]) {
+            self.smtpapi.setSendEachAt(dates)
+        }
+        
+        func setAsmGroup(id: Int) {
+            self.smtpapi.setAsmGroup(id)
         }
     }
 }
