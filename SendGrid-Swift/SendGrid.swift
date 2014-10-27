@@ -142,11 +142,30 @@ class SendGrid {
             }
         }
         
+        if let cids = email.content {
+            for (filename, id) in cids {
+                addBoundary()
+                addDisposition(param: "content[\(filename)]", filename: nil)
+                addParamValue(value: id)
+            }
+        }
+        
+        if let files = email.attachments {
+            for (file, data) in files {
+                addBoundary()
+                addDisposition(param: "files[\(file)]", filename: file)
+                if let data = "Content-Type: application/octet-stream\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                    body.appendData(data)
+                }
+                body.appendData(data)
+            }
+        }
+        
         if let data = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
             body.appendData(data)
         }
         
-        println(NSString(data: body, encoding: NSUTF8StringEncoding)!)
+        //println(NSString(data: body, encoding: NSUTF8StringEncoding)!)
         
         request.HTTPBody = body
         let queue:NSOperationQueue = NSOperationQueue()
@@ -175,6 +194,7 @@ class SendGrid {
         var bcc: [String]?
         var replyto: String?
         var attachments: [String:NSData]?
+        var content: [String:String]?
         
         let smtpapi = SmtpApi()
         var hasRecipientsInSmtpApi = true
@@ -313,11 +333,19 @@ class SendGrid {
             self.addHeaders(keyValuePairs)
         }
         
-        func addAttachment(filename: String, data: NSData) {
+        func addAttachment(filename: String, data: NSData, cid: String?) {
             if self.attachments == nil {
                 self.attachments = [filename: data]
             } else {
                 self.attachments![filename] = data
+            }
+            
+            if let c = cid {
+                if self.content == nil {
+                    self.content = [filename: c]
+                } else {
+                    self.content![filename] = c
+                }
             }
         }
     }
