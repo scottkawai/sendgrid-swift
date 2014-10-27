@@ -99,9 +99,9 @@ class SendGrid {
         }
         
         var addDisposition: ((param: String, filename: String?) -> Void) = { (param, filename) -> Void in
-            var d = "Content-Disposition: form-data; name=\"\(param)\";"
+            var d = "Content-Disposition: form-data; name=\"\(param)\""
             if let f = filename {
-                d += " filename=\"\(filename)\""
+                d += "; filename=\"\(filename)\""
             }
             d += "\r\n\r\n"
             if let data = d.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
@@ -142,6 +142,12 @@ class SendGrid {
             }
         }
         
+        if email.smtpapi.hasSmtpApi {
+            addBoundary()
+            addDisposition(param: "x-smtpapi", filename: nil)
+            addParamValue(value: email.smtpapi.jsonValue)
+        }
+        
         if let cids = email.content {
             for (filename, id) in cids {
                 addBoundary()
@@ -154,8 +160,8 @@ class SendGrid {
             for (file, data) in files {
                 addBoundary()
                 addDisposition(param: "files[\(file)]", filename: file)
-                if let data = "Content-Type: application/octet-stream\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                    body.appendData(data)
+                if let d = "Content-Type: application/octet-stream\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                   // body.appendData(d)
                 }
                 body.appendData(data)
             }
