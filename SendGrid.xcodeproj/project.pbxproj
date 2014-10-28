@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		770AE39519FF21A300E59D8D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 770AE39419FF21A300E59D8D /* README.md */; };
 		77B015BB19FB2A6C00D417CE /* SendGrid-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		77B015C119FB2A6C00D417CE /* SendGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B015B519FB2A6C00D417CE /* SendGrid.framework */; };
 		77B015C819FB2A6C00D417CE /* SendGrid_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015C719FB2A6C00D417CE /* SendGrid_SwiftTests.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		770AE39419FF21A300E59D8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		77B015B519FB2A6C00D417CE /* SendGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SendGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B015B919FB2A6C00D417CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SendGrid-Swift.h"; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		77B015AB19FB2A6C00D417CE = {
 			isa = PBXGroup;
 			children = (
+				770AE39419FF21A300E59D8D /* README.md */,
 				77B015B719FB2A6C00D417CE /* SendGrid-Swift */,
 				77B015C419FB2A6C00D417CE /* SendGrid-SwiftTests */,
 				77B015B619FB2A6C00D417CE /* Products */,
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				770AE39519FF21A300E59D8D /* README.md in Sources */,
 				77F3530119FC187300C9E053 /* SmtpApi.swift in Sources */,
 				77B015D219FB2A7C00D417CE /* SendGrid.swift in Sources */,
 			);
