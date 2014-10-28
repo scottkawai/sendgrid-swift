@@ -58,7 +58,7 @@ See below for the various functions available when generating your email.
 
 ## Side Note About Recipients
 
-***IMPORTANT:*** By default, this library adds "To" addresses to the [SendGrid X-SMTPAPI header](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).  This means that SendGrid will send each of the recipients an individual copy of the message so that each recipient doesn't see every other recipient's email address. Doing this, however, means that things such as BCC will not work.  If you wish to send an email that behaves like a "normal" email (where all recipients see ever address in the "To" field and BCC is available), then set the `hasRecipientsInSmtpApi` on your `SendGrid.Email` instance to `false` (by default it is `true`).
+***IMPORTANT:*** By default, this library adds "To" addresses to the [SendGrid X-SMTPAPI header](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).  This means that SendGrid will send each of the recipients an individual copy of the message so that each recipient doesn't see every other recipient's email address. Doing this, however, means that things such as BCC will not work.  If you wish to send an email that behaves like a "normal" email (where all recipients see every address in the "To" field and BCC is available), then set the `hasRecipientsInSmtpApi` on your `SendGrid.Email` instance to `false` (by default it is `true`).
 
 ```swift
 var email = SendGrid.Email()
