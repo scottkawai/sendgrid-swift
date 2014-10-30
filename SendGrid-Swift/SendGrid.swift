@@ -90,6 +90,7 @@ class SendGrid {
         let boundary = "0xKhTmLbOuNdArY"
         var contentType = "multipart/form-data; boundary=\(boundary)"
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+        request.addValue("sendgrid/\(SendGrid.version);swift", forHTTPHeaderField: "User-Agent")
         
         var addBoundary = { () -> Void in
             var b = "--\(boundary)\r\n"
