@@ -394,5 +394,9 @@ class SendGrid {
         func setAsmGroup(id: Int) {
             self.smtpapi.setAsmGroup(id)
         }
+        
+        func setIpPool(pool: String) {
+            self.smtpapi.setIpPool(pool)
+        }
     }
 }

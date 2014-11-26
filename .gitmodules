@@ -1,3 +1,4 @@
 [submodule "smtpapi-swift"]
 	path = smtpapi-swift
 	url = https://github.com/scottkawai/smtpapi-swift
+	fetchRecurseSubmodules = true
