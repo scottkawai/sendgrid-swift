@@ -21,16 +21,22 @@ class SendGrid_SwiftTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+    func testAddToWithoutSmtpApi() {
+        var email = SendGrid.Email()
+        email.hasRecipientsInSmtpApi = false
+        email.addTo("isaac@test.none", name: "Isaac")
+        email.addTo("jose@test.none", name: "Jose")
+        if let tos = email.to {
+            XCTAssertEqual(tos[0], "isaac@test.none", "addTo added an email to the to property")
+            XCTAssertEqual(tos[1], "jose@test.none", "addTo added a second email to the to property")
+            if let names = email.toname {
+                XCTAssertEqual(names[0], "Isaac", "addTo added a to name to the toname property")
+                XCTAssertEqual(names[1], "Jose", "addTo added a second to name to the toname property")
+            } else {
+                XCTFail("addTo did not create an array for tonames (`toname` is nil).")
+            }
+        } else {
+            XCTFail("addTo did not create an array (`to` is nil).")
         }
     }
     
