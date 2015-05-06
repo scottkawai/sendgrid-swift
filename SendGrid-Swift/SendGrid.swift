@@ -63,9 +63,9 @@ class SendGrid {
         
         addToParamsIfPresent("fromname", email.fromname)
         
-        if email.hasRecipientsInSmtpApi && email.smtpapi.to != nil && countElements(email.smtpapi.to!) > 0 {
+        if email.hasRecipientsInSmtpApi && email.smtpapi.to != nil && count(email.smtpapi.to!) > 0 {
             params["to"] = email.from!
-        } else if !email.hasRecipientsInSmtpApi && email.to != nil && countElements(email.to!) > 0 {
+        } else if !email.hasRecipientsInSmtpApi && email.to != nil && count(email.to!) > 0 {
             params["to"] = email.to!
         } else {
             Logger.error("SendGrid send: Could not send message as no recipients were specified.")
@@ -134,7 +134,7 @@ class SendGrid {
                         Logger.error("Error converting headers to JSON - \(err.localizedDescription)")
                     } else if let d = data {
                         if let json = NSString(data: d, encoding: NSUTF8StringEncoding) {
-                            addParamValue(value: json)
+                            addParamValue(value: json as String)
                         }
                     }
                 } else if let value = paramValue as? String {
@@ -234,7 +234,7 @@ class SendGrid {
                     if self.toname == nil {
                         self.toname = []
                     }
-                    if countElements(addresses) == countElements(toNames) {
+                    if count(addresses) == count(toNames) {
                         self.toname! += toNames
                     } else {
                         Logger.error("SendGrid addTos: The number of email addresses provided didn't match the number of names provided.")
