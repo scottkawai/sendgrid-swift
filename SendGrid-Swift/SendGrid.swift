@@ -63,9 +63,9 @@ class SendGrid {
         
         addToParamsIfPresent("fromname", email.fromname)
         
-        if email.hasRecipientsInSmtpApi && email.smtpapi.to != nil && countElements(email.smtpapi.to!) > 0 {
+        if email.hasRecipientsInSmtpApi && email.smtpapi.to != nil && (email.smtpapi.to!).count > 0 {
             params["to"] = email.from!
-        } else if !email.hasRecipientsInSmtpApi && email.to != nil && countElements(email.to!) > 0 {
+        } else if !email.hasRecipientsInSmtpApi && email.to != nil && (email.to!).count > 0 {
             params["to"] = email.to!
         } else {
             Logger.error("SendGrid send: Could not send message as no recipients were specified.")
@@ -128,14 +128,13 @@ class SendGrid {
                 addBoundary()
                 addDisposition(param: paramName, filename: nil)
                 if paramName == "headers" {
-                    var error: NSError?
-                    var data = NSJSONSerialization.dataWithJSONObject(paramValue, options: nil, error: &error)
-                    if let err = error {
-                        Logger.error("Error converting headers to JSON - \(err.localizedDescription)")
-                    } else if let d = data {
-                        if let json = NSString(data: d, encoding: NSUTF8StringEncoding) {
-                            addParamValue(value: json)
+                    do {
+                        let data = try NSJSONSerialization.dataWithJSONObject(paramValue, options: [])
+                        if let json = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                            addParamValue(value: json as String)
                         }
+                    } catch let error as NSError {
+                        Logger.error("Error converting headers to JSON - \(error.localizedDescription)")
                     }
                 } else if let value = paramValue as? String {
                     addParamValue(value: value)
@@ -234,7 +233,7 @@ class SendGrid {
                     if self.toname == nil {
                         self.toname = []
                     }
-                    if countElements(addresses) == countElements(toNames) {
+                    if (addresses).count == (toNames).count {
                         self.toname! += toNames
                     } else {
                         Logger.error("SendGrid addTos: The number of email addresses provided didn't match the number of names provided.")
