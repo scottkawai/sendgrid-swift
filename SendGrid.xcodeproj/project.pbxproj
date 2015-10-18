@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		770A8FF71BD42613003A3503 /* SendGridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A8FF61BD42613003A3503 /* SendGridAuth.swift */; settings = {ASSET_TAGS = (); }; };
 		770A8FF81BD42613003A3503 /* SendGridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A8FF61BD42613003A3503 /* SendGridAuth.swift */; settings = {ASSET_TAGS = (); }; };
+		770A90221BD42BFC003A3503 /* SendGridiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 770A90211BD42BFC003A3503 /* SendGridiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		770A90291BD42BFC003A3503 /* SendGridiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770A901F1BD42BFC003A3503 /* SendGridiOS.framework */; settings = {ASSET_TAGS = (); }; };
+		770A902E1BD42BFC003A3503 /* SendGridiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A902D1BD42BFC003A3503 /* SendGridiOSTests.swift */; };
+		770A90361BD42C04003A3503 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; settings = {ASSET_TAGS = (); }; };
+		770A90371BD42C04003A3503 /* SendGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015D119FB2A7C00D417CE /* SendGrid.swift */; settings = {ASSET_TAGS = (); }; };
+		770A90381BD42C04003A3503 /* SendGridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A8FF61BD42613003A3503 /* SendGridAuth.swift */; settings = {ASSET_TAGS = (); }; };
+		770A90391BD42C04003A3503 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; settings = {ASSET_TAGS = (); }; };
+		770A903A1BD42C0C003A3503 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C11BD35CA2003A8901 /* Logger.swift */; settings = {ASSET_TAGS = (); }; };
+		770A903B1BD42C0C003A3503 /* SendGridFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */; settings = {ASSET_TAGS = (); }; };
+		770A903C1BD42C0C003A3503 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C31BD35CA2003A8901 /* SmtpApi.swift */; settings = {ASSET_TAGS = (); }; };
+		770A903D1BD42C0C003A3503 /* SmtpApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */; settings = {ASSET_TAGS = (); }; };
+		770A905A1BD42C41003A3503 /* SendGrid-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */; settings = {ASSET_TAGS = (); }; };
 		7714B2B01BD3556F003A8901 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; settings = {ASSET_TAGS = (); }; };
 		7714B2B11BD3563B003A8901 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; settings = {ASSET_TAGS = (); }; };
 		7714B2B31BD35667003A8901 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; settings = {ASSET_TAGS = (); }; };
@@ -29,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		770A902A1BD42BFC003A3503 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77B015AC19FB2A6C00D417CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 770A901E1BD42BFC003A3503;
+			remoteInfo = SendGridiOS;
+		};
 		77B015C219FB2A6C00D417CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 77B015AC19FB2A6C00D417CE /* Project object */;
@@ -40,6 +59,12 @@
 
 /* Begin PBXFileReference section */
 		770A8FF61BD42613003A3503 /* SendGridAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGridAuth.swift; sourceTree = "<group>"; };
+		770A901F1BD42BFC003A3503 /* SendGridiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SendGridiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		770A90211BD42BFC003A3503 /* SendGridiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendGridiOS.h; sourceTree = "<group>"; };
+		770A90231BD42BFC003A3503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		770A90281BD42BFC003A3503 /* SendGridiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendGridiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		770A902D1BD42BFC003A3503 /* SendGridiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGridiOSTests.swift; sourceTree = "<group>"; };
+		770A902F1BD42BFC003A3503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		770AE39419FF21A300E59D8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7714B2AF1BD3556F003A8901 /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		7714B2B21BD35667003A8901 /* SendGridErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGridErrors.swift; sourceTree = "<group>"; };
@@ -57,6 +82,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		770A901B1BD42BFC003A3503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		770A90251BD42BFC003A3503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				770A90291BD42BFC003A3503 /* SendGridiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77B015B119FB2A6C00D417CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,12 +115,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		770A90201BD42BFC003A3503 /* SendGridiOS */ = {
+			isa = PBXGroup;
+			children = (
+				770A90211BD42BFC003A3503 /* SendGridiOS.h */,
+				770A90231BD42BFC003A3503 /* Info.plist */,
+			);
+			path = SendGridiOS;
+			sourceTree = "<group>";
+		};
+		770A902C1BD42BFC003A3503 /* SendGridiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				770A902D1BD42BFC003A3503 /* SendGridiOSTests.swift */,
+				770A902F1BD42BFC003A3503 /* Info.plist */,
+			);
+			path = SendGridiOSTests;
+			sourceTree = "<group>";
+		};
 		77B015AB19FB2A6C00D417CE = {
 			isa = PBXGroup;
 			children = (
 				770AE39419FF21A300E59D8D /* README.md */,
 				77B015B719FB2A6C00D417CE /* SendGrid-Swift */,
 				77B015C419FB2A6C00D417CE /* SendGrid-SwiftTests */,
+				770A90201BD42BFC003A3503 /* SendGridiOS */,
+				770A902C1BD42BFC003A3503 /* SendGridiOSTests */,
 				77B015B619FB2A6C00D417CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +150,8 @@
 			children = (
 				77B015B519FB2A6C00D417CE /* SendGrid.framework */,
 				77B015C019FB2A6C00D417CE /* SendGridTests.xctest */,
+				770A901F1BD42BFC003A3503 /* SendGridiOS.framework */,
+				770A90281BD42BFC003A3503 /* SendGridiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +201,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		770A901C1BD42BFC003A3503 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				770A905A1BD42C41003A3503 /* SendGrid-Swift.h in Headers */,
+				770A90221BD42BFC003A3503 /* SendGridiOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77B015B219FB2A6C00D417CE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,6 +221,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		770A901E1BD42BFC003A3503 /* SendGridiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 770A90341BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOS" */;
+			buildPhases = (
+				770A901A1BD42BFC003A3503 /* Sources */,
+				770A901B1BD42BFC003A3503 /* Frameworks */,
+				770A901C1BD42BFC003A3503 /* Headers */,
+				770A901D1BD42BFC003A3503 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SendGridiOS;
+			productName = SendGridiOS;
+			productReference = 770A901F1BD42BFC003A3503 /* SendGridiOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		770A90271BD42BFC003A3503 /* SendGridiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 770A90351BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOSTests" */;
+			buildPhases = (
+				770A90241BD42BFC003A3503 /* Sources */,
+				770A90251BD42BFC003A3503 /* Frameworks */,
+				770A90261BD42BFC003A3503 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				770A902B1BD42BFC003A3503 /* PBXTargetDependency */,
+			);
+			name = SendGridiOSTests;
+			productName = SendGridiOSTests;
+			productReference = 770A90281BD42BFC003A3503 /* SendGridiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		77B015B419FB2A6C00D417CE /* SendGrid */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77B015CB19FB2A6C00D417CE /* Build configuration list for PBXNativeTarget "SendGrid" */;
@@ -197,6 +304,12 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = SendGrid;
 				TargetAttributes = {
+					770A901E1BD42BFC003A3503 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					770A90271BD42BFC003A3503 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
 					77B015B419FB2A6C00D417CE = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -219,11 +332,27 @@
 			targets = (
 				77B015B419FB2A6C00D417CE /* SendGrid */,
 				77B015BF19FB2A6C00D417CE /* SendGridTests */,
+				770A901E1BD42BFC003A3503 /* SendGridiOS */,
+				770A90271BD42BFC003A3503 /* SendGridiOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		770A901D1BD42BFC003A3503 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		770A90261BD42BFC003A3503 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77B015B319FB2A6C00D417CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +370,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		770A901A1BD42BFC003A3503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				770A903A1BD42C0C003A3503 /* Logger.swift in Sources */,
+				770A903D1BD42C0C003A3503 /* SmtpApiErrors.swift in Sources */,
+				770A903B1BD42C0C003A3503 /* SendGridFilter.swift in Sources */,
+				770A90391BD42C04003A3503 /* SendGridErrors.swift in Sources */,
+				770A90361BD42C04003A3503 /* Email.swift in Sources */,
+				770A90381BD42C04003A3503 /* SendGridAuth.swift in Sources */,
+				770A903C1BD42C0C003A3503 /* SmtpApi.swift in Sources */,
+				770A90371BD42C04003A3503 /* SendGrid.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		770A90241BD42BFC003A3503 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				770A902E1BD42BFC003A3503 /* SendGridiOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77B015B019FB2A6C00D417CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,6 +427,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		770A902B1BD42BFC003A3503 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 770A901E1BD42BFC003A3503 /* SendGridiOS */;
+			targetProxy = 770A902A1BD42BFC003A3503 /* PBXContainerItemProxy */;
+		};
 		77B015C319FB2A6C00D417CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 77B015B419FB2A6C00D417CE /* SendGrid */;
@@ -283,6 +440,82 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		770A90301BD42BFC003A3503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SendGridiOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		770A90311BD42BFC003A3503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SendGridiOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		770A90321BD42BFC003A3503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SendGridiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		770A90331BD42BFC003A3503 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SendGridiOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		77B015C919FB2A6C00D417CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -441,6 +674,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		770A90341BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				770A90301BD42BFC003A3503 /* Debug */,
+				770A90311BD42BFC003A3503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		770A90351BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				770A90321BD42BFC003A3503 /* Debug */,
+				770A90331BD42BFC003A3503 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		77B015AF19FB2A6C00D417CE /* Build configuration list for PBXProject "SendGrid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
