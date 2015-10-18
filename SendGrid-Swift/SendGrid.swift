@@ -19,15 +19,17 @@ public class SendGrid {
     // MARK: PROPERTIES
     //=========================================================================
     
-    let username: String
-    let password: String
+    let authorization: SendGridAuth
     
     // MARK: INITIALIZATION
     //=========================================================================
     
     public init(username: String, password: String) {
-        self.username = username;
-        self.password = password;
+        self.authorization = SendGridAuth.Credentials(username: username, password: password)
+    }
+    
+    public init(apiKey: String) {
+        self.authorization = SendGridAuth.ApiKey(apiKey)
     }
     
     // MARK: FUNCTIONS
@@ -42,12 +44,18 @@ public class SendGrid {
         var params = [String:AnyObject]()
         let charactersToEscape = "!*'();:@&=+$,/?%#[]\" "
         let allowedCharacters = NSCharacterSet(charactersInString: charactersToEscape).invertedSet
-        if let apiUser = self.username.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
-            params["api_user"] = apiUser
-        }
         
-        if let apiKey = self.password.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
-            params["api_key"] = apiKey
+        switch self.authorization {
+        case .Credentials(let un, let pw):
+            if let apiUser = un.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
+                params["api_user"] = apiUser
+            }
+            
+            if let apiKey = pw.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
+                params["api_key"] = apiKey
+            }
+        case .ApiKey(let apiKey):
+            request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         }
         
         let addToParamsIfPresent = { (key: String, param: AnyObject?) -> Bool in
