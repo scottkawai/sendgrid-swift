@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77B015BB19FB2A6C00D417CE /* SendGrid-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7714B2B01BD3556F003A8901 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2B11BD3563B003A8901 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2B31BD35667003A8901 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2B41BD35667003A8901 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2C51BD35CA2003A8901 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C11BD35CA2003A8901 /* Logger.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2C61BD35CA2003A8901 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C11BD35CA2003A8901 /* Logger.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2C71BD35CA2003A8901 /* SendGridFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2C81BD35CA2003A8901 /* SendGridFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2C91BD35CA2003A8901 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C31BD35CA2003A8901 /* SmtpApi.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2CA1BD35CA2003A8901 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C31BD35CA2003A8901 /* SmtpApi.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2CB1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2CC1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */; settings = {ASSET_TAGS = (); }; };
+		7714B2CD1BD35CF8003A8901 /* SendGrid-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */; settings = {ASSET_TAGS = (); }; };
 		77B015C119FB2A6C00D417CE /* SendGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B015B519FB2A6C00D417CE /* SendGrid.framework */; };
 		77B015C819FB2A6C00D417CE /* SendGrid_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015C719FB2A6C00D417CE /* SendGrid_SwiftTests.swift */; };
 		77B015D219FB2A7C00D417CE /* SendGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015D119FB2A7C00D417CE /* SendGrid.swift */; };
 		77B015D319FB2A7C00D417CE /* SendGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015D119FB2A7C00D417CE /* SendGrid.swift */; };
-		77F3530119FC187300C9E053 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3530019FC187300C9E053 /* SmtpApi.swift */; };
-		77F3530219FC187300C9E053 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3530019FC187300C9E053 /* SmtpApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +38,12 @@
 
 /* Begin PBXFileReference section */
 		770AE39419FF21A300E59D8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7714B2AF1BD3556F003A8901 /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
+		7714B2B21BD35667003A8901 /* SendGridErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGridErrors.swift; sourceTree = "<group>"; };
+		7714B2C11BD35CA2003A8901 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = "smtpapi-swift/SMTPAPI/Logger.swift"; sourceTree = SOURCE_ROOT; };
+		7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SendGridFilter.swift; path = "smtpapi-swift/SMTPAPI/SendGridFilter.swift"; sourceTree = SOURCE_ROOT; };
+		7714B2C31BD35CA2003A8901 /* SmtpApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmtpApi.swift; path = "smtpapi-swift/SMTPAPI/SmtpApi.swift"; sourceTree = SOURCE_ROOT; };
+		7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmtpApiErrors.swift; path = "smtpapi-swift/SMTPAPI/SmtpApiErrors.swift"; sourceTree = SOURCE_ROOT; };
 		77B015B519FB2A6C00D417CE /* SendGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SendGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B015B919FB2A6C00D417CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SendGrid-Swift.h"; sourceTree = "<group>"; };
@@ -35,7 +51,6 @@
 		77B015C619FB2A6C00D417CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77B015C719FB2A6C00D417CE /* SendGrid_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGrid_SwiftTests.swift; sourceTree = "<group>"; };
 		77B015D119FB2A7C00D417CE /* SendGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGrid.swift; sourceTree = "<group>"; };
-		77F3530019FC187300C9E053 /* SmtpApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmtpApi.swift; path = "smtpapi-swift/SMTPAPI/SmtpApi.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +94,10 @@
 		77B015B719FB2A6C00D417CE /* SendGrid-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				77B015D119FB2A7C00D417CE /* SendGrid.swift */,
 				77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */,
+				7714B2AF1BD3556F003A8901 /* Email.swift */,
+				77B015D119FB2A7C00D417CE /* SendGrid.swift */,
+				7714B2B21BD35667003A8901 /* SendGridErrors.swift */,
 				77B015B819FB2A6C00D417CE /* Supporting Files */,
 			);
 			path = "SendGrid-Swift";
@@ -89,7 +106,10 @@
 		77B015B819FB2A6C00D417CE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				77F3530019FC187300C9E053 /* SmtpApi.swift */,
+				7714B2C11BD35CA2003A8901 /* Logger.swift */,
+				7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */,
+				7714B2C31BD35CA2003A8901 /* SmtpApi.swift */,
+				7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */,
 				77B015B919FB2A6C00D417CE /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -119,7 +139,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B015BB19FB2A6C00D417CE /* SendGrid-Swift.h in Headers */,
+				7714B2CD1BD35CF8003A8901 /* SendGrid-Swift.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +188,9 @@
 		77B015AC19FB2A6C00D417CE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = SendGrid;
 				TargetAttributes = {
 					77B015B419FB2A6C00D417CE = {
@@ -219,8 +241,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77F3530119FC187300C9E053 /* SmtpApi.swift in Sources */,
+				7714B2B01BD3556F003A8901 /* Email.swift in Sources */,
+				7714B2C71BD35CA2003A8901 /* SendGridFilter.swift in Sources */,
+				7714B2C91BD35CA2003A8901 /* SmtpApi.swift in Sources */,
+				7714B2CB1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */,
+				7714B2B31BD35667003A8901 /* SendGridErrors.swift in Sources */,
 				77B015D219FB2A7C00D417CE /* SendGrid.swift in Sources */,
+				7714B2C51BD35CA2003A8901 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,9 +255,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7714B2C61BD35CA2003A8901 /* Logger.swift in Sources */,
+				7714B2CC1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */,
+				7714B2C81BD35CA2003A8901 /* SendGridFilter.swift in Sources */,
 				77B015C819FB2A6C00D417CE /* SendGrid_SwiftTests.swift in Sources */,
 				77B015D319FB2A7C00D417CE /* SendGrid.swift in Sources */,
-				77F3530219FC187300C9E053 /* SmtpApi.swift in Sources */,
+				7714B2B41BD35667003A8901 /* SendGridErrors.swift in Sources */,
+				7714B2CA1BD35CA2003A8901 /* SmtpApi.swift in Sources */,
+				7714B2B11BD3563B003A8901 /* Email.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +297,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -339,6 +372,7 @@
 				INFOPLIST_FILE = "SendGrid-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SendGrid;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -358,6 +392,7 @@
 				INFOPLIST_FILE = "SendGrid-Swift/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SendGrid;
 				SKIP_INSTALL = YES;
 			};
@@ -377,6 +412,7 @@
 				);
 				INFOPLIST_FILE = "SendGrid-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SendGridTests;
 			};
 			name = Debug;
@@ -391,6 +427,7 @@
 				);
 				INFOPLIST_FILE = "SendGrid-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SendGridTests;
 			};
 			name = Release;

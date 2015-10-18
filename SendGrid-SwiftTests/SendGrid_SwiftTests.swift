@@ -22,10 +22,10 @@ class SendGrid_SwiftTests: XCTestCase {
     }
     
     func testAddToWithoutSmtpApi() {
-        var email = SendGrid.Email()
+        let email = SendGrid.Email()
         email.hasRecipientsInSmtpApi = false
-        email.addTo("isaac@test.none", name: "Isaac")
-        email.addTo("jose@test.none", name: "Jose")
+        try! email.addTo("isaac@test.none", name: "Isaac")
+        try! email.addTo("jose@test.none", name: "Jose")
         if let tos = email.to {
             XCTAssertEqual(tos[0], "isaac@test.none", "addTo added an email to the to property")
             XCTAssertEqual(tos[1], "jose@test.none", "addTo added a second email to the to property")
