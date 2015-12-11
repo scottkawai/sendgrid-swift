@@ -21,5 +21,9 @@ public extension SendGrid {
             self.contentType = type
             self.cid = id
         }
+        
+        convenience init(filename name: String, content data: NSData, cid id: String? = nil) {
+            self.init(filename: name, content: data, contentType: "application/octet-stream", cid: id)
+        }
     }
 }

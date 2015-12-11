@@ -163,13 +163,22 @@ public extension SendGrid {
             self.addHeaders(keyValuePairs)
         }
         
-        public func addAttachment(filename: String, data: NSData, contentType type: String, cid: String? = nil) {
+        public func addAttachment(file: SendGrid.Attachment) {
             if self.attachments == nil {
                 self.attachments = []
             }
             
-            self.attachments?.append(SendGrid.Attachment(filename: filename, content: data, contentType: type, cid: cid))
+            self.attachments?.append(file)
         }
+        
+        public func addAttachment(filename: String, data: NSData, contentType type: String, cid: String? = nil) {
+            self.addAttachment(SendGrid.Attachment(filename: filename, content: data, contentType: type, cid: cid))
+        }
+        
+        public func addAttachment(filename: String, data: NSData, cid: String? = nil) {
+            self.addAttachment(SendGrid.Attachment(filename: filename, content: data, cid: cid))
+        }
+        
         
         // MARK: SMTPAPI CONVENIENCE METHODS
         //=========================================================================
