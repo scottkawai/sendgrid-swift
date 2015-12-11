@@ -39,7 +39,7 @@ public extension SendGrid {
         // MARK: FUNCTIONS
         //=========================================================================
         
-        public func addTo(address: String, name: String?) throws {
+        public func addTo(address: String, name: String? = nil) throws {
             var names: [String]?
             if let n = name {
                 names = [n]
@@ -47,7 +47,7 @@ public extension SendGrid {
             try self.addTos([address], names: names)
         }
         
-        public func addTos(addresses: [String], names: [String]?) throws {
+        public func addTos(addresses: [String], names: [String]? = nil) throws {
             if self.hasRecipientsInSmtpApi {
                 try self.smtpapi.addTos(addresses, names: names)
             } else {
@@ -72,7 +72,7 @@ public extension SendGrid {
             }
         }
         
-        public func setTos(addresses: [String], names: [String]?) throws {
+        public func setTos(addresses: [String], names: [String]? = nil) throws {
             if self.hasRecipientsInSmtpApi {
                 try self.smtpapi.setTos(addresses, names: names)
             } else {
@@ -86,7 +86,7 @@ public extension SendGrid {
             self.subject = subject
         }
         
-        public func setFrom(address: String, name: String?) {
+        public func setFrom(address: String, name: String? = nil) {
             self.from = address
             self.fromname = name
         }
@@ -164,7 +164,7 @@ public extension SendGrid {
             self.addHeaders(keyValuePairs)
         }
         
-        public func addAttachment(filename: String, data: NSData, cid: String?) {
+        public func addAttachment(filename: String, data: NSData, cid: String? = nil) {
             if self.attachments == nil {
                 self.attachments = [filename: data]
             } else {
