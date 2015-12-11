@@ -106,12 +106,12 @@ public class SendGrid {
             }
         }
         
-        let addDisposition: ((param: String, filename: String?) -> Void) = { (param, filename) -> Void in
+        func addDisposition(param: String, filename: String? = nil, lineEnd: String = "\r\n\r\n") {
             var d = "Content-Disposition: form-data; name=\"\(param)\""
             if let f = filename {
                 d += "; filename=\"\(f)\""
             }
-            d += "\r\n\r\n"
+            d += lineEnd
             if let data = d.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                 body.appendData(data)
             }
@@ -128,12 +128,12 @@ public class SendGrid {
             if let arr = paramValue as? [String] {
                 for value in arr {
                     addBoundary()
-                    addDisposition(param: "\(paramName)[]", filename: nil)
+                    addDisposition("\(paramName)[]")
                     addParamValue(value: value)
                 }
             } else {
                 addBoundary()
-                addDisposition(param: paramName, filename: nil)
+                addDisposition(paramName)
                 if paramName == "headers" {
                     let data = try NSJSONSerialization.dataWithJSONObject(paramValue, options: [])
                     if let json = NSString(data: data, encoding: NSUTF8StringEncoding) {
@@ -147,30 +147,31 @@ public class SendGrid {
         
         if email.smtpapi.hasSmtpApi {
             addBoundary()
-            addDisposition(param: "x-smtpapi", filename: nil)
+            addDisposition("x-smtpapi")
             addParamValue(value: email.smtpapi.jsonValue)
         }
         
-        if let cids = email.content {
-            for (filename, id) in cids {
+        if let attachments = email.attachments {
+            for cidInfo in attachments {
+                if let cid = cidInfo.cid {
+                    addBoundary()
+                    addDisposition("content[\(cidInfo.filename)]")
+                    addParamValue(value: cid)
+                }
+            }
+            
+            for attachment in attachments {
                 addBoundary()
-                addDisposition(param: "content[\(filename)]", filename: nil)
-                addParamValue(value: id)
+                addDisposition("files[\(attachment.filename)]", filename: attachment.filename, lineEnd: "\r\n")
+                if let d = "Content-Type: \(attachment.contentType)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+                {
+                    body.appendData(d)
+                }
+                body.appendData(attachment.content)
             }
         }
         
-        if let files = email.attachments {
-            for (file, data) in files {
-                addBoundary()
-                addDisposition(param: "files[\(file)]", filename: file)
-                //                if let d = "Content-Type: application/octet-stream\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                // body.appendData(d)
-                //                }
-                body.appendData(data)
-            }
-        }
-        
-        if let data = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+        if let data = "\r\n--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
             body.appendData(data)
         }
         

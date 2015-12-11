@@ -25,8 +25,7 @@ public extension SendGrid {
         public var cc: [String]?
         public var bcc: [String]?
         public var replyto: String?
-        public var attachments: [String:NSData]?
-        public var content: [String:String]?
+        public var attachments: [SendGrid.Attachment]?
         
         public let smtpapi = SmtpApi()
         public var hasRecipientsInSmtpApi = true
@@ -164,20 +163,12 @@ public extension SendGrid {
             self.addHeaders(keyValuePairs)
         }
         
-        public func addAttachment(filename: String, data: NSData, cid: String? = nil) {
+        public func addAttachment(filename: String, data: NSData, contentType type: String, cid: String? = nil) {
             if self.attachments == nil {
-                self.attachments = [filename: data]
-            } else {
-                self.attachments![filename] = data
+                self.attachments = []
             }
             
-            if let c = cid {
-                if self.content == nil {
-                    self.content = [filename: c]
-                } else {
-                    self.content![filename] = c
-                }
-            }
+            self.attachments?.append(SendGrid.Attachment(filename: filename, content: data, contentType: type, cid: cid))
         }
         
         // MARK: SMTPAPI CONVENIENCE METHODS
