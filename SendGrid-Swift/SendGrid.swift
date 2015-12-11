@@ -36,7 +36,9 @@ public class SendGrid {
     //=========================================================================
     
     public func send(email: SendGrid.Email, completionHandler: ((NSURLResponse?, NSData?, NSError?) -> Void)?) throws {
-        let url = NSURL(string: "https://api.sendgrid.com/api/mail.send.json")!
+        guard let url = NSURL(string: "https://api.sendgrid.com/api/mail.send.json") else {
+            throw SendGridErrors.UrlNotPresent
+        }
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         

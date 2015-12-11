@@ -13,6 +13,7 @@ public enum SendGridErrors: ErrorType, CustomStringConvertible {
     case MissingFromAddress
     case MissingRecipients
     case MissingSubject
+    case UrlNotPresent
     
     public var description: String {
         switch self {
@@ -24,6 +25,8 @@ public enum SendGridErrors: ErrorType, CustomStringConvertible {
             return "Could not send message as no recipients were specified."
         case .MissingSubject:
             return "Could not send message - a subject is required."
+        case .UrlNotPresent:
+            return "The Web API URL endpoing is not present. Unable to make HTTP request."
         }
     }
 }
