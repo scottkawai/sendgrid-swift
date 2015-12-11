@@ -258,11 +258,12 @@ email.setHeaders([
 
 Adds an attachment to the message. There's a few parameters in order to attach a file:
 
-| Parameter | Explanation                                                                                                                                   |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| filename  | A String representing the filename of the attachment.                                                                                         |
-| data      | An NSData object representing the data of the attachment.                                                                                     |
-| cid       | An optional String representing a CID of the file in order to reference it in the HTML body. *This only works if the attachment is an image*. |
+|  Parameter  | Explanation                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| filename    | A String representing the filename of the attachment.                                                                                         |
+| data        | An NSData object representing the data of the attachment.                                                                                     |
+| contentType | A String representing the MIME type of the attachment.                                                                                        |
+| cid         | An optional String representing a CID of the file in order to reference it in the HTML body. *This only works if the attachment is an image*. |
 
 Here's an example of adding a simple txt file:
 
@@ -270,7 +271,7 @@ Here's an example of adding a simple txt file:
 var email = SendGrid.Email()
 let path = "/path/to/document.txt"
 if let data = NSData(contentsOfFile: path) {
-    email.addAttachment("file.txt", data: data, cid: nil)
+    email.addAttachment("file.txt", data: data, contentType: "text/plain")
 }
 ```
 
@@ -280,7 +281,7 @@ Here's an example of adding an image with a CID, and then using it in the HTML b
 var email = SendGrid.Email()
 let path = "/path/to/image.jpg"
 if let data = NSData(contentsOfFile: path) {
-    email.addAttachment("banner.jpg", data: data, cid: "abc12345")
+    email.addAttachment("banner.jpg", data: data, contentType: "image/jpeg", cid: "abc12345")
 }
 email.setHtmlBody("<img src=\"cid:abc12345\" />")
 ```
