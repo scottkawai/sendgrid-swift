@@ -44,18 +44,11 @@ public class SendGrid {
         
         // BODY
         var params = [String:AnyObject]()
-        let charactersToEscape = "!*'();:@&=+$,/?%#[]\" "
-        let allowedCharacters = NSCharacterSet(charactersInString: charactersToEscape).invertedSet
         
         switch self.authorization {
         case .Credentials(let un, let pw):
-            if let apiUser = un.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
-                params["api_user"] = apiUser
-            }
-            
-            if let apiKey = pw.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) {
-                params["api_key"] = apiKey
-            }
+            params["api_user"] = un
+            params["api_key"] = pw
         case .ApiKey(let apiKey):
             request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         }
