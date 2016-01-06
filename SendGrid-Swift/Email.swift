@@ -222,6 +222,14 @@ public extension SendGrid {
         public func setIpPool(pool: String) {
             self.smtpapi.setIpPool(pool)
         }
+        
+        
+        // MARK: - Convenience Filter Methods
+        //=========================================================================
+        public func addTemplate(templateID: String) throws {
+            try self.addFilter(SendGridFilter.TemplateEngine, setting: "enable", value: 1)
+            try self.addFilter(SendGridFilter.TemplateEngine, setting: "template_id", value: templateID)
+        }
     }
 
 }
