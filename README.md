@@ -6,6 +6,16 @@ This library allows you to quickly and easily send emails through SendGrid using
 
 ## Installation
 
+### With Cocoapods
+
+Add the following to your Podfile:
+
+```
+pod 'SendGrid', :git => 'https://github.com/scottkawai/sendgrid-swift.git', :submodules => true
+```
+
+**Important** Make sure you include the `:submodules => true` portion.
+
 ### As A Submodule
 
 Add this repo as a submodule to your project and update:
