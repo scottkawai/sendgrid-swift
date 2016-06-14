@@ -5,6 +5,10 @@ This library allows you to quickly and easily send emails through SendGrid using
 ## Important: Breaking Changes
 Version 0.1.0 and higher have been migrated over to use SendGrid's [V3 Mail Send Endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html), which contains code-breaking changes.
 
+## Full Documentation
+
+Full documentation of the library is available [here](http://scottkawai.github.io/sendgrid-swift/docs/).
+
 ## Table Of Contents
 
 - [Installation](#installation)
