@@ -75,7 +75,7 @@ public struct Constants {
      Constants for ASM.
      
      */
-    public struct ASM {
+    public struct UnsubscribeGroups {
         
         /// The maximum number of unsubscribe groups you can specify in the `groupsToDisplay` property.
         public static let MaximumNumberOfDisplayGroups: Int = 25
