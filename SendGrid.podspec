@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SendGrid"
-  s.version      = "0.0.2"
+  s.version      = "0.1.0"
   s.summary      = "A library that allows you to easily send emails through SendGrid using Swift."
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  A library that allows you to quickly and easily send emails through SendGrid using Swift.
+  A library that allows you to easily send emails through SendGrid's V3 Mail Send API using Swift.
   DESC
 
   s.homepage     = "https://github.com/scottkawai/sendgrid-swift"
@@ -72,7 +72,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/scottkawai/sendgrid-swift.git", :tag => s.version.to_s, :submodules => true }
+  s.source       = { :git => "https://github.com/scottkawai/sendgrid-swift.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -83,7 +83,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "SendGrid-Swift/*.swift", 'smtpapi-swift/SMTPAPI/*.swift'
+  s.source_files  = "Sources/**/*.swift"
   # s.exclude_files = "Classes/Exclude"
   # s.public_header_files = "Classes/**/*.h"
 
