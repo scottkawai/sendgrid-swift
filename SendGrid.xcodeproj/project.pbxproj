@@ -7,527 +7,694 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		770A8FF71BD42613003A3503 /* SendGridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A8FF61BD42613003A3503 /* SendGridAuth.swift */; };
-		770A8FF81BD42613003A3503 /* SendGridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A8FF61BD42613003A3503 /* SendGridAuth.swift */; };
-		770A90221BD42BFC003A3503 /* SendGridiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 770A90211BD42BFC003A3503 /* SendGridiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		770A90291BD42BFC003A3503 /* SendGridiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770A901F1BD42BFC003A3503 /* SendGridiOS.framework */; };
-		770A902E1BD42BFC003A3503 /* SendGridiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A902D1BD42BFC003A3503 /* SendGridiOSTests.swift */; };
-		770A90361BD42C04003A3503 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; };
-		770A90371BD42C04003A3503 /* SendGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015D119FB2A7C00D417CE /* SendGrid.swift */; };
-		770A90381BD42C04003A3503 /* SendGridAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770A8FF61BD42613003A3503 /* SendGridAuth.swift */; };
-		770A90391BD42C04003A3503 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; };
-		770A903A1BD42C0C003A3503 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C11BD35CA2003A8901 /* Logger.swift */; };
-		770A903B1BD42C0C003A3503 /* SendGridFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */; };
-		770A903C1BD42C0C003A3503 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C31BD35CA2003A8901 /* SmtpApi.swift */; };
-		770A903D1BD42C0C003A3503 /* SmtpApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */; };
-		770A905A1BD42C41003A3503 /* SendGrid-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */; };
-		7714B2B01BD3556F003A8901 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; };
-		7714B2B11BD3563B003A8901 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2AF1BD3556F003A8901 /* Email.swift */; };
-		7714B2B31BD35667003A8901 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; };
-		7714B2B41BD35667003A8901 /* SendGridErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2B21BD35667003A8901 /* SendGridErrors.swift */; };
-		7714B2C51BD35CA2003A8901 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C11BD35CA2003A8901 /* Logger.swift */; };
-		7714B2C61BD35CA2003A8901 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C11BD35CA2003A8901 /* Logger.swift */; };
-		7714B2C71BD35CA2003A8901 /* SendGridFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */; };
-		7714B2C81BD35CA2003A8901 /* SendGridFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */; };
-		7714B2C91BD35CA2003A8901 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C31BD35CA2003A8901 /* SmtpApi.swift */; };
-		7714B2CA1BD35CA2003A8901 /* SmtpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C31BD35CA2003A8901 /* SmtpApi.swift */; };
-		7714B2CB1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */; };
-		7714B2CC1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */; };
-		7714B2CD1BD35CF8003A8901 /* SendGrid-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */; };
-		77B015C119FB2A6C00D417CE /* SendGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B015B519FB2A6C00D417CE /* SendGrid.framework */; };
-		77B015C819FB2A6C00D417CE /* SendGrid_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015C719FB2A6C00D417CE /* SendGrid_SwiftTests.swift */; };
-		77B015D219FB2A7C00D417CE /* SendGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015D119FB2A7C00D417CE /* SendGrid.swift */; };
-		77B015D319FB2A7C00D417CE /* SendGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B015D119FB2A7C00D417CE /* SendGrid.swift */; };
-		77E9A5B51C1B5927000DB8F3 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9A5B41C1B5927000DB8F3 /* Attachment.swift */; };
-		77E9A5B61C1B5A2C000DB8F3 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9A5B41C1B5927000DB8F3 /* Attachment.swift */; };
-		77E9A5B71C1B5A30000DB8F3 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E9A5B41C1B5927000DB8F3 /* Attachment.swift */; };
+		770850A01CE64F7500861BA1 /* SendGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 7708509F1CE64F7500861BA1 /* SendGrid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		770850A71CE64F7500861BA1 /* SendGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7708509C1CE64F7500861BA1 /* SendGrid.framework */; };
+		770850C11CE6507700861BA1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C01CE6507700861BA1 /* Address.swift */; };
+		770850C21CE6507700861BA1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C01CE6507700861BA1 /* Address.swift */; };
+		770850C41CE6515900861BA1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C31CE6515900861BA1 /* Error.swift */; };
+		770850C51CE6515900861BA1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C31CE6515900861BA1 /* Error.swift */; };
+		770850C81CE6536F00861BA1 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C71CE6536F00861BA1 /* AddressTests.swift */; };
+		770850CA1CE6553C00861BA1 /* DictionaryConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C91CE6553C00861BA1 /* DictionaryConvertible.swift */; };
+		770850CB1CE6553C00861BA1 /* DictionaryConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850C91CE6553C00861BA1 /* DictionaryConvertible.swift */; };
+		770850CD1CE655F600861BA1 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850CC1CE655F600861BA1 /* JSONConvertible.swift */; };
+		770850CE1CE655F600861BA1 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850CC1CE655F600861BA1 /* JSONConvertible.swift */; };
+		770850D61CE65E6300861BA1 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850D51CE65E6300861BA1 /* Content.swift */; };
+		770850D71CE65E6300861BA1 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850D51CE65E6300861BA1 /* Content.swift */; };
+		770850DA1CE65F0000861BA1 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850D91CE65F0000861BA1 /* ContentType.swift */; };
+		770850DB1CE65F0000861BA1 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770850D91CE65F0000861BA1 /* ContentType.swift */; };
+		77474FFC1CE8FE1E00E5170E /* ContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474FFB1CE8FE1E00E5170E /* ContentTests.swift */; };
+		77474FFE1CE904E100E5170E /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474FFD1CE904E100E5170E /* Personalization.swift */; };
+		77474FFF1CE904E100E5170E /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474FFD1CE904E100E5170E /* Personalization.swift */; };
+		774750011CE918B400E5170E /* PersonalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774750001CE918B400E5170E /* PersonalizationTests.swift */; };
+		7766D5031D0B153D0077C9DB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5021D0B153D0077C9DB /* Request.swift */; };
+		7766D5041D0B153D0077C9DB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5021D0B153D0077C9DB /* Request.swift */; };
+		7766D5061D0B15A20077C9DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5051D0B15A20077C9DB /* HTTPMethod.swift */; };
+		7766D5071D0B15A20077C9DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5051D0B15A20077C9DB /* HTTPMethod.swift */; };
+		7766D5091D0B1A2A0077C9DB /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5081D0B1A2A0077C9DB /* Session.swift */; };
+		7766D50A1D0B1A2A0077C9DB /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5081D0B1A2A0077C9DB /* Session.swift */; };
+		7766D50C1D0B212A0077C9DB /* HTTPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D50B1D0B212A0077C9DB /* HTTPMessage.swift */; };
+		7766D50D1D0B212A0077C9DB /* HTTPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D50B1D0B212A0077C9DB /* HTTPMessage.swift */; };
+		7766D5131D0B2D2E0077C9DB /* APIV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5121D0B2D2E0077C9DB /* APIV3.swift */; };
+		7766D5141D0B2D2E0077C9DB /* APIV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5121D0B2D2E0077C9DB /* APIV3.swift */; };
+		7766D5161D0B2E440077C9DB /* Error+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5151D0B2E440077C9DB /* Error+Request.swift */; };
+		7766D5171D0B2E440077C9DB /* Error+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5151D0B2E440077C9DB /* Error+Request.swift */; };
+		7766D5191D0B31090077C9DB /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5181D0B31090077C9DB /* ParameterEncoding.swift */; };
+		7766D51A1D0B31090077C9DB /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5181D0B31090077C9DB /* ParameterEncoding.swift */; };
+		776B04191D0B378000C21994 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B04181D0B378000C21994 /* Response.swift */; };
+		776B041A1D0B378000C21994 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B04181D0B378000C21994 /* Response.swift */; };
+		776B041C1D0B37D500C21994 /* RateLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B041B1D0B37D500C21994 /* RateLimit.swift */; };
+		776B041D1D0B37D500C21994 /* RateLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B041B1D0B37D500C21994 /* RateLimit.swift */; };
+		776B041F1D0B3D7600C21994 /* APIBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B041E1D0B3D7600C21994 /* APIBlueprint.swift */; };
+		776B04201D0B3D7600C21994 /* APIBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B041E1D0B3D7600C21994 /* APIBlueprint.swift */; };
+		776B04221D0B546100C21994 /* APIBlueprintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B04211D0B546100C21994 /* APIBlueprintTests.swift */; };
+		776B04241D0B5A9400C21994 /* Error+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B04231D0B5A9400C21994 /* Error+Session.swift */; };
+		776B04251D0B5A9400C21994 /* Error+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B04231D0B5A9400C21994 /* Error+Session.swift */; };
+		776B04271D0B64EA00C21994 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B04261D0B64EA00C21994 /* SessionTests.swift */; };
+		776D3EA11D0A7842005F7E49 /* Error+Mail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D3EA01D0A7842005F7E49 /* Error+Mail.swift */; };
+		776D3EA21D0A7842005F7E49 /* Error+Mail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776D3EA01D0A7842005F7E49 /* Error+Mail.swift */; };
+		77759BCD1CED2C6200239AEB /* HeaderValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77759BCC1CED2C6200239AEB /* HeaderValidator.swift */; };
+		77759BCE1CED2C6200239AEB /* HeaderValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77759BCC1CED2C6200239AEB /* HeaderValidator.swift */; };
+		778593E81D0A2F9C009A3026 /* Scheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778593E71D0A2F9C009A3026 /* Scheduling.swift */; };
+		778593E91D0A31DD009A3026 /* Scheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778593E71D0A2F9C009A3026 /* Scheduling.swift */; };
+		778593EB1D0A3CA9009A3026 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778593EA1D0A3CA9009A3026 /* Authentication.swift */; };
+		778593F11D0A3DC1009A3026 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778593F01D0A3DC1009A3026 /* AuthenticationTests.swift */; };
+		778593F21D0A3DF5009A3026 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778593EA1D0A3CA9009A3026 /* Authentication.swift */; };
+		779AD1281CEAAEB000F5BC4F /* ASM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD1271CEAAEB000F5BC4F /* ASM.swift */; };
+		779AD12A1CEAB07A00F5BC4F /* ASMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD1291CEAB07A00F5BC4F /* ASMTests.swift */; };
+		779AD12B1CEAB0A900F5BC4F /* ASM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD1271CEAAEB000F5BC4F /* ASM.swift */; };
+		779AD12D1CEAB36C00F5BC4F /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD12C1CEAB36C00F5BC4F /* Attachment.swift */; };
+		779AD12E1CEAB36C00F5BC4F /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD12C1CEAB36C00F5BC4F /* Attachment.swift */; };
+		779AD1301CEAB42200F5BC4F /* ContentDisposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD12F1CEAB42200F5BC4F /* ContentDisposition.swift */; };
+		779AD1311CEAB42200F5BC4F /* ContentDisposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD12F1CEAB42200F5BC4F /* ContentDisposition.swift */; };
+		779AD1331CEAB7E200F5BC4F /* AttachmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779AD1321CEAB7E200F5BC4F /* AttachmentTests.swift */; };
+		779AD1351CEAB88B00F5BC4F /* dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 779AD1341CEAB88B00F5BC4F /* dot.png */; };
+		77AE1DCB1CEA4D7500136CF1 /* SpamChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DCA1CEA4D7500136CF1 /* SpamChecker.swift */; };
+		77AE1DCC1CEA4D7500136CF1 /* SpamChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DCA1CEA4D7500136CF1 /* SpamChecker.swift */; };
+		77AE1DCE1CEA504700136CF1 /* SpamCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DCD1CEA504700136CF1 /* SpamCheckerTests.swift */; };
+		77AE1DD01CEA536900136CF1 /* JSONConvertibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DCF1CEA536900136CF1 /* JSONConvertibleTests.swift */; };
+		77AE1DD61CEA56DB00136CF1 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */; };
+		77F57F461CEBF7CB008155C8 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F57F451CEBF7CB008155C8 /* Validatable.swift */; };
+		77F57F471CEBF998008155C8 /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F57F451CEBF7CB008155C8 /* Validatable.swift */; };
+		77F5E4591CE947AA0074E7BA /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4581CE947AA0074E7BA /* Setting.swift */; };
+		77F5E45F1CE9492E0074E7BA /* SettingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E45E1CE9492E0074E7BA /* SettingTest.swift */; };
+		77F5E4601CE949720074E7BA /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4581CE947AA0074E7BA /* Setting.swift */; };
+		77F5E4621CE94A480074E7BA /* TrackingSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4611CE94A480074E7BA /* TrackingSetting.swift */; };
+		77F5E4631CE94A480074E7BA /* TrackingSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4611CE94A480074E7BA /* TrackingSetting.swift */; };
+		77F5E4651CE94B1C0074E7BA /* MailSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4641CE94B1C0074E7BA /* MailSetting.swift */; };
+		77F5E4661CE94B1C0074E7BA /* MailSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4641CE94B1C0074E7BA /* MailSetting.swift */; };
+		77F5E4681CE94BF50074E7BA /* ClickTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4671CE94BF50074E7BA /* ClickTracking.swift */; };
+		77F5E4691CE94BF50074E7BA /* ClickTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4671CE94BF50074E7BA /* ClickTracking.swift */; };
+		77F5E46C1CE950770074E7BA /* ClickTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E46B1CE950770074E7BA /* ClickTrackingTests.swift */; };
+		77F5E46E1CE953C10074E7BA /* OpenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E46D1CE953C10074E7BA /* OpenTracking.swift */; };
+		77F5E46F1CE953C10074E7BA /* OpenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E46D1CE953C10074E7BA /* OpenTracking.swift */; };
+		77F5E4711CE955920074E7BA /* OpenTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4701CE955920074E7BA /* OpenTrackingTests.swift */; };
+		77F5E4731CE956E10074E7BA /* SubscriptionTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4721CE956E10074E7BA /* SubscriptionTracking.swift */; };
+		77F5E4741CE956E10074E7BA /* SubscriptionTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4721CE956E10074E7BA /* SubscriptionTracking.swift */; };
+		77F5E4761CE95C830074E7BA /* SubscriptionTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4751CE95C830074E7BA /* SubscriptionTrackingTests.swift */; };
+		77F5E4781CE960620074E7BA /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4771CE960620074E7BA /* GoogleAnalytics.swift */; };
+		77F5E4791CE960620074E7BA /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4771CE960620074E7BA /* GoogleAnalytics.swift */; };
+		77F5E47B1CE962900074E7BA /* GoogleAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E47A1CE962900074E7BA /* GoogleAnalyticsTests.swift */; };
+		77F5E47E1CE964040074E7BA /* BypassListManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E47D1CE964040074E7BA /* BypassListManagement.swift */; };
+		77F5E47F1CE964040074E7BA /* BypassListManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E47D1CE964040074E7BA /* BypassListManagement.swift */; };
+		77F5E4821CE964940074E7BA /* BypassListManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4811CE964940074E7BA /* BypassListManagementTests.swift */; };
+		77F5E4841CE9655D0074E7BA /* SandboxMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4831CE9655D0074E7BA /* SandboxMode.swift */; };
+		77F5E4851CE9655D0074E7BA /* SandboxMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4831CE9655D0074E7BA /* SandboxMode.swift */; };
+		77F5E4871CE965E70074E7BA /* SandboxModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4861CE965E70074E7BA /* SandboxModeTests.swift */; };
+		77F5E4891CE9678F0074E7BA /* BCCSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4881CE9678F0074E7BA /* BCCSetting.swift */; };
+		77F5E48A1CE9678F0074E7BA /* BCCSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4881CE9678F0074E7BA /* BCCSetting.swift */; };
+		77F5E48C1CE967EA0074E7BA /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E48B1CE967EA0074E7BA /* Validator.swift */; };
+		77F5E48D1CE967EA0074E7BA /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E48B1CE967EA0074E7BA /* Validator.swift */; };
+		77F5E48F1CE969BB0074E7BA /* BCCSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E48E1CE969BB0074E7BA /* BCCSettingTests.swift */; };
+		77F5E4911CE96BC40074E7BA /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4901CE96BC40074E7BA /* Footer.swift */; };
+		77F5E4921CE96BC40074E7BA /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4901CE96BC40074E7BA /* Footer.swift */; };
+		77F5E4941CE96D3C0074E7BA /* FooterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F5E4931CE96D3C0074E7BA /* FooterTests.swift */; };
+		77F7B3291CEAE88900217D59 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F7B3281CEAE88900217D59 /* Email.swift */; };
+		77F7B32A1CEAE88900217D59 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F7B3281CEAE88900217D59 /* Email.swift */; };
+		77F7B32C1CEAEC9500217D59 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F7B32B1CEAEC9500217D59 /* Constants.swift */; };
+		77F7B32D1CEAEC9500217D59 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F7B32B1CEAEC9500217D59 /* Constants.swift */; };
+		77F7B32F1CEAF09C00217D59 /* EmailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F7B32E1CEAF09C00217D59 /* EmailTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		770A902A1BD42BFC003A3503 /* PBXContainerItemProxy */ = {
+		770850A81CE64F7500861BA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 77B015AC19FB2A6C00D417CE /* Project object */;
+			containerPortal = 770850931CE64F7500861BA1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 770A901E1BD42BFC003A3503;
-			remoteInfo = SendGridiOS;
-		};
-		77B015C219FB2A6C00D417CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 77B015AC19FB2A6C00D417CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 77B015B419FB2A6C00D417CE;
-			remoteInfo = "SendGrid-Swift";
+			remoteGlobalIDString = 7708509B1CE64F7500861BA1;
+			remoteInfo = SendGrid;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		770A8FF61BD42613003A3503 /* SendGridAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGridAuth.swift; sourceTree = "<group>"; };
-		770A901F1BD42BFC003A3503 /* SendGridiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SendGridiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		770A90211BD42BFC003A3503 /* SendGridiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendGridiOS.h; sourceTree = "<group>"; };
-		770A90231BD42BFC003A3503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		770A90281BD42BFC003A3503 /* SendGridiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendGridiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		770A902D1BD42BFC003A3503 /* SendGridiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGridiOSTests.swift; sourceTree = "<group>"; };
-		770A902F1BD42BFC003A3503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		770AE39419FF21A300E59D8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7714B2AF1BD3556F003A8901 /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
-		7714B2B21BD35667003A8901 /* SendGridErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGridErrors.swift; sourceTree = "<group>"; };
-		7714B2C11BD35CA2003A8901 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = "smtpapi-swift/SMTPAPI/Logger.swift"; sourceTree = SOURCE_ROOT; };
-		7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SendGridFilter.swift; path = "smtpapi-swift/SMTPAPI/SendGridFilter.swift"; sourceTree = SOURCE_ROOT; };
-		7714B2C31BD35CA2003A8901 /* SmtpApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmtpApi.swift; path = "smtpapi-swift/SMTPAPI/SmtpApi.swift"; sourceTree = SOURCE_ROOT; };
-		7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmtpApiErrors.swift; path = "smtpapi-swift/SMTPAPI/SmtpApiErrors.swift"; sourceTree = SOURCE_ROOT; };
-		77B015B519FB2A6C00D417CE /* SendGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SendGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77B015B919FB2A6C00D417CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SendGrid-Swift.h"; sourceTree = "<group>"; };
-		77B015C019FB2A6C00D417CE /* SendGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		77B015C619FB2A6C00D417CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77B015C719FB2A6C00D417CE /* SendGrid_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGrid_SwiftTests.swift; sourceTree = "<group>"; };
-		77B015D119FB2A7C00D417CE /* SendGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendGrid.swift; sourceTree = "<group>"; };
-		77E9A5B41C1B5927000DB8F3 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		7708509C1CE64F7500861BA1 /* SendGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SendGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7708509F1CE64F7500861BA1 /* SendGrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendGrid.h; sourceTree = "<group>"; };
+		770850A11CE64F7500861BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		770850A61CE64F7500861BA1 /* SendGridTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendGridTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		770850AD1CE64F7500861BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		770850C01CE6507700861BA1 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Sources/Structs/Address.swift; sourceTree = SOURCE_ROOT; };
+		770850C31CE6515900861BA1 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/Errors/Error.swift; sourceTree = SOURCE_ROOT; };
+		770850C71CE6536F00861BA1 /* AddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
+		770850C91CE6553C00861BA1 /* DictionaryConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DictionaryConvertible.swift; path = Sources/Protocols/DictionaryConvertible.swift; sourceTree = SOURCE_ROOT; };
+		770850CC1CE655F600861BA1 /* JSONConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONConvertible.swift; path = Sources/Protocols/JSONConvertible.swift; sourceTree = SOURCE_ROOT; };
+		770850D51CE65E6300861BA1 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Content.swift; path = Sources/Structs/Content.swift; sourceTree = SOURCE_ROOT; };
+		770850D91CE65F0000861BA1 /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentType.swift; path = Sources/Enums/ContentType.swift; sourceTree = SOURCE_ROOT; };
+		77474FFB1CE8FE1E00E5170E /* ContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTests.swift; sourceTree = "<group>"; };
+		77474FFD1CE904E100E5170E /* Personalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Personalization.swift; path = Sources/Classes/Mail/Personalization.swift; sourceTree = SOURCE_ROOT; };
+		774750001CE918B400E5170E /* PersonalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalizationTests.swift; sourceTree = "<group>"; };
+		7766D5021D0B153D0077C9DB /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Sources/Protocols/Request.swift; sourceTree = SOURCE_ROOT; };
+		7766D5051D0B15A20077C9DB /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Sources/Enums/HTTPMethod.swift; sourceTree = SOURCE_ROOT; };
+		7766D5081D0B1A2A0077C9DB /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Sources/Classes/Session.swift; sourceTree = SOURCE_ROOT; };
+		7766D50B1D0B212A0077C9DB /* HTTPMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMessage.swift; path = Sources/Protocols/HTTPMessage.swift; sourceTree = SOURCE_ROOT; };
+		7766D5121D0B2D2E0077C9DB /* APIV3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIV3.swift; path = Sources/Classes/APIV3.swift; sourceTree = SOURCE_ROOT; };
+		7766D5151D0B2E440077C9DB /* Error+Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Error+Request.swift"; path = "Sources/Errors/Error+Request.swift"; sourceTree = SOURCE_ROOT; };
+		7766D5181D0B31090077C9DB /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Sources/Enums/ParameterEncoding.swift; sourceTree = SOURCE_ROOT; };
+		776B04181D0B378000C21994 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/Classes/Response.swift; sourceTree = SOURCE_ROOT; };
+		776B041B1D0B37D500C21994 /* RateLimit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RateLimit.swift; path = Sources/Structs/RateLimit.swift; sourceTree = SOURCE_ROOT; };
+		776B041E1D0B3D7600C21994 /* APIBlueprint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIBlueprint.swift; path = Sources/Structs/APIBlueprint.swift; sourceTree = SOURCE_ROOT; };
+		776B04211D0B546100C21994 /* APIBlueprintTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBlueprintTests.swift; sourceTree = "<group>"; };
+		776B04231D0B5A9400C21994 /* Error+Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Error+Session.swift"; path = "Sources/Errors/Error+Session.swift"; sourceTree = SOURCE_ROOT; };
+		776B04261D0B64EA00C21994 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
+		776D3EA01D0A7842005F7E49 /* Error+Mail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Error+Mail.swift"; path = "Sources/Errors/Error+Mail.swift"; sourceTree = SOURCE_ROOT; };
+		77759BCC1CED2C6200239AEB /* HeaderValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderValidator.swift; path = Sources/Protocols/HeaderValidator.swift; sourceTree = SOURCE_ROOT; };
+		778593E71D0A2F9C009A3026 /* Scheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scheduling.swift; path = Sources/Protocols/Scheduling.swift; sourceTree = SOURCE_ROOT; };
+		778593EA1D0A3CA9009A3026 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authentication.swift; path = Sources/Enums/Authentication.swift; sourceTree = SOURCE_ROOT; };
+		778593F01D0A3DC1009A3026 /* AuthenticationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		779AD1271CEAAEB000F5BC4F /* ASM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ASM.swift; path = Sources/Structs/ASM.swift; sourceTree = SOURCE_ROOT; };
+		779AD1291CEAB07A00F5BC4F /* ASMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASMTests.swift; sourceTree = "<group>"; };
+		779AD12C1CEAB36C00F5BC4F /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = Sources/Classes/Mail/Attachment.swift; sourceTree = SOURCE_ROOT; };
+		779AD12F1CEAB42200F5BC4F /* ContentDisposition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentDisposition.swift; path = Sources/Enums/ContentDisposition.swift; sourceTree = SOURCE_ROOT; };
+		779AD1321CEAB7E200F5BC4F /* AttachmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentTests.swift; sourceTree = "<group>"; };
+		779AD1341CEAB88B00F5BC4F /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot.png; sourceTree = "<group>"; };
+		77AE1DCA1CEA4D7500136CF1 /* SpamChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpamChecker.swift; path = "Sources/Classes/Mail/Settings/Mail Settings/SpamChecker.swift"; sourceTree = SOURCE_ROOT; };
+		77AE1DCD1CEA504700136CF1 /* SpamCheckerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpamCheckerTests.swift; sourceTree = "<group>"; };
+		77AE1DCF1CEA536900136CF1 /* JSONConvertibleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertibleTests.swift; sourceTree = "<group>"; };
+		77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
+		77F57F451CEBF7CB008155C8 /* Validatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validatable.swift; path = Sources/Protocols/Validatable.swift; sourceTree = SOURCE_ROOT; };
+		77F5E4581CE947AA0074E7BA /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = Sources/Classes/Mail/Settings/Setting.swift; sourceTree = SOURCE_ROOT; };
+		77F5E45E1CE9492E0074E7BA /* SettingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTest.swift; sourceTree = "<group>"; };
+		77F5E4611CE94A480074E7BA /* TrackingSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrackingSetting.swift; path = Sources/Protocols/TrackingSetting.swift; sourceTree = SOURCE_ROOT; };
+		77F5E4641CE94B1C0074E7BA /* MailSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailSetting.swift; path = Sources/Protocols/MailSetting.swift; sourceTree = SOURCE_ROOT; };
+		77F5E4671CE94BF50074E7BA /* ClickTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClickTracking.swift; path = "Sources/Classes/Mail/Settings/Tracking Settings/ClickTracking.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E46B1CE950770074E7BA /* ClickTrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickTrackingTests.swift; sourceTree = "<group>"; };
+		77F5E46D1CE953C10074E7BA /* OpenTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenTracking.swift; path = "Sources/Classes/Mail/Settings/Tracking Settings/OpenTracking.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E4701CE955920074E7BA /* OpenTrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTrackingTests.swift; sourceTree = "<group>"; };
+		77F5E4721CE956E10074E7BA /* SubscriptionTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionTracking.swift; path = "Sources/Classes/Mail/Settings/Tracking Settings/SubscriptionTracking.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E4751CE95C830074E7BA /* SubscriptionTrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionTrackingTests.swift; sourceTree = "<group>"; };
+		77F5E4771CE960620074E7BA /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAnalytics.swift; path = "Sources/Classes/Mail/Settings/Tracking Settings/GoogleAnalytics.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E47A1CE962900074E7BA /* GoogleAnalyticsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsTests.swift; sourceTree = "<group>"; };
+		77F5E47D1CE964040074E7BA /* BypassListManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BypassListManagement.swift; path = "../Sources/Classes/Mail/Settings/Mail Settings/BypassListManagement.swift"; sourceTree = "<group>"; };
+		77F5E4811CE964940074E7BA /* BypassListManagementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BypassListManagementTests.swift; sourceTree = "<group>"; };
+		77F5E4831CE9655D0074E7BA /* SandboxMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandboxMode.swift; path = "Sources/Classes/Mail/Settings/Mail Settings/SandboxMode.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E4861CE965E70074E7BA /* SandboxModeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SandboxModeTests.swift; sourceTree = "<group>"; };
+		77F5E4881CE9678F0074E7BA /* BCCSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BCCSetting.swift; path = "Sources/Classes/Mail/Settings/Mail Settings/BCCSetting.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E48B1CE967EA0074E7BA /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Sources/Enums/Validator.swift; sourceTree = SOURCE_ROOT; };
+		77F5E48E1CE969BB0074E7BA /* BCCSettingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCCSettingTests.swift; sourceTree = "<group>"; };
+		77F5E4901CE96BC40074E7BA /* Footer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Footer.swift; path = "Sources/Classes/Mail/Settings/Mail Settings/Footer.swift"; sourceTree = SOURCE_ROOT; };
+		77F5E4931CE96D3C0074E7BA /* FooterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTests.swift; sourceTree = "<group>"; };
+		77F7B3281CEAE88900217D59 /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Email.swift; path = Sources/Classes/Mail/Email.swift; sourceTree = SOURCE_ROOT; };
+		77F7B32B1CEAEC9500217D59 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Structs/Constants.swift; sourceTree = SOURCE_ROOT; };
+		77F7B32E1CEAF09C00217D59 /* EmailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		770A901B1BD42BFC003A3503 /* Frameworks */ = {
+		770850981CE64F7500861BA1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		770A90251BD42BFC003A3503 /* Frameworks */ = {
+		770850A31CE64F7500861BA1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				770A90291BD42BFC003A3503 /* SendGridiOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015B119FB2A6C00D417CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015BD19FB2A6C00D417CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				77B015C119FB2A6C00D417CE /* SendGrid.framework in Frameworks */,
+				770850A71CE64F7500861BA1 /* SendGrid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		770A90201BD42BFC003A3503 /* SendGridiOS */ = {
+		770850921CE64F7500861BA1 = {
 			isa = PBXGroup;
 			children = (
-				770A90211BD42BFC003A3503 /* SendGridiOS.h */,
-				770A90231BD42BFC003A3503 /* Info.plist */,
-			);
-			path = SendGridiOS;
-			sourceTree = "<group>";
-		};
-		770A902C1BD42BFC003A3503 /* SendGridiOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				770A902D1BD42BFC003A3503 /* SendGridiOSTests.swift */,
-				770A902F1BD42BFC003A3503 /* Info.plist */,
-			);
-			path = SendGridiOSTests;
-			sourceTree = "<group>";
-		};
-		77B015AB19FB2A6C00D417CE = {
-			isa = PBXGroup;
-			children = (
-				770AE39419FF21A300E59D8D /* README.md */,
-				77B015B719FB2A6C00D417CE /* SendGrid-Swift */,
-				77B015C419FB2A6C00D417CE /* SendGrid-SwiftTests */,
-				770A90201BD42BFC003A3503 /* SendGridiOS */,
-				770A902C1BD42BFC003A3503 /* SendGridiOSTests */,
-				77B015B619FB2A6C00D417CE /* Products */,
+				7708509E1CE64F7500861BA1 /* SendGrid */,
+				770850AA1CE64F7500861BA1 /* SendGridTests */,
+				7708509D1CE64F7500861BA1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		77B015B619FB2A6C00D417CE /* Products */ = {
+		7708509D1CE64F7500861BA1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				77B015B519FB2A6C00D417CE /* SendGrid.framework */,
-				77B015C019FB2A6C00D417CE /* SendGridTests.xctest */,
-				770A901F1BD42BFC003A3503 /* SendGridiOS.framework */,
-				770A90281BD42BFC003A3503 /* SendGridiOSTests.xctest */,
+				7708509C1CE64F7500861BA1 /* SendGrid.framework */,
+				770850A61CE64F7500861BA1 /* SendGridTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		77B015B719FB2A6C00D417CE /* SendGrid-Swift */ = {
+		7708509E1CE64F7500861BA1 /* SendGrid */ = {
 			isa = PBXGroup;
 			children = (
-				77B015BA19FB2A6C00D417CE /* SendGrid-Swift.h */,
-				7714B2AF1BD3556F003A8901 /* Email.swift */,
-				77E9A5B41C1B5927000DB8F3 /* Attachment.swift */,
-				77B015D119FB2A7C00D417CE /* SendGrid.swift */,
-				770A8FF61BD42613003A3503 /* SendGridAuth.swift */,
-				7714B2B21BD35667003A8901 /* SendGridErrors.swift */,
-				77B015B819FB2A6C00D417CE /* Supporting Files */,
+				770850BA1CE64FD500861BA1 /* Sources */,
+				7708509F1CE64F7500861BA1 /* SendGrid.h */,
+				770850A11CE64F7500861BA1 /* Info.plist */,
 			);
-			path = "SendGrid-Swift";
+			path = SendGrid;
 			sourceTree = "<group>";
 		};
-		77B015B819FB2A6C00D417CE /* Supporting Files */ = {
+		770850AA1CE64F7500861BA1 /* SendGridTests */ = {
 			isa = PBXGroup;
 			children = (
-				7714B2C11BD35CA2003A8901 /* Logger.swift */,
-				7714B2C21BD35CA2003A8901 /* SendGridFilter.swift */,
-				7714B2C31BD35CA2003A8901 /* SmtpApi.swift */,
-				7714B2C41BD35CA2003A8901 /* SmtpApiErrors.swift */,
-				77B015B919FB2A6C00D417CE /* Info.plist */,
+				779AD1341CEAB88B00F5BC4F /* dot.png */,
+				770850AD1CE64F7500861BA1 /* Info.plist */,
+				77F5E45C1CE949080074E7BA /* Classes */,
+				77AE1DD11CEA56B000136CF1 /* Enum */,
+				770850CF1CE65BE900861BA1 /* Protocols */,
+				770850C61CE6535500861BA1 /* Structs */,
 			);
-			name = "Supporting Files";
+			path = SendGridTests;
 			sourceTree = "<group>";
 		};
-		77B015C419FB2A6C00D417CE /* SendGrid-SwiftTests */ = {
+		770850BA1CE64FD500861BA1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				77B015C719FB2A6C00D417CE /* SendGrid_SwiftTests.swift */,
-				77B015C519FB2A6C00D417CE /* Supporting Files */,
+				77F5E4571CE9475F0074E7BA /* Classes */,
+				770850D81CE65EA800861BA1 /* Enums */,
+				776D3E9F1D0A777F005F7E49 /* Errors */,
+				7766D50E1D0B299F0077C9DB /* Extensions */,
+				770850BE1CE6505C00861BA1 /* Protocols */,
+				770850BF1CE6506100861BA1 /* Structs */,
 			);
-			path = "SendGrid-SwiftTests";
+			name = Sources;
 			sourceTree = "<group>";
 		};
-		77B015C519FB2A6C00D417CE /* Supporting Files */ = {
+		770850BE1CE6505C00861BA1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				77B015C619FB2A6C00D417CE /* Info.plist */,
+				770850C91CE6553C00861BA1 /* DictionaryConvertible.swift */,
+				77759BCC1CED2C6200239AEB /* HeaderValidator.swift */,
+				7766D50B1D0B212A0077C9DB /* HTTPMessage.swift */,
+				770850CC1CE655F600861BA1 /* JSONConvertible.swift */,
+				77F5E4641CE94B1C0074E7BA /* MailSetting.swift */,
+				7766D5021D0B153D0077C9DB /* Request.swift */,
+				778593E71D0A2F9C009A3026 /* Scheduling.swift */,
+				77F5E4611CE94A480074E7BA /* TrackingSetting.swift */,
+				77F57F451CEBF7CB008155C8 /* Validatable.swift */,
 			);
-			name = "Supporting Files";
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		770850BF1CE6506100861BA1 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				770850C01CE6507700861BA1 /* Address.swift */,
+				776B041E1D0B3D7600C21994 /* APIBlueprint.swift */,
+				779AD1271CEAAEB000F5BC4F /* ASM.swift */,
+				77F7B32B1CEAEC9500217D59 /* Constants.swift */,
+				770850D51CE65E6300861BA1 /* Content.swift */,
+				776B041B1D0B37D500C21994 /* RateLimit.swift */,
+			);
+			name = Structs;
+			sourceTree = "<group>";
+		};
+		770850C61CE6535500861BA1 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				770850C71CE6536F00861BA1 /* AddressTests.swift */,
+				779AD1291CEAB07A00F5BC4F /* ASMTests.swift */,
+				77474FFB1CE8FE1E00E5170E /* ContentTests.swift */,
+				776B04211D0B546100C21994 /* APIBlueprintTests.swift */,
+			);
+			name = Structs;
+			sourceTree = "<group>";
+		};
+		770850CF1CE65BE900861BA1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				77AE1DCF1CEA536900136CF1 /* JSONConvertibleTests.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		770850D81CE65EA800861BA1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				778593EA1D0A3CA9009A3026 /* Authentication.swift */,
+				779AD12F1CEAB42200F5BC4F /* ContentDisposition.swift */,
+				770850D91CE65F0000861BA1 /* ContentType.swift */,
+				7766D5051D0B15A20077C9DB /* HTTPMethod.swift */,
+				7766D5181D0B31090077C9DB /* ParameterEncoding.swift */,
+				77F5E48B1CE967EA0074E7BA /* Validator.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
+		7766D50E1D0B299F0077C9DB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		776D3E9F1D0A777F005F7E49 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				770850C31CE6515900861BA1 /* Error.swift */,
+				776D3EA01D0A7842005F7E49 /* Error+Mail.swift */,
+				7766D5151D0B2E440077C9DB /* Error+Request.swift */,
+				776B04231D0B5A9400C21994 /* Error+Session.swift */,
+			);
+			name = Errors;
+			sourceTree = "<group>";
+		};
+		776D3EA31D0A7B1B005F7E49 /* Mail */ = {
+			isa = PBXGroup;
+			children = (
+				779AD12C1CEAB36C00F5BC4F /* Attachment.swift */,
+				77F7B3281CEAE88900217D59 /* Email.swift */,
+				77474FFD1CE904E100E5170E /* Personalization.swift */,
+				77F5E45A1CE948CB0074E7BA /* Settings */,
+			);
+			name = Mail;
+			sourceTree = "<group>";
+		};
+		77AE1DD11CEA56B000136CF1 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */,
+				778593F01D0A3DC1009A3026 /* AuthenticationTests.swift */,
+			);
+			name = Enum;
+			sourceTree = "<group>";
+		};
+		77F5E4571CE9475F0074E7BA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7766D5121D0B2D2E0077C9DB /* APIV3.swift */,
+				776B04181D0B378000C21994 /* Response.swift */,
+				7766D5081D0B1A2A0077C9DB /* Session.swift */,
+				776D3EA31D0A7B1B005F7E49 /* Mail */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		77F5E45A1CE948CB0074E7BA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77F5E4581CE947AA0074E7BA /* Setting.swift */,
+				77F5E47C1CE963F00074E7BA /* Mail Settings */,
+				77F5E45B1CE948D10074E7BA /* Tracking Settings */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		77F5E45B1CE948D10074E7BA /* Tracking Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77F5E4671CE94BF50074E7BA /* ClickTracking.swift */,
+				77F5E4771CE960620074E7BA /* GoogleAnalytics.swift */,
+				77F5E46D1CE953C10074E7BA /* OpenTracking.swift */,
+				77F5E4721CE956E10074E7BA /* SubscriptionTracking.swift */,
+			);
+			name = "Tracking Settings";
+			sourceTree = "<group>";
+		};
+		77F5E45C1CE949080074E7BA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				779AD1321CEAB7E200F5BC4F /* AttachmentTests.swift */,
+				77F7B32E1CEAF09C00217D59 /* EmailTests.swift */,
+				774750001CE918B400E5170E /* PersonalizationTests.swift */,
+				776B04261D0B64EA00C21994 /* SessionTests.swift */,
+				77F5E45D1CE9490E0074E7BA /* Settings */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		77F5E45D1CE9490E0074E7BA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77F5E45E1CE9492E0074E7BA /* SettingTest.swift */,
+				77F5E4801CE964830074E7BA /* Mail Settings */,
+				77F5E46A1CE950600074E7BA /* Tracking Settings */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		77F5E46A1CE950600074E7BA /* Tracking Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77F5E46B1CE950770074E7BA /* ClickTrackingTests.swift */,
+				77F5E47A1CE962900074E7BA /* GoogleAnalyticsTests.swift */,
+				77F5E4701CE955920074E7BA /* OpenTrackingTests.swift */,
+				77F5E4751CE95C830074E7BA /* SubscriptionTrackingTests.swift */,
+			);
+			name = "Tracking Settings";
+			sourceTree = "<group>";
+		};
+		77F5E47C1CE963F00074E7BA /* Mail Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77F5E4881CE9678F0074E7BA /* BCCSetting.swift */,
+				77F5E47D1CE964040074E7BA /* BypassListManagement.swift */,
+				77F5E4901CE96BC40074E7BA /* Footer.swift */,
+				77F5E4831CE9655D0074E7BA /* SandboxMode.swift */,
+				77AE1DCA1CEA4D7500136CF1 /* SpamChecker.swift */,
+			);
+			name = "Mail Settings";
+			sourceTree = "<group>";
+		};
+		77F5E4801CE964830074E7BA /* Mail Settings */ = {
+			isa = PBXGroup;
+			children = (
+				77F5E48E1CE969BB0074E7BA /* BCCSettingTests.swift */,
+				77F5E4811CE964940074E7BA /* BypassListManagementTests.swift */,
+				77F5E4931CE96D3C0074E7BA /* FooterTests.swift */,
+				77F5E4861CE965E70074E7BA /* SandboxModeTests.swift */,
+				77AE1DCD1CEA504700136CF1 /* SpamCheckerTests.swift */,
+			);
+			name = "Mail Settings";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		770A901C1BD42BFC003A3503 /* Headers */ = {
+		770850991CE64F7500861BA1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				770A905A1BD42C41003A3503 /* SendGrid-Swift.h in Headers */,
-				770A90221BD42BFC003A3503 /* SendGridiOS.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015B219FB2A6C00D417CE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7714B2CD1BD35CF8003A8901 /* SendGrid-Swift.h in Headers */,
+				770850A01CE64F7500861BA1 /* SendGrid.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		770A901E1BD42BFC003A3503 /* SendGridiOS */ = {
+		7708509B1CE64F7500861BA1 /* SendGrid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 770A90341BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOS" */;
+			buildConfigurationList = 770850B01CE64F7500861BA1 /* Build configuration list for PBXNativeTarget "SendGrid" */;
 			buildPhases = (
-				770A901A1BD42BFC003A3503 /* Sources */,
-				770A901B1BD42BFC003A3503 /* Frameworks */,
-				770A901C1BD42BFC003A3503 /* Headers */,
-				770A901D1BD42BFC003A3503 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SendGridiOS;
-			productName = SendGridiOS;
-			productReference = 770A901F1BD42BFC003A3503 /* SendGridiOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		770A90271BD42BFC003A3503 /* SendGridiOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 770A90351BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOSTests" */;
-			buildPhases = (
-				770A90241BD42BFC003A3503 /* Sources */,
-				770A90251BD42BFC003A3503 /* Frameworks */,
-				770A90261BD42BFC003A3503 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				770A902B1BD42BFC003A3503 /* PBXTargetDependency */,
-			);
-			name = SendGridiOSTests;
-			productName = SendGridiOSTests;
-			productReference = 770A90281BD42BFC003A3503 /* SendGridiOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		77B015B419FB2A6C00D417CE /* SendGrid */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 77B015CB19FB2A6C00D417CE /* Build configuration list for PBXNativeTarget "SendGrid" */;
-			buildPhases = (
-				77B015B019FB2A6C00D417CE /* Sources */,
-				77B015B119FB2A6C00D417CE /* Frameworks */,
-				77B015B219FB2A6C00D417CE /* Headers */,
-				77B015B319FB2A6C00D417CE /* Resources */,
+				770850971CE64F7500861BA1 /* Sources */,
+				770850981CE64F7500861BA1 /* Frameworks */,
+				770850991CE64F7500861BA1 /* Headers */,
+				7708509A1CE64F7500861BA1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SendGrid;
-			productName = "SendGrid-Swift";
-			productReference = 77B015B519FB2A6C00D417CE /* SendGrid.framework */;
+			productName = SendGrid;
+			productReference = 7708509C1CE64F7500861BA1 /* SendGrid.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		77B015BF19FB2A6C00D417CE /* SendGridTests */ = {
+		770850A51CE64F7500861BA1 /* SendGridTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 77B015CE19FB2A6C00D417CE /* Build configuration list for PBXNativeTarget "SendGridTests" */;
+			buildConfigurationList = 770850B31CE64F7500861BA1 /* Build configuration list for PBXNativeTarget "SendGridTests" */;
 			buildPhases = (
-				77B015BC19FB2A6C00D417CE /* Sources */,
-				77B015BD19FB2A6C00D417CE /* Frameworks */,
-				77B015BE19FB2A6C00D417CE /* Resources */,
+				770850A21CE64F7500861BA1 /* Sources */,
+				770850A31CE64F7500861BA1 /* Frameworks */,
+				770850A41CE64F7500861BA1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				77B015C319FB2A6C00D417CE /* PBXTargetDependency */,
+				770850A91CE64F7500861BA1 /* PBXTargetDependency */,
 			);
 			name = SendGridTests;
-			productName = "SendGrid-SwiftTests";
-			productReference = 77B015C019FB2A6C00D417CE /* SendGridTests.xctest */;
+			productName = SendGridTests;
+			productReference = 770850A61CE64F7500861BA1 /* SendGridTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		77B015AC19FB2A6C00D417CE /* Project object */ = {
+		770850931CE64F7500861BA1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = SendGrid;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Scott Kawai";
 				TargetAttributes = {
-					770A901E1BD42BFC003A3503 = {
-						CreatedOnToolsVersion = 7.0.1;
+					7708509B1CE64F7500861BA1 = {
+						CreatedOnToolsVersion = 7.3.1;
 					};
-					770A90271BD42BFC003A3503 = {
-						CreatedOnToolsVersion = 7.0.1;
-					};
-					77B015B419FB2A6C00D417CE = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					77B015BF19FB2A6C00D417CE = {
-						CreatedOnToolsVersion = 6.1;
+					770850A51CE64F7500861BA1 = {
+						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
-			buildConfigurationList = 77B015AF19FB2A6C00D417CE /* Build configuration list for PBXProject "SendGrid" */;
+			buildConfigurationList = 770850961CE64F7500861BA1 /* Build configuration list for PBXProject "SendGrid" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 77B015AB19FB2A6C00D417CE;
-			productRefGroup = 77B015B619FB2A6C00D417CE /* Products */;
+			mainGroup = 770850921CE64F7500861BA1;
+			productRefGroup = 7708509D1CE64F7500861BA1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				77B015B419FB2A6C00D417CE /* SendGrid */,
-				77B015BF19FB2A6C00D417CE /* SendGridTests */,
-				770A901E1BD42BFC003A3503 /* SendGridiOS */,
-				770A90271BD42BFC003A3503 /* SendGridiOSTests */,
+				7708509B1CE64F7500861BA1 /* SendGrid */,
+				770850A51CE64F7500861BA1 /* SendGridTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		770A901D1BD42BFC003A3503 /* Resources */ = {
+		7708509A1CE64F7500861BA1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		770A90261BD42BFC003A3503 /* Resources */ = {
+		770850A41CE64F7500861BA1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015B319FB2A6C00D417CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015BE19FB2A6C00D417CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				779AD1351CEAB88B00F5BC4F /* dot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		770A901A1BD42BFC003A3503 /* Sources */ = {
+		770850971CE64F7500861BA1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				770A903A1BD42C0C003A3503 /* Logger.swift in Sources */,
-				77E9A5B61C1B5A2C000DB8F3 /* Attachment.swift in Sources */,
-				770A903D1BD42C0C003A3503 /* SmtpApiErrors.swift in Sources */,
-				770A903B1BD42C0C003A3503 /* SendGridFilter.swift in Sources */,
-				770A90391BD42C04003A3503 /* SendGridErrors.swift in Sources */,
-				770A90361BD42C04003A3503 /* Email.swift in Sources */,
-				770A90381BD42C04003A3503 /* SendGridAuth.swift in Sources */,
-				770A903C1BD42C0C003A3503 /* SmtpApi.swift in Sources */,
-				770A90371BD42C04003A3503 /* SendGrid.swift in Sources */,
+				77F7B32C1CEAEC9500217D59 /* Constants.swift in Sources */,
+				77F5E4841CE9655D0074E7BA /* SandboxMode.swift in Sources */,
+				770850CA1CE6553C00861BA1 /* DictionaryConvertible.swift in Sources */,
+				770850C41CE6515900861BA1 /* Error.swift in Sources */,
+				776B041F1D0B3D7600C21994 /* APIBlueprint.swift in Sources */,
+				7766D5191D0B31090077C9DB /* ParameterEncoding.swift in Sources */,
+				7766D5161D0B2E440077C9DB /* Error+Request.swift in Sources */,
+				77F5E46E1CE953C10074E7BA /* OpenTracking.swift in Sources */,
+				776D3EA11D0A7842005F7E49 /* Error+Mail.swift in Sources */,
+				779AD12D1CEAB36C00F5BC4F /* Attachment.swift in Sources */,
+				77759BCD1CED2C6200239AEB /* HeaderValidator.swift in Sources */,
+				77F5E4681CE94BF50074E7BA /* ClickTracking.swift in Sources */,
+				770850C11CE6507700861BA1 /* Address.swift in Sources */,
+				776B041C1D0B37D500C21994 /* RateLimit.swift in Sources */,
+				7766D5031D0B153D0077C9DB /* Request.swift in Sources */,
+				770850D61CE65E6300861BA1 /* Content.swift in Sources */,
+				7766D5061D0B15A20077C9DB /* HTTPMethod.swift in Sources */,
+				77F57F461CEBF7CB008155C8 /* Validatable.swift in Sources */,
+				77F5E4891CE9678F0074E7BA /* BCCSetting.swift in Sources */,
+				77474FFE1CE904E100E5170E /* Personalization.swift in Sources */,
+				77F5E4651CE94B1C0074E7BA /* MailSetting.swift in Sources */,
+				7766D50C1D0B212A0077C9DB /* HTTPMessage.swift in Sources */,
+				77F5E48C1CE967EA0074E7BA /* Validator.swift in Sources */,
+				770850CD1CE655F600861BA1 /* JSONConvertible.swift in Sources */,
+				77F5E47E1CE964040074E7BA /* BypassListManagement.swift in Sources */,
+				77F7B3291CEAE88900217D59 /* Email.swift in Sources */,
+				776B04191D0B378000C21994 /* Response.swift in Sources */,
+				77F5E4621CE94A480074E7BA /* TrackingSetting.swift in Sources */,
+				77AE1DCB1CEA4D7500136CF1 /* SpamChecker.swift in Sources */,
+				779AD1281CEAAEB000F5BC4F /* ASM.swift in Sources */,
+				776B04241D0B5A9400C21994 /* Error+Session.swift in Sources */,
+				77F5E4591CE947AA0074E7BA /* Setting.swift in Sources */,
+				779AD1301CEAB42200F5BC4F /* ContentDisposition.swift in Sources */,
+				77F5E4781CE960620074E7BA /* GoogleAnalytics.swift in Sources */,
+				77F5E4911CE96BC40074E7BA /* Footer.swift in Sources */,
+				778593EB1D0A3CA9009A3026 /* Authentication.swift in Sources */,
+				7766D5131D0B2D2E0077C9DB /* APIV3.swift in Sources */,
+				7766D5091D0B1A2A0077C9DB /* Session.swift in Sources */,
+				778593E81D0A2F9C009A3026 /* Scheduling.swift in Sources */,
+				77F5E4731CE956E10074E7BA /* SubscriptionTracking.swift in Sources */,
+				770850DA1CE65F0000861BA1 /* ContentType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		770A90241BD42BFC003A3503 /* Sources */ = {
+		770850A21CE64F7500861BA1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				770A902E1BD42BFC003A3503 /* SendGridiOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015B019FB2A6C00D417CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7714B2B01BD3556F003A8901 /* Email.swift in Sources */,
-				77E9A5B51C1B5927000DB8F3 /* Attachment.swift in Sources */,
-				7714B2C71BD35CA2003A8901 /* SendGridFilter.swift in Sources */,
-				7714B2C91BD35CA2003A8901 /* SmtpApi.swift in Sources */,
-				7714B2CB1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */,
-				7714B2B31BD35667003A8901 /* SendGridErrors.swift in Sources */,
-				77B015D219FB2A7C00D417CE /* SendGrid.swift in Sources */,
-				7714B2C51BD35CA2003A8901 /* Logger.swift in Sources */,
-				770A8FF71BD42613003A3503 /* SendGridAuth.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77B015BC19FB2A6C00D417CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7714B2C61BD35CA2003A8901 /* Logger.swift in Sources */,
-				7714B2CC1BD35CA2003A8901 /* SmtpApiErrors.swift in Sources */,
-				7714B2C81BD35CA2003A8901 /* SendGridFilter.swift in Sources */,
-				77B015C819FB2A6C00D417CE /* SendGrid_SwiftTests.swift in Sources */,
-				77E9A5B71C1B5A30000DB8F3 /* Attachment.swift in Sources */,
-				770A8FF81BD42613003A3503 /* SendGridAuth.swift in Sources */,
-				77B015D319FB2A7C00D417CE /* SendGrid.swift in Sources */,
-				7714B2B41BD35667003A8901 /* SendGridErrors.swift in Sources */,
-				7714B2CA1BD35CA2003A8901 /* SmtpApi.swift in Sources */,
-				7714B2B11BD3563B003A8901 /* Email.swift in Sources */,
+				77F5E4821CE964940074E7BA /* BypassListManagementTests.swift in Sources */,
+				77AE1DD61CEA56DB00136CF1 /* ValidatorTests.swift in Sources */,
+				770850C21CE6507700861BA1 /* Address.swift in Sources */,
+				77F5E47B1CE962900074E7BA /* GoogleAnalyticsTests.swift in Sources */,
+				779AD1331CEAB7E200F5BC4F /* AttachmentTests.swift in Sources */,
+				770850DB1CE65F0000861BA1 /* ContentType.swift in Sources */,
+				77F5E48D1CE967EA0074E7BA /* Validator.swift in Sources */,
+				778593F11D0A3DC1009A3026 /* AuthenticationTests.swift in Sources */,
+				77F5E48F1CE969BB0074E7BA /* BCCSettingTests.swift in Sources */,
+				77F7B32F1CEAF09C00217D59 /* EmailTests.swift in Sources */,
+				7766D5171D0B2E440077C9DB /* Error+Request.swift in Sources */,
+				77F5E4631CE94A480074E7BA /* TrackingSetting.swift in Sources */,
+				77F5E4601CE949720074E7BA /* Setting.swift in Sources */,
+				774750011CE918B400E5170E /* PersonalizationTests.swift in Sources */,
+				776D3EA21D0A7842005F7E49 /* Error+Mail.swift in Sources */,
+				77F7B32D1CEAEC9500217D59 /* Constants.swift in Sources */,
+				77F5E4741CE956E10074E7BA /* SubscriptionTracking.swift in Sources */,
+				770850CE1CE655F600861BA1 /* JSONConvertible.swift in Sources */,
+				77F5E4691CE94BF50074E7BA /* ClickTracking.swift in Sources */,
+				77F5E46F1CE953C10074E7BA /* OpenTracking.swift in Sources */,
+				7766D5141D0B2D2E0077C9DB /* APIV3.swift in Sources */,
+				77F5E45F1CE9492E0074E7BA /* SettingTest.swift in Sources */,
+				7766D50A1D0B1A2A0077C9DB /* Session.swift in Sources */,
+				77F5E48A1CE9678F0074E7BA /* BCCSetting.swift in Sources */,
+				778593E91D0A31DD009A3026 /* Scheduling.swift in Sources */,
+				77F5E4661CE94B1C0074E7BA /* MailSetting.swift in Sources */,
+				779AD12A1CEAB07A00F5BC4F /* ASMTests.swift in Sources */,
+				77F57F471CEBF998008155C8 /* Validatable.swift in Sources */,
+				779AD12E1CEAB36C00F5BC4F /* Attachment.swift in Sources */,
+				776B04201D0B3D7600C21994 /* APIBlueprint.swift in Sources */,
+				77F5E4941CE96D3C0074E7BA /* FooterTests.swift in Sources */,
+				77F5E4791CE960620074E7BA /* GoogleAnalytics.swift in Sources */,
+				776B041D1D0B37D500C21994 /* RateLimit.swift in Sources */,
+				77AE1DCE1CEA504700136CF1 /* SpamCheckerTests.swift in Sources */,
+				7766D5071D0B15A20077C9DB /* HTTPMethod.swift in Sources */,
+				77AE1DCC1CEA4D7500136CF1 /* SpamChecker.swift in Sources */,
+				77F5E4711CE955920074E7BA /* OpenTrackingTests.swift in Sources */,
+				779AD12B1CEAB0A900F5BC4F /* ASM.swift in Sources */,
+				770850D71CE65E6300861BA1 /* Content.swift in Sources */,
+				77F7B32A1CEAE88900217D59 /* Email.swift in Sources */,
+				77F5E4871CE965E70074E7BA /* SandboxModeTests.swift in Sources */,
+				770850CB1CE6553C00861BA1 /* DictionaryConvertible.swift in Sources */,
+				77474FFF1CE904E100E5170E /* Personalization.swift in Sources */,
+				77474FFC1CE8FE1E00E5170E /* ContentTests.swift in Sources */,
+				7766D51A1D0B31090077C9DB /* ParameterEncoding.swift in Sources */,
+				776B04251D0B5A9400C21994 /* Error+Session.swift in Sources */,
+				776B041A1D0B378000C21994 /* Response.swift in Sources */,
+				770850C51CE6515900861BA1 /* Error.swift in Sources */,
+				77AE1DD01CEA536900136CF1 /* JSONConvertibleTests.swift in Sources */,
+				776B04221D0B546100C21994 /* APIBlueprintTests.swift in Sources */,
+				7766D50D1D0B212A0077C9DB /* HTTPMessage.swift in Sources */,
+				77F5E4921CE96BC40074E7BA /* Footer.swift in Sources */,
+				77F5E4851CE9655D0074E7BA /* SandboxMode.swift in Sources */,
+				77F5E4761CE95C830074E7BA /* SubscriptionTrackingTests.swift in Sources */,
+				7766D5041D0B153D0077C9DB /* Request.swift in Sources */,
+				770850C81CE6536F00861BA1 /* AddressTests.swift in Sources */,
+				77F5E46C1CE950770074E7BA /* ClickTrackingTests.swift in Sources */,
+				77759BCE1CED2C6200239AEB /* HeaderValidator.swift in Sources */,
+				776B04271D0B64EA00C21994 /* SessionTests.swift in Sources */,
+				779AD1311CEAB42200F5BC4F /* ContentDisposition.swift in Sources */,
+				77F5E47F1CE964040074E7BA /* BypassListManagement.swift in Sources */,
+				778593F21D0A3DF5009A3026 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		770A902B1BD42BFC003A3503 /* PBXTargetDependency */ = {
+		770850A91CE64F7500861BA1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 770A901E1BD42BFC003A3503 /* SendGridiOS */;
-			targetProxy = 770A902A1BD42BFC003A3503 /* PBXContainerItemProxy */;
-		};
-		77B015C319FB2A6C00D417CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 77B015B419FB2A6C00D417CE /* SendGrid */;
-			targetProxy = 77B015C219FB2A6C00D417CE /* PBXContainerItemProxy */;
+			target = 7708509B1CE64F7500861BA1 /* SendGrid */;
+			targetProxy = 770850A81CE64F7500861BA1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		770A90301BD42BFC003A3503 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = SendGridiOS/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		770A90311BD42BFC003A3503 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = SendGridiOS/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		770A90321BD42BFC003A3503 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = SendGridiOSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		770A90331BD42BFC003A3503 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = SendGridiOSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sg.SendGridiOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		77B015C919FB2A6C00D417CE /* Debug */ = {
+		770850AE1CE64F7500861BA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -541,25 +708,27 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -569,10 +738,11 @@
 			};
 			name = Debug;
 		};
-		77B015CA19FB2A6C00D417CE /* Release */ = {
+		770850AF1CE64F7500861BA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -586,19 +756,21 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -606,7 +778,7 @@
 			};
 			name = Release;
 		};
-		77B015CC19FB2A6C00D417CE /* Debug */ = {
+		770850B11CE64F7500861BA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -616,17 +788,17 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "SendGrid-Swift/Info.plist";
+				INFOPLIST_FILE = SendGrid/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = SendGrid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sk.SendGrid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		77B015CD19FB2A6C00D417CE /* Release */ = {
+		770850B21CE64F7500861BA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -636,98 +808,68 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "SendGrid-Swift/Info.plist";
+				INFOPLIST_FILE = SendGrid/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = SendGrid;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sk.SendGrid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		77B015CF19FB2A6C00D417CE /* Debug */ = {
+		770850B41CE64F7500861BA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "SendGrid-SwiftTests/Info.plist";
+				INFOPLIST_FILE = SendGridTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = SendGridTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sk.SendGridTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		77B015D019FB2A6C00D417CE /* Release */ = {
+		770850B51CE64F7500861BA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "SendGrid-SwiftTests/Info.plist";
+				INFOPLIST_FILE = SendGridTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = SendGridTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sk.SendGridTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		770A90341BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOS" */ = {
+		770850961CE64F7500861BA1 /* Build configuration list for PBXProject "SendGrid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				770A90301BD42BFC003A3503 /* Debug */,
-				770A90311BD42BFC003A3503 /* Release */,
+				770850AE1CE64F7500861BA1 /* Debug */,
+				770850AF1CE64F7500861BA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		770A90351BD42BFC003A3503 /* Build configuration list for PBXNativeTarget "SendGridiOSTests" */ = {
+		770850B01CE64F7500861BA1 /* Build configuration list for PBXNativeTarget "SendGrid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				770A90321BD42BFC003A3503 /* Debug */,
-				770A90331BD42BFC003A3503 /* Release */,
+				770850B11CE64F7500861BA1 /* Debug */,
+				770850B21CE64F7500861BA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		77B015AF19FB2A6C00D417CE /* Build configuration list for PBXProject "SendGrid" */ = {
+		770850B31CE64F7500861BA1 /* Build configuration list for PBXNativeTarget "SendGridTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				77B015C919FB2A6C00D417CE /* Debug */,
-				77B015CA19FB2A6C00D417CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		77B015CB19FB2A6C00D417CE /* Build configuration list for PBXNativeTarget "SendGrid" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				77B015CC19FB2A6C00D417CE /* Debug */,
-				77B015CD19FB2A6C00D417CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		77B015CE19FB2A6C00D417CE /* Build configuration list for PBXNativeTarget "SendGridTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				77B015CF19FB2A6C00D417CE /* Debug */,
-				77B015D019FB2A6C00D417CE /* Release */,
+				770850B41CE64F7500861BA1 /* Debug */,
+				770850B51CE64F7500861BA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 77B015AC19FB2A6C00D417CE /* Project object */;
+	rootObject = 770850931CE64F7500861BA1 /* Project object */;
 }

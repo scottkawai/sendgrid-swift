@@ -2,7 +2,28 @@
 
 This library allows you to quickly and easily send emails through SendGrid using Swift.
 
-**Important:** This library requires the [SMTPAPI-Swift Library](http://github.com/scottkawai/smtpapi-swift), which is added as a submodule in this repo.
+## Important: Breaking Changes
+Version 0.1.0 and higher have been migrated over to use SendGrid's [V3 Mail Send Endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html), which contains code-breaking changes.
+
+## Table Of Contents
+
+- [Installation](#installation)
+    + [With Cocoapods](#with-cocoapods)
+    + [As A Submodule](#as-a-submodule)
+- [Usage](#usage)
+    + [Authorization](#authorization)
+    + [Content](#content)
+    + [Personalizations](#personalizations)
+    + [Attachments](#attachments)
+    + [Mail and Tracking Settings](#mail-and-tracking-settings)
+    + [Unsubscribe Groups (ASM)](#unsubscribe-groups-asm)
+    + [IP Pools](#ip-pools)
+    + [Scheduled Sends](#scheduled-sends)
+    + [Categories](#categories)
+    + [Sections](#sections)
+    + [Template Engine](#template-engine)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
@@ -11,10 +32,8 @@ This library allows you to quickly and easily send emails through SendGrid using
 Add the following to your Podfile:
 
 ```
-pod 'SendGrid', :git => 'https://github.com/scottkawai/sendgrid-swift.git', :submodules => true
+pod 'SendGrid', :git => 'https://github.com/scottkawai/sendgrid-swift.git'
 ```
-
-**Important** Make sure you include the `:submodules => true` portion.
 
 ### As A Submodule
 
@@ -23,375 +42,486 @@ Add this repo as a submodule to your project and update:
 ```shell
 cd /path/to/your/project
 git submodule add https://github.com/scottkawai/sendgrid-swift.git
-git submodule update --init --recursive
 ```
 
-This will add a `sendgrid-swift` folder to your directory. Next, you need to add the following two files to your Xcode Project:
-
-- /sendgrid-swift/SendGrid-Swift/SendGrid.swift
-- /sendgrid-swift/smtpapi-swift/SMTPAPI/SmtpApi.swift
-
-### From The Source
-
-Download this repo as well as the [SMTPAPI-Swift Repo](http://github.com/scottkawai/smtpapi-swift) and add the `SendGrid.swift` and `SmtpApi.swift` files to your project.
+This will add a `sendgrid-swift` folder to your directory. Next, you need to add all the Swift files under `/sendgrid-swift/Sources/` to your project.
 
 ## Usage
 
-Create a new SendGrid object with your SendGrid credentials:
+### Authorization
+
+The V3 endpoint supports API keys for authorization (***Note***: username and passwords cannot be used for authorization).  Using the `Session` class, you can configure an instance with your API key to be used over and over again to send email requests:
 
 ```swift
-var sg = SendGrid(username: "sg_username", password: "sg_password")
+let session = Session()
+session.authentication = Authentication.ApiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
+
+/*
+`Session` also has a singleton instance that you can configure once and reuse throughout your code.
+*/
+Session.sharedInstance.authentication = Authentication.ApiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
 ```
 
-Then create a new email object with all the pertinent information:
+### Content
+
+To specify the content of an email, use the `Content` class. In general, an email will have plain text and/or HTML text content, however you can specify other types of content, such as an ICS calendar invite. Following RFC 1341, section 7.2, if either HTML or plain text content are to be sent in your email: the plain text content needs to be first, followed by the HTML content, followed by any other content.
+
+### Personalizations
+
+The new V3 endpoint introduces the idea of "personalizations."  When using the API, you define a set of global characteristics for the email, and then also define seperate personalizations, which contain recipient-specific information for the email. Since personalizations contain the recipients of the email, each request must contain at least 1 personalization.
 
 ```swift
-var email = SendGrid.Email()
-email.addTo("isaac@example.none", name: "Isaac")
-email.setFrom("jose@example.none", name: "Jose")
-email.setSubject("Hello World")
-email.setTextBody("This is my first email sent through SendGrid.")
-email.setHtmlBody("<p>This is my first email sent through SendGrid.</p>")
-```
-
-Finally, send your email with the SendGrid object:
-
-```swift
-sg.send(email, completionHandler: { (response, data, error) -> Void in
-    if let json = NSString(data: data, encoding: NSUTF8StringEncoding) {
-        println(json)
-    }
-})
-```
-
-See below for the various functions available when generating your email.
-
-## Side Note About Recipients
-
-***IMPORTANT:*** By default, this library adds "To" addresses to the [SendGrid X-SMTPAPI header](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html).  This means that SendGrid will send each of the recipients an individual copy of the message so that each recipient doesn't see every other recipient's email address. Doing this, however, means that things such as BCC will not work.  If you wish to send an email that behaves like a "normal" email (where all recipients see every address in the "To" field and BCC is available), then set the `hasRecipientsInSmtpApi` on your `SendGrid.Email` instance to `false` (by default it is `true`).
-
-```swift
-var email = SendGrid.Email()
-email.hasRecipientsInSmtpApi = false
-```
-
-## Functions
-
-#### addTo(address: String, name: String?)
-
-Adds a specified email address to the message. Optionally a "To Name" can be specified.  By default this will add the address to the [SendGrid X-SMTPAPI header](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html). If you want the address to be added to the normal "To" field, first set the `hasRecipientsInSmtpApi` property on your `SendGrid.Email` instance to `false`.
-
-```swift
-var email = SendGrid.Email()
-email.addTo("isaac@example.none", name: "Isaac")
-email.addTo("jose@example.none", name: nil)
-email.addTo("tim@example.none", name: nil)
-```
-
-#### addTos(addresses: [String], names: [String]?)
-
-Adds a specified list of email addresses to the message. Optionally a list of "To Names" can be specified.  By default this will add the addresses to the [SendGrid X-SMTPAPI header](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html). If you want the addresses to be added to the normal "To" field, first set the `hasRecipientsInSmtpApi` property on your `SendGrid.Email` instance to `false`.
-
-```swift
-var email = SendGrid.Email()
-email.addTos(["isaac@example.none","jose@example.none","tim@example.none"], name: ["Isaac","Jose","Tim"])
-```
-
-#### setTos(addresses: [String], names: [String]?)
-
-Erases any current recipient addresses and adds a specified list of email addresses to the message. Optionally a list of "To Names" can be specified.  By default this will add the addresses to the [SendGrid X-SMTPAPI header](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html). If you want the addresses to be added to the normal "To" field, first set the `hasRecipientsInSmtpApi` property on your `SendGrid.Email` instance to `false`.
-
-```swift
-var email = SendGrid.Email()
-email.addTo("isaac@example.none", name: "Isaac")
-email.setTos(["jose@example.none","tim@example.none"], name: ["Jose","Tim"])
-// In this case, only jose@example.none and tim@example.none 
-// will receive the email.
-```
-
-#### setSubject(subject: String)
-
-Sets the subject of the message.
-
-```swift
-var email = SendGrid.Email()
-email.setSubject("This is an awesome subject!")
-```
-
-#### setFrom(address: String, name: String?)
-
-Sets the sender address. Optionally a "From name" can be specified.
-
-```swift
-var email = SendGrid.Email()
-email.setFrom("jose@example.none", name: "Jose")
-```
-
-#### setTextBody(text: String)
-
-Sets the plain text body of the email.
-
-```swift
-var email = SendGrid.Email()
-email.setTextBody("Awesome plain text body!")
-```
-
-#### setHtmlBody(html: String)
-
-Sets the HTML body of the email.
-
-```swift
-var email = SendGrid.Email()
-email.setHtmlBody("<p>Awesome HTML body!</p>")
-```
-
-#### setBody(text: String, html: String)
-
-Sets both the plain text and HTML bodies.
-
-```swift
-var email = SendGrid.Email()
-email.setBody("Awesome plain text body!", html: "<p>Awesome HTML body!</p>")
-```
-
-#### setReplyTo(address: String)
-
-Sets a reply to address.
-
-```swift
-var email = SendGrid.Email()
-email.setReplyTo("tim@example.none")
-```
-
-#### addCC(address: String)
-
-Adds an email address to the CC field.
-
-```swift
-var email = SendGrid.Email()
-email.addCC("tim@example.none")
-email.addCC("isaac@example.none")
-email.addCC("jose@example.none")
-```
-
-#### addCCs(addresses: [String])
-
-Adds an array of addresses to the CC field.
-
-```swift
-var email = SendGrid.Email()
-email.addCCs(["tim@example.none","isaac@example.none","jose@example.none"])
-```
-
-#### setCCs(addresses: [String])
-
-Erases any current CC'd addresses and adds the specified list of addresses to the CC field.
-
-```swift
-var email = SendGrid.Email()
-email.addCC("tim@example.none")
-email.setCCs(["isaac@example.none","jose@example.none"])
-// In this instance, only isaac@example.none and jose@example.none
-// will be CC'd.
-```
-
-#### addBCC(address: String)
-
-Adds an email address to the BCC field. ***IMPORTANT!*** *Adding BCC addresses will only work if the `hasRecipientsInSmtpApi` property on you `SendGrid.Email` instance is `false`.*
-
-```swift
-var email = SendGrid.Email()
-email.hasRecipientsInSmtpApi = false
-email.addBCC("tim@example.none")
-email.addBCC("isaac@example.none")
-email.addBCC("jose@example.none")
-```
-
-#### addBCCs(addresses: [String])
-
-Adds an array of addresses to the BCC field. ***IMPORTANT!*** *Adding BCC addresses will only work if the `hasRecipientsInSmtpApi` property on you `SendGrid.Email` instance is `false`.*
-
-```swift
-var email = SendGrid.Email()
-email.hasRecipientsInSmtpApi = false
-email.addBCCs(["tim@example.none","isaac@example.none","jose@example.none"])
-```
-
-####  setBCCs(addresses: [String])
-
-Erases any current BCC'd addresses and adds the specified list of addresses to the BCC field. ***IMPORTANT!*** *Adding BCC addresses will only work if the `hasRecipientsInSmtpApi` property on you `SendGrid.Email` instance is `false`.*
-
-```swift
-var email = SendGrid.Email()
-email.hasRecipientsInSmtpApi = false
-email.addBCC("jose@example.none")
-email.setBCCs(["isaac@example.none","tim@example.none"])
-// In this instance, only isaac@example.none and tim@example.none
-// will be BCC'd.
-```
-
-#### addHeader(key: String, value: String)
-
-Adds a custom header to the email message.
-
-```swift
-var email = SendGrid.Email()
-email.addHeader("X-Custom-Header", value: "Custom header value here")
-```
-
-#### addHeaders(keyValuePairs: [String:String])
-
-Adds custom headers to the email message.
-
-```swift
-var email = SendGrid.Email()
-email.addHeaders([
-    "X-Custom-Header": "Custom header value here",
-    "X-Another-Header": "Badaboom!"
-])
-```
-
-#### setHeaders(keyValuePairs: [String:String])
-
-Removes any current headers and replaces them with the passed headers.
-
-```swift
-var email = SendGrid.Email()
-email.addHeader("X-Custom-Header", value: "Custom header value here")
-email.setHeaders([
-    "X-Another-Header": "Badaboom!"
-])
-// In this instance, only the "X-Another-Header" header will be added.
-```
-
-#### addAttachment(filename: String, data: NSData, cid: String?)
-
-Adds an attachment to the message. There's a few parameters in order to attach a file:
-
-|  Parameter  | Explanation                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| filename    | A String representing the filename of the attachment.                                                                                         |
-| data        | An NSData object representing the data of the attachment.                                                                                     |
-| contentType | A String representing the MIME type of the attachment.                                                                                        |
-| cid         | An optional String representing a CID of the file in order to reference it in the HTML body. *This only works if the attachment is an image*. |
-
-Here's an example of adding a simple txt file:
-
-```swift
-var email = SendGrid.Email()
-let path = "/path/to/document.txt"
-if let data = NSData(contentsOfFile: path) {
-    email.addAttachment("file.txt", data: data, contentType: "text/plain")
+// Send a basic example
+let personalization = Personalization(recipients: "test@example.com")
+let plainText = Content(contentType: ContentType.PlainText, value: "Hello World")
+let htmlText = Content(contentType: ContentType.HTMLText, value: "<h1>Hello World</h1>")
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: [plainText, htmlText],
+    subject: "Hello World"
+)
+do {
+    try Session.sharedInstance.send(email)
+} catch {
+    print(error)
 }
 ```
 
-Here's an example of adding an image with a CID, and then using it in the HTML body of your email:
+An `Email` instance can have up to 1000 `Personalization` instances. A `Personalization` can be thought of an individual email.  It can contain several `to` addresses, along with `cc` and `bcc` addresses.  Keep in mind that if you put two addresses in a single `Personalization` instance, each recipient will be able to see each other's email address.  If you want to send to several recipients where each recipient only sees their own address, you'll want to create a seperate `Personalization` instance for each recipient.
+
+The `Personalization` class also allows personalizing certain email attributes, including:
+
+- Subject
+- Headers
+- Substitution tags
+- [Custom arguments](https://sendgrid.com/docs/API_Reference/SMTP_API/unique_arguments.html)
+- Scheduled sends
+
+If a `Personalization` instance contains an email attribute that is also defined globally in the request (such as the subject), the `Personalization` instance's value takes priority.
+
+Here is an advanced example of using personalizations:
 
 ```swift
-var email = SendGrid.Email()
-let path = "/path/to/image.jpg"
-if let data = NSData(contentsOfFile: path) {
-    email.addAttachment("banner.jpg", data: data, contentType: "image/jpeg", cid: "abc12345")
+// Send an advanced example
+let recipients = [
+    Address(emailAddress: "jose@example.none", displayName: "Jose"),
+    Address(emailAddress: "isaac@example.none", displayName: "Isaac"),
+    Address(emailAddress: "tim@example.none", displayName: "Tim")
+]
+let personalizations = recipients.map { (recipient) -> Personalization in
+    let name = recipient.name ?? "there"
+    return Personalization(
+        to: [recipient],
+        cc: nil,
+        bcc: [Address(emailAddress: "bcc@example.none")],
+        subject: "Hello \(name)!",
+        headers: ["X-Campaign":"12345"],
+        substitutions: ["%name%":name],
+        customArguments: ["campaign_id":"12345"]
+    )
 }
-email.setHtmlBody("<img src=\"cid:abc12345\" />")
+let contents = Content.emailContent(
+    plain: "Hello %name%,\n\nHow are you?\n\nBest,\nSender",
+    html: "<p>Hello %name%,</p><p>How are you?</p><p>Best,<br>Sender</p>"
+)
+let email = Email(
+    personalizations: personalizations,
+    from: Address(emailAddress: "sender@example.none"),
+    content: contents,
+    subject: nil
+)
+email.headers = [
+    "X-Campaign": "12345"
+]
+email.customArguments = [
+    "campaign_id": "12345"
+]
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-## X-SMTPAPI Functions
+You'll notice in the example above, the global email defines custom headers and custom arguments. In addition, each personalization defines some headers and custom arguments. For the resulting email, the headers and custom arguments will be merged together. In the event of a conflict, the personalization's values will be used.
 
-#### addSubstitution(_:values:)
+### Attachments
 
-Adds an array of substitution `values` for a given `key`.
+The `Attachment` class allows you to easily add attachments to an email. All you need is to convert your desired attachment into `NSData` and initialize it like so:
 
 ```swift
-var email = SendGrid.Email()
-email.addSubstitution("%name%", values: ["Isaac","Jose","Tim"])
-email.addSubstitution("%email%", values: ["isaac@example.none","jose@example.none","tim@example.none"])
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+if let path = NSBundle.mainBundle().pathForResource("proposal", ofType: "pdf"),
+    pdf = NSData(contentsOfFile: path)
+{
+    let attachment = Attachment(
+        filename: "proposal.pdf",
+        content: pdf,
+        disposition: .Attachment,
+        type: .PDF,
+        contentID: nil
+    )
+    email.attachments = [attachment]
+}
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### addSection(_:value:)
-
-Adds a new section tag. See the [Sections documentation](https://sendgrid.com/docs/API_Reference/SMTP_API/section_tags.html) for more info (this is generally used in conjunction with substitution tags).
+You can also use attachments as inline images by setting the `disposition` property to `.Inline` and setting the `cid` property.  You can then reference that unique CID in your HTML like so:
 
 ```swift
-var email = SendGrid.Email()
-email.addSection("-greetMale-", value: "Hello Mr. %name%")
-email.addSection("-greetFemale-", value: "Hello Ms. %name%")
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<img src=\"cid:main_logo_12345\" /><h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+if let path = NSBundle.mainBundle().pathForImageResource("logo.png"),
+    logo = NSData(contentsOfFile: path)
+{
+    let attachment = Attachment(filename: "logo.png", content: logo, disposition: .Inline, type: .PNG, contentID: "main_logo_12345")
+    email.attachments = [attachment]
+}
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### addUniqueArgument(_:value:)
+### Mail and Tracking Settings
 
-Adds a [Unique Argument](https://sendgrid.com/docs/API_Reference/SMTP_API/unique_arguments.html) to the email.
+There are various classes available that you can use to modify the [mail](https://sendgrid.com/docs/User_Guide/Settings/mail.html) and [tracking](https://sendgrid.com/docs/User_Guide/Settings/tracking.html) settings for a specific email.
+
+**MAIL SETTINGS**
+
+The following mail setting classes are available:
+
+| Setting                | Description |
+|------------------------|-------------|
+| `BCCSetting`           | This allows you to have a blind carbon copy automatically sent to the specified email address for every email that is sent. |
+| `BypassListManagement` | Allows you to bypass all unsubscribe groups and suppressions to ensure that the email is delivered to every single recipient. This should only be used in emergencies when it is absolutely necessary that every recipient receives your email. Ex: outage emails, or forgot password emails. |
+| `Footer`               | The default footer that you would like appended to the bottom of every email. |
+| `SandboxMode`          | This allows you to send a test email to ensure that your request body is valid and formatted correctly. For more information, please see our [Classroom](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/sandbox_mode.html). |
+| `SpamChecker`          |  This allows you to test the content of your email for spam. |
+
+**TRACKING SETTINGS**
+
+The following tracking setting classes are available:
+
+| Setting                | Description |
+|------------------------|-------------|
+| `ClickTracking`        | Allows you to track whether a recipient clicked a link in your email. |
+| `GoogleAnalytics`      | Allows you to enable tracking provided by Google Analytics. |
+| `OpenTracking`         | Allows you to track whether the email was opened or not, but including a single pixel image in the body of the content. When the pixel is loaded, we can log that the email was opened. |
+| `SubscriptionTracking` | Allows you to insert a subscription management link at the bottom of the text and html bodies of your email. If you would like to specify the location of the link within your email, you may specify a substitution tag. |
+
+**EXAMPLE**
+
+Each setting has its own properties that can be configured, but here's a basic example:
 
 ```swift
-var email = SendGrid.Email()
-email.addUniqueArgument("foo", value: "bar")
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+email.mailSettings = [
+    Footer(
+        enable: true,
+        text: "Copyright 2016 MyCompany",
+        html: "<p><small>Copyright 2016 MyCompany</small></p>"
+    )
+]
+email.trackingSettings = [
+    ClickTracking(enable: true),
+    OpenTracking(enable: false)
+]
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### addCategory(_:)
+### Unsubscribe Groups (ASM)
 
-Adds a category to the email.
+If you use SendGrid's [unsubscribe groups](https://sendgrid.com/docs/User_Guide/Suppressions/advanced_suppression_manager.html) feature, you can specify which unsubscribe group to send an email under like so:
 
 ```swift
-var email = SendGrid.Email()
-email.addCategory("Transactional")
-email.addCategory("Forgot Password")
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+/// Assuming your unsubscribe group has an ID of 4815…
+email.asm = ASM(groupID: 4815)
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### addCategories(_:)
-
-Adds an array of categories to the email.
+You can also specify which unsubscribe groups should be shown on the subscription management page for this email:
 
 ```swift
-var email = SendGrid.Email()
-email.addCategories(["Transactional", "Forgot Password"])
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+/// Assuming your unsubscribe group has an ID of 4815…
+email.asm = ASM(groupID: 4815, groupsToDisplay: [16,23,42])
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### addFilter(_:setting:value:)
+### IP Pools
 
-Adds settings for a specified [App](https://sendgrid.com/docs/API_Reference/SMTP_API/apps.html). The first parameter is the name of the app to edit, and uses the SendGridFilter enum defined [in the SMTPAPI-Swift repo](https://github.com/scottkawai/smtpapi-swift) to avoid common mistakes.
+If you're on a pro plan or higher, and have set up [IP Pools](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html) on your account, you can specify a specific pool to send an email over like so:
 
 ```swift
-var email = SendGrid.Email()
-email.addFilter(SendGridFilter.OpenTracking, setting: "enable", value: 0)
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+/// Assuming you have an IP pool called "transactional" on your account…
+email.ipPoolName = "transactional"
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### setSendAt(_:)
+### Scheduled Sends
 
-Sets a date (NSDate) to send the message at. Keep in mind that you can only schedule up to 24 hours in the future.
+If you don't want the email to be sent right away, but rather at some point in the future, you can use the `sendAt` property. **NOTE**: You cannot schedule an email further than 72 hours in the future.  You can also assign an optional, unique `batchID` to the email so that you can [cancel via the API](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html) in the future if needed.
 
 ```swift
-var email = SendGrid.Email()
-var date = NSDate(timeIntervalSinceNow: (3 * 60 * 60)) // 3 hours from now
-email.setSendAt(date)
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+// Schedule the email for 24 hours from now.
+email.sendAt = NSDate(timeIntervalSinceNow: 24 * 60 * 60)
+
+// This part is optional, but by setting the batch ID, we have the ability to cancel this send via the API if needed.
+email.batchID = "76A8C7A6-B435-47F5-AB13-15F06BA2E3WD"
+
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### setSendEachAt(_:)
-
-Sets a list of dates that corresponds with the `to` array for when to send each message.
+In the above example, we've set the `sendAt` property on the global email, which means every personalization will be scheduled for that time.  You can also set the `sendAt` property on a `Personalization` if you want each one to be set to a different time, or only have certain ones scheduled:
 
 ```swift
-var email = SendGrid.Email()
-var date1 = NSDate(timeIntervalSinceNow: (2 * 60 * 60))
-var date2 = NSDate(timeIntervalSinceNow: (5 * 60 * 60))
-email.setSendEachAt([date1, date2])
+let recipientInfo: [String:NSDate?] = [
+    "jose@example.none": NSDate(timeIntervalSinceNow: 4 * 60 * 60),
+    "isaac@example.none": nil,
+    "tim@example.none": NSDate(timeIntervalSinceNow: 12 * 60 * 60)
+]
+let personalizations = recipientInfo.map { (recipient, date) -> Personalization in
+    let personalization = Personalization(recipients: recipient)
+    personalization.sendAt = date
+    return personalization
+}
+let contents = Content.emailContent(
+    plain: "Hello there,\n\nHow are you?\n\nBest,\nSender",
+    html: "<p>Hello there,</p><p>How are you?</p><p>Best,<br>Sender</p>"
+)
+let email = Email(
+    personalizations: personalizations,
+    from: Address(emailAddress: "sender@example.none"),
+    content: contents,
+    subject: nil
+)
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### setAsmGroup(_:)
+### Categories
 
-Sets an [Advanced Suppression Management Group](https://sendgrid.com/docs/User_Guide/advanced_suppression_manager.html) for the message.
+You can assign categories to an email which will show up in your SendGrid stats, Email Activity, and event webhook. You can not have more than 10 categories per email.
 
 ```swift
-var email = SendGrid.Email()
-email.setAsmGroup(2)
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+email.categories = ["Foo", "Bar"]
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
-#### setIpPool(_:)
+### Sections
 
-Specifies an IP Pool to send the message over. For information on setting up an IP Pool, view the [Documentation page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html).
+Sections allow you to define large blocks of content that can be inserted into your emails using substitution tags. An example of this might look like the following:
 
 ```swift
-var email = SendGrid.Email()
-email.setIpPool("pool_party")
+let bob = Personalization(recipients: "bob@example.com")
+bob.substitutions = [
+    ":salutation": ":male",
+    ":name": "Bob",
+    ":event_details": "event2",
+    ":event_date": "Feb 14"
+]
+
+let alice = Personalization(recipients: "alice@example.com")
+alice.substitutions = [
+    ":salutation": ":female",
+    ":name": "Alice",
+    ":event_details": "event1",
+    ":event_date": "Jan 1"
+]
+
+let casey = Personalization(recipients: "casey@example.com")
+casey.substitutions = [
+    ":salutation": ":neutral",
+    ":name": "Casey",
+    ":event_details": "event1",
+    ":event_date": "Aug 11"
+]
+
+let personalization = [
+    bob,
+    alice,
+    casey
+]
+let plainText = ":salutation,\n\nPlease join us for the :event_details."
+let htmlText = "<p>:salutation,</p><p>Please join us for the :event_details.</p>"
+let content = Content.emailContent(plain: plainText, html: htmlText)
+let email = Email(
+    personalizations: personalization, 
+    from: Address(emailAddress: "from@example.com"), 
+    content: content
+)
+email.subject = "Hello World"
+email.sections = [
+    ":male": "Mr. :name",
+    ":female": "Ms. :name",
+    ":neutral": ":name",
+    ":event1": "New User Event on :event_date",
+    ":event2": "Veteran User Appreciation on :event_date"
+]
+```
+
+### Template Engine
+
+If you use SendGrid's [Template Engine](https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html), you can specify a template to apply to an email like so:
+
+```swift
+let personalization = Personalization(recipients: "test@example.com")
+let contents = Content.emailContent(
+    plain: "Hello World",
+    html: "<h1>Hello World</h1>"
+)
+let email = Email(
+    personalizations: [personalization],
+    from: Address(emailAddress: "foo@bar.com"),
+    content: contents,
+    subject: "Hello World"
+)
+/// Assuming you have a template with ID "52523e14-7e47-45ed-ab32-0db344d8cf9z" on your account…
+email.templateID = "52523e14-7e47-45ed-ab32-0db344d8cf9z"
+do {
+    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+        print(response?.stringValue)
+    })
+} catch {
+    print(error)
+}
 ```
 
 ## Contributing
@@ -399,20 +529,30 @@ email.setIpPool("pool_party")
 1. Fork it
 2. Create your feature branch (`git checkout -b my-fancy-new-feature`)
 3. Commit your changes (`git commit -am 'Added fancy new feature'`)
-4. Push to the branch (`git push origin my-fancy-new-feature`)
-5. Create a new Pull Request
+4. Write tests for any changes and ensure existing tests pass
+5. Push to the branch (`git push origin my-fancy-new-feature`)
+6. Create a new Pull Request
 
+## License
 
+The MIT License (MIT)
 
+Copyright (c) 2016 Scott K.
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-
-
-
-
-
-
-
-
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
