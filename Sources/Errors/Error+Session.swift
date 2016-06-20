@@ -12,7 +12,7 @@ public extension Error {
     
     /**
      
-     The `Request` enum contains all the errors thrown when attempting to build an HTTP request.
+     The `Session` enum contains all the errors thrown when attempting to build an HTTP request.
      
      */
     public enum Session: ErrorType, CustomStringConvertible {
