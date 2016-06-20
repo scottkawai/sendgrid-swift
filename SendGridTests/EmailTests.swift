@@ -375,6 +375,18 @@ class EmailTests: XCTestCase {
         XCTAssertTrue(email.jsonValue!.containsString("\"headers\":{\"X-CUSTOM-HEADER\":\"FOO\"}"))
     }
     
+    func testMailSettings() {
+        let email = self.generateBaseEmail()
+        email.mailSettings = [BypassListManagement(enable: true)]
+        XCTAssertTrue(email.jsonValue!.containsString("\"mail_settings\":[{\"bypass_list_management\":{\"enable\":true}}]"))
+    }
+    
+    func testTrackingSettings() {
+        let email = self.generateBaseEmail()
+        email.trackingSettings = [ClickTracking(enable: true)]
+        XCTAssertTrue(email.jsonValue!.containsString("\"tracking_settings\":[{\"click_tracking\":{\"enable\":true}}]"))
+    }
+    
     func testCategories() {
         let email = self.generateBaseEmail()
         email.categories = [
@@ -495,6 +507,16 @@ class EmailTests: XCTestCase {
             })
         } catch {
             XCTFail("Unexpected error: \(error)")
+        }
+        
+        // An error should be thrown if a subuser was provided.
+        
+        do {
+            let s = Session(auth: Authentication.ApiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789"))
+            _ = try test.requestForSession(s, onBehalfOf: "foobar")
+            XCTFail("Expected an error to be thrown when a subuser username is provided in the `onBehalfOf` parameter, but nothing was thrown.")
+        } catch {
+            XCTAssertEqual("\(error)", Error.Request.ImpersonationNotSupported(Email).description)
         }
     }
 }

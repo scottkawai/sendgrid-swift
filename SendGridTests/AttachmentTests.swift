@@ -111,6 +111,15 @@ class AttachmentTests: XCTestCase {
             } catch {
                 XCTAssertEqual("\(error)", Error.Mail.InvalidContentID("asdf,asdf").description)
             }
+            
+            do {
+                //Should fail if content ID is a blank string.
+                let newline = Attachment(filename: "dot.png", content: image, disposition: .Attachment, type: .PNG, contentID: "")
+                try newline.validate()
+                XCTFail("Expected error to be thrown when providing a blank string for the content ID, but no error was thrown")
+            } catch {
+                XCTAssertEqual("\(error)", Error.Mail.InvalidContentID("").description)
+            }
         }
     }
     

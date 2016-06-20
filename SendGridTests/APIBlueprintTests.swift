@@ -64,6 +64,11 @@ class APIBlueprintTests: XCTestCase {
         XCTAssertEqual(blue.type.rawValue, "Request")
         XCTAssertNil(blue.statusCode)
         XCTAssertEqual(blue.body, "{\n  \"subject\" : \"Hello World\",\n  \"content\" : [\n    {\n      \"value\" : \"Hello World\",\n      \"type\" : \"text\\/plain\"\n    }\n  ],\n  \"personalizations\" : [\n    {\n      \"to\" : [\n        {\n          \"email\" : \"test@example.com\"\n        }\n      ]\n    }\n  ],\n  \"from\" : {\n    \"email\" : \"foo@bar.com\"\n  }\n}")
+        
+        let getRequest = RequestTests.Foo()
+        let getBlue = APIBlueprint(request: getRequest)
+        XCTAssertEqual(getBlue.method.description, "GET")
+        XCTAssertEqual(getBlue.location, "/foo/bar?q=1")
     }
     
     func testInitWithResponse() {
@@ -81,6 +86,15 @@ class APIBlueprintTests: XCTestCase {
         XCTAssertEqual(blue?.type.rawValue, "Response")
         XCTAssertNil(blue?.statusCode)
         XCTAssertNil(blue?.body)
+        
+        let getRequest = RequestTests.Foo()
+        let responseData = ParameterEncoding.JSON(["foo":"bar"]).data
+        let urlResponse = NSHTTPURLResponse(URL: NSURL(), statusCode: 200, HTTPVersion: nil, headerFields: ["Content-Type": ContentType.JSON.description])
+        let getResponse = Response(request: getRequest, data: responseData, urlResponse: urlResponse)
+        
+        let getBlue = APIBlueprint(response: getResponse)
+        XCTAssertEqual(getBlue!.method.description, "GET")
+        XCTAssertEqual(getBlue!.location, "/foo/bar?q=1")
     }
     
     func testDescription() {
