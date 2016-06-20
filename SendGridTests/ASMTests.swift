@@ -46,7 +46,7 @@ class ASMTests: XCTestCase {
             }
             let over = ASM(groupID: 815, groupsToDisplay: tooMany)
             try over.validate()
-            XCTFail("Expected an error to be thrown when `ASM` is provided more than \(Constants.ASM.MaximumNumberOfDisplayGroups) groups to display, but nothing was thrown.")
+            XCTFail("Expected an error to be thrown when `ASM` is provided more than \(Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups) groups to display, but nothing was thrown.")
         } catch {
             XCTAssertEqual("\(error)", Error.Mail.TooManyUnsubscribeGroups.description)
         }
