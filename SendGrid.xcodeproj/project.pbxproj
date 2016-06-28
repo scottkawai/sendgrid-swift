@@ -26,6 +26,9 @@
 		77474FFE1CE904E100E5170E /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474FFD1CE904E100E5170E /* Personalization.swift */; };
 		77474FFF1CE904E100E5170E /* Personalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77474FFD1CE904E100E5170E /* Personalization.swift */; };
 		774750011CE918B400E5170E /* PersonalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774750001CE918B400E5170E /* PersonalizationTests.swift */; };
+		775B4D3F1D183D9F004BB1DD /* RateLimitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775B4D3E1D183D9F004BB1DD /* RateLimitTests.swift */; };
+		775B4D411D183FD1004BB1DD /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775B4D401D183FD1004BB1DD /* RequestTests.swift */; };
+		775B4D431D184611004BB1DD /* ParameterEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775B4D421D184611004BB1DD /* ParameterEncodingTests.swift */; };
 		7766D5031D0B153D0077C9DB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5021D0B153D0077C9DB /* Request.swift */; };
 		7766D5041D0B153D0077C9DB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5021D0B153D0077C9DB /* Request.swift */; };
 		7766D5061D0B15A20077C9DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766D5051D0B15A20077C9DB /* HTTPMethod.swift */; };
@@ -141,6 +144,9 @@
 		77474FFB1CE8FE1E00E5170E /* ContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTests.swift; sourceTree = "<group>"; };
 		77474FFD1CE904E100E5170E /* Personalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Personalization.swift; path = Sources/Classes/Mail/Personalization.swift; sourceTree = SOURCE_ROOT; };
 		774750001CE918B400E5170E /* PersonalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalizationTests.swift; sourceTree = "<group>"; };
+		775B4D3E1D183D9F004BB1DD /* RateLimitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateLimitTests.swift; sourceTree = "<group>"; };
+		775B4D401D183FD1004BB1DD /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
+		775B4D421D184611004BB1DD /* ParameterEncodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncodingTests.swift; sourceTree = "<group>"; };
 		7766D5021D0B153D0077C9DB /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Sources/Protocols/Request.swift; sourceTree = SOURCE_ROOT; };
 		7766D5051D0B15A20077C9DB /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Sources/Enums/HTTPMethod.swift; sourceTree = SOURCE_ROOT; };
 		7766D5081D0B1A2A0077C9DB /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Sources/Classes/Session.swift; sourceTree = SOURCE_ROOT; };
@@ -302,9 +308,10 @@
 			isa = PBXGroup;
 			children = (
 				770850C71CE6536F00861BA1 /* AddressTests.swift */,
+				776B04211D0B546100C21994 /* APIBlueprintTests.swift */,
 				779AD1291CEAB07A00F5BC4F /* ASMTests.swift */,
 				77474FFB1CE8FE1E00E5170E /* ContentTests.swift */,
-				776B04211D0B546100C21994 /* APIBlueprintTests.swift */,
+				775B4D3E1D183D9F004BB1DD /* RateLimitTests.swift */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
@@ -313,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				77AE1DCF1CEA536900136CF1 /* JSONConvertibleTests.swift */,
+				775B4D401D183FD1004BB1DD /* RequestTests.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -362,8 +370,9 @@
 		77AE1DD11CEA56B000136CF1 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */,
 				778593F01D0A3DC1009A3026 /* AuthenticationTests.swift */,
+				775B4D421D184611004BB1DD /* ParameterEncodingTests.swift */,
+				77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -627,6 +636,7 @@
 				7766D5171D0B2E440077C9DB /* Error+Request.swift in Sources */,
 				77F5E4631CE94A480074E7BA /* TrackingSetting.swift in Sources */,
 				77F5E4601CE949720074E7BA /* Setting.swift in Sources */,
+				775B4D431D184611004BB1DD /* ParameterEncodingTests.swift in Sources */,
 				774750011CE918B400E5170E /* PersonalizationTests.swift in Sources */,
 				776D3EA21D0A7842005F7E49 /* Error+Mail.swift in Sources */,
 				77F7B32D1CEAEC9500217D59 /* Constants.swift in Sources */,
@@ -636,6 +646,7 @@
 				77F5E46F1CE953C10074E7BA /* OpenTracking.swift in Sources */,
 				7766D5141D0B2D2E0077C9DB /* APIV3.swift in Sources */,
 				77F5E45F1CE9492E0074E7BA /* SettingTest.swift in Sources */,
+				775B4D3F1D183D9F004BB1DD /* RateLimitTests.swift in Sources */,
 				7766D50A1D0B1A2A0077C9DB /* Session.swift in Sources */,
 				77F5E48A1CE9678F0074E7BA /* BCCSetting.swift in Sources */,
 				778593E91D0A31DD009A3026 /* Scheduling.swift in Sources */,
@@ -654,6 +665,7 @@
 				779AD12B1CEAB0A900F5BC4F /* ASM.swift in Sources */,
 				770850D71CE65E6300861BA1 /* Content.swift in Sources */,
 				77F7B32A1CEAE88900217D59 /* Email.swift in Sources */,
+				775B4D411D183FD1004BB1DD /* RequestTests.swift in Sources */,
 				77F5E4871CE965E70074E7BA /* SandboxModeTests.swift in Sources */,
 				770850CB1CE6553C00861BA1 /* DictionaryConvertible.swift in Sources */,
 				77474FFF1CE904E100E5170E /* Personalization.swift in Sources */,

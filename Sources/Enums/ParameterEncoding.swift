@@ -43,54 +43,12 @@ enum ParameterEncoding {
             }
             return data
         case .FormUrlEncoded(let params):
-            var entries: [String] = []
-            
-            func urlEncodeString(str: String) -> String {
-                let charactersToEscape = "!*'();:@&=+$,/?%#[]\" "
-                let allowedCharacters = NSCharacterSet(charactersInString: charactersToEscape).invertedSet
-                
-                if let str = str.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters) where str.characters.count > 0 {
-                    do {
-                        let regex = try NSRegularExpression(pattern: "&", options: NSRegularExpressionOptions.CaseInsensitive)
-                        return regex.stringByReplacingMatchesInString(str, options: [], range: NSMakeRange(0, (str.characters.count - 1)), withTemplate: "%26")
-                    } catch {
-                        NSLog("Error making string replacements in urlEncodedParameter.")
-                    }
-                }
-                return ""
-            }
-            
-            func handleParameter(parameter: AnyObject, forKey key: String?) -> Bool {
-                var succeeded = true
-                if let dict = parameter as? [NSObject:AnyObject] {
-                    for (name, value) in dict {
-                        if let n = name as? String {
-                            let rootKey = (key == nil) ? n : "\(key!)[\(n)]"
-                            succeeded = succeeded && handleParameter(value, forKey: rootKey)
-                        } else {
-                            succeeded = false
-                            break
-                        }
-                    }
-                } else if let name = key {
-                    if let str = parameter as? String {
-                        entries.append(name + "=" + urlEncodeString(str))
-                    } else if let num = parameter as? NSNumber {
-                        entries.append(name + "=" + urlEncodeString(num.stringValue))
-                    } else if let arr = parameter as? [AnyObject] {
-                        for param in arr {
-                            succeeded = succeeded && handleParameter(param, forKey: "\(name)[]")
-                        }
-                    } else {
-                        succeeded = false
-                    }
-                } else {
-                    succeeded = false
-                }
-                return succeeded
-            }
-            if !handleParameter(params, forKey: nil) { return nil }
-            return entries.joinWithSeparator("&").dataUsingEncoding(NSUTF8StringEncoding)
+            guard let hash = params as? [NSObject:AnyObject] else { return nil }
+            let components = NSURLComponents()
+            components.queryItems = hash.map({ (key, value) -> NSURLQueryItem in
+                return NSURLQueryItem(name: "\(key)", value: "\(value)")
+            })
+            return components.query?.dataUsingEncoding(NSUTF8StringEncoding)
         }
     }
     
