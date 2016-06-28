@@ -183,13 +183,21 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
             hash["ip_pool_name"] = pool
         }
         if let ms = self.mailSettings {
-            hash["mail_settings"] = ms.map({ (setting) -> [NSObject:AnyObject] in
-                return setting.dictionaryValue
+            hash["mail_settings"] = ms.reduce([NSObject:AnyObject](), combine: { (current, setting) -> [NSObject:AnyObject] in
+                var updated = current
+                for (key, value) in setting.dictionaryValue {
+                    updated[key] = value
+                }
+                return updated
             })
         }
         if let ts = self.trackingSettings {
-            hash["tracking_settings"] = ts.map({ (setting) -> [NSObject:AnyObject] in
-                return setting.dictionaryValue
+            hash["tracking_settings"] = ts.reduce([NSObject:AnyObject](), combine: { (current, setting) -> [NSObject:AnyObject] in
+                var updated = current
+                for (key, value) in setting.dictionaryValue {
+                    updated[key] = value
+                }
+                return updated
             })
         }
         return hash
