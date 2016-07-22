@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SendGrid"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "A library that allows you to easily send emails through SendGrid using Swift."
 
   # This description is used to generate tags and improve search results.
@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.9"
+  s.osx.deployment_target = "10.10"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
