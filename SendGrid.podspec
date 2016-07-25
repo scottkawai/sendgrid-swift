@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SendGrid"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "A library that allows you to easily send emails through SendGrid using Swift."
 
   # This description is used to generate tags and improve search results.

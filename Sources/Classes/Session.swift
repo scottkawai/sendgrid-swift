@@ -82,8 +82,7 @@ public class Session {
         let payload = try request.requestForSession(self, onBehalfOf: onBehalfOf)
         
         // Make the HTTP request
-        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-        let task = session.dataTaskWithRequest(payload) { (data, response, error) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(payload) { (data, response, error) -> Void in
             if let block = onComplete {
                 let resp = Response(request: request, data: data, urlResponse: response)
                 block(response: resp, error: error)
