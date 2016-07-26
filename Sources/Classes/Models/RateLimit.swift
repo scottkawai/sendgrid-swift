@@ -2,7 +2,7 @@
 //  RateLimit.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 6/10/16.
+//  Created by Scott Kawai on 7/26/16.
 //  Copyright © 2016 Scott Kawai. All rights reserved.
 //
 
@@ -13,7 +13,10 @@ import Foundation
  The `RateLimit` struct abstracts any rate-limit information returned from an `NSURLResponse`.
  
  */
-public struct RateLimit {
+public class RateLimit {
+    
+    // MARK: - Properties
+    //=========================================================================
     /// The number of calls allowed for this resource during the refresh period.
     public let limit: Int
     
@@ -22,6 +25,23 @@ public struct RateLimit {
     
     /// The date and time at which the refresh period will reset.
     public let resetDate: NSDate
+    
+    // MARK: - Initialization
+    //=========================================================================
+    /**
+     
+     Initializes the class.
+     
+     - parameter limit:     The total number of calls allowed in the rate limit period for the endpoint.
+     - parameter remaining: The number of calls remaining in the rate limit period.
+     - parameter NSDate:    The time at which the rate limit will reset.
+     
+     */
+    public init(limit: Int, remaining: Int, resetDate: NSDate) {
+        self.limit = limit
+        self.remaining = remaining
+        self.resetDate = resetDate
+    }
     
     // MARK: - Methods
     //=========================================================================
@@ -34,7 +54,7 @@ public struct RateLimit {
      - returns: An instance of `RateLimit` using information from an NSURLResponse (if rate limit information was returned in the NSURLResponse).
      
      */
-    static func rateLimitInfoFromUrlResponse(response: NSURLResponse?) -> RateLimit? {
+    class func rateLimitInfoFromUrlResponse(response: NSURLResponse?) -> RateLimit? {
         guard let http = response as? NSHTTPURLResponse,
             limitStr = http.allHeaderFields["X-RateLimit-Limit"] as? String,
             li = Int(limitStr),

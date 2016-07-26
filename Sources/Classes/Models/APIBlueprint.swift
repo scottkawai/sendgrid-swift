@@ -2,7 +2,7 @@
 //  APIBlueprint.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 6/10/16.
+//  Created by Scott Kawai on 7/26/16.
 //  Copyright © 2016 Scott Kawai. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 /**
  
- The `APIBlueprint` struct takes information about an `HTTPMessage`, and formats it into an [API Blueprint](https://APIBlueprint.org).
+ The `APIBlueprint` class takes information about an `HTTPMessage`, and formats it into an [API Blueprint](https://APIBlueprint.org).
  
  */
-public struct APIBlueprint: CustomStringConvertible {
+public class APIBlueprint: CustomStringConvertible {
     
     // MARK: - Properties
     //=========================================================================
@@ -77,7 +77,7 @@ public struct APIBlueprint: CustomStringConvertible {
      - parameter statusCode:     The status code of the response.
      
      */
-    public init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: AnyObject?, statusCode status: Int?) {
+    public convenience init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: AnyObject?, statusCode status: Int?) {
         var content: String?
         if let params = parameters where aMethod.hasBody {
             switch aContentType {
@@ -99,7 +99,7 @@ public struct APIBlueprint: CustomStringConvertible {
      - parameter resource:  The `Request` to make an API Blueprint out of.
      
      */
-    init(request: Request) {
+    convenience init(request: Request) {
         var location = "/" + request.endpoint
         if let params = request.parameters,
             query = ParameterEncoding.FormUrlEncoded(params).stringValue
@@ -117,7 +117,7 @@ public struct APIBlueprint: CustomStringConvertible {
      - parameter response:  The `Response` to make an API Blueprint out of.
      
      */
-    init?(response: Response) {
+    convenience init?(response: Response) {
         let content = response.contentType
         let resource = response.request
         var location = "/" + resource.endpoint

@@ -2,7 +2,7 @@
 //  Content.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 5/13/16.
+//  Created by Scott Kawai on 7/26/16.
 //  Copyright © 2016 Scott Kawai. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 /**
  
- The `Content` struct represents a MIME part of the email message (i.e. the plain text and HTML parts of an email).
+ The `Content` class represents a MIME part of the email message (i.e. the plain text and HTML parts of an email).
  
  */
-public struct Content: JSONConvertible, Validatable {
+public class Content: JSONConvertible, Validatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -61,7 +61,7 @@ public struct Content: JSONConvertible, Validatable {
      - returns: A `Content` instance with the "text/plain" content type.
      
      */
-    public static func plainTextContent(value: String) -> Content {
+    public class func plainTextContent(value: String) -> Content {
         return Content(contentType: ContentType.PlainText, value: value)
     }
     
@@ -74,7 +74,7 @@ public struct Content: JSONConvertible, Validatable {
      - returns: A `Content` instance with the "text/html" content type.
      
      */
-    public static func htmlContent(value: String) -> Content {
+    public class func htmlContent(value: String) -> Content {
         return Content(contentType: ContentType.HTMLText, value: value)
     }
     
@@ -88,7 +88,7 @@ public struct Content: JSONConvertible, Validatable {
      - returns: An array of `Content` instances.
      
      */
-    public static func emailContent(plain plain: String, html: String) -> [Content] {
+    public class func emailContent(plain plain: String, html: String) -> [Content] {
         return [
             Content.plainTextContent(plain),
             Content.htmlContent(html)
