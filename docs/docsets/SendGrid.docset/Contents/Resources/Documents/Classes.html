@@ -30,7 +30,16 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Classes/APIBlueprint.html">APIBlueprint</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/APIV3.html">APIV3</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ASM.html">ASM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Address.html">Address</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Attachment.html">Attachment</a>
@@ -43,6 +52,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/ClickTracking.html">ClickTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Content.html">Content</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Email.html">Email</a>
@@ -58,6 +70,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Personalization.html">Personalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/RateLimit.html">RateLimit</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Response.html">Response</a>
@@ -132,25 +147,10 @@
             <a href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/APIBlueprint.html">APIBlueprint</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/ASM.html">ASM</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/Address.html">Address</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Structs/Constants.html">Constants</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Content.html">Content</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Structs/Error.html">Error</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/RateLimit.html">RateLimit</a>
               </li>
             </ul>
           </li>
@@ -196,6 +196,38 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">SandboxMode</span><span class="p">:</span> <span class="kt">Setting</span><span class="p">,</span> <span class="kt">MailSetting</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C8SendGrid7Address"></a>
+                    <a name="//apple_ref/swift/Class/Address" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8SendGrid7Address">Address</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>Address</code> class represents an email address and contains the email address along with an optional display name.</p>
+
+                        <a href="Classes/Address.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Address</span><span class="p">:</span> <span class="kt">JSONConvertible</span><span class="p">,</span> <span class="kt">Validatable</span></code></pre>
 
                         </div>
                       </div>
@@ -305,6 +337,38 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:C8SendGrid3ASM"></a>
+                    <a name="//apple_ref/swift/Class/ASM" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8SendGrid3ASM">ASM</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>ASM</code> class is used to specify an unsubscribe group to associate the email with.</p>
+
+                        <a href="Classes/ASM.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ASM</span><span class="p">:</span> <span class="kt">JSONConvertible</span><span class="p">,</span> <span class="kt">Validatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:C8SendGrid10BCCSetting"></a>
                     <a name="//apple_ref/swift/Class/BCCSetting" class="dashAnchor"></a>
                     <a class="token" href="#/s:C8SendGrid10BCCSetting">BCCSetting</a>
@@ -356,6 +420,70 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Personalization</span><span class="p">:</span> <span class="kt">JSONConvertible</span><span class="p">,</span> <span class="kt">Validatable</span><span class="p">,</span> <span class="kt">HeaderValidator</span><span class="p">,</span> <span class="kt">Scheduling</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C8SendGrid7Content"></a>
+                    <a name="//apple_ref/swift/Class/Content" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8SendGrid7Content">Content</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>Content</code> class represents a MIME part of the email message (i.e. the plain text and HTML parts of an email).</p>
+
+                        <a href="Classes/Content.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Content</span><span class="p">:</span> <span class="kt">JSONConvertible</span><span class="p">,</span> <span class="kt">Validatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C8SendGrid12APIBlueprint"></a>
+                    <a name="//apple_ref/swift/Class/APIBlueprint" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8SendGrid12APIBlueprint">APIBlueprint</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>APIBlueprint</code> class takes information about an <code><a href="Protocols/HTTPMessage.html">HTTPMessage</a></code>, and formats it into an <a href="https://APIBlueprint.org">API Blueprint</a>.</p>
+
+                        <a href="Classes/APIBlueprint.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">APIBlueprint</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -659,6 +787,38 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:C8SendGrid9RateLimit"></a>
+                    <a name="//apple_ref/swift/Class/RateLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C8SendGrid9RateLimit">RateLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>RateLimit</code> struct abstracts any rate-limit information returned from an <code>NSURLResponse</code>.</p>
+
+                        <a href="Classes/RateLimit.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RateLimit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:C8SendGrid20SubscriptionTracking"></a>
                     <a name="//apple_ref/swift/Class/SubscriptionTracking" class="dashAnchor"></a>
                     <a class="token" href="#/s:C8SendGrid20SubscriptionTracking">SubscriptionTracking</a>
@@ -689,7 +849,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-06-28)</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-07-26)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
