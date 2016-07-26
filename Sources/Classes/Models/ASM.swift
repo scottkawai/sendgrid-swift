@@ -2,7 +2,7 @@
 //  ASM.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 5/17/16.
+//  Created by Scott Kawai on 7/26/16.
 //  Copyright © 2016 Scott Kawai. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 /**
  
- The `ASM` struct is used to specify an unsubscribe group to associate the email with.
+ The `ASM` class is used to specify an unsubscribe group to associate the email with.
  
  */
-public struct ASM: JSONConvertible, Validatable {
+public class ASM: JSONConvertible, Validatable {
     
     // MARK: - Properties
     //=========================================================================

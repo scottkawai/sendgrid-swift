@@ -2,7 +2,7 @@
 //  Address.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 5/13/16.
+//  Created by Scott Kawai on 7/26/16.
 //  Copyright © 2016 Scott Kawai. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 /**
  
- The `Address` struct represents an email address and contains the email address itself along with an optional display name.
+ The `Address` class represents an email address and contains the email address along with an optional display name.
  
  */
-public struct Address: JSONConvertible, Validatable {
+public class Address: JSONConvertible, Validatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -23,7 +23,7 @@ public struct Address: JSONConvertible, Validatable {
     
     /// An email address.
     public let email: String
-
+    
     
     // MARK: - Computed Properties
     //=========================================================================
@@ -45,7 +45,7 @@ public struct Address: JSONConvertible, Validatable {
     /**
      
      Initializes the address with an email address and an optional display name.
-          
+     
      - parameter emailAddress:	The email address.
      - parameter displayName:   An optional display name.
      
