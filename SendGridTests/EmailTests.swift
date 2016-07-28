@@ -378,13 +378,13 @@ class EmailTests: XCTestCase {
     func testMailSettings() {
         let email = self.generateBaseEmail()
         email.mailSettings = [BypassListManagement(enable: true)]
-        XCTAssertTrue(email.jsonValue!.containsString("\"mail_settings\":[{\"bypass_list_management\":{\"enable\":true}}]"))
+        XCTAssertTrue(email.jsonValue!.containsString("\"mail_settings\":{\"bypass_list_management\":{\"enable\":true}}"))
     }
     
     func testTrackingSettings() {
         let email = self.generateBaseEmail()
         email.trackingSettings = [ClickTracking(enable: true)]
-        XCTAssertTrue(email.jsonValue!.containsString("\"tracking_settings\":[{\"click_tracking\":{\"enable\":true}}]"))
+        XCTAssertTrue(email.jsonValue!.containsString("\"tracking_settings\":{\"click_tracking\":{\"enable\":true}}"))
     }
     
     func testCategories() {

@@ -66,6 +66,11 @@
 		77AE1DCE1CEA504700136CF1 /* SpamCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DCD1CEA504700136CF1 /* SpamCheckerTests.swift */; };
 		77AE1DD01CEA536900136CF1 /* JSONConvertibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DCF1CEA536900136CF1 /* JSONConvertibleTests.swift */; };
 		77AE1DD61CEA56DB00136CF1 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */; };
+		77CC94701D4933DD0045475F /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0AF1D47CA8B0096C449 /* Address.swift */; };
+		77CC94711D4933DD0045475F /* APIBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0B11D47CB300096C449 /* APIBlueprint.swift */; };
+		77CC94721D4933DD0045475F /* ASM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0B31D47CB940096C449 /* ASM.swift */; };
+		77CC94731D4933DD0045475F /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0B51D47CBCF0096C449 /* Content.swift */; };
+		77CC94741D4933DD0045475F /* RateLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0B71D47CC130096C449 /* RateLimit.swift */; };
 		77E5D0B01D47CA8B0096C449 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0AF1D47CA8B0096C449 /* Address.swift */; };
 		77E5D0B21D47CB300096C449 /* APIBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0B11D47CB300096C449 /* APIBlueprint.swift */; };
 		77E5D0B41D47CB940096C449 /* ASM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5D0B31D47CB940096C449 /* ASM.swift */; };
@@ -630,6 +635,8 @@
 			files = (
 				77F5E4821CE964940074E7BA /* BypassListManagementTests.swift in Sources */,
 				77AE1DD61CEA56DB00136CF1 /* ValidatorTests.swift in Sources */,
+				77CC94711D4933DD0045475F /* APIBlueprint.swift in Sources */,
+				77CC94731D4933DD0045475F /* Content.swift in Sources */,
 				77F5E47B1CE962900074E7BA /* GoogleAnalyticsTests.swift in Sources */,
 				779AD1331CEAB7E200F5BC4F /* AttachmentTests.swift in Sources */,
 				770850DB1CE65F0000861BA1 /* ContentType.swift in Sources */,
@@ -638,6 +645,7 @@
 				77F5E48F1CE969BB0074E7BA /* BCCSettingTests.swift in Sources */,
 				77F7B32F1CEAF09C00217D59 /* EmailTests.swift in Sources */,
 				7766D5171D0B2E440077C9DB /* Error+Request.swift in Sources */,
+				77CC94741D4933DD0045475F /* RateLimit.swift in Sources */,
 				77F5E4631CE94A480074E7BA /* TrackingSetting.swift in Sources */,
 				77F5E4601CE949720074E7BA /* Setting.swift in Sources */,
 				775B4D431D184611004BB1DD /* ParameterEncodingTests.swift in Sources */,
@@ -646,6 +654,7 @@
 				77F7B32D1CEAEC9500217D59 /* Constants.swift in Sources */,
 				77F5E4741CE956E10074E7BA /* SubscriptionTracking.swift in Sources */,
 				770850CE1CE655F600861BA1 /* JSONConvertible.swift in Sources */,
+				77CC94701D4933DD0045475F /* Address.swift in Sources */,
 				77F5E4691CE94BF50074E7BA /* ClickTracking.swift in Sources */,
 				77F5E46F1CE953C10074E7BA /* OpenTracking.swift in Sources */,
 				7766D5141D0B2D2E0077C9DB /* APIV3.swift in Sources */,
@@ -662,6 +671,7 @@
 				77F5E4791CE960620074E7BA /* GoogleAnalytics.swift in Sources */,
 				77AE1DCE1CEA504700136CF1 /* SpamCheckerTests.swift in Sources */,
 				7766D5071D0B15A20077C9DB /* HTTPMethod.swift in Sources */,
+				77CC94721D4933DD0045475F /* ASM.swift in Sources */,
 				77AE1DCC1CEA4D7500136CF1 /* SpamChecker.swift in Sources */,
 				77F5E4711CE955920074E7BA /* OpenTrackingTests.swift in Sources */,
 				77F7B32A1CEAE88900217D59 /* Email.swift in Sources */,
