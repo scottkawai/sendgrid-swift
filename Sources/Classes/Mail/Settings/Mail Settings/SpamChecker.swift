@@ -70,7 +70,7 @@ open class SpamChecker: Setting, MailSetting, Validatable {
      */
     open func validate() throws {
         if self.threshold < 1 || self.threshold > 10 {
-            throw Error.Mail.thresholdOutOfRange(threshold)
+            throw SGError.Mail.thresholdOutOfRange(threshold)
         }
     }
     

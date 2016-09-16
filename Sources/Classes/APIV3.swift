@@ -41,11 +41,11 @@ open class APIV3 {
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    open func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
-        guard let resource = self as? Request else { throw Error.Request.nonConformingRequest(type(of: self)) }
+    open func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest {
+        guard let resource = self as? Request else { throw SGError.Request.nonConformingRequest(type(of: self)) }
         
-        guard let location = URL(string: session.host)?.appendingPathComponent(resource.endpoint) else { throw Error.Request.unableToConstructUrl }
-        let request = NSMutableURLRequest(url: location)
+        guard let location = URL(string: session.host)?.appendingPathComponent(resource.endpoint) else { throw SGError.Request.unableToConstructUrl }
+        var request = URLRequest(url: location)
         
         for (key, value) in resource.messageHeaders {
             request.addValue(value, forHTTPHeaderField: key)
@@ -77,7 +77,7 @@ open class APIV3 {
         }
         
         guard let header = session.authentication?.authorizationHeader else {
-            throw Error.Request.authorizationHeaderError
+            throw SGError.Request.authorizationHeaderError
         }
         
         request.addValue(header, forHTTPHeaderField: "Authorization")

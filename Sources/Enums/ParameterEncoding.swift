@@ -17,13 +17,13 @@ enum ParameterEncoding {
     // MARK: - Cases
     //=========================================================================
     /// Encodes `AnyObject` into "application/x-www-form-urlencoded".
-    case formUrlEncoded(AnyObject)
+    case formUrlEncoded(Any)
     
     /// Encodes `AnyObject` into minified JSON.
-    case json(AnyObject)
+    case json(Any)
     
     /// Encodes `AnyObject` into pretty print JSON.
-    case prettyJSON(AnyObject)
+    case prettyJSON(Any)
     
     // MARK: - Properties
     //=========================================================================

@@ -10,7 +10,7 @@ import Foundation
 
 /**
  
- The `Error` struct contains all the errors that the SendGrid-Swift library can throw.
+ The `SGError` struct contains all the errors that the SendGrid-Swift library can throw.
  
  */
-public struct Error {}
+public struct SGError {}

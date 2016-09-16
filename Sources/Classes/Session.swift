@@ -74,7 +74,7 @@ open class Session {
      */
     open func send(_ request: Request, onBehalfOf: String?, onComplete: ResponseHandler?) throws {
         // Check that we have authentication set.
-        guard let _ = self.authentication else { throw Error.Session.authenticationMissing }
+        guard let _ = self.authentication else { throw SGError.Session.authenticationMissing }
         
         try request.validate()
         
@@ -82,12 +82,12 @@ open class Session {
         let payload = try request.requestForSession(self, onBehalfOf: onBehalfOf)
         
         // Make the HTTP request
-        let task = URLSession.shared.dataTask(with: payload, completionHandler: { (data, response, error) -> Void in
+        let task = URLSession.shared.dataTask(with: payload) { (data, response, error) in
             if let block = onComplete {
                 let resp = Response(request: request, data: data, urlResponse: response)
-                block(response: resp, error: error)
+                block(resp, error)
             }
-        }) 
+        }
         task.resume()
     }
     

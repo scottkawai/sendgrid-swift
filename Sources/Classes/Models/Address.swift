@@ -63,7 +63,7 @@ open class Address: JSONConvertible, Validatable {
      
      */
     open func validate() throws {
-        if !Validator.email(self.email).valid { throw Error.Mail.malformedEmailAddress(self.email) }
+        if !Validator.email(self.email).valid { throw SGError.Mail.malformedEmailAddress(self.email) }
     }
     
 }

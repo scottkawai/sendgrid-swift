@@ -1,5 +1,5 @@
 //
-//  Error+Mail.swift
+//  SGError+Mail.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 6/9/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Error {
+public extension SGError {
     
     /**
      

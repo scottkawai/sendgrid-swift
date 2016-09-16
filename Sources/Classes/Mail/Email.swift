@@ -235,12 +235,12 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         
         // Check for correct amount of personalizations
         if self.personalizations.count == 0 || self.personalizations.count > Constants.PersonalizationLimit {
-            throw Error.Mail.invalidNumberOfPersonalizations
+            throw SGError.Mail.invalidNumberOfPersonalizations
         }
         
         // Check for content
         if self.content.count == 0 {
-            throw Error.Mail.missingContent
+            throw SGError.Mail.missingContent
         }
         
         // Check for content order
@@ -252,7 +252,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
             previousIndex = item.type.index
         }
         if !isOrdered {
-            throw Error.Mail.invalidContentOrder
+            throw SGError.Mail.invalidContentOrder
         }
         
         // Check for total number of recipients
@@ -260,7 +260,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         for per in self.personalizations {
             for t in per.to {
                 if let _ = totalRecipients.index(of: t.email.lowercased()) {
-                    throw Error.Mail.duplicateRecipient(t.email)
+                    throw SGError.Mail.duplicateRecipient(t.email)
                 } else {
                     totalRecipients.append(t.email.lowercased())
                 }
@@ -269,7 +269,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
             if let ccs = per.cc {
                 for c in ccs {
                     if let _ = totalRecipients.index(of: c.email.lowercased()) {
-                        throw Error.Mail.duplicateRecipient(c.email)
+                        throw SGError.Mail.duplicateRecipient(c.email)
                     } else {
                         totalRecipients.append(c.email.lowercased())
                     }
@@ -279,7 +279,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
             if let bccs = per.bcc {
                 for b in bccs {
                     if let _ = totalRecipients.index(of: b.email.lowercased()) {
-                        throw Error.Mail.duplicateRecipient(b.email)
+                        throw SGError.Mail.duplicateRecipient(b.email)
                     } else {
                         totalRecipients.append(b.email.lowercased())
                     }
@@ -290,7 +290,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         }
         
         if totalRecipients.count > Constants.RecipientLimit {
-            throw Error.Mail.tooManyRecipients
+            throw SGError.Mail.tooManyRecipients
         }
         
         // Check for subject present
@@ -299,7 +299,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
                 return hasSubject && ((person.subject?.characters.count ?? 0) > 0)
             }
             if !subjectPresent {
-                throw Error.Mail.missingSubject
+                throw SGError.Mail.missingSubject
             }
         }
         
@@ -317,11 +317,11 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         // Validate the categories
         if let cats = self.categories {
             if cats.count > Constants.Categories.TotalLimit {
-                throw Error.Mail.tooManyCategories
+                throw SGError.Mail.tooManyCategories
             }
             for cat in cats {
                 if cat.characters.count > Constants.Categories.CharacterLimit {
-                    throw Error.Mail.categoryTooLong(cat)
+                    throw SGError.Mail.categoryTooLong(cat)
                 }
             }
         }
@@ -336,7 +336,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
             }
             let bytes = ParameterEncoding.json(merged).data?.count ?? 0
             if bytes > Constants.CustomArguments.MaximumBytes {
-                throw Error.Mail.tooManyCustomArguments(bytes, ParameterEncoding.json(merged).stringValue)
+                throw SGError.Mail.tooManyCustomArguments(bytes, ParameterEncoding.json(merged).stringValue)
             }
         }
         
@@ -358,12 +358,12 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    open override func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
+    open override func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest {
         if let auth = session.authentication , auth.description == "credential" {
-            throw Error.Session.authenticationTypeNotAllowed(type(of: self), auth)
+            throw SGError.Session.authenticationTypeNotAllowed(type(of: self), auth)
         }
         
-        if let _ = onBehalfOf { throw Error.Request.impersonationNotSupported(type(of: self)) }
+        if let _ = onBehalfOf { throw SGError.Request.impersonationNotSupported(type(of: self)) }
         
         return try super.requestForSession(session, onBehalfOf: onBehalfOf)
     }

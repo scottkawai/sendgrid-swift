@@ -1,5 +1,5 @@
 //
-//  Error+Session.swift
+//  SGError+Session.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 6/10/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Error {
+public extension SGError {
     
     /**
      

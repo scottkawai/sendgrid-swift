@@ -90,12 +90,12 @@ open class Attachment: JSONConvertible, Validatable {
         
         if let id = self.contentID {
             if Validator.clrfValidator(id).valid || id.characters.count == 0 {
-                throw Error.Mail.invalidContentID(id)
+                throw SGError.Mail.invalidContentID(id)
             }
         }
         
         if Validator.clrfValidator(self.filename).valid || self.filename.characters.count == 0 {
-            throw Error.Mail.invalidFilename(self.filename)
+            throw SGError.Mail.invalidFilename(self.filename)
         }
     }
     

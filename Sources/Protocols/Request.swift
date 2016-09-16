@@ -30,15 +30,15 @@ public protocol Request: HTTPMessage, CustomStringConvertible, Validatable {
     
     /**
      
-     Returns a configured NSMutableURLRequest with the proper authenticaiton information.
+     Returns a configured URLRequest with the proper authenticaiton information.
      
      - parameter session:       The session instance that will facilitate the HTTP request.
      - parameter onBehalfOf:    The username of a subuser to make the request on behalf of.
      
-     - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
+     - returns: A URLRequest with all the proper properties and authentication information set.
      
      */
-    func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest
+    func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest
 }
 
 public extension Request {

@@ -134,7 +134,7 @@ public enum ContentType: CustomStringConvertible, Validatable {
      */
     public func validate() throws {
         if Validator.clrfValidator(self.description).valid || self.description.characters.count == 0 {
-            throw Error.Mail.invalidContentType(self.description)
+            throw SGError.Mail.invalidContentType(self.description)
         }
     }
     
