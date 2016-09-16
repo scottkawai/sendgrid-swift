@@ -15,7 +15,7 @@ import Foundation
  You can also call the `sharedInstance` property of `Session` to get a singleton instance.  This will allow you to configure the singleton once, and continually reuse it later without the need to re-configure it.
  
  */
-public class Session {
+open class Session {
     
     // MARK: - Properties
     //=========================================================================
@@ -23,7 +23,7 @@ public class Session {
     var host: String = "https://api.sendgrid.com"
     
     /// This property holds the authentication information (credentials, or API Key) for the API requests via the `Authentication` enum.
-    public var authentication: Authentication?
+    open var authentication: Authentication?
     
     
     // MARK: - Initialization
@@ -33,7 +33,7 @@ public class Session {
      A shared singleton instance of SGSession.  Using the shared instance allows you to configure it once with the desired authentication method, and then continually reuse it without the need for re-configuration.
      
      */
-    public class var sharedInstance : Session {
+    open class var sharedInstance : Session {
         struct Static {
             static let instance : Session = Session()
         }
@@ -72,9 +72,9 @@ public class Session {
      - parameter onComplete:    A completion handler to run after the HTTP request.
      
      */
-    public func send(request: Request, onBehalfOf: String?, onComplete: ResponseHandler?) throws {
+    open func send(_ request: Request, onBehalfOf: String?, onComplete: ResponseHandler?) throws {
         // Check that we have authentication set.
-        guard let _ = self.authentication else { throw Error.Session.AuthenticationMissing }
+        guard let _ = self.authentication else { throw Error.Session.authenticationMissing }
         
         try request.validate()
         
@@ -82,12 +82,12 @@ public class Session {
         let payload = try request.requestForSession(self, onBehalfOf: onBehalfOf)
         
         // Make the HTTP request
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(payload) { (data, response, error) -> Void in
+        let task = URLSession.shared.dataTask(with: payload, completionHandler: { (data, response, error) -> Void in
             if let block = onComplete {
                 let resp = Response(request: request, data: data, urlResponse: response)
                 block(response: resp, error: error)
             }
-        }
+        }) 
         task.resume()
     }
     
@@ -99,7 +99,7 @@ public class Session {
      - parameter onComplete:    A completion handler to run after the HTTP request.
      
      */
-    public func send(request: Request, onComplete: ResponseHandler? = nil) throws {
+    open func send(_ request: Request, onComplete: ResponseHandler? = nil) throws {
         try self.send(request, onBehalfOf: nil, onComplete: onComplete)
     }
 }

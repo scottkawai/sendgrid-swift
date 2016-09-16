@@ -13,23 +13,23 @@ import Foundation
  The `ClickTracking` class is used to adjust the click tracking setting.
  
  */
-public class ClickTracking: Setting, TrackingSetting {
+open class ClickTracking: Setting, TrackingSetting {
     
     // MARK: - Properties
     //=========================================================================
     
     /// A boolean indicating if click tracking should also be applied to links inside a plain text email.
-    public let enableText: Bool?
+    open let enableText: Bool?
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         if let plain = self.enableText {
-            hash["enable_text"] = NSNumber(bool: plain)
+            hash["enable_text"] = NSNumber(value: plain as Bool)
         }
         return [
             "click_tracking": hash

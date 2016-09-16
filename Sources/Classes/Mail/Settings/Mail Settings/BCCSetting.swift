@@ -13,20 +13,20 @@ import Foundation
  This allows you to have a blind carbon copy automatically sent to the specified email address for every email that is sent.
  
  */
-public class BCCSetting: Setting, MailSetting, Validatable {
+open class BCCSetting: Setting, MailSetting, Validatable {
     
     // MARK: - Properties
     //=========================================================================
     
     /// The email address that you would like to receive the BCC.
-    public let email: Address
+    open let email: Address
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         hash["email"] = self.email.email
         return [
@@ -58,7 +58,7 @@ public class BCCSetting: Setting, MailSetting, Validatable {
      Validates that the BCC email is a valid email address.
      
      */
-    public func validate() throws {
+    open func validate() throws {
         try self.email.validate()
     }
 }

@@ -13,12 +13,12 @@ import Foundation
  The `APIV3` class is inherited by other classes to provide default implementations of the `Request` protocol.
  
  */
-public class APIV3 {
+open class APIV3 {
     
     // MARK: - Properties
     //=========================================================================
     /// Additional headers to add to the HTTP request.
-    public var messageHeaders: [String:String] {
+    open var messageHeaders: [String:String] {
         guard let resource = self as? Request else {
             return [:]
         }
@@ -41,11 +41,11 @@ public class APIV3 {
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    public func requestForSession(session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
-        guard let resource = self as? Request else { throw Error.Request.NonConformingRequest(self.dynamicType) }
+    open func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
+        guard let resource = self as? Request else { throw Error.Request.nonConformingRequest(type(of: self)) }
         
-        guard let location = NSURL(string: session.host)?.URLByAppendingPathComponent(resource.endpoint) else { throw Error.Request.UnableToConstructUrl }
-        let request = NSMutableURLRequest(URL: location)
+        guard let location = URL(string: session.host)?.appendingPathComponent(resource.endpoint) else { throw Error.Request.unableToConstructUrl }
+        let request = NSMutableURLRequest(url: location)
         
         for (key, value) in resource.messageHeaders {
             request.addValue(value, forHTTPHeaderField: key)
@@ -55,29 +55,29 @@ public class APIV3 {
             request.addValue(subuser, forHTTPHeaderField: "On-behalf-of")
         }
         
-        request.HTTPMethod = resource.method.description
+        request.httpMethod = resource.method.description
         
         if let params = resource.parameters {
             if resource.method.hasBody {
-                var body: NSData?
+                var body: Data?
                 switch resource.contentType {
-                case .FormUrlEncoded:
-                    body = ParameterEncoding.FormUrlEncoded(params).data
-                case .JSON:
-                    body = ParameterEncoding.JSON(params).data
+                case .formUrlEncoded:
+                    body = ParameterEncoding.formUrlEncoded(params).data
+                case .json:
+                    body = ParameterEncoding.json(params).data
                 default:
                     body = nil
                 }
-                request.HTTPBody = body
-            } else if let query = ParameterEncoding.FormUrlEncoded(params).stringValue,
-                newURL = NSURL(string: location.absoluteString + "?" + query)
+                request.httpBody = body
+            } else if let query = ParameterEncoding.formUrlEncoded(params).stringValue,
+                let newURL = URL(string: location.absoluteString + "?" + query)
             {
-                request.URL = newURL
+                request.url = newURL
             }
         }
         
         guard let header = session.authentication?.authorizationHeader else {
-            throw Error.Request.AuthorizationHeaderError
+            throw Error.Request.authorizationHeaderError
         }
         
         request.addValue(header, forHTTPHeaderField: "Authorization")

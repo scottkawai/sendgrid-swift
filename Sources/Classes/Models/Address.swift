@@ -13,23 +13,23 @@ import Foundation
  The `Address` class represents an email address and contains the email address along with an optional display name.
  
  */
-public class Address: JSONConvertible, Validatable {
+open class Address: JSONConvertible, Validatable {
     
     // MARK: - Properties
     //=========================================================================
     
     /// An optional name to display instead of the email address.
-    public let name: String?
+    open let name: String?
     
     /// An email address.
-    public let email: String
+    open let email: String
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the Address, used to generate the JSON payload sent to the SendGrid API.
-    public var dictionaryValue: [NSObject : AnyObject] {
+    open var dictionaryValue: [AnyHashable: Any] {
         var hash: [String:String] = [
             "email": self.email
         ]
@@ -62,8 +62,8 @@ public class Address: JSONConvertible, Validatable {
      Validates that the email address is an RFC compliant email address.
      
      */
-    public func validate() throws {
-        if !Validator.Email(self.email).valid { throw Error.Mail.MalformedEmailAddress(self.email) }
+    open func validate() throws {
+        if !Validator.email(self.email).valid { throw Error.Mail.malformedEmailAddress(self.email) }
     }
     
 }

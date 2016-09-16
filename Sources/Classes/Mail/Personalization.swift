@@ -13,53 +13,53 @@ import Foundation
  The `Personalization` struct is used by the `Email` class to add personalization settings to an email. The only required property is the `to` property, and each email must have at least one personalization.
  
  */
-public class Personalization: JSONConvertible, Validatable, HeaderValidator, Scheduling {
+open class Personalization: JSONConvertible, Validatable, HeaderValidator, Scheduling {
     
     // MARK: - Properties
     //=========================================================================
     
     /// An array of recipients to send the email to.
-    public let to: [Address]
+    open let to: [Address]
     
     /// An array of recipients to add as a CC on the email.
-    public var cc: [Address]?
+    open var cc: [Address]?
     
     /// An array of recipients to add as a BCC on the email.
-    public var bcc: [Address]?
+    open var bcc: [Address]?
     
     /// A personalized subject for the email.
-    public var subject: String?
+    open var subject: String?
     
     /// An optional set of headers to add to the email in this personalization. Each key in the dictionary should represent the name of the header, and the values of the dictionary should be equal to the values of the headers.
-    public var headers: [String:String]?
+    open var headers: [String:String]?
     
     /// An optional set of substitutions to replace in this personalization. The keys in the dictionary should represent the substitution tags that should be replaced, and the values should be the replacement values.
-    public var substitutions: [String:String]?
+    open var substitutions: [String:String]?
     
     /// A set of custom arguments to add to the email. The keys of the dictionary should be the names of the custom arguments, while the values should represent the value of each custom argument.
-    public var customArguments: [String:String]?
+    open var customArguments: [String:String]?
     
     /// An optional time to send the email at.
-    public var sendAt: NSDate? = nil
+    open var sendAt: Date? = nil
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the personalization.
-    public var dictionaryValue: [NSObject : AnyObject] {
-        var hash: [NSObject:AnyObject] = [
-            "to": self.to.map({ (address) -> [NSObject:AnyObject] in
+    open var dictionaryValue: [AnyHashable: Any] {
+        var hash: [AnyHashable: Any] = [
+            "to": self.to.map({ (address) -> [AnyHashable: Any] in
                 return address.dictionaryValue
             })
         ]
-        if let carbon = self.cc where carbon.count > 0 {
-            hash["cc"] = carbon.map({ (ccs) -> [NSObject:AnyObject] in
+        if let carbon = self.cc , carbon.count > 0 {
+            hash["cc"] = carbon.map({ (ccs) -> [AnyHashable: Any] in
                 return ccs.dictionaryValue
             })
         }
-        if let blind = self.bcc where blind.count > 0 {
-            hash["bcc"] = blind.map({ (bccs) -> [NSObject:AnyObject] in
+        if let blind = self.bcc , blind.count > 0 {
+            hash["bcc"] = blind.map({ (bccs) -> [AnyHashable: Any] in
                 return bccs.dictionaryValue
             })
         }
@@ -72,7 +72,7 @@ public class Personalization: JSONConvertible, Validatable, HeaderValidator, Sch
         if let subs = self.substitutions {
             hash["substitutions"] = subs
         }
-        if let args = self.customArguments where args.count > 0 {
+        if let args = self.customArguments , args.count > 0 {
             hash["custom_args"] = args
         }
         if let sched = self.sendAt {
@@ -130,8 +130,8 @@ public class Personalization: JSONConvertible, Validatable, HeaderValidator, Sch
      Validates that the personalization has recipients and that they are proper email addresses as well as making sure the sendAt date is valid.
      
      */
-    public func validate() throws {
-        if self.to.count <= 0 { throw Error.Mail.MissingRecipients }
+    open func validate() throws {
+        if self.to.count <= 0 { throw Error.Mail.missingRecipients }
         for t in self.to {
             try t.validate()
         }
@@ -145,16 +145,16 @@ public class Personalization: JSONConvertible, Validatable, HeaderValidator, Sch
                 try b.validate()
             }
         }
-        if let s = self.subject where s.characters.count == 0 {
-            throw Error.Mail.MissingSubject
+        if let s = self.subject , s.characters.count == 0 {
+            throw Error.Mail.missingSubject
         }
 
         if let head = self.headers {
             try self.validateHeaders(head)
         }
         
-        if let sub = self.substitutions where sub.count > Constants.SubstitutionLimit {
-            throw Error.Mail.TooManySubstitutions
+        if let sub = self.substitutions , sub.count > Constants.SubstitutionLimit {
+            throw Error.Mail.tooManySubstitutions
         }
         
         try self.validateSendAt()

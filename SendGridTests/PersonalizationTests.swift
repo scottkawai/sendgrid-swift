@@ -20,17 +20,17 @@ class PersonalizationTests: XCTestCase {
         super.tearDown()
     }
     
-    func generateRecipients(amount: Int = 1, prefix: String = "person") -> [Address] {
+    func generateRecipients(_ amount: Int = 1, prefix: String = "person") -> [Address] {
         var list: [Address] = []
         for i in 0..<amount {
             let number = i + 1
-            let email = "\(prefix.lowercaseString)\(number)@example.com"
+            let email = "\(prefix.lowercased())\(number)@example.com"
             list.append(Address(emailAddress: email))
         }
         return list
     }
     
-    func generateExample(isSimple: Bool = true) -> Personalization {
+    func generateExample(_ isSimple: Bool = true) -> Personalization {
         let recipients = self.generateRecipients(2, prefix: "recipient")
         if isSimple {
             return Personalization(to: recipients)
@@ -93,7 +93,7 @@ class PersonalizationTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MissingRecipients.description)
+            XCTAssertEqual("\(error)", Error.Mail.missingRecipients.description)
         }
         
         do {
@@ -102,7 +102,7 @@ class PersonalizationTests: XCTestCase {
             try cc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("cc").description)
+            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("cc").description)
         }
         
         do {
@@ -111,7 +111,7 @@ class PersonalizationTests: XCTestCase {
             try bcc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("bcc").description)
+            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("bcc").description)
         }
         
         do {
@@ -119,29 +119,29 @@ class PersonalizationTests: XCTestCase {
             try badTo.validate()
             XCTFail("Expected error to be thrown when providing a malformed email address, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("test").description)
+            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("test").description)
         }
         
         let test = self.generateExample()
         XCTAssertNil(test.sendAt)
-        let goodDate = NSDate(timeIntervalSinceNow: 4 * 60 * 60)
+        let goodDate = Date(timeIntervalSinceNow: 4 * 60 * 60)
         test.sendAt = goodDate
         do {
             try test.validate()
             XCTAssertEqual(test.sendAt?.timeIntervalSince1970, goodDate.timeIntervalSince1970)
-            XCTAssertTrue(test.jsonValue!.containsString("\"send_at\":\(Int(goodDate.timeIntervalSince1970))"))
+            XCTAssertTrue(test.jsonValue!.contains("\"send_at\":\(Int(goodDate.timeIntervalSince1970))"))
         } catch {
             XCTFail("Unexpected failure when scheduling with a date under 72 hours.")
         }
         
         let failTest = self.generateExample()
-        let badDate = NSDate(timeIntervalSinceNow: 80 * 60 * 60)
+        let badDate = Date(timeIntervalSinceNow: 80 * 60 * 60)
         failTest.sendAt = badDate
         do {
             try failTest.validate()
             XCTFail("Expected a failure when scheduling a date further than 72 hours out, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.InvalidScheduleDate.description)
+            XCTAssertEqual("\(error)", Error.Mail.invalidScheduleDate.description)
         }
         
         do {
@@ -153,7 +153,7 @@ class PersonalizationTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error to be thrown when using a reserved header, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.HeaderNotAllowed("bcc").description)
+            XCTAssertEqual("\(error)", Error.Mail.headerNotAllowed("bcc").description)
         }
         
         do {
@@ -174,14 +174,14 @@ class PersonalizationTests: XCTestCase {
             try tooManySubs.validate()
             XCTFail("Expected failure when there are more than \(Constants.SubstitutionLimit) substitutions, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.TooManySubstitutions.description)
+            XCTAssertEqual("\(error)", Error.Mail.tooManySubstitutions.description)
         }
     }
     
     func testJSONValue() {
         let simple = self.generateExample()
         XCTAssertEqual(simple.jsonValue, "{\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}]}")
-        let now = NSDate()
+        let now = Date()
         simple.sendAt = now
         XCTAssertEqual(simple.jsonValue, "{\"send_at\":\(Int(now.timeIntervalSince1970)),\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}]}")
         

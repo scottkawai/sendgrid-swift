@@ -13,40 +13,40 @@ import Foundation
  The `Email` class represents an email message to send through the SendGrid API.
  
  */
-public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
+open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
     
     // MARK: - Properties
     //=========================================================================
     
     /// The endpoint for the API request.
-    public var endpoint: String = "v3/mail/send"
+    open var endpoint: String = "v3/mail/send"
     
     /// An array of personalization instances representing the various recipients of the email.
-    public let personalizations: [Personalization]
+    open let personalizations: [Personalization]
     
     /// The content sections of the email.
-    public let content: [Content]
+    open let content: [Content]
     
     /// The subject of the email. If the personalizations in the email contain subjects, those will override this subject.
-    public var subject: String?
+    open var subject: String?
     
     /// The sending address on the email.
-    public let from: Address
+    open let from: Address
     
     /// The reply to address on the email.
-    public var replyTo: Address?
+    open var replyTo: Address?
     
     /// Attachments to add to the email.
-    public var attachments: [Attachment]?
+    open var attachments: [Attachment]?
     
     /// The ID of a template from the Template Engine to use with the email.
-    public var templateID: String?
+    open var templateID: String?
     
     /// Additional headers that should be added to the email.
-    public var headers: [String:String]?
+    open var headers: [String:String]?
     
     /// Categories to associate with the email.
-    public var categories: [String]?
+    open var categories: [String]?
     
     /// A dictionary of key/value pairs that define large blocks of content that can be inserted into your emails using substitution tags. An example of this might look like the following:
     ///
@@ -93,50 +93,50 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
     ///     ":event2": "Veteran User Appreciation on :event_date"
     /// ]
     /// ```
-    public var sections: [String:String]?
+    open var sections: [String:String]?
     
     /// A set of custom arguments to add to the email. The keys of the dictionary should be the names of the custom arguments, while the values should represent the value of each custom argument. If personalizations in the email also contain custom arguments, they will be merged with these custom arguments, taking a preference to the personalization's custom arguments in the case of a conflict.
-    public var customArguments: [String:String]?
+    open var customArguments: [String:String]?
     
     /// An `ASM` instance representing the unsubscribe group settings to apply to the email.
-    public var asm: ASM?
+    open var asm: ASM?
     
     /// An optional time to send the email at.
-    public var sendAt: NSDate? = nil
+    open var sendAt: Date? = nil
     
     /// This ID represents a batch of emails (AKA multiple sends of the same email) to be associated to each other for scheduling. Including a batch_id in your request allows you to include this email in that batch, and also enables you to cancel or pause the delivery of that entire batch. For more information, please read about [Cancel Scheduled Sends](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html).
-    public var batchID: String? = nil
+    open var batchID: String? = nil
     
     /// The IP Pool that you would like to send this email from. See the [docs page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html#-POST) for more information about creating IP Pools.
-    public var ipPoolName: String? = nil
+    open var ipPoolName: String? = nil
     
     /// An optional array of mail settings to configure the email with.
-    public var mailSettings: [MailSetting]?
+    open var mailSettings: [MailSetting]?
     
     /// An optional array of tracking settings to configure the email with.
-    public var trackingSettings: [TrackingSetting]?
+    open var trackingSettings: [TrackingSetting]?
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The content type for the API request.
-    public var contentType: ContentType { return .JSON }
+    open var contentType: ContentType { return .json }
     
     /// The HTTP method used for the API request.
-    public var method: HTTPMethod { return .POST }
+    open var method: HTTPMethod { return .POST }
     
     /// The parameters sent with the API request.
-    public var parameters: AnyObject? { return self.dictionaryValue }
+    open var parameters: AnyObject? { return self.dictionaryValue as AnyObject? }
     
     /// The dictionary representation of the email.
-    public var dictionaryValue: [NSObject : AnyObject] {
-        var hash: [NSObject:AnyObject] = [
-            "personalizations": self.personalizations.map({ (item) -> [NSObject:AnyObject] in
+    open var dictionaryValue: [AnyHashable: Any] {
+        var hash: [AnyHashable: Any] = [
+            "personalizations": self.personalizations.map({ (item) -> [AnyHashable: Any] in
                 return item.dictionaryValue
             }),
             "from": self.from.dictionaryValue,
-            "content": self.content.map({ (section) -> [NSObject:AnyObject] in
+            "content": self.content.map({ (section) -> [AnyHashable: Any] in
                 return section.dictionaryValue
             })
         ]
@@ -147,27 +147,27 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
             hash["reply_to"] = reply.dictionaryValue
         }
         if let files = self.attachments {
-            hash["attachments"] = files.map({ (file) -> [NSObject:AnyObject] in
+            hash["attachments"] = files.map({ (file) -> [AnyHashable: Any] in
                 return file.dictionaryValue
             })
         }
-        if let template = self.templateID where template.characters.count > 0 {
+        if let template = self.templateID , template.characters.count > 0 {
             hash["template_id"] = template
         }
-        if let sec = self.sections where sec.count > 0 {
+        if let sec = self.sections , sec.count > 0 {
             hash["sections"] = sec
         }
-        if let head = self.headers where head.count > 0 {
+        if let head = self.headers , head.count > 0 {
             hash["headers"] = head
         }
-        if let cats = self.categories where cats.count > 0 {
+        if let cats = self.categories , cats.count > 0 {
             var deduped = [String:Bool]()
             for cat in cats {
                 deduped[cat] = true
             }
             hash["categories"] = Array(deduped.keys)
         }
-        if let args = self.customArguments where args.count > 0 {
+        if let args = self.customArguments , args.count > 0 {
             hash["custom_args"] = args
         }
         if let a = self.asm {
@@ -176,14 +176,14 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
         if let sched = self.sendAt {
             hash["send_at"] = Int(sched.timeIntervalSince1970)
         }
-        if let batch = self.batchID where batch.characters.count > 0 {
+        if let batch = self.batchID , batch.characters.count > 0 {
             hash["batch_id"] = batch
         }
-        if let pool = self.ipPoolName where pool.characters.count > 0 {
+        if let pool = self.ipPoolName , pool.characters.count > 0 {
             hash["ip_pool_name"] = pool
         }
         if let ms = self.mailSettings {
-            hash["mail_settings"] = ms.reduce([NSObject:AnyObject](), combine: { (current, setting) -> [NSObject:AnyObject] in
+            hash["mail_settings"] = ms.reduce([AnyHashable: Any](), { (current, setting) -> [AnyHashable: Any] in
                 var updated = current
                 for (key, value) in setting.dictionaryValue {
                     updated[key] = value
@@ -192,7 +192,7 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
             })
         }
         if let ts = self.trackingSettings {
-            hash["tracking_settings"] = ts.reduce([NSObject:AnyObject](), combine: { (current, setting) -> [NSObject:AnyObject] in
+            hash["tracking_settings"] = ts.reduce([AnyHashable: Any](), { (current, setting) -> [AnyHashable: Any] in
                 var updated = current
                 for (key, value) in setting.dictionaryValue {
                     updated[key] = value
@@ -231,16 +231,16 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
      Validates the email and throws any errors if necessary.
      
      */
-    public func validate() throws {
+    open func validate() throws {
         
         // Check for correct amount of personalizations
         if self.personalizations.count == 0 || self.personalizations.count > Constants.PersonalizationLimit {
-            throw Error.Mail.InvalidNumberOfPersonalizations
+            throw Error.Mail.invalidNumberOfPersonalizations
         }
         
         // Check for content
         if self.content.count == 0 {
-            throw Error.Mail.MissingContent
+            throw Error.Mail.missingContent
         }
         
         // Check for content order
@@ -252,36 +252,36 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
             previousIndex = item.type.index
         }
         if !isOrdered {
-            throw Error.Mail.InvalidContentOrder
+            throw Error.Mail.invalidContentOrder
         }
         
         // Check for total number of recipients
         var totalRecipients: [String] = []
         for per in self.personalizations {
             for t in per.to {
-                if let _ = totalRecipients.indexOf(t.email.lowercaseString) {
-                    throw Error.Mail.DuplicateRecipient(t.email)
+                if let _ = totalRecipients.index(of: t.email.lowercased()) {
+                    throw Error.Mail.duplicateRecipient(t.email)
                 } else {
-                    totalRecipients.append(t.email.lowercaseString)
+                    totalRecipients.append(t.email.lowercased())
                 }
             }
             
             if let ccs = per.cc {
                 for c in ccs {
-                    if let _ = totalRecipients.indexOf(c.email.lowercaseString) {
-                        throw Error.Mail.DuplicateRecipient(c.email)
+                    if let _ = totalRecipients.index(of: c.email.lowercased()) {
+                        throw Error.Mail.duplicateRecipient(c.email)
                     } else {
-                        totalRecipients.append(c.email.lowercaseString)
+                        totalRecipients.append(c.email.lowercased())
                     }
                 }
             }
             
             if let bccs = per.bcc {
                 for b in bccs {
-                    if let _ = totalRecipients.indexOf(b.email.lowercaseString) {
-                        throw Error.Mail.DuplicateRecipient(b.email)
+                    if let _ = totalRecipients.index(of: b.email.lowercased()) {
+                        throw Error.Mail.duplicateRecipient(b.email)
                     } else {
-                        totalRecipients.append(b.email.lowercaseString)
+                        totalRecipients.append(b.email.lowercased())
                     }
                 }
             }
@@ -290,7 +290,7 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
         }
         
         if totalRecipients.count > Constants.RecipientLimit {
-            throw Error.Mail.TooManyRecipients
+            throw Error.Mail.tooManyRecipients
         }
         
         // Check for subject present
@@ -299,7 +299,7 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
                 return hasSubject && ((person.subject?.characters.count ?? 0) > 0)
             }
             if !subjectPresent {
-                throw Error.Mail.MissingSubject
+                throw Error.Mail.missingSubject
             }
         }
         
@@ -317,11 +317,11 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
         // Validate the categories
         if let cats = self.categories {
             if cats.count > Constants.Categories.TotalLimit {
-                throw Error.Mail.TooManyCategories
+                throw Error.Mail.tooManyCategories
             }
             for cat in cats {
                 if cat.characters.count > Constants.Categories.CharacterLimit {
-                    throw Error.Mail.CategoryTooLong(cat)
+                    throw Error.Mail.categoryTooLong(cat)
                 }
             }
         }
@@ -334,9 +334,9 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
                     merged[key] = value
                 }
             }
-            let bytes = ParameterEncoding.JSON(merged).data?.length ?? 0
+            let bytes = ParameterEncoding.json(merged).data?.count ?? 0
             if bytes > Constants.CustomArguments.MaximumBytes {
-                throw Error.Mail.TooManyCustomArguments(bytes, ParameterEncoding.JSON(merged).stringValue)
+                throw Error.Mail.tooManyCustomArguments(bytes, ParameterEncoding.json(merged).stringValue)
             }
         }
         
@@ -358,12 +358,12 @@ public class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    public override func requestForSession(session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
-        if let auth = session.authentication where auth.description == "credential" {
-            throw Error.Session.AuthenticationTypeNotAllowed(self.dynamicType, auth)
+    open override func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
+        if let auth = session.authentication , auth.description == "credential" {
+            throw Error.Session.authenticationTypeNotAllowed(type(of: self), auth)
         }
         
-        if let _ = onBehalfOf { throw Error.Request.ImpersonationNotSupported(self.dynamicType) }
+        if let _ = onBehalfOf { throw Error.Request.impersonationNotSupported(type(of: self)) }
         
         return try super.requestForSession(session, onBehalfOf: onBehalfOf)
     }

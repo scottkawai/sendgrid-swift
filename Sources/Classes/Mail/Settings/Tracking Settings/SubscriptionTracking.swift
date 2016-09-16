@@ -13,7 +13,7 @@ import Foundation
  The `SubscriptionTracking` class is used to modify the subscription tracking setting on an email.
  
  */
-public class SubscriptionTracking: Setting, TrackingSetting, Validatable {
+open class SubscriptionTracking: Setting, TrackingSetting, Validatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -27,7 +27,7 @@ public class SubscriptionTracking: Setting, TrackingSetting, Validatable {
      ```
      
      */
-    public let text: String
+    open let text: String
     
     /**
      
@@ -38,21 +38,21 @@ public class SubscriptionTracking: Setting, TrackingSetting, Validatable {
      ```
      
      */
-    public let html: String
+    open let html: String
     
     /**
      
      A tag that will be replaced with the unsubscribe URL. For example: `[unsubscribe_url]`. If this parameter is used, it will override both the `text` and `html` parameters. The URL of the link will be placed at the substitution tag's location, with no additional formatting.
      
      */
-    public let substitutionTag: String?
+    open let substitutionTag: String?
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         if let sub = self.substitutionTag {
             hash["substitution_tag"] = sub
@@ -93,9 +93,9 @@ public class SubscriptionTracking: Setting, TrackingSetting, Validatable {
      Validates that the plain text and HTML text contain the proper tag.
      
      */
-    public func validate() throws {
-        if !Validator.SubscriptionTrackingText(self.text).valid || !Validator.SubscriptionTrackingText(self.html).valid {
-            throw Error.Mail.MissingSubscriptionTrackingTag
+    open func validate() throws {
+        if !Validator.subscriptionTrackingText(self.text).valid || !Validator.subscriptionTrackingText(self.html).valid {
+            throw Error.Mail.missingSubscriptionTrackingTag
         }
     }
     

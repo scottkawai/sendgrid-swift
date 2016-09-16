@@ -19,16 +19,16 @@ enum Validator {
     //=========================================================================
     
     /// Validates an email address.
-    case Email(String)
+    case email(String)
     
     /// Validates text to be used in the subscription tracking setting.
-    case SubscriptionTrackingText(String)
+    case subscriptionTrackingText(String)
     
     /// Validates that a string does contain CLRF characters.
-    case CLRFValidator(String)
+    case clrfValidator(String)
     
     /// A catch all custom validator where you can provide a string and a regex pattern.
-    case Other(input: String, pattern: String)
+    case other(input: String, pattern: String)
     
     
     // MARK: - Properties
@@ -37,13 +37,13 @@ enum Validator {
     /// The regular expression pattern used to validate the associated value.
     var pattern: String {
         switch self {
-        case .Email(_):
+        case .email(_):
             return "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        case .SubscriptionTrackingText(_):
+        case .subscriptionTrackingText(_):
             return "<% .*%>"
-        case .CLRFValidator(_):
+        case .clrfValidator(_):
             return "(;|,|\\s)"
-        case .Other(_, let str):
+        case .other(_, let str):
             return str
         }
     }
@@ -51,22 +51,22 @@ enum Validator {
     /// The inputted value to validate.
     var input: String {
         switch self {
-        case .Email(let em):
+        case .email(let em):
             return em
-        case .SubscriptionTrackingText(let sub):
+        case .subscriptionTrackingText(let sub):
             return sub
-        case .CLRFValidator(let str):
+        case .clrfValidator(let str):
             return str
-        case .Other(let str, _):
+        case .other(let str, _):
             return str
         }
     }
     
     /// A bool indicating if the associated value is valid or not.
     var valid: Bool {
-        guard let regex = try? NSRegularExpression(pattern: self.pattern, options: [.CaseInsensitive])
+        guard let regex = try? NSRegularExpression(pattern: self.pattern, options: [.caseInsensitive])
             else { return false }
-        return regex.numberOfMatchesInString(self.input, options: [], range: NSMakeRange(0, self.input.characters.count)) > 0
+        return regex.numberOfMatches(in: self.input, options: [], range: NSMakeRange(0, self.input.characters.count)) > 0
     }
     
 }

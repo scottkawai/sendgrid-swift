@@ -13,30 +13,30 @@ import Foundation
  The `APIBlueprint` class takes information about an `HTTPMessage`, and formats it into an [API Blueprint](https://APIBlueprint.org).
  
  */
-public class APIBlueprint: CustomStringConvertible {
+open class APIBlueprint: CustomStringConvertible {
     
     // MARK: - Properties
     //=========================================================================
     /// The HTTP Method.
-    public let method: HTTPMethod
+    open let method: HTTPMethod
     
     /// The URL of the HTTP request or response.
-    public let location: String
+    open let location: String
     
     /// The content type of the HTTP request or response.
-    public let contentType: ContentType
+    open let contentType: ContentType
     
     /// Indicates if this is a Request or a Response.
-    public let type: MessageType
+    open let type: MessageType
     
     /// Any headers in the HTTP request or response.
-    public var headers: [String:String]?
+    open var headers: [String:String]?
     
     /// The body of the HTTP request or response.
-    public var body: String?
+    open var body: String?
     
     /// The status code of the response.
-    public var statusCode: Int?
+    open var statusCode: Int?
     
     // MARK: - Initialization
     //=========================================================================
@@ -79,12 +79,12 @@ public class APIBlueprint: CustomStringConvertible {
      */
     public convenience init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: AnyObject?, statusCode status: Int?) {
         var content: String?
-        if let params = parameters where aMethod.hasBody {
+        if let params = parameters , aMethod.hasBody {
             switch aContentType {
-            case .FormUrlEncoded:
-                content = ParameterEncoding.FormUrlEncoded(params).stringValue
-            case .JSON:
-                content = ParameterEncoding.PrettyJSON(params).stringValue
+            case .formUrlEncoded:
+                content = ParameterEncoding.formUrlEncoded(params).stringValue
+            case .json:
+                content = ParameterEncoding.prettyJSON(params).stringValue
             default:
                 content = nil
             }
@@ -102,8 +102,8 @@ public class APIBlueprint: CustomStringConvertible {
     convenience init(request: Request) {
         var location = "/" + request.endpoint
         if let params = request.parameters,
-            query = ParameterEncoding.FormUrlEncoded(params).stringValue
-            where !request.method.hasBody
+            let query = ParameterEncoding.formUrlEncoded(params).stringValue
+            , !request.method.hasBody
         {
             location += "?" + query
         }
@@ -122,14 +122,14 @@ public class APIBlueprint: CustomStringConvertible {
         let resource = response.request
         var location = "/" + resource.endpoint
         if let params = resource.parameters,
-            query = ParameterEncoding.FormUrlEncoded(params).stringValue
-            where !resource.method.hasBody
+            let query = ParameterEncoding.formUrlEncoded(params).stringValue
+            , !resource.method.hasBody
         {
             location += "?" + query
         }
         var b: String?
-        if let json = response.jsonValue where content.description == ContentType.JSON.description {
-            b = ParameterEncoding.PrettyJSON(json).stringValue
+        if let json = response.jsonValue , content.description == ContentType.json.description {
+            b = ParameterEncoding.prettyJSON(json).stringValue
         }
         self.init(method: resource.method, location: location, contentType: content, type: .Response, headers: response.messageHeaders, body: b, statusCode: response.statusCode)
     }
@@ -148,26 +148,26 @@ public class APIBlueprint: CustomStringConvertible {
             components.append("\(status)")
         }
         components.append("(\(self.contentType.description))")
-        return components.joinWithSeparator(" ")
+        return components.joined(separator: " ")
     }
     
     /// The header info used in the API Blueprint.
     var headerInfo: String? {
-        guard let head = self.headers where head.count > 0 else { return nil }
+        guard let head = self.headers , head.count > 0 else { return nil }
         var h: [String] = []
         for (key, value) in head {
             h.append("            \(key): \(value)")
         }
-        return h.joinWithSeparator("\n")
+        return h.joined(separator: "\n")
     }
     
     /// The body info used in the API Blueprint.
     var bodyInfo: String? {
-        return self.body?.componentsSeparatedByString("\n").map({"            \($0)"}).joinWithSeparator("\n")
+        return self.body?.components(separatedBy: "\n").map({"            \($0)"}).joined(separator: "\n")
     }
     
     /// The entire blueprint represented as a String.
-    public var description: String {
+    open var description: String {
         var contents: [String] = [
             self.title,
             self.section
@@ -184,7 +184,7 @@ public class APIBlueprint: CustomStringConvertible {
                 b
             ]
         }
-        return contents.joinWithSeparator("\n\n")
+        return contents.joined(separator: "\n\n")
     }
     
     /**

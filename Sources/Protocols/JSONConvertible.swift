@@ -21,6 +21,6 @@ public protocol JSONConvertible: DictionaryConvertible {
 public extension JSONConvertible {
     /// The default implementation of `jsonValue` converts the `dictionaryValue` into JSON.
     public var jsonValue: String? {
-        return ParameterEncoding.JSON(self.dictionaryValue).stringValue
+        return ParameterEncoding.json(self.dictionaryValue).stringValue
     }
 }

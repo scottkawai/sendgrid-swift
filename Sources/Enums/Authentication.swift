@@ -19,10 +19,10 @@ public enum Authentication: CustomStringConvertible {
     //=========================================================================
     
     /// Used to authenticate with a username and password.
-    case Credential(username: String, password: String)
+    case credential(username: String, password: String)
     
     /// Used to authenticate with a SendGrid API Key.
-    case ApiKey(String)
+    case apiKey(String)
     
     
     // MARK: - Initialization
@@ -35,11 +35,11 @@ public enum Authentication: CustomStringConvertible {
      - parameter info:	A dictionary containing a `api_key`, or `username` and `password` key.
      
      */
-    public init?(info: [NSObject : AnyObject]) {
+    public init?(info: [AnyHashable: Any]) {
         if let k = info["api_key"] as? String {
-            self = Authentication.ApiKey(k)
-        } else if let un = info["username"] as? String, pw = info["password"] as? String {
-            self = Authentication.Credential(username: un, password: pw)
+            self = Authentication.apiKey(k)
+        } else if let un = info["username"] as? String, let pw = info["password"] as? String {
+            self = Authentication.credential(username: un, password: pw)
         } else {
             return nil
         }
@@ -52,7 +52,7 @@ public enum Authentication: CustomStringConvertible {
     /// Retrieves the user value for the authentication type (applies only to `.Credential`).
     public var user: String? {
         switch self {
-        case .Credential(let un, _):
+        case .credential(let un, _):
             return un
         default:
             return nil
@@ -62,9 +62,9 @@ public enum Authentication: CustomStringConvertible {
     /// Retrieves the key value for that authentication type. If the type is a `.Credentials`, this will be the password. Otherwise it will be the API key value.
     public var key: String {
         switch self {
-        case .Credential(_, let pw):
+        case .credential(_, let pw):
             return pw
-        case .ApiKey(let k):
+        case .apiKey(let k):
             return k
         }
     }
@@ -72,13 +72,13 @@ public enum Authentication: CustomStringConvertible {
     /// Returns that `Authorization` header value for the authentication type.  This can be used on any web API V3 call.
     public var authorizationHeader: String? {
         switch self {
-        case .Credential(let un, let pw):
+        case .credential(let un, let pw):
             let str = "\(un):\(pw)"
-            guard let data = str.dataUsingEncoding(NSUTF8StringEncoding) else {
+            guard let data = str.data(using: String.Encoding.utf8) else {
                 return nil
             }
-            return "Basic " + data.base64EncodedStringWithOptions([])
-        case .ApiKey(let k):
+            return "Basic " + data.base64EncodedString(options: [])
+        case .apiKey(let k):
             return "Bearer \(k)"
         }
     }
@@ -87,9 +87,9 @@ public enum Authentication: CustomStringConvertible {
     /// The ID of authentication type.
     public var description: String {
         switch self {
-        case .Credential(_,_):
+        case .credential(_,_):
             return "credential"
-        case .ApiKey(_):
+        case .apiKey(_):
             return "API Key"
         }
     }

@@ -28,7 +28,7 @@ class SessionTests: XCTestCase {
             try session.send(email)
             XCTFail("Expected failure when sending a request without authentication, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Session.AuthenticationMissing.description)
+            XCTAssertEqual("\(error)", Error.Session.authenticationMissing.description)
         }
     }
 

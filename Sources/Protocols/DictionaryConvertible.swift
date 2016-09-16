@@ -15,5 +15,5 @@ import Foundation
  */
 public protocol DictionaryConvertible {
     /// The dictionary representation of the object.
-    var dictionaryValue: [NSObject:AnyObject] { get }
+    var dictionaryValue: [AnyHashable: Any] { get }
 }

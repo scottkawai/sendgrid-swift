@@ -15,16 +15,16 @@ public extension Error {
      The `Session` enum contains all the errors thrown when attempting to build an HTTP request.
      
      */
-    public enum Session: ErrorType, CustomStringConvertible {
+    public enum Session: Error, CustomStringConvertible {
         
         // MARK: - Cases
         //=========================================================================
         
         /// Represents an error where no authentication method was provided.
-        case AuthenticationMissing
+        case authenticationMissing
         
         /// Represents an error where an unsupported authentication method was used.
-        case AuthenticationTypeNotAllowed(AnyClass, Authentication)
+        case authenticationTypeNotAllowed(AnyClass, Authentication)
         
         // MARK: - Properties
         //=========================================================================
@@ -32,9 +32,9 @@ public extension Error {
         /// A description for the error.
         public var description: String {
             switch self {
-            case .AuthenticationMissing:
+            case .authenticationMissing:
                 return "Could not make an HTTP request as there was no `Authentication` configured on `Session`. Please set the `authentication` property before calling `send` on `Session`."
-            case .AuthenticationTypeNotAllowed(let obj, let auth):
+            case .authenticationTypeNotAllowed(let obj, let auth):
                 return "The `\(obj)` class does not allow authentication with \(auth)s. Please try using another Authentication type."
             }
         }

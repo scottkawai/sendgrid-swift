@@ -13,32 +13,32 @@ import Foundation
  The `GoogleAnalytics` class is used to toggle the Google Analytics setting, which adds GA parameters to links in the email.
  
  */
-public class GoogleAnalytics: Setting, TrackingSetting {
+open class GoogleAnalytics: Setting, TrackingSetting {
 
     // MARK: - Properties
     //=========================================================================
     
     /// Name of the referrer source. (e.g. Google, SomeDomain.com, or Marketing Email)
-    public let source: String
+    open let source: String
     
     /// Name of the marketing medium. (e.g. Email)
-    public let medium: String
+    open let medium: String
     
     /// Used to identify any paid keywords.
-    public let term: String
+    open let term: String
     
     /// Used to differentiate your campaign from advertisements.
-    public let content: String
+    open let content: String
     
     /// The name of the campaign.
-    public let campaign: String
+    open let campaign: String
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         let current = [
             "utm_source": self.source,

@@ -32,7 +32,7 @@ class AddressTests: XCTestCase {
             try bad.validate()
             XCTFail("Initialization should have failed with a bad address, but no error was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("testexample").description)
+            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("testexample").description)
         }
     }
     

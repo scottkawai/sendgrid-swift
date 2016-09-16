@@ -19,34 +19,34 @@ public enum ContentType: CustomStringConvertible, Validatable {
     //=========================================================================
     
     /// Represents "application/x-www-form-urlencoded" encodings.
-    case FormUrlEncoded
+    case formUrlEncoded
     
     /// The "application/json" content type.
-    case JSON
+    case json
     
     /// The "text/plain" content type, used for the plain text portion of an email.
-    case PlainText
+    case plainText
     
     /// The "text/html" content type, used for the HTML portion of an email.
-    case HTMLText
+    case htmlText
     
     /// The "application/csv" content type, used for CSV attachments.
-    case CSV
+    case csv
     
     /// The "application/pdf" content type, used for PDF attachments.
-    case PDF
+    case pdf
     
     /// The "application/zip" content type, used for Zip file attachments.
-    case Zip
+    case zip
     
     /// The "image/png" content type, used for PNG images.
-    case PNG
+    case png
     
     /// The "image/jpeg" content type, used for JPEG images.
-    case JPEG
+    case jpeg
     
     /// A case used for any content type that isn't explicity stated in the enum.
-    case Other(String)
+    case other(String)
     
     // MARK: - Properties
     //=========================================================================
@@ -54,25 +54,25 @@ public enum ContentType: CustomStringConvertible, Validatable {
     /// The string value of the content type.
     public var description: String {
         switch self {
-        case .FormUrlEncoded:
+        case .formUrlEncoded:
             return "application/x-www-form-urlencoded"
-        case .JSON:
+        case .json:
             return "application/json"
-        case .PlainText:
+        case .plainText:
             return "text/plain"
-        case .HTMLText:
+        case .htmlText:
             return "text/html"
-        case .CSV:
+        case .csv:
             return "application/csv"
-        case .PDF:
+        case .pdf:
             return "application/pdf"
-        case .Zip:
+        case .zip:
             return "application/zip"
-        case .PNG:
+        case .png:
             return "image/png"
-        case .JPEG:
+        case .jpeg:
             return "image/jpeg"
-        case .Other(let str):
+        case .other(let str):
             return str
         }
     }
@@ -80,9 +80,9 @@ public enum ContentType: CustomStringConvertible, Validatable {
     /// An index to make sure the content types are in the proper order.
     var index: Int {
         switch self {
-        case .PlainText:
+        case .plainText:
             return 0
-        case .HTMLText:
+        case .htmlText:
             return 1
         default:
             return 2
@@ -103,25 +103,25 @@ public enum ContentType: CustomStringConvertible, Validatable {
     public init(description: String) {
         switch description {
         case "application/csv", "text/csv":
-            self = .CSV
+            self = .csv
         case "application/json", "text/json":
-            self = .JSON
+            self = .json
         case "application/x-www-form-urlencoded":
-            self = .FormUrlEncoded
+            self = .formUrlEncoded
         case "text/plain":
-            self = .PlainText
+            self = .plainText
         case "text/html":
-            self = .HTMLText
+            self = .htmlText
         case "application/pdf":
-            self = .PDF
+            self = .pdf
         case "application/zip":
-            self = .Zip
+            self = .zip
         case "image/png":
-            self = .PNG
+            self = .png
         case "image/jpeg":
-            self = .JPEG
+            self = .jpeg
         default:
-            self = .Other(description)
+            self = .other(description)
         }
     }
     
@@ -133,8 +133,8 @@ public enum ContentType: CustomStringConvertible, Validatable {
      
      */
     public func validate() throws {
-        if Validator.CLRFValidator(self.description).valid || self.description.characters.count == 0 {
-            throw Error.Mail.InvalidContentType(self.description)
+        if Validator.clrfValidator(self.description).valid || self.description.characters.count == 0 {
+            throw Error.Mail.invalidContentType(self.description)
         }
     }
     

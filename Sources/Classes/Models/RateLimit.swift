@@ -13,18 +13,18 @@ import Foundation
  The `RateLimit` struct abstracts any rate-limit information returned from an `NSURLResponse`.
  
  */
-public class RateLimit {
+open class RateLimit {
     
     // MARK: - Properties
     //=========================================================================
     /// The number of calls allowed for this resource during the refresh period.
-    public let limit: Int
+    open let limit: Int
     
     /// The number of calls remaining for this resource during the current refresh period.
-    public let remaining: Int
+    open let remaining: Int
     
     /// The date and time at which the refresh period will reset.
-    public let resetDate: NSDate
+    open let resetDate: Date
     
     // MARK: - Initialization
     //=========================================================================
@@ -37,7 +37,7 @@ public class RateLimit {
      - parameter NSDate:    The time at which the rate limit will reset.
      
      */
-    public init(limit: Int, remaining: Int, resetDate: NSDate) {
+    public init(limit: Int, remaining: Int, resetDate: Date) {
         self.limit = limit
         self.remaining = remaining
         self.resetDate = resetDate
@@ -54,15 +54,15 @@ public class RateLimit {
      - returns: An instance of `RateLimit` using information from an NSURLResponse (if rate limit information was returned in the NSURLResponse).
      
      */
-    class func rateLimitInfoFromUrlResponse(response: NSURLResponse?) -> RateLimit? {
-        guard let http = response as? NSHTTPURLResponse,
-            limitStr = http.allHeaderFields["X-RateLimit-Limit"] as? String,
-            li = Int(limitStr),
-            remainStr = http.allHeaderFields["X-RateLimit-Remaining"] as? String,
-            re = Int(remainStr),
-            dateStr = http.allHeaderFields["X-RateLimit-Reset"] as? String,
-            date = Double(dateStr)
+    class func rateLimitInfoFromUrlResponse(_ response: URLResponse?) -> RateLimit? {
+        guard let http = response as? HTTPURLResponse,
+            let limitStr = http.allHeaderFields["X-RateLimit-Limit"] as? String,
+            let li = Int(limitStr),
+            let remainStr = http.allHeaderFields["X-RateLimit-Remaining"] as? String,
+            let re = Int(remainStr),
+            let dateStr = http.allHeaderFields["X-RateLimit-Reset"] as? String,
+            let date = Double(dateStr)
             else { return nil }
-        return RateLimit(limit: li, remaining: re, resetDate: NSDate(timeIntervalSince1970: date))
+        return RateLimit(limit: li, remaining: re, resetDate: Date(timeIntervalSince1970: date))
     }
 }

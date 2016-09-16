@@ -9,42 +9,42 @@
 import Foundation
 
 /// A typealias encompassing the block method used for HTTP responses within the framework.
-public typealias ResponseHandler = ((response: Response?, error: NSError?) -> Void)
+public typealias ResponseHandler = ((_ response: Response?, _ error: NSError?) -> Void)
 
 /**
  
  The `Response` struct organizes and parses the HTTP responses returned from API calls.
  
  */
-public class Response: HTTPMessage, CustomStringConvertible {
+open class Response: HTTPMessage, CustomStringConvertible {
     
     // MARK: - Properties
     //=========================================================================
     /// The original Request that this response is associated with.
-    public let request: Request
+    open let request: Request
     
     /// The raw data from the HTTP response.
-    public var data: NSData?
+    open var data: Data?
     
     /// The NSURLResponse returned from the NSURLSession.
-    public let urlResponse: NSURLResponse?
+    open let urlResponse: URLResponse?
     
     /// Information about the rate limiting on the request that was just made (if present).
-    public var rateLimit: RateLimit?
+    open var rateLimit: RateLimit?
     
     /// The `urlResponse` property as an NSHTTPURLResponse
-    public var httpResponse: NSHTTPURLResponse? {
-        return self.urlResponse as? NSHTTPURLResponse
+    open var httpResponse: HTTPURLResponse? {
+        return self.urlResponse as? HTTPURLResponse
     }
     
     /// The HTTP Method used on the original request.
-    public var method: HTTPMethod { return self.request.method }
+    open var method: HTTPMethod { return self.request.method }
     
     /// The endpoint of the original request.
-    public var endpoint: String { return self.request.endpoint }
+    open var endpoint: String { return self.request.endpoint }
     
     /// The HTTP status code abstracted from the urlResponse.
-    public var statusCode: Int? {
+    open var statusCode: Int? {
         if let http = self.httpResponse {
             return http.statusCode
         }
@@ -52,33 +52,33 @@ public class Response: HTTPMessage, CustomStringConvertible {
     }
     
     /// The headers of the response.
-    public var messageHeaders: [String : String] {
+    open var messageHeaders: [String : String] {
         guard let http = self.httpResponse?.allHeaderFields as? [String:String] else { return [:] }
         return http
     }
     
     /// The content type of the response abstracted from the urlResponse.
-    public var contentType: ContentType {
+    open var contentType: ContentType {
         guard let http = self.httpResponse,
-            contentTypeHeader = http.allHeaderFields["Content-Type"] as? String
-            else { return ContentType.PlainText }
+            let contentTypeHeader = http.allHeaderFields["Content-Type"] as? String
+            else { return ContentType.plainText }
         return ContentType(description: contentTypeHeader)
     }
     
     /// Returns the string representation of the `data` property, if able.
-    public var stringValue: String? {
+    open var stringValue: String? {
         guard let d = self.data else { return nil }
-        return NSString(data: d, encoding: NSUTF8StringEncoding) as? String
+        return NSString(data: d, encoding: String.Encoding.utf8.rawValue) as? String
     }
     
     /// Returns the JSON representation of the `data` property, if able.
-    public var jsonValue: AnyObject? {
+    open var jsonValue: AnyObject? {
         guard let d = self.data else { return nil }
-        return try? NSJSONSerialization.JSONObjectWithData(d, options: [])
+        return try! JSONSerialization.jsonObject(with: d, options: []) as AnyObject?
     }
     
     /// Returns an API Blueprint of the response as a String.
-    public var description: String {
+    open var description: String {
         if let blueprint = APIBlueprint(response: self) { return blueprint.description }
         return ""
     }
@@ -96,7 +96,7 @@ public class Response: HTTPMessage, CustomStringConvertible {
      - parameter urlResponse    The NSURLResponse returned from the HTTP request.
      
      */
-    public init(request: Request, data: NSData? = nil, urlResponse: NSURLResponse? = nil) {
+    public init(request: Request, data: Data? = nil, urlResponse: URLResponse? = nil) {
         self.request = request
         self.data = data
         self.urlResponse = urlResponse

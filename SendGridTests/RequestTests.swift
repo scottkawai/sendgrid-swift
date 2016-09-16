@@ -18,7 +18,7 @@ class RequestTests: XCTestCase {
         
         var parameters: AnyObject? = ["q":"1"]
         
-        func requestForSession(session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
+        func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
             return NSMutableURLRequest()
         }
         
@@ -42,10 +42,10 @@ class RequestTests: XCTestCase {
         XCTAssertEqual(bar.method.rawValue, HTTPMethod.GET.rawValue)
         
         // Default Content-Type is form URL encoded.
-        XCTAssertEqual(bar.contentType.description, ContentType.FormUrlEncoded.description)
+        XCTAssertEqual(bar.contentType.description, ContentType.formUrlEncoded.description)
         
         // Default accept type is JSON.
-        XCTAssertEqual(bar.acceptType.description, ContentType.JSON.description)
+        XCTAssertEqual(bar.acceptType.description, ContentType.json.description)
         
         // Default description should be an API blueprint.
         XCTAssertEqual(bar.description, "# GET /foo/bar?q=1\n\n+ Request (application/x-www-form-urlencoded)")

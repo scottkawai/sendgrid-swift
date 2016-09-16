@@ -21,7 +21,7 @@ public protocol HeaderValidator {
      - parameter headers:	A dictionary representing the header names and values.
      
      */
-    func validateHeaders(headers: [String:String]) throws
+    func validateHeaders(_ headers: [String:String]) throws
 }
 
 public extension HeaderValidator {
@@ -43,7 +43,7 @@ public extension HeaderValidator {
      - BCC
      
      */
-    public func validateHeaders(headers: [String:String]) throws {
+    public func validateHeaders(_ headers: [String:String]) throws {
         let reserved: [String] = [
             "x-sg-id",
             "x-sg-eid",
@@ -59,12 +59,12 @@ public extension HeaderValidator {
             "bcc"
         ]
         for (key, _) in headers {
-            if let _ = reserved.indexOf(key.lowercaseString) {
-                throw Error.Mail.HeaderNotAllowed(key)
+            if let _ = reserved.index(of: key.lowercased()) {
+                throw Error.Mail.headerNotAllowed(key)
             }
-            let regex = try NSRegularExpression(pattern: "(\\s)", options: [.CaseInsensitive, .AnchorsMatchLines])
-            if regex.numberOfMatchesInString(key, options: [], range: NSMakeRange(0, key.characters.count)) > 0 {
-                throw Error.Mail.MalformedHeader(key)
+            let regex = try NSRegularExpression(pattern: "(\\s)", options: [.caseInsensitive, .anchorsMatchLines])
+            if regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.characters.count)) > 0 {
+                throw Error.Mail.malformedHeader(key)
             }
         }
     }

@@ -13,22 +13,22 @@ import Foundation
  The `Setting` class is a base class that is inherited by both the mail setting and tracking setting options. It should not be used directly.
  
  */
-public class Setting: DictionaryConvertible {
+open class Setting: DictionaryConvertible {
     
     // MARK: - Properties
     //=========================================================================
     
     /// A bool indicating if the setting should be on or off.
-    public let enable: Bool
+    open let enable: Bool
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public var dictionaryValue: [NSObject : AnyObject] {
+    open var dictionaryValue: [AnyHashable: Any] {
         return [
-            "enable": NSNumber(bool: self.enable)
+            "enable": NSNumber(value: self.enable as Bool)
         ]
     }
     

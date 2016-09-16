@@ -13,20 +13,20 @@ import Foundation
  The `OpenTracking` class is used to toggle the open tracking setting for an email.
  
  */
-public class OpenTracking: Setting, TrackingSetting {
+open class OpenTracking: Setting, TrackingSetting {
 
     // MARK: - Properties
     //=========================================================================
     
     /// An optional tag to specify where to place the open tracking pixel.
-    public var substitutionTag: String?
+    open var substitutionTag: String?
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         if let sub = self.substitutionTag {
             hash["substitution_tag"] = sub

@@ -16,7 +16,7 @@ import Foundation
 public protocol Scheduling {
     
     /// An optional time to send the email at. The date cannot be further than 72 hours in the future.
-    var sendAt: NSDate? { get set }
+    var sendAt: Date? { get set }
     
     /**
      
@@ -30,8 +30,8 @@ public extension Scheduling {
     
     /// The default implementation validates that the date is less than 72 hours in the future.
     public func validateSendAt() throws {
-        if let date = self.sendAt where date.timeIntervalSinceNow > Constants.ScheduleLimit {
-            throw Error.Mail.InvalidScheduleDate
+        if let date = self.sendAt , date.timeIntervalSinceNow > Constants.ScheduleLimit {
+            throw Error.Mail.invalidScheduleDate
         }
     }
 }

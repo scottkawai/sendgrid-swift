@@ -13,23 +13,23 @@ import Foundation
  The `Content` class represents a MIME part of the email message (i.e. the plain text and HTML parts of an email).
  
  */
-public class Content: JSONConvertible, Validatable {
+open class Content: JSONConvertible, Validatable {
     
     // MARK: - Properties
     //=========================================================================
     
     /// The content type of the content.
-    public let type: ContentType
+    open let type: ContentType
     
     /// The value of the content.
-    public let value: String
+    open let value: String
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the content.
-    public var dictionaryValue: [NSObject : AnyObject] {
+    open var dictionaryValue: [AnyHashable: Any] {
         return [
             "type": self.type.description,
             "value": self.value
@@ -61,8 +61,8 @@ public class Content: JSONConvertible, Validatable {
      - returns: A `Content` instance with the "text/plain" content type.
      
      */
-    public class func plainTextContent(value: String) -> Content {
-        return Content(contentType: ContentType.PlainText, value: value)
+    open class func plainTextContent(_ value: String) -> Content {
+        return Content(contentType: ContentType.plainText, value: value)
     }
     
     /**
@@ -74,8 +74,8 @@ public class Content: JSONConvertible, Validatable {
      - returns: A `Content` instance with the "text/html" content type.
      
      */
-    public class func htmlContent(value: String) -> Content {
-        return Content(contentType: ContentType.HTMLText, value: value)
+    open class func htmlContent(_ value: String) -> Content {
+        return Content(contentType: ContentType.htmlText, value: value)
     }
     
     /**
@@ -88,7 +88,7 @@ public class Content: JSONConvertible, Validatable {
      - returns: An array of `Content` instances.
      
      */
-    public class func emailContent(plain plain: String, html: String) -> [Content] {
+    open class func emailContent(plain: String, html: String) -> [Content] {
         return [
             Content.plainTextContent(plain),
             Content.htmlContent(html)
@@ -102,10 +102,10 @@ public class Content: JSONConvertible, Validatable {
      Validates the content.
      
      */
-    public func validate() throws {
+    open func validate() throws {
         try self.type.validate()
         if self.value.characters.count == 0 {
-            throw Error.Mail.ContentHasEmptyString
+            throw Error.Mail.contentHasEmptyString
         }
     }
     

@@ -30,7 +30,7 @@ class BCCSettingTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected a failure when initializing the BCC setting with a malformed email, but no error was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("test").description)
+            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("test").description)
         }
     }
     

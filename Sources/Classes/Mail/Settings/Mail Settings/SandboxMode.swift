@@ -13,13 +13,13 @@ import Foundation
  This allows you to send a test email to ensure that your request body is valid and formatted correctly. For more information, please see the [SendGrid docs](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/sandbox_mode.html).
  
  */
-public class SandboxMode: Setting, MailSetting {
+open class SandboxMode: Setting, MailSetting {
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         return [
             "sandbox_mode": super.dictionaryValue
         ]

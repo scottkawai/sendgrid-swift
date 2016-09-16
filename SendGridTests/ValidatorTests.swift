@@ -21,24 +21,24 @@ class ValidatorTests: XCTestCase {
     }
 
     func testEmail() {
-        let good = Validator.Email("test@example.com")
-        let bad = Validator.Email("test@examplecom")
+        let good = Validator.email("test@example.com")
+        let bad = Validator.email("test@examplecom")
         
         XCTAssertTrue(good.valid)
         XCTAssertFalse(bad.valid)
     }
     
     func testSubscriptionTrackingText() {
-        let good = Validator.SubscriptionTrackingText("This is <% a test %>")
-        let bad = Validator.SubscriptionTrackingText("This is a test")
+        let good = Validator.subscriptionTrackingText("This is <% a test %>")
+        let bad = Validator.subscriptionTrackingText("This is a test")
         
         XCTAssertTrue(good.valid)
         XCTAssertFalse(bad.valid)
     }
     
     func testOther() {
-        let good = Validator.Other(input: "Hello world", pattern: ".+")
-        let bad = Validator.Other(input: "Hello World", pattern: "(")
+        let good = Validator.other(input: "Hello world", pattern: ".+")
+        let bad = Validator.other(input: "Hello World", pattern: "(")
         
         XCTAssertTrue(good.valid)
         XCTAssertFalse(bad.valid)

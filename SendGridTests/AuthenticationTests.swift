@@ -10,8 +10,8 @@ import XCTest
 
 class AuthenticationTests: XCTestCase {
     
-    let credential = Authentication.Credential(username: "foo", password: "bar")
-    let apiKey = Authentication.ApiKey("06A9D906-8B40-49A8-AF9A-46EB9723EDDA")
+    let credential = Authentication.credential(username: "foo", password: "bar")
+    let apiKey = Authentication.apiKey("06A9D906-8B40-49A8-AF9A-46EB9723EDDA")
     
     override func setUp() {
         super.setUp()
@@ -24,15 +24,15 @@ class AuthenticationTests: XCTestCase {
     }
     
     func testInitialization() {
-        let cred = Authentication(info: ["username":"foo", "password":"bar"])
+        let cred = Authentication(info: ["username" as NSObject:"foo" as AnyObject, "password" as NSObject:"bar" as AnyObject])
         XCTAssertNotNil(cred)
         XCTAssertEqual(cred?.authorizationHeader, self.credential.authorizationHeader)
         
-        let key = Authentication(info: ["api_key":"06A9D906-8B40-49A8-AF9A-46EB9723EDDA"])
+        let key = Authentication(info: ["api_key" as NSObject:"06A9D906-8B40-49A8-AF9A-46EB9723EDDA" as AnyObject])
         XCTAssertNotNil(key)
         XCTAssertEqual(key?.authorizationHeader, self.apiKey.authorizationHeader)
         
-        let bad = Authentication(info: ["foo":"bar"])
+        let bad = Authentication(info: ["foo" as NSObject:"bar" as AnyObject])
         XCTAssertNil(bad)
     }
     

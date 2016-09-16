@@ -28,7 +28,7 @@ public struct Constants {
     static let SubstitutionLimit: Int = 10000
     
     /// The maximum amount of seconds in the future an email can be scheduled for.
-    static let ScheduleLimit: NSTimeInterval = (72 * 60 * 60)
+    static let ScheduleLimit: TimeInterval = (72 * 60 * 60)
     
     /**
      

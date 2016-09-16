@@ -17,45 +17,45 @@ enum ParameterEncoding {
     // MARK: - Cases
     //=========================================================================
     /// Encodes `AnyObject` into "application/x-www-form-urlencoded".
-    case FormUrlEncoded(AnyObject)
+    case formUrlEncoded(AnyObject)
     
     /// Encodes `AnyObject` into minified JSON.
-    case JSON(AnyObject)
+    case json(AnyObject)
     
     /// Encodes `AnyObject` into pretty print JSON.
-    case PrettyJSON(AnyObject)
+    case prettyJSON(AnyObject)
     
     // MARK: - Properties
     //=========================================================================
     /// The data representation of the encoded value.
-    var data: NSData? {
+    var data: Data? {
         switch self {
-        case .JSON(let params):
-            var data: NSData?
-            if NSJSONSerialization.isValidJSONObject(params) {
-                data = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
+        case .json(let params):
+            var data: Data?
+            if JSONSerialization.isValidJSONObject(params) {
+                data = try? JSONSerialization.data(withJSONObject: params, options: [])
             }
             return data
-        case .PrettyJSON(let params):
-            var data: NSData?
-            if NSJSONSerialization.isValidJSONObject(params) {
-                data = try? NSJSONSerialization.dataWithJSONObject(params, options: [NSJSONWritingOptions.PrettyPrinted])
+        case .prettyJSON(let params):
+            var data: Data?
+            if JSONSerialization.isValidJSONObject(params) {
+                data = try? JSONSerialization.data(withJSONObject: params, options: [JSONSerialization.WritingOptions.prettyPrinted])
             }
             return data
-        case .FormUrlEncoded(let params):
-            guard let hash = params as? [NSObject:AnyObject] else { return nil }
-            let components = NSURLComponents()
-            components.queryItems = hash.map({ (key, value) -> NSURLQueryItem in
-                return NSURLQueryItem(name: "\(key)", value: "\(value)")
+        case .formUrlEncoded(let params):
+            guard let hash = params as? [AnyHashable: Any] else { return nil }
+            var components = URLComponents()
+            components.queryItems = hash.map({ (key, value) -> URLQueryItem in
+                return URLQueryItem(name: "\(key)", value: "\(value)")
             })
-            return components.query?.dataUsingEncoding(NSUTF8StringEncoding)
+            return components.query?.data(using: String.Encoding.utf8)
         }
     }
     
     /// The String representation of the encoded value.
     var stringValue: String? {
         guard let d = self.data,
-            str = NSString(data: d, encoding: NSUTF8StringEncoding) as? String
+            let str = NSString(data: d, encoding: String.Encoding.utf8.rawValue) as? String
             else
         {
             return nil

@@ -38,7 +38,7 @@ public protocol Request: HTTPMessage, CustomStringConvertible, Validatable {
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    func requestForSession(session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest
+    func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest
 }
 
 public extension Request {
@@ -46,10 +46,10 @@ public extension Request {
     public var method: HTTPMethod { return HTTPMethod.GET }
     
     /// The default Content-Type is `ContentType.FormUrlEncoded`.
-    public var contentType: ContentType { return ContentType.FormUrlEncoded }
+    public var contentType: ContentType { return ContentType.formUrlEncoded }
     
     /// The default Accept type is `ContentType.JSON`.
-    public var acceptType: ContentType { return ContentType.JSON }
+    public var acceptType: ContentType { return ContentType.json }
     
     // MARK: - Miscellaneous
     //=========================================================================

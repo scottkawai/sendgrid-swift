@@ -13,23 +13,23 @@ import Foundation
  The `SpamChecker` mail setting allows you to test the content of your email for spam.
  
  */
-public class SpamChecker: Setting, MailSetting, Validatable {
+open class SpamChecker: Setting, MailSetting, Validatable {
     
     // MARK: - Properties
     //=========================================================================
     
     /// The threshold used to determine if your content qualifies as spam on a scale from 1 to 10, with 10 being most strict, or most likely to be considered as spam.
-    public let threshold: Int
+    open let threshold: Int
     
     /// A webhook URL that you would like a copy of your email along with the spam report to be POSTed to.
-    public let postURL: NSURL?
+    open let postURL: URL?
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         hash["threshold"] = self.threshold
         if let url = self.postURL {
@@ -54,7 +54,7 @@ public class SpamChecker: Setting, MailSetting, Validatable {
      - returns: Return
      
      */
-    public init(enable: Bool, threshold: Int, url: NSURL? = nil) {
+    public init(enable: Bool, threshold: Int, url: URL? = nil) {
         self.threshold = threshold
         self.postURL = url
         super.init(enable: enable)
@@ -68,9 +68,9 @@ public class SpamChecker: Setting, MailSetting, Validatable {
      Validates that the threshold is within the correct range.
      
      */
-    public func validate() throws {
+    open func validate() throws {
         if self.threshold < 1 || self.threshold > 10 {
-            throw Error.Mail.ThresholdOutOfRange(threshold)
+            throw Error.Mail.thresholdOutOfRange(threshold)
         }
     }
     

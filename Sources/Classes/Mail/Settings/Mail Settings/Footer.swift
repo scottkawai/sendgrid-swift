@@ -13,23 +13,23 @@ import Foundation
  The `Footer` mail setting allows you to specify a footer that will be appended to the bottom of every email.
  
  */
-public class Footer: Setting, MailSetting {
+open class Footer: Setting, MailSetting {
     
     // MARK: - Properties
     //=========================================================================
     
     /// The plain text content of your footer.
-    public let text: String
+    open let text: String
     
     /// The HTML content of your footer.
-    public let html: String
+    open let html: String
     
     
     // MARK: - Computed Properties
     //=========================================================================
     
     /// The dictionary representation of the setting.
-    public override var dictionaryValue: [NSObject : AnyObject] {
+    open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         hash["text"] = self.text
         hash["html"] = self.html
