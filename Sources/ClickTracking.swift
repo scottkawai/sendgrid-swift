@@ -29,7 +29,7 @@ open class ClickTracking: Setting, TrackingSetting {
     open override var dictionaryValue: [AnyHashable: Any] {
         var hash = super.dictionaryValue
         if let plain = self.enableText {
-            hash["enable_text"] = NSNumber(value: plain as Bool)
+            hash["enable_text"] = plain
         }
         return [
             "click_tracking": hash

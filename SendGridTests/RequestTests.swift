@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class RequestTests: XCTestCase {
     
@@ -16,10 +17,10 @@ class RequestTests: XCTestCase {
         
         var messageHeaders: [String : String] = [:]
         
-        var parameters: AnyObject? = ["q":"1"]
+        var parameters: Any? = ["q":"1"]
         
-        func requestForSession(_ session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
-            return NSMutableURLRequest()
+        func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest {
+            return URLRequest(url: URL(fileURLWithPath: "/foo"))
         }
         
         func validate() throws {}

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class ASMTests: XCTestCase {
     
@@ -48,7 +49,7 @@ class ASMTests: XCTestCase {
             try over.validate()
             XCTFail("Expected an error to be thrown when `ASM` is provided more than \(Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups) groups to display, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.tooManyUnsubscribeGroups.description)
+            XCTAssertEqual("\(error)", SGError.Mail.tooManyUnsubscribeGroups.description)
         }
     }
 }

@@ -10,56 +10,36 @@ import Foundation
 
 /**
  
- The `ParameterEncoding` enum is used to encode values into their respective Content-Type's formatting.
+ The `ParameterEncoding` struct is used to encode values into their respective Content-Type's formatting.
  
  */
-enum ParameterEncoding {
-    // MARK: - Cases
-    //=========================================================================
-    /// Encodes `AnyObject` into "application/x-www-form-urlencoded".
-    case formUrlEncoded(Any)
+struct ParameterEncoding {
     
-    /// Encodes `AnyObject` into minified JSON.
-    case json(Any)
-    
-    /// Encodes `AnyObject` into pretty print JSON.
-    case prettyJSON(Any)
-    
-    // MARK: - Properties
-    //=========================================================================
-    /// The data representation of the encoded value.
-    var data: Data? {
-        switch self {
-        case .json(let params):
-            var data: Data?
-            if JSONSerialization.isValidJSONObject(params) {
-                data = try? JSONSerialization.data(withJSONObject: params, options: [])
-            }
-            return data
-        case .prettyJSON(let params):
-            var data: Data?
-            if JSONSerialization.isValidJSONObject(params) {
-                data = try? JSONSerialization.data(withJSONObject: params, options: [JSONSerialization.WritingOptions.prettyPrinted])
-            }
-            return data
-        case .formUrlEncoded(let params):
-            guard let hash = params as? [AnyHashable: Any] else { return nil }
-            var components = URLComponents()
-            components.queryItems = hash.map({ (key, value) -> URLQueryItem in
-                return URLQueryItem(name: "\(key)", value: "\(value)")
-            })
-            return components.query?.data(using: String.Encoding.utf8)
-        }
+    /// Encodes `Any` into "application/x-www-form-urlencoded" data.
+    static func formUrlEncoded(params: Any) -> Data? {
+        return self.formUrlEncodedString(params: params)?.data(using: String.Encoding.utf8)
     }
     
-    /// The String representation of the encoded value.
-    var stringValue: String? {
-        guard let d = self.data,
-            let str = NSString(data: d, encoding: String.Encoding.utf8.rawValue) as? String
-            else
-        {
-            return nil
+    /// Encodes `Any` into a "application/x-www-form-urlencoded" string.
+    static func formUrlEncodedString(params: Any) -> String? {
+        guard let hash = params as? [AnyHashable: Any] else { return nil }
+        var components = URLComponents()
+        components.queryItems = hash.map { (key, value) -> URLQueryItem in
+            return URLQueryItem(name: "\(key)", value: "\(value)")
         }
-        return str
+        return components.query
+    }
+    
+    /// Encodes `Any` into JSON data.
+    static func jsonData(params: Any, prettyPrint: Bool = false) -> Data? {
+        guard JSONSerialization.isValidJSONObject(params) else { return nil }
+        let options: JSONSerialization.WritingOptions = prettyPrint ? [] : [.prettyPrinted]
+        return try? JSONSerialization.data(withJSONObject: params, options: options)
+    }
+    
+    /// Encodes `Any` into a JSON string.
+    static func jsonString(params: Any, prettyPrint: Bool = false) -> String? {
+        guard let d = self.jsonData(params: params, prettyPrint: prettyPrint) else { return nil }
+        return String(data: d, encoding: String.Encoding.utf8)
     }
 }

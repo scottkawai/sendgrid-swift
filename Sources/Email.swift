@@ -127,11 +127,11 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
     open var method: HTTPMethod { return .POST }
     
     /// The parameters sent with the API request.
-    open var parameters: AnyObject? { return self.dictionaryValue as AnyObject? }
+    open var parameters: Any? { return self.dictionaryValue }
     
     /// The dictionary representation of the email.
     open var dictionaryValue: [AnyHashable: Any] {
-        var hash: [AnyHashable: Any] = [
+        var hash: [String: Any] = [
             "personalizations": self.personalizations.map({ (item) -> [AnyHashable: Any] in
                 return item.dictionaryValue
             }),
@@ -334,9 +334,9 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
                     merged[key] = value
                 }
             }
-            let bytes = ParameterEncoding.json(merged).data?.count ?? 0
+            let bytes = ParameterEncoding.jsonData(params: merged)?.count ?? 0
             if bytes > Constants.CustomArguments.MaximumBytes {
-                throw SGError.Mail.tooManyCustomArguments(bytes, ParameterEncoding.json(merged).stringValue)
+                throw SGError.Mail.tooManyCustomArguments(bytes, ParameterEncoding.jsonString(params: merged))
             }
         }
         

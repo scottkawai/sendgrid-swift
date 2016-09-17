@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class ContentTests: XCTestCase {
 
@@ -68,7 +69,7 @@ class ContentTests: XCTestCase {
             try semicolon.validate()
             XCTFail("Expected error to be thrown when a content type has a semicolon, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidContentType("application;json").description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("application;json").description)
         }
         
         do {
@@ -76,7 +77,7 @@ class ContentTests: XCTestCase {
             try nl.validate()
             XCTFail("Expected error to be thrown when a content type has a newline, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidContentType("application\n\rjson").description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("application\n\rjson").description)
         }
         
         do {
@@ -84,7 +85,7 @@ class ContentTests: XCTestCase {
             try nl.validate()
             XCTFail("Expected error to be thrown when a content type is an empty string, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidContentType("").description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("").description)
         }
         
         do {
@@ -92,7 +93,7 @@ class ContentTests: XCTestCase {
             try empty.validate()
             XCTFail("Expected an empty content value to throw an error, but no error was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.contentHasEmptyString.description)
+            XCTAssertEqual("\(error)", SGError.Mail.contentHasEmptyString.description)
         }
     }
 

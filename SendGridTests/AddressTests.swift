@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class AddressTests: XCTestCase {
     
@@ -32,7 +33,7 @@ class AddressTests: XCTestCase {
             try bad.validate()
             XCTFail("Initialization should have failed with a bad address, but no error was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("testexample").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("testexample").description)
         }
     }
     

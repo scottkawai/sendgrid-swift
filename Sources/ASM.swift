@@ -34,10 +34,8 @@ open class ASM: JSONConvertible, Validatable {
         var hash: [AnyHashable: Any] = [
             "group_id": self.id
         ]
-        if let groups = self.groupsToDisplay , groups.count > 0 {
-            hash["groups_to_display"] = groups.map({ (i) -> Int in
-                return i
-            })
+        if let groups = self.groupsToDisplay, groups.count > 0 {
+            hash["groups_to_display"] = groups
         }
         return [
             "asm": hash

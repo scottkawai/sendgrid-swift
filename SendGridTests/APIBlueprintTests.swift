@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class APIBlueprintTests: XCTestCase {
     
@@ -88,8 +89,8 @@ class APIBlueprintTests: XCTestCase {
         XCTAssertNil(blue?.body)
         
         let getRequest = RequestTests.Foo()
-        let responseData = ParameterEncoding.json(["foo":"bar"]).data
-        let urlResponse = HTTPURLResponse(url: URL(), statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": ContentType.json.description])
+        let responseData = ParameterEncoding.jsonData(params: ["foo":"bar"])
+        let urlResponse = HTTPURLResponse(url: URL(fileURLWithPath: "/foo"), statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": ContentType.json.description])
         let getResponse = Response(request: getRequest, data: responseData, urlResponse: urlResponse)
         
         let getBlue = APIBlueprint(response: getResponse)

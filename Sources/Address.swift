@@ -30,7 +30,7 @@ open class Address: JSONConvertible, Validatable {
     
     /// The dictionary representation of the Address, used to generate the JSON payload sent to the SendGrid API.
     open var dictionaryValue: [AnyHashable: Any] {
-        var hash: [String:String] = [
+        var hash: [AnyHashable:Any] = [
             "email": self.email
         ]
         if let n = self.name {

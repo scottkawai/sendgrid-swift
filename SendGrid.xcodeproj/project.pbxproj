@@ -240,6 +240,7 @@
 				776B04211D0B546100C21994 /* APIBlueprintTests.swift */,
 				779AD1291CEAB07A00F5BC4F /* ASMTests.swift */,
 				77474FFB1CE8FE1E00E5170E /* ContentTests.swift */,
+				775B4D421D184611004BB1DD /* ParameterEncodingTests.swift */,
 				775B4D3E1D183D9F004BB1DD /* RateLimitTests.swift */,
 			);
 			name = Structs;
@@ -329,7 +330,6 @@
 				770D1AAA1D8CB71D0084A3B2 /* ContentDisposition.swift */,
 				770D1AAB1D8CB71D0084A3B2 /* ContentType.swift */,
 				770D1AB21D8CB71D0084A3B2 /* HTTPMethod.swift */,
-				770D1AB61D8CB71D0084A3B2 /* ParameterEncoding.swift */,
 				770D1AC71D8CB71D0084A3B2 /* Validator.swift */,
 			);
 			name = Enums;
@@ -366,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				770D1AF91D8CB8CE0084A3B2 /* Constants.swift */,
+				770D1AB61D8CB71D0084A3B2 /* ParameterEncoding.swift */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
@@ -374,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				778593F01D0A3DC1009A3026 /* AuthenticationTests.swift */,
-				775B4D421D184611004BB1DD /* ParameterEncodingTests.swift */,
 				77AE1DD51CEA56DB00136CF1 /* ValidatorTests.swift */,
 			);
 			name = Enum;

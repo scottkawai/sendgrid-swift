@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class EmailTests: XCTestCase {
     
@@ -57,7 +58,7 @@ class EmailTests: XCTestCase {
             try empty.validate()
             XCTFail("Expected error to be thrown when initializing Email with an empty personalization array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidNumberOfPersonalizations.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidNumberOfPersonalizations.description)
         }
         
         do {
@@ -66,7 +67,7 @@ class EmailTests: XCTestCase {
             try tooMany.validate()
             XCTFail("Expected error to be thrown when providing more than \(Constants.PersonalizationLimit) personalizations, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidNumberOfPersonalizations.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidNumberOfPersonalizations.description)
         }
         
         do {
@@ -83,7 +84,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected an error to be thrown when an email contains more than \(Constants.RecipientLimit) total recipients, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.tooManyRecipients.description)
+            XCTAssertEqual("\(error)", SGError.Mail.tooManyRecipients.description)
         }
         
         do {
@@ -112,7 +113,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected an error to be thrown when an email is listed more than once in the personalizations array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.duplicateRecipient("Test@example.com").description)
+            XCTAssertEqual("\(error)", SGError.Mail.duplicateRecipient("Test@example.com").description)
         }
         
         do {
@@ -124,7 +125,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected an error to be thrown when an email is listed more than once in the personalizations array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.duplicateRecipient("Test@example.com").description)
+            XCTAssertEqual("\(error)", SGError.Mail.duplicateRecipient("Test@example.com").description)
         }
         
         do {
@@ -136,7 +137,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected an error to be thrown when an email is listed more than once in the personalizations array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.duplicateRecipient("test@example.com").description)
+            XCTAssertEqual("\(error)", SGError.Mail.duplicateRecipient("test@example.com").description)
         }
         
         do {
@@ -145,7 +146,7 @@ class EmailTests: XCTestCase {
             try fromTest.validate()
             XCTFail("Expected error to be thrown when an email has a malformed From address, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("from").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("from").description)
         }
         
         do {
@@ -155,7 +156,7 @@ class EmailTests: XCTestCase {
             try replyToTest.validate()
             XCTFail("Expected error to be thrown when an email has a malformed Reply To address, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("reply").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("reply").description)
         }
     }
     
@@ -171,7 +172,7 @@ class EmailTests: XCTestCase {
             try empty.validate()
             XCTFail("Expected error to be thrown when initializing Email with an empty content array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingContent.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingContent.description)
         }
         
         let badContent1 = [csv] + goodContent
@@ -180,7 +181,7 @@ class EmailTests: XCTestCase {
             try badOrder.validate()
             XCTFail("Expected error to be thrown when providing an out of order content array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidContentOrder.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentOrder.description)
         }
         
         let badContent2 = [plain, csv, html]
@@ -189,7 +190,7 @@ class EmailTests: XCTestCase {
             try badOrder2.validate()
             XCTFail("Expected error to be thrown when providing an out of order content array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidContentOrder.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentOrder.description)
         }
         
         let badContent3 = [html, plain, csv]
@@ -198,7 +199,7 @@ class EmailTests: XCTestCase {
             try badOrder3.validate()
             XCTFail("Expected error to be thrown when providing an out of order content array, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidContentOrder.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentOrder.description)
         }
     }
     
@@ -208,7 +209,7 @@ class EmailTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected an error to be thrown when a subject is missing, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingSubject.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingSubject.description)
         }
         
         do {
@@ -216,7 +217,7 @@ class EmailTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected an error to be thrown when a subject is an empty, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingSubject.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingSubject.description)
         }
         
         do {
@@ -228,7 +229,7 @@ class EmailTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected an error to be thrown when a subject is not set as global, and not present in a personalization, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingSubject.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingSubject.description)
         }
         
         do {
@@ -239,7 +240,7 @@ class EmailTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected an error to be thrown when a subject is not set as global, and an empty string in a personalization, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingSubject.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingSubject.description)
         }
         
         do {
@@ -292,7 +293,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error when using a reserved header, but no error was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.headerNotAllowed("subject").description)
+            XCTAssertEqual("\(error)", SGError.Mail.headerNotAllowed("subject").description)
         }
         
         do {
@@ -303,7 +304,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error when using a header with a space, but no error was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedHeader("X-Custom Header").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedHeader("X-Custom Header").description)
         }
     }
     
@@ -323,7 +324,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error when there are too many categories, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.tooManyCategories.description)
+            XCTAssertEqual("\(error)", SGError.Mail.tooManyCategories.description)
         }
         
         var characters: [String] = []
@@ -337,7 +338,7 @@ class EmailTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error when a category name is too long, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.categoryTooLong(longCategory).description)
+            XCTAssertEqual("\(error)", SGError.Mail.categoryTooLong(longCategory).description)
         }
     }
     
@@ -462,7 +463,7 @@ class EmailTests: XCTestCase {
             try failTest.validate()
             XCTFail("Expected a failure when scheduling a date further than 72 hours out, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidScheduleDate.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidScheduleDate.description)
         }
         
     }
@@ -516,7 +517,7 @@ class EmailTests: XCTestCase {
             _ = try test.requestForSession(s, onBehalfOf: "foobar")
             XCTFail("Expected an error to be thrown when a subuser username is provided in the `onBehalfOf` parameter, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Request.impersonationNotSupported(Email).description)
+            XCTAssertEqual("\(error)", SGError.Request.impersonationNotSupported(Email.self).description)
         }
     }
 }

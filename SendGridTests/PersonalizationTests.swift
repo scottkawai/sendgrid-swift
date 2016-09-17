@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class PersonalizationTests: XCTestCase {
     
@@ -93,7 +94,7 @@ class PersonalizationTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingRecipients.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingRecipients.description)
         }
         
         do {
@@ -102,7 +103,7 @@ class PersonalizationTests: XCTestCase {
             try cc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("cc").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("cc").description)
         }
         
         do {
@@ -111,7 +112,7 @@ class PersonalizationTests: XCTestCase {
             try bcc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("bcc").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("bcc").description)
         }
         
         do {
@@ -119,7 +120,7 @@ class PersonalizationTests: XCTestCase {
             try badTo.validate()
             XCTFail("Expected error to be thrown when providing a malformed email address, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("test").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("test").description)
         }
         
         let test = self.generateExample()
@@ -141,7 +142,7 @@ class PersonalizationTests: XCTestCase {
             try failTest.validate()
             XCTFail("Expected a failure when scheduling a date further than 72 hours out, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.invalidScheduleDate.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidScheduleDate.description)
         }
         
         do {
@@ -153,7 +154,7 @@ class PersonalizationTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error to be thrown when using a reserved header, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.headerNotAllowed("bcc").description)
+            XCTAssertEqual("\(error)", SGError.Mail.headerNotAllowed("bcc").description)
         }
         
         do {
@@ -174,7 +175,7 @@ class PersonalizationTests: XCTestCase {
             try tooManySubs.validate()
             XCTFail("Expected failure when there are more than \(Constants.SubstitutionLimit) substitutions, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.tooManySubstitutions.description)
+            XCTAssertEqual("\(error)", SGError.Mail.tooManySubstitutions.description)
         }
     }
     

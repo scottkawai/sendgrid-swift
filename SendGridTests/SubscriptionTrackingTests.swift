@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class SubscriptionTrackingTests: XCTestCase {
     
@@ -41,7 +42,7 @@ class SubscriptionTrackingTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error when using plain text without <% %> tag, but received no error.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingSubscriptionTrackingTag.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingSubscriptionTrackingTag.description)
         }
         
         do {
@@ -49,7 +50,7 @@ class SubscriptionTrackingTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error when using HTML text without <% %> tag, but received no error.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.missingSubscriptionTrackingTag.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingSubscriptionTrackingTag.description)
         }
     }
     

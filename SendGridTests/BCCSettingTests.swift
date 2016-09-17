@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class BCCSettingTests: XCTestCase {
     
@@ -30,7 +31,7 @@ class BCCSettingTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected a failure when initializing the BCC setting with a malformed email, but no error was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.malformedEmailAddress("test").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("test").description)
         }
     }
     

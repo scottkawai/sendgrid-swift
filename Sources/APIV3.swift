@@ -62,14 +62,14 @@ open class APIV3 {
                 var body: Data?
                 switch resource.contentType {
                 case .formUrlEncoded:
-                    body = ParameterEncoding.formUrlEncoded(params).data
+                    body = ParameterEncoding.formUrlEncoded(params: params)
                 case .json:
-                    body = ParameterEncoding.json(params).data
+                    body = ParameterEncoding.jsonData(params: params)
                 default:
                     body = nil
                 }
                 request.httpBody = body
-            } else if let query = ParameterEncoding.formUrlEncoded(params).stringValue,
+            } else if let query = ParameterEncoding.formUrlEncodedString(params: params),
                 let newURL = URL(string: location.absoluteString + "?" + query)
             {
                 request.url = newURL

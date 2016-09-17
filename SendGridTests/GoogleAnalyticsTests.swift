@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class GoogleAnalyticsTests: XCTestCase {
 

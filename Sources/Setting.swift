@@ -28,7 +28,7 @@ open class Setting: DictionaryConvertible {
     /// The dictionary representation of the setting.
     open var dictionaryValue: [AnyHashable: Any] {
         return [
-            "enable": NSNumber(value: self.enable as Bool)
+            "enable": self.enable
         ]
     }
     

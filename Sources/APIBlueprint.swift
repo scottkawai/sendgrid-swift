@@ -77,14 +77,14 @@ open class APIBlueprint: CustomStringConvertible {
      - parameter statusCode:     The status code of the response.
      
      */
-    public convenience init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: AnyObject?, statusCode status: Int?) {
+    public convenience init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: Any?, statusCode status: Int?) {
         var content: String?
         if let params = parameters , aMethod.hasBody {
             switch aContentType {
             case .formUrlEncoded:
-                content = ParameterEncoding.formUrlEncoded(params).stringValue
+                content = ParameterEncoding.formUrlEncodedString(params: params)
             case .json:
-                content = ParameterEncoding.prettyJSON(params).stringValue
+                content = ParameterEncoding.jsonString(params: params)
             default:
                 content = nil
             }
@@ -102,8 +102,8 @@ open class APIBlueprint: CustomStringConvertible {
     convenience init(request: Request) {
         var location = "/" + request.endpoint
         if let params = request.parameters,
-            let query = ParameterEncoding.formUrlEncoded(params).stringValue
-            , !request.method.hasBody
+            let query = ParameterEncoding.formUrlEncodedString(params: params),
+            !request.method.hasBody
         {
             location += "?" + query
         }
@@ -122,14 +122,14 @@ open class APIBlueprint: CustomStringConvertible {
         let resource = response.request
         var location = "/" + resource.endpoint
         if let params = resource.parameters,
-            let query = ParameterEncoding.formUrlEncoded(params).stringValue
+            let query = ParameterEncoding.formUrlEncodedString(params: params)
             , !resource.method.hasBody
         {
             location += "?" + query
         }
         var b: String?
         if let json = response.jsonValue , content.description == ContentType.json.description {
-            b = ParameterEncoding.prettyJSON(json).stringValue
+            b = ParameterEncoding.jsonString(params: json, prettyPrint: true)
         }
         self.init(method: resource.method, location: location, contentType: content, type: .Response, headers: response.messageHeaders, body: b, statusCode: response.statusCode)
     }

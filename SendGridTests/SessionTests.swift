@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class SessionTests: XCTestCase {
 
@@ -28,7 +29,7 @@ class SessionTests: XCTestCase {
             try session.send(email)
             XCTFail("Expected failure when sending a request without authentication, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Session.authenticationMissing.description)
+            XCTAssertEqual("\(error)", SGError.Session.authenticationMissing.description)
         }
     }
 

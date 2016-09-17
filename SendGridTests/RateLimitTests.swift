@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class RateLimitTests: XCTestCase {
     
@@ -21,7 +22,7 @@ class RateLimitTests: XCTestCase {
     }
     
     func testStaticInitializer() {
-        let url = URL()
+        let url = URL(fileURLWithPath: "/foo")
         let headers: [String:String] = [
             "X-RateLimit-Limit": "500",
             "X-RateLimit-Remaining": "499",

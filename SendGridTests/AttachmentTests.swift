@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class AttachmentTests: XCTestCase {
     
@@ -82,7 +83,7 @@ class AttachmentTests: XCTestCase {
                 try semicolon.validate()
                 XCTFail("Expected errot to be thrown when providing a content type with a semicolon, but no error was thrown")
             } catch {
-                XCTAssertEqual("\(error)", Error.Mail.invalidContentType("image/png;").description)
+                XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("image/png;").description)
             }
             
             do {
@@ -91,7 +92,7 @@ class AttachmentTests: XCTestCase {
                 try newline.validate()
                 XCTFail("Expected errot to be thrown when providing a content type with a semicolon, but no error was thrown")
             } catch {
-                XCTAssertEqual("\(error)", Error.Mail.invalidContentType("image/png\n").description)
+                XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("image/png\n").description)
             }
             
             do {
@@ -100,7 +101,7 @@ class AttachmentTests: XCTestCase {
                 try newline.validate()
                 XCTFail("Expected error to be thrown when providing a filename with a semicolon, but no error was thrown")
             } catch {
-                XCTAssertEqual("\(error)", Error.Mail.invalidFilename("dot;\n.png").description)
+                XCTAssertEqual("\(error)", SGError.Mail.invalidFilename("dot;\n.png").description)
             }
             
             do {
@@ -109,7 +110,7 @@ class AttachmentTests: XCTestCase {
                 try newline.validate()
                 XCTFail("Expected error to be thrown when providing a content ID with a commma, but no error was thrown")
             } catch {
-                XCTAssertEqual("\(error)", Error.Mail.invalidContentID("asdf,asdf").description)
+                XCTAssertEqual("\(error)", SGError.Mail.invalidContentID("asdf,asdf").description)
             }
             
             do {
@@ -118,7 +119,7 @@ class AttachmentTests: XCTestCase {
                 try newline.validate()
                 XCTFail("Expected error to be thrown when providing a blank string for the content ID, but no error was thrown")
             } catch {
-                XCTAssertEqual("\(error)", Error.Mail.invalidContentID("").description)
+                XCTAssertEqual("\(error)", SGError.Mail.invalidContentID("").description)
             }
         }
     }
