@@ -34,6 +34,9 @@
                 <a href="../Classes/APIBlueprint.html">APIBlueprint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/APIBlueprint/MessageType.html">– MessageType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/APIV3.html">APIV3</a>
               </li>
               <li class="nav-group-task">
@@ -151,15 +154,25 @@
                 <a href="../Structs/Constants.html">Constants</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Error.html">Error</a>
+                <a href="../Structs/Constants/SubscriptionTracking.html">– SubscriptionTracking</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Typealiases.html">Typealiases</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:8SendGrid15ResponseHandler">ResponseHandler</a>
+                <a href="../Structs/Constants/CustomArguments.html">– CustomArguments</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/UnsubscribeGroups.html">– UnsubscribeGroups</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError.html">SGError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError/Session.html">– Session</a>
               </li>
             </ul>
           </li>
@@ -171,7 +184,7 @@
             <h1>Email</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Email</span><span class="p">:</span> <span class="kt">APIV3</span><span class="p">,</span> <span class="kt">Request</span><span class="p">,</span> <span class="kt">JSONConvertible</span><span class="p">,</span> <span class="kt">HeaderValidator</span><span class="p">,</span> <span class="kt">Scheduling</span></code></pre>
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">Email</span><span class="p">:</span> <span class="kt"><a href="../Classes/APIV3.html">APIV3</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Request.html">Request</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/JSONConvertible.html">JSONConvertible</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/HeaderValidator.html">HeaderValidator</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Scheduling.html">Scheduling</a></span></code></pre>
 
                 </div>
               </div>
@@ -208,7 +221,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"v3/mail/send"</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"v3/mail/send"</span></code></pre>
 
                         </div>
                       </div>
@@ -235,7 +248,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="kt">Personalization</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">let</span> <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Personalization.html">Personalization</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -262,7 +275,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt">Content</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">let</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Content.html">Content</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -289,7 +302,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -316,7 +329,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">let</span> <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Classes/Address.html">Address</a></span></code></pre>
 
                         </div>
                       </div>
@@ -343,7 +356,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">replyTo</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">replyTo</span><span class="p">:</span> <span class="kt"><a href="../Classes/Address.html">Address</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -370,7 +383,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">attachments</span><span class="p">:</span> <span class="p">[</span><span class="kt">Attachment</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">attachments</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Attachment.html">Attachment</a></span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -397,7 +410,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">templateID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">templateID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -424,7 +437,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -451,7 +464,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -521,7 +534,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -548,7 +561,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">customArguments</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">customArguments</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -575,7 +588,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">asm</span><span class="p">:</span> <span class="kt">ASM</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">asm</span><span class="p">:</span> <span class="kt"><a href="../Classes/ASM.html">ASM</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -585,9 +598,9 @@ email.sections = [
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8SendGrid5Email6sendAtGSqCSo6NSDate_"></a>
+                    <a name="/s:vC8SendGrid5Email6sendAtGSqV10Foundation4Date_"></a>
                     <a name="//apple_ref/swift/Property/sendAt" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8SendGrid5Email6sendAtGSqCSo6NSDate_">sendAt</a>
+                    <a class="token" href="#/s:vC8SendGrid5Email6sendAtGSqV10Foundation4Date_">sendAt</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -602,7 +615,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sendAt</span><span class="p">:</span> <span class="kt">NSDate</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">sendAt</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
 
                         </div>
                       </div>
@@ -629,7 +642,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">batchID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">batchID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
 
                         </div>
                       </div>
@@ -656,7 +669,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">ipPoolName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">ipPoolName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
 
                         </div>
                       </div>
@@ -683,7 +696,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">mailSettings</span><span class="p">:</span> <span class="p">[</span><span class="kt">MailSetting</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">mailSettings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/MailSetting.html">MailSetting</a></span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -710,7 +723,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">trackingSettings</span><span class="p">:</span> <span class="p">[</span><span class="kt">TrackingSetting</span><span class="p">]?</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">trackingSettings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/TrackingSetting.html">TrackingSetting</a></span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -748,7 +761,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">contentType</span><span class="p">:</span> <span class="kt">ContentType</span> <span class="p">{</span> <span class="k">return</span> <span class="o">.</span><span class="kt">JSON</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">contentType</span><span class="p">:</span> <span class="kt"><a href="../Enums/ContentType.html">ContentType</a></span></code></pre>
 
                         </div>
                       </div>
@@ -775,7 +788,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt">HTTPMethod</span> <span class="p">{</span> <span class="k">return</span> <span class="o">.</span><span class="kt">POST</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">method</span><span class="p">:</span> <span class="kt"><a href="../Enums/HTTPMethod.html">HTTPMethod</a></span></code></pre>
 
                         </div>
                       </div>
@@ -785,9 +798,9 @@ email.sections = [
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8SendGrid5Email10parametersGSqPs9AnyObject__"></a>
+                    <a name="/s:vC8SendGrid5Email10parametersGSqGVs10DictionaryVs11AnyHashableP___"></a>
                     <a name="//apple_ref/swift/Property/parameters" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8SendGrid5Email10parametersGSqPs9AnyObject__">parameters</a>
+                    <a class="token" href="#/s:vC8SendGrid5Email10parametersGSqGVs10DictionaryVs11AnyHashableP___">parameters</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -802,7 +815,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">parameters</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">?</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">dictionaryValue</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span><span class="p">:</span><span class="kt">Any</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -812,9 +825,9 @@ email.sections = [
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC8SendGrid5Email15dictionaryValueGVs10DictionaryCSo8NSObjectPs9AnyObject__"></a>
+                    <a name="/s:vC8SendGrid5Email15dictionaryValueGVs10DictionaryVs11AnyHashableP__"></a>
                     <a name="//apple_ref/swift/Property/dictionaryValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC8SendGrid5Email15dictionaryValueGVs10DictionaryCSo8NSObjectPs9AnyObject__">dictionaryValue</a>
+                    <a class="token" href="#/s:vC8SendGrid5Email15dictionaryValueGVs10DictionaryVs11AnyHashableP__">dictionaryValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -829,7 +842,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dictionaryValue</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">dictionaryValue</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -867,7 +880,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="kt">Personalization</span><span class="p">],</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt">Content</span><span class="p">],</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Personalization.html">Personalization</a></span><span class="p">],</span> <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Classes/Address.html">Address</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Content.html">Content</a></span><span class="p">],</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -951,7 +964,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">()</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -961,9 +974,9 @@ email.sections = [
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC8SendGrid5Email17requestForSessionFzTCS_7Session10onBehalfOfGSqSS__CSo19NSMutableURLRequest"></a>
-                    <a name="//apple_ref/swift/Method/requestForSession(_:onBehalfOf:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC8SendGrid5Email17requestForSessionFzTCS_7Session10onBehalfOfGSqSS__CSo19NSMutableURLRequest">requestForSession(_:onBehalfOf:)</a>
+                    <a name="/s:FC8SendGrid5Email7requestFzT3forCS_7Session10onBehalfOfGSqSS__V10Foundation10URLRequest"></a>
+                    <a name="//apple_ref/swift/Method/request(for:onBehalfOf:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC8SendGrid5Email7requestFzT3forCS_7Session10onBehalfOfGSqSS__V10Foundation10URLRequest">request(for:onBehalfOf:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -978,7 +991,7 @@ email.sections = [
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">requestForSession</span><span class="p">(</span><span class="nv">session</span><span class="p">:</span> <span class="kt">Session</span><span class="p">,</span> <span class="nv">onBehalfOf</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">NSMutableURLRequest</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">request</span><span class="p">(</span><span class="k">for</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/Session.html">Session</a></span><span class="p">,</span> <span class="nv">onBehalfOf</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">URLRequest</span></code></pre>
 
                         </div>
                       </div>
@@ -1028,8 +1041,8 @@ email.sections = [
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-07-26)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-09-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

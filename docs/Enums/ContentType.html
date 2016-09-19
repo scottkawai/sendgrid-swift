@@ -34,6 +34,9 @@
                 <a href="../Classes/APIBlueprint.html">APIBlueprint</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/APIBlueprint/MessageType.html">– MessageType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/APIV3.html">APIV3</a>
               </li>
               <li class="nav-group-task">
@@ -151,15 +154,25 @@
                 <a href="../Structs/Constants.html">Constants</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Error.html">Error</a>
+                <a href="../Structs/Constants/SubscriptionTracking.html">– SubscriptionTracking</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Typealiases.html">Typealiases</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:8SendGrid15ResponseHandler">ResponseHandler</a>
+                <a href="../Structs/Constants/CustomArguments.html">– CustomArguments</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/UnsubscribeGroups.html">– UnsubscribeGroups</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError.html">SGError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SGError/Session.html">– Session</a>
               </li>
             </ul>
           </li>
@@ -171,7 +184,7 @@
             <h1>ContentType</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ContentType</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt">Validatable</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ContentType</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span><span class="p">,</span> <span class="kt"><a href="../Protocols/Validatable.html">Validatable</a></span></code></pre>
 
                 </div>
               </div>
@@ -184,9 +197,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType14FormUrlEncodedFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/FormUrlEncoded" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType14FormUrlEncodedFMS0_S0_">FormUrlEncoded</a>
+                    <a name="/s:FO8SendGrid11ContentType14formUrlEncodedFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/formUrlEncoded" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType14formUrlEncodedFMS0_S0_">formUrlEncoded</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,7 +214,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">FormUrlEncoded</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">formUrlEncoded</span></code></pre>
 
                         </div>
                       </div>
@@ -215,9 +228,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType4JSONFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/JSON" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType4JSONFMS0_S0_">JSON</a>
+                    <a name="/s:FO8SendGrid11ContentType4jsonFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/json" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType4jsonFMS0_S0_">json</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -232,7 +245,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">JSON</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">json</span></code></pre>
 
                         </div>
                       </div>
@@ -246,9 +259,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType9PlainTextFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PlainText" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType9PlainTextFMS0_S0_">PlainText</a>
+                    <a name="/s:FO8SendGrid11ContentType9plainTextFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/plainText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType9plainTextFMS0_S0_">plainText</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -263,7 +276,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PlainText</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">plainText</span></code></pre>
 
                         </div>
                       </div>
@@ -277,9 +290,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType8HTMLTextFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/HTMLText" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType8HTMLTextFMS0_S0_">HTMLText</a>
+                    <a name="/s:FO8SendGrid11ContentType8htmlTextFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/htmlText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType8htmlTextFMS0_S0_">htmlText</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -294,7 +307,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">HTMLText</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">htmlText</span></code></pre>
 
                         </div>
                       </div>
@@ -308,9 +321,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType3CSVFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/CSV" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType3CSVFMS0_S0_">CSV</a>
+                    <a name="/s:FO8SendGrid11ContentType3csvFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/csv" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType3csvFMS0_S0_">csv</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -325,7 +338,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">CSV</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">csv</span></code></pre>
 
                         </div>
                       </div>
@@ -339,9 +352,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType3PDFFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PDF" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType3PDFFMS0_S0_">PDF</a>
+                    <a name="/s:FO8SendGrid11ContentType3pdfFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/pdf" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType3pdfFMS0_S0_">pdf</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -356,7 +369,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PDF</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">pdf</span></code></pre>
 
                         </div>
                       </div>
@@ -370,9 +383,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType3ZipFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Zip" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType3ZipFMS0_S0_">Zip</a>
+                    <a name="/s:FO8SendGrid11ContentType3zipFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/zip" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType3zipFMS0_S0_">zip</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -387,7 +400,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Zip</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">zip</span></code></pre>
 
                         </div>
                       </div>
@@ -401,9 +414,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType3PNGFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/PNG" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType3PNGFMS0_S0_">PNG</a>
+                    <a name="/s:FO8SendGrid11ContentType3pngFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/png" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType3pngFMS0_S0_">png</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -418,7 +431,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">PNG</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">png</span></code></pre>
 
                         </div>
                       </div>
@@ -432,9 +445,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType4JPEGFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/JPEG" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType4JPEGFMS0_S0_">JPEG</a>
+                    <a name="/s:FO8SendGrid11ContentType4jpegFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/jpeg" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType4jpegFMS0_S0_">jpeg</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -449,7 +462,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">JPEG</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">jpeg</span></code></pre>
 
                         </div>
                       </div>
@@ -463,9 +476,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO8SendGrid11ContentType5OtherFMS0_FSSS0_"></a>
-                    <a name="//apple_ref/swift/Element/Other" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO8SendGrid11ContentType5OtherFMS0_FSSS0_">Other</a>
+                    <a name="/s:FO8SendGrid11ContentType5otherFMS0_FSSS0_"></a>
+                    <a name="//apple_ref/swift/Element/other" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO8SendGrid11ContentType5otherFMS0_FSSS0_">other</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -480,7 +493,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Other</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">other</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -626,8 +639,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-07-26)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-09-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

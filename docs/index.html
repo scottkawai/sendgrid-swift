@@ -33,6 +33,9 @@
                 <a href="Classes/APIBlueprint.html">APIBlueprint</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/APIBlueprint/MessageType.html">– MessageType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/APIV3.html">APIV3</a>
               </li>
               <li class="nav-group-task">
@@ -150,15 +153,25 @@
                 <a href="Structs/Constants.html">Constants</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Error.html">Error</a>
+                <a href="Structs/Constants/SubscriptionTracking.html">– SubscriptionTracking</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Typealiases.html">Typealiases</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Typealiases.html#/s:8SendGrid15ResponseHandler">ResponseHandler</a>
+                <a href="Structs/Constants/CustomArguments.html">– CustomArguments</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Constants/UnsubscribeGroups.html">– UnsubscribeGroups</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SGError.html">SGError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SGError/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SGError/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/SGError/Session.html">– Session</a>
               </li>
             </ul>
           </li>
@@ -168,16 +181,18 @@
         <section>
           <section class="section">
             
-            <a href='#sendgrid_swift' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='sendgrid_swift'>SendGrid-Swift</h1>
+            <a href='#sendgrid-swift' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='sendgrid-swift'>SendGrid-Swift</h1>
 
 <p>This library allows you to quickly and easily send emails through SendGrid using Swift.</p>
-<a href='#important_breaking_changes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important_breaking_changes'>Important: Breaking Changes</h2>
+<a href='#important-breaking-changes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important-breaking-changes'>Important: Breaking Changes</h2>
 
 <p>Version 0.1.0 and higher have been migrated over to use SendGrid&rsquo;s <a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html">V3 Mail Send Endpoint</a>, which contains code-breaking changes.</p>
-<a href='#full_documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='full_documentation'>Full Documentation</h2>
+
+<p>Version 0.2.0 and higher uses Swift 3, which introduces breaking changes from previous versions.</p>
+<a href='#full-documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='full-documentation'>Full Documentation</h2>
 
 <p>Full documentation of the library is available <a href="http://scottkawai.github.io/sendgrid-swift/docs/">here</a>.</p>
-<a href='#table_of_contents' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='table_of_contents'>Table Of Contents</h2>
+<a href='#table-of-contents' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='table-of-contents'>Table Of Contents</h2>
 
 <ul>
 <li><a href="#installation">Installation</a>
@@ -205,12 +220,12 @@
 <li><a href="#license">License</a></li>
 </ul>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#with_cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='with_cocoapods'>With Cocoapods</h3>
+<a href='#with-cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='with-cocoapods'>With Cocoapods</h3>
 
 <p>Add the following to your Podfile:</p>
 <pre class="highlight plaintext"><code>pod 'SendGrid', :git =&gt; 'https://github.com/scottkawai/sendgrid-swift.git'
 </code></pre>
-<a href='#as_a_submodule' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='as_a_submodule'>As A Submodule</h3>
+<a href='#as-a-submodule' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='as-a-submodule'>As A Submodule</h3>
 
 <p>Add this repo as a submodule to your project and update:</p>
 <pre class="highlight shell"><code><span class="nb">cd</span> /path/to/your/project
@@ -223,12 +238,12 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 
 <p>The V3 endpoint supports API keys for authorization (<strong><em>Note</em></strong>: username and passwords cannot be used for authorization).  Using the <code>Session</code> class, you can configure an instance with your API key to be used over and over again to send email requests:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">Session</span><span class="p">()</span>
-<span class="n">session</span><span class="o">.</span><span class="n">authentication</span> <span class="o">=</span> <span class="kt">Authentication</span><span class="o">.</span><span class="kt">ApiKey</span><span class="p">(</span><span class="s">"SG.abcdefghijklmnop.qrstuvwxyz012345-6789"</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">authentication</span> <span class="o">=</span> <span class="kt">Authentication</span><span class="o">.</span><span class="nf">apiKey</span><span class="p">(</span><span class="s">"SG.abcdefghijklmnop.qrstuvwxyz012345-6789"</span><span class="p">)</span>
 
 <span class="cm">/*
 `Session` also has a singleton instance that you can configure once and reuse throughout your code.
 */</span>
-<span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="n">authentication</span> <span class="o">=</span> <span class="kt">Authentication</span><span class="o">.</span><span class="kt">ApiKey</span><span class="p">(</span><span class="s">"SG.abcdefghijklmnop.qrstuvwxyz012345-6789"</span><span class="p">)</span>
+<span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="n">authentication</span> <span class="o">=</span> <span class="kt">Authentication</span><span class="o">.</span><span class="nf">apiKey</span><span class="p">(</span><span class="s">"SG.abcdefghijklmnop.qrstuvwxyz012345-6789"</span><span class="p">)</span>
 </code></pre>
 <a href='#content' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='content'>Content</h3>
 
@@ -238,16 +253,16 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <p>The new V3 endpoint introduces the idea of <q>personalizations.</q>  When using the API, you define a set of global characteristics for the email, and then also define seperate personalizations, which contain recipient-specific information for the email. Since personalizations contain the recipients of the email, each request must contain at least 1 personalization.</p>
 <pre class="highlight swift"><code><span class="c1">// Send a basic example</span>
 <span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">Personalization</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="s">"test@example.com"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">plainText</span> <span class="o">=</span> <span class="kt">Content</span><span class="p">(</span><span class="nv">contentType</span><span class="p">:</span> <span class="kt">ContentType</span><span class="o">.</span><span class="kt">PlainText</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"Hello World"</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">htmlText</span> <span class="o">=</span> <span class="kt">Content</span><span class="p">(</span><span class="nv">contentType</span><span class="p">:</span> <span class="kt">ContentType</span><span class="o">.</span><span class="kt">HTMLText</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"&lt;h1&gt;Hello World&lt;/h1&gt;"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">plainText</span> <span class="o">=</span> <span class="kt">Content</span><span class="p">(</span><span class="nv">contentType</span><span class="p">:</span> <span class="kt">ContentType</span><span class="o">.</span><span class="n">plainText</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"Hello World"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">htmlText</span> <span class="o">=</span> <span class="kt">Content</span><span class="p">(</span><span class="nv">contentType</span><span class="p">:</span> <span class="kt">ContentType</span><span class="o">.</span><span class="n">htmlText</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="s">"&lt;h1&gt;Hello World&lt;/h1&gt;"</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="n">plainText</span><span class="p">,</span> <span class="n">htmlText</span><span class="p">],</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -270,16 +285,16 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <p>Here is an advanced example of using personalizations:</p>
 <pre class="highlight swift"><code><span class="c1">// Send an advanced example</span>
 <span class="k">let</span> <span class="nv">recipients</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"jose@example.none"</span><span class="p">,</span> <span class="nv">displayName</span><span class="p">:</span> <span class="s">"Jose"</span><span class="p">),</span>
-    <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"isaac@example.none"</span><span class="p">,</span> <span class="nv">displayName</span><span class="p">:</span> <span class="s">"Isaac"</span><span class="p">),</span>
-    <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"tim@example.none"</span><span class="p">,</span> <span class="nv">displayName</span><span class="p">:</span> <span class="s">"Tim"</span><span class="p">)</span>
+    <span class="kt">Address</span><span class="p">(</span><span class="s">"jose@example.none"</span><span class="p">,</span> <span class="nv">displayName</span><span class="p">:</span> <span class="s">"Jose"</span><span class="p">),</span>
+    <span class="kt">Address</span><span class="p">(</span><span class="s">"isaac@example.none"</span><span class="p">,</span> <span class="nv">displayName</span><span class="p">:</span> <span class="s">"Isaac"</span><span class="p">),</span>
+    <span class="kt">Address</span><span class="p">(</span><span class="s">"tim@example.none"</span><span class="p">,</span> <span class="nv">displayName</span><span class="p">:</span> <span class="s">"Tim"</span><span class="p">)</span>
 <span class="p">]</span>
 <span class="k">let</span> <span class="nv">personalizations</span> <span class="o">=</span> <span class="n">recipients</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="p">(</span><span class="n">recipient</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Personalization</span> <span class="k">in</span>
     <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="n">recipient</span><span class="o">.</span><span class="n">name</span> <span class="p">??</span> <span class="s">"there"</span>
     <span class="k">return</span> <span class="kt">Personalization</span><span class="p">(</span>
         <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="n">recipient</span><span class="p">],</span>
         <span class="nv">cc</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
-        <span class="nv">bcc</span><span class="p">:</span> <span class="p">[</span><span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"bcc@example.none"</span><span class="p">)],</span>
+        <span class="nv">bcc</span><span class="p">:</span> <span class="p">[</span><span class="kt">Address</span><span class="p">(</span><span class="s">"bcc@example.none"</span><span class="p">)],</span>
         <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">!"</span><span class="p">,</span>
         <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="s">"X-Campaign"</span><span class="p">:</span><span class="s">"12345"</span><span class="p">],</span>
         <span class="nv">substitutions</span><span class="p">:</span> <span class="p">[</span><span class="s">"%name%"</span><span class="p">:</span><span class="n">name</span><span class="p">],</span>
@@ -292,7 +307,7 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="n">personalizations</span><span class="p">,</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"sender@example.none"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"sender@example.none"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="kc">nil</span>
 <span class="p">)</span>
@@ -303,9 +318,9 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
     <span class="s">"campaign_id"</span><span class="p">:</span> <span class="s">"12345"</span>
 <span class="p">]</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -322,26 +337,24 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
-<span class="k">if</span> <span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">NSBundle</span><span class="o">.</span><span class="nf">mainBundle</span><span class="p">()</span><span class="o">.</span><span class="nf">pathForResource</span><span class="p">(</span><span class="s">"proposal"</span><span class="p">,</span> <span class="nv">ofType</span><span class="p">:</span> <span class="s">"pdf"</span><span class="p">),</span>
-    <span class="n">pdf</span> <span class="o">=</span> <span class="kt">NSData</span><span class="p">(</span><span class="nv">contentsOfFile</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">let</span> <span class="nv">attachment</span> <span class="o">=</span> <span class="kt">Attachment</span><span class="p">(</span>
-        <span class="nv">filename</span><span class="p">:</span> <span class="s">"proposal.pdf"</span><span class="p">,</span>
-        <span class="nv">content</span><span class="p">:</span> <span class="n">pdf</span><span class="p">,</span>
-        <span class="nv">disposition</span><span class="p">:</span> <span class="o">.</span><span class="kt">Attachment</span><span class="p">,</span>
-        <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="kt">PDF</span><span class="p">,</span>
-        <span class="nv">contentID</span><span class="p">:</span> <span class="kc">nil</span>
-    <span class="p">)</span>
-    <span class="n">email</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
-<span class="p">}</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="nf">url</span><span class="p">(</span><span class="nv">forResource</span><span class="p">:</span> <span class="s">"proposal"</span><span class="p">,</span> <span class="nv">withExtension</span><span class="p">:</span> <span class="s">"pdf"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">attachment</span> <span class="o">=</span> <span class="kt">Attachment</span><span class="p">(</span>
+            <span class="nv">filename</span><span class="p">:</span> <span class="s">"proposal.pdf"</span><span class="p">,</span>
+            <span class="nv">content</span><span class="p">:</span> <span class="k">try</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="n">path</span><span class="p">),</span>
+            <span class="nv">disposition</span><span class="p">:</span> <span class="o">.</span><span class="kt">Attachment</span><span class="p">,</span>
+            <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">pdf</span><span class="p">,</span>
+            <span class="nv">contentID</span><span class="p">:</span> <span class="kc">nil</span>
+        <span class="p">)</span>
+        <span class="n">email</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -355,25 +368,29 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
-<span class="k">if</span> <span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">NSBundle</span><span class="o">.</span><span class="nf">mainBundle</span><span class="p">()</span><span class="o">.</span><span class="nf">pathForImageResource</span><span class="p">(</span><span class="s">"logo.png"</span><span class="p">),</span>
-    <span class="n">logo</span> <span class="o">=</span> <span class="kt">NSData</span><span class="p">(</span><span class="nv">contentsOfFile</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">let</span> <span class="nv">attachment</span> <span class="o">=</span> <span class="kt">Attachment</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="s">"logo.png"</span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span> <span class="n">logo</span><span class="p">,</span> <span class="nv">disposition</span><span class="p">:</span> <span class="o">.</span><span class="kt">Inline</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="kt">PNG</span><span class="p">,</span> <span class="nv">contentID</span><span class="p">:</span> <span class="s">"main_logo_12345"</span><span class="p">)</span>
-    <span class="n">email</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
-<span class="p">}</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="nf">urlForImageResource</span><span class="p">(</span><span class="s">"logo.png"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">attachment</span> <span class="o">=</span> <span class="kt">Attachment</span><span class="p">(</span>
+            <span class="nv">filename</span><span class="p">:</span> <span class="s">"logo.png"</span><span class="p">,</span>
+            <span class="nv">content</span><span class="p">:</span> <span class="k">try</span> <span class="kt">Data</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="n">path</span><span class="p">),</span>
+            <span class="nv">disposition</span><span class="p">:</span> <span class="o">.</span><span class="n">inline</span><span class="p">,</span>
+            <span class="nv">type</span><span class="p">:</span> <span class="o">.</span><span class="n">png</span><span class="p">,</span>
+            <span class="nv">contentID</span><span class="p">:</span> <span class="s">"main_logo_12345"</span>
+        <span class="p">)</span>
+        <span class="n">email</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
-<a href='#mail_and_tracking_settings' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='mail_and_tracking_settings'>Mail and Tracking Settings</h3>
+<a href='#mail-and-tracking-settings' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='mail-and-tracking-settings'>Mail and Tracking Settings</h3>
 
 <p>There are various classes available that you can use to modify the <a href="https://sendgrid.com/docs/User_Guide/Settings/mail.html">mail</a> and <a href="https://sendgrid.com/docs/User_Guide/Settings/tracking.html">tracking</a> settings for a specific email.</p>
 
@@ -447,7 +464,7 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
@@ -463,14 +480,14 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
     <span class="kt">OpenTracking</span><span class="p">(</span><span class="nv">enable</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
 <span class="p">]</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
-<a href='#unsubscribe_groups_asm' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='unsubscribe_groups_asm'>Unsubscribe Groups (ASM)</h3>
+<a href='#unsubscribe-groups-asm' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='unsubscribe-groups-asm'>Unsubscribe Groups (ASM)</h3>
 
 <p>If you use SendGrid&rsquo;s <a href="https://sendgrid.com/docs/User_Guide/Suppressions/advanced_suppression_manager.html">unsubscribe groups</a> feature, you can specify which unsubscribe group to send an email under like so:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">Personalization</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="s">"test@example.com"</span><span class="p">)</span>
@@ -480,16 +497,16 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="c1">/// Assuming your unsubscribe group has an ID of 4815…</span>
 <span class="n">email</span><span class="o">.</span><span class="k">as</span><span class="n">m</span> <span class="o">=</span> <span class="kt">ASM</span><span class="p">(</span><span class="nv">groupID</span><span class="p">:</span> <span class="mi">4815</span><span class="p">)</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -503,21 +520,21 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="c1">/// Assuming your unsubscribe group has an ID of 4815…</span>
 <span class="n">email</span><span class="o">.</span><span class="k">as</span><span class="n">m</span> <span class="o">=</span> <span class="kt">ASM</span><span class="p">(</span><span class="nv">groupID</span><span class="p">:</span> <span class="mi">4815</span><span class="p">,</span> <span class="nv">groupsToDisplay</span><span class="p">:</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">42</span><span class="p">])</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
-<a href='#ip_pools' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='ip_pools'>IP Pools</h3>
+<a href='#ip-pools' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='ip-pools'>IP Pools</h3>
 
 <p>If you&rsquo;re on a pro plan or higher, and have set up <a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html">IP Pools</a> on your account, you can specify a specific pool to send an email over like so:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">Personalization</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="s">"test@example.com"</span><span class="p">)</span>
@@ -527,21 +544,21 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="c1">/// Assuming you have an IP pool called "transactional" on your account…</span>
 <span class="n">email</span><span class="o">.</span><span class="n">ipPoolName</span> <span class="o">=</span> <span class="s">"transactional"</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
-<a href='#scheduled_sends' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='scheduled_sends'>Scheduled Sends</h3>
+<a href='#scheduled-sends' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='scheduled-sends'>Scheduled Sends</h3>
 
 <p>If you don&rsquo;t want the email to be sent right away, but rather at some point in the future, you can use the <code>sendAt</code> property. <strong>NOTE</strong>: You cannot schedule an email further than 72 hours in the future.  You can also assign an optional, unique <code>batchID</code> to the email so that you can <a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html">cancel via the API</a> in the future if needed.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">Personalization</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="s">"test@example.com"</span><span class="p">)</span>
@@ -551,30 +568,30 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="c1">// Schedule the email for 24 hours from now.</span>
-<span class="n">email</span><span class="o">.</span><span class="n">sendAt</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="n">email</span><span class="o">.</span><span class="n">sendAt</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
 <span class="c1">// This part is optional, but by setting the batch ID, we have the ability to cancel this send via the API if needed.</span>
 <span class="n">email</span><span class="o">.</span><span class="n">batchID</span> <span class="o">=</span> <span class="s">"76A8C7A6-B435-47F5-AB13-15F06BA2E3WD"</span>
 
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 
 <p>In the above example, we&rsquo;ve set the <code>sendAt</code> property on the global email, which means every personalization will be scheduled for that time.  You can also set the <code>sendAt</code> property on a <code>Personalization</code> if you want each one to be set to a different time, or only have certain ones scheduled:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">recipientInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">NSDate</span><span class="p">?]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s">"jose@example.none"</span><span class="p">:</span> <span class="kt">NSDate</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">),</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">recipientInfo</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Date</span><span class="p">?]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">"jose@example.none"</span><span class="p">:</span> <span class="kt">Date</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">),</span>
     <span class="s">"isaac@example.none"</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span>
-    <span class="s">"tim@example.none"</span><span class="p">:</span> <span class="kt">NSDate</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="s">"tim@example.none"</span><span class="p">:</span> <span class="kt">Date</span><span class="p">(</span><span class="nv">timeIntervalSinceNow</span><span class="p">:</span> <span class="mi">12</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 <span class="p">]</span>
 <span class="k">let</span> <span class="nv">personalizations</span> <span class="o">=</span> <span class="n">recipientInfo</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="p">(</span><span class="n">recipient</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Personalization</span> <span class="k">in</span>
     <span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">Personalization</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="n">recipient</span><span class="p">)</span>
@@ -587,14 +604,14 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="n">personalizations</span><span class="p">,</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"sender@example.none"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"sender@example.none"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="kc">nil</span>
 <span class="p">)</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -609,15 +626,15 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="n">email</span><span class="o">.</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Foo"</span><span class="p">,</span> <span class="s">"Bar"</span><span class="p">]</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -659,7 +676,7 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="k">let</span> <span class="nv">content</span> <span class="o">=</span> <span class="kt">Content</span><span class="o">.</span><span class="nf">emailContent</span><span class="p">(</span><span class="nv">plain</span><span class="p">:</span> <span class="n">plainText</span><span class="p">,</span> <span class="nv">html</span><span class="p">:</span> <span class="n">htmlText</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="n">personalization</span><span class="p">,</span> 
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"from@example.com"</span><span class="p">),</span> 
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"from@example.com"</span><span class="p">),</span> 
     <span class="nv">content</span><span class="p">:</span> <span class="n">content</span>
 <span class="p">)</span>
 <span class="n">email</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="s">"Hello World"</span>
@@ -671,7 +688,7 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
     <span class="s">":event2"</span><span class="p">:</span> <span class="s">"Veteran User Appreciation on :event_date"</span>
 <span class="p">]</span>
 </code></pre>
-<a href='#template_engine' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='template_engine'>Template Engine</h3>
+<a href='#template-engine' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='template-engine'>Template Engine</h3>
 
 <p>If you use SendGrid&rsquo;s <a href="https://sendgrid.com/docs/User_Guide/Transactional_Templates/index.html">Template Engine</a>, you can specify a template to apply to an email like so:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">Personalization</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="s">"test@example.com"</span><span class="p">)</span>
@@ -681,16 +698,16 @@ git submodule add https://github.com/scottkawai/sendgrid-swift.git
 <span class="p">)</span>
 <span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="kt">Email</span><span class="p">(</span>
     <span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="n">personalization</span><span class="p">],</span>
-    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="nv">emailAddress</span><span class="p">:</span> <span class="s">"foo@bar.com"</span><span class="p">),</span>
+    <span class="nv">from</span><span class="p">:</span> <span class="kt">Address</span><span class="p">(</span><span class="s">"foo@bar.com"</span><span class="p">),</span>
     <span class="nv">content</span><span class="p">:</span> <span class="n">contents</span><span class="p">,</span>
     <span class="nv">subject</span><span class="p">:</span> <span class="s">"Hello World"</span>
 <span class="p">)</span>
 <span class="c1">/// Assuming you have a template with ID "52523e14-7e47-45ed-ab32-0db344d8cf9z" on your account…</span>
 <span class="n">email</span><span class="o">.</span><span class="n">templateID</span> <span class="o">=</span> <span class="s">"52523e14-7e47-45ed-ab32-0db344d8cf9z"</span>
 <span class="k">do</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">sharedInstance</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="nv">onComplete</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">stringValue</span><span class="p">)</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="p">}</span>
@@ -732,8 +749,8 @@ SOFTWARE.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-07-26)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.6.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2016-09-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

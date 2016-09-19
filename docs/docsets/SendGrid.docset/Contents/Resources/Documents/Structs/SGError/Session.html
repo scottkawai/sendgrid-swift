@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CustomArguments Struct Reference</title>
+    <title>Session Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/CustomArguments" class="dashAnchor"></a>
-    <a title="CustomArguments Struct Reference"></a>
+    <a name="//apple_ref/swift/Enum/Session" class="dashAnchor"></a>
+    <a title="Session Enum Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../../index.html">SendGrid Docs</a> (100% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../../index.html">SendGrid Reference</a>
         <img id="carat" src="../../img/carat.png" />
-        CustomArguments Struct Reference
+        Session Enum Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -181,14 +181,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>CustomArguments</h1>
+            <h1>Session</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CustomArguments</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Session</span><span class="p">:</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
-            <p>Constants for custom arguments.</p>
+            <p>The <code>Session</code> enum contains all the errors thrown when attempting to build an HTTP request.</p>
 
           </section>
           <section class="section task-group-section">
@@ -197,9 +197,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVV8SendGrid9Constants15CustomArguments12MaximumBytesSi"></a>
-                    <a name="//apple_ref/swift/Variable/MaximumBytes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVV8SendGrid9Constants15CustomArguments12MaximumBytesSi">MaximumBytes</a>
+                    <a name="/s:FOV8SendGrid7SGError7Session21authenticationMissingFMS1_S1_"></a>
+                    <a name="//apple_ref/swift/Element/authenticationMissing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV8SendGrid7SGError7Session21authenticationMissingFMS1_S1_">authenticationMissing</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -207,14 +207,83 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The maximum number of bytes allowed for custom arguments in an email.</p>
+                        <p>Represents an error where no authentication method was provided.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">MaximumBytes</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">10000</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">authenticationMissing</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FOV8SendGrid7SGError7Session28authenticationTypeNotAllowedFMS1_FTPMPs9AnyObject_OS_14Authentication_S1_"></a>
+                    <a name="//apple_ref/swift/Element/authenticationTypeNotAllowed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FOV8SendGrid7SGError7Session28authenticationTypeNotAllowedFMS1_FTPMPs9AnyObject_OS_14Authentication_S1_">authenticationTypeNotAllowed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents an error where an unsupported authentication method was used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">authenticationTypeNotAllowed</span><span class="p">(</span><span class="kt">AnyClass</span><span class="p">,</span> <span class="kt"><a href="../../Enums/Authentication.html">Authentication</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vOV8SendGrid7SGError7Session11descriptionSS"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vOV8SendGrid7SGError7Session11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A description for the error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
