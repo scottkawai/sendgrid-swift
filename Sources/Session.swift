@@ -67,7 +67,7 @@ open class Session {
      - parameter onComplete:    A completion handler to run after the HTTP request.
      
      */
-    open func send(request: Request, onBehalfOf: String?, onComplete: ResponseHandler?) throws {
+    open func send(request: Request, onBehalfOf: String?, onComplete: @escaping ResponseHandler) throws {
         // Check that we have authentication set.
         guard let _ = self.authentication else { throw SGError.Session.authenticationMissing }
         
@@ -78,10 +78,8 @@ open class Session {
         
         // Make the HTTP request
         let task = URLSession.shared.dataTask(with: payload) { (data, response, error) in
-            if let block = onComplete {
-                let resp = Response(request: request, data: data, urlResponse: response)
-                block(resp, error)
-            }
+            let resp = Response(request: request, data: data, urlResponse: response)
+            onComplete(resp, error)
         }
         task.resume()
     }
@@ -94,7 +92,7 @@ open class Session {
      - parameter onComplete:    A completion handler to run after the HTTP request.
      
      */
-    open func send(request: Request, onComplete: ResponseHandler? = nil) throws {
+    open func send(request: Request, onComplete: @escaping ResponseHandler = { _, _ in } ) throws {
         try self.send(request: request, onBehalfOf: nil, onComplete: onComplete)
     }
 }

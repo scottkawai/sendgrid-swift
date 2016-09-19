@@ -9,7 +9,7 @@
 import Foundation
 
 /// A typealias encompassing the block method used for HTTP responses within the framework.
-public typealias ResponseHandler = ((_ response: Response?, _ error: Error?) -> Void)
+public typealias ResponseHandler = (Response?, Error?) -> Void
 
 /**
  
