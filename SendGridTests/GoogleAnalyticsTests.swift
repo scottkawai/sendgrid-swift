@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class GoogleAnalyticsTests: XCTestCase {
 
@@ -32,7 +33,7 @@ class GoogleAnalyticsTests: XCTestCase {
     
     func testJSONValue() {
         let ga = GoogleAnalytics(enable: false, source: "source", medium: "medium", term: "term", content: "content", campaign: "campaign")
-        XCTAssertEqual(ga.jsonValue, "{\"ganalytics\":{\"utm_content\":\"content\",\"utm_source\":\"source\",\"enable\":false,\"utm_medium\":\"medium\",\"utm_campaign\":\"campaign\",\"utm_term\":\"term\"}}")
+        XCTAssertEqual(ga.jsonValue, "{\"ganalytics\":{\"utm_source\":\"source\",\"utm_campaign\":\"campaign\",\"enable\":false,\"utm_term\":\"term\",\"utm_medium\":\"medium\",\"utm_content\":\"content\"}}")
     }
 
 }

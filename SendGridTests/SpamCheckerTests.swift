@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class SpamCheckerTests: XCTestCase {
     
@@ -26,7 +27,7 @@ class SpamCheckerTests: XCTestCase {
         XCTAssertEqual(basic.threshold, 4)
         XCTAssertNil(basic.postURL)
         
-        let url = NSURL(string: "http://localhost")
+        let url = URL(string: "http://localhost")
         let advance = SpamChecker(enable: false, threshold: 10, url: url)
         XCTAssertFalse(advance.enable)
         XCTAssertEqual(advance.threshold, 10)
@@ -37,9 +38,9 @@ class SpamCheckerTests: XCTestCase {
         let basic = SpamChecker(enable: true, threshold: 1)
         XCTAssertEqual(basic.jsonValue, "{\"spam_check\":{\"threshold\":1,\"enable\":true}}")
         
-        let url = NSURL(string: "http://localhost")
+        let url = URL(string: "http://localhost")
         let advance = SpamChecker(enable: false, threshold: 8, url: url)
-        XCTAssertEqual(advance.jsonValue, "{\"spam_check\":{\"threshold\":8,\"post_to_url\":\"http:\\/\\/localhost\",\"enable\":false}}")
+        XCTAssertEqual(advance.jsonValue, "{\"spam_check\":{\"post_to_url\":\"http:\\/\\/localhost\",\"threshold\":8,\"enable\":false}}")
     }
     
     func testValidation() {
@@ -48,7 +49,7 @@ class SpamCheckerTests: XCTestCase {
             try over.validate()
             XCTFail("Expected an error to be thrown with a threshold over 10, but no errors were raised.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.ThresholdOutOfRange(42).description)
+            XCTAssertEqual("\(error)", SGError.Mail.thresholdOutOfRange(42).description)
         }
         
         do {
@@ -56,7 +57,7 @@ class SpamCheckerTests: XCTestCase {
             try under.validate()
             XCTFail("Expected an error to be thrown with a threshold under 1, but no errors were raised.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.ThresholdOutOfRange(0).description)
+            XCTAssertEqual("\(error)", SGError.Mail.thresholdOutOfRange(0).description)
         }
     }
 }

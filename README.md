@@ -5,6 +5,8 @@ This library allows you to quickly and easily send emails through SendGrid using
 ## Important: Breaking Changes
 Version 0.1.0 and higher have been migrated over to use SendGrid's [V3 Mail Send Endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html), which contains code-breaking changes.
 
+Version 0.2.0 and higher uses Swift 3, which introduces breaking changes from previous versions.
+
 ## Full Documentation
 
 Full documentation of the library is available [here](http://scottkawai.github.io/sendgrid-swift/docs/).
@@ -58,12 +60,12 @@ The V3 endpoint supports API keys for authorization (***Note***: username and pa
 
 ```swift
 let session = Session()
-session.authentication = Authentication.ApiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
+session.authentication = Authentication.apiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
 
 /*
 `Session` also has a singleton instance that you can configure once and reuse throughout your code.
 */
-Session.sharedInstance.authentication = Authentication.ApiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
+Session.shared.authentication = Authentication.apiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
 ```
 
 ### Content
@@ -77,16 +79,16 @@ The new V3 endpoint introduces the idea of "personalizations."  When using the A
 ```swift
 // Send a basic example
 let personalization = Personalization(recipients: "test@example.com")
-let plainText = Content(contentType: ContentType.PlainText, value: "Hello World")
-let htmlText = Content(contentType: ContentType.HTMLText, value: "<h1>Hello World</h1>")
+let plainText = Content(contentType: ContentType.plainText, value: "Hello World")
+let htmlText = Content(contentType: ContentType.htmlText, value: "<h1>Hello World</h1>")
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: [plainText, htmlText],
     subject: "Hello World"
 )
 do {
-    try Session.sharedInstance.send(email)
+    try Session.shared.send(request: email)
 } catch {
     print(error)
 }
@@ -109,16 +111,16 @@ Here is an advanced example of using personalizations:
 ```swift
 // Send an advanced example
 let recipients = [
-    Address(emailAddress: "jose@example.none", displayName: "Jose"),
-    Address(emailAddress: "isaac@example.none", displayName: "Isaac"),
-    Address(emailAddress: "tim@example.none", displayName: "Tim")
+    Address("jose@example.none", displayName: "Jose"),
+    Address("isaac@example.none", displayName: "Isaac"),
+    Address("tim@example.none", displayName: "Tim")
 ]
 let personalizations = recipients.map { (recipient) -> Personalization in
     let name = recipient.name ?? "there"
     return Personalization(
         to: [recipient],
         cc: nil,
-        bcc: [Address(emailAddress: "bcc@example.none")],
+        bcc: [Address("bcc@example.none")],
         subject: "Hello \(name)!",
         headers: ["X-Campaign":"12345"],
         substitutions: ["%name%":name],
@@ -131,7 +133,7 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: personalizations,
-    from: Address(emailAddress: "sender@example.none"),
+    from: Address("sender@example.none"),
     content: contents,
     subject: nil
 )
@@ -142,9 +144,9 @@ email.customArguments = [
     "campaign_id": "12345"
 ]
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -164,26 +166,24 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
-if let path = NSBundle.mainBundle().pathForResource("proposal", ofType: "pdf"),
-    pdf = NSData(contentsOfFile: path)
-{
-    let attachment = Attachment(
-        filename: "proposal.pdf",
-        content: pdf,
-        disposition: .Attachment,
-        type: .PDF,
-        contentID: nil
-    )
-    email.attachments = [attachment]
-}
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    if let path = Bundle.main.url(forResource: "proposal", withExtension: "pdf") {
+        let attachment = Attachment(
+            filename: "proposal.pdf",
+            content: try Data(contentsOf: path),
+            disposition: .Attachment,
+            type: .pdf,
+            contentID: nil
+        )
+        email.attachments = [attachment]
+    }
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -199,20 +199,24 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
-if let path = NSBundle.mainBundle().pathForImageResource("logo.png"),
-    logo = NSData(contentsOfFile: path)
-{
-    let attachment = Attachment(filename: "logo.png", content: logo, disposition: .Inline, type: .PNG, contentID: "main_logo_12345")
-    email.attachments = [attachment]
-}
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    if let path = Bundle.main.urlForImageResource("logo.png") {
+        let attachment = Attachment(
+            filename: "logo.png",
+            content: try Data(contentsOf: path),
+            disposition: .inline,
+            type: .png,
+            contentID: "main_logo_12345"
+        )
+        email.attachments = [attachment]
+    }
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -257,7 +261,7 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
@@ -273,9 +277,9 @@ email.trackingSettings = [
     OpenTracking(enable: false)
 ]
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -293,16 +297,16 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
 /// Assuming your unsubscribe group has an ID of 4815…
 email.asm = ASM(groupID: 4815)
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -318,16 +322,16 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
 /// Assuming your unsubscribe group has an ID of 4815…
 email.asm = ASM(groupID: 4815, groupsToDisplay: [16,23,42])
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -345,16 +349,16 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
 /// Assuming you have an IP pool called "transactional" on your account…
 email.ipPoolName = "transactional"
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -372,20 +376,20 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
 // Schedule the email for 24 hours from now.
-email.sendAt = NSDate(timeIntervalSinceNow: 24 * 60 * 60)
+email.sendAt = Date(timeIntervalSinceNow: 24 * 60 * 60)
 
 // This part is optional, but by setting the batch ID, we have the ability to cancel this send via the API if needed.
 email.batchID = "76A8C7A6-B435-47F5-AB13-15F06BA2E3WD"
 
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -394,10 +398,10 @@ do {
 In the above example, we've set the `sendAt` property on the global email, which means every personalization will be scheduled for that time.  You can also set the `sendAt` property on a `Personalization` if you want each one to be set to a different time, or only have certain ones scheduled:
 
 ```swift
-let recipientInfo: [String:NSDate?] = [
-    "jose@example.none": NSDate(timeIntervalSinceNow: 4 * 60 * 60),
+let recipientInfo: [String:Date?] = [
+    "jose@example.none": Date(timeIntervalSinceNow: 4 * 60 * 60),
     "isaac@example.none": nil,
-    "tim@example.none": NSDate(timeIntervalSinceNow: 12 * 60 * 60)
+    "tim@example.none": Date(timeIntervalSinceNow: 12 * 60 * 60)
 ]
 let personalizations = recipientInfo.map { (recipient, date) -> Personalization in
     let personalization = Personalization(recipients: recipient)
@@ -410,14 +414,14 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: personalizations,
-    from: Address(emailAddress: "sender@example.none"),
+    from: Address("sender@example.none"),
     content: contents,
     subject: nil
 )
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -435,15 +439,15 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
 email.categories = ["Foo", "Bar"]
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
@@ -488,7 +492,7 @@ let htmlText = "<p>:salutation,</p><p>Please join us for the :event_details.</p>
 let content = Content.emailContent(plain: plainText, html: htmlText)
 let email = Email(
     personalizations: personalization, 
-    from: Address(emailAddress: "from@example.com"), 
+    from: Address("from@example.com"), 
     content: content
 )
 email.subject = "Hello World"
@@ -513,16 +517,16 @@ let contents = Content.emailContent(
 )
 let email = Email(
     personalizations: [personalization],
-    from: Address(emailAddress: "foo@bar.com"),
+    from: Address("foo@bar.com"),
     content: contents,
     subject: "Hello World"
 )
 /// Assuming you have a template with ID "52523e14-7e47-45ed-ab32-0db344d8cf9z" on your account…
 email.templateID = "52523e14-7e47-45ed-ab32-0db344d8cf9z"
 do {
-    try Session.sharedInstance.send(email, onComplete: { (response, error) in
+    try Session.shared.send(request: email) { (response, error) in
         print(response?.stringValue)
-    })
+    }
 } catch {
     print(error)
 }
