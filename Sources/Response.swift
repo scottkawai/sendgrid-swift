@@ -8,9 +8,6 @@
 
 import Foundation
 
-/// A typealias encompassing the block method used for HTTP responses within the framework.
-public typealias ResponseHandler = (Response?, Error?) -> Void
-
 /**
  
  The `Response` struct organizes and parses the HTTP responses returned from API calls.
