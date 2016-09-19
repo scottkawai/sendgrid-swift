@@ -54,7 +54,7 @@ open class RateLimit {
      - returns: An instance of `RateLimit` using information from an NSURLResponse (if rate limit information was returned in the NSURLResponse).
      
      */
-    class func rateLimitInfoFromUrlResponse(_ response: URLResponse?) -> RateLimit? {
+    class func rateLimitInfo(from response: URLResponse?) -> RateLimit? {
         guard let http = response as? HTTPURLResponse,
             let limitStr = http.allHeaderFields["X-RateLimit-Limit"] as? String,
             let li = Int(limitStr),

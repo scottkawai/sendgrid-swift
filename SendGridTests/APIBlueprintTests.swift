@@ -89,7 +89,7 @@ class APIBlueprintTests: XCTestCase {
         XCTAssertNil(blue?.body)
         
         let getRequest = RequestTests.Foo()
-        let responseData = ParameterEncoding.jsonData(params: ["foo":"bar"])
+        let responseData = ParameterEncoding.jsonData(from: ["foo":"bar"])
         let urlResponse = HTTPURLResponse(url: URL(fileURLWithPath: "/foo"), statusCode: 200, httpVersion: nil, headerFields: ["Content-Type": ContentType.json.description])
         let getResponse = Response(request: getRequest, data: responseData, urlResponse: urlResponse)
         

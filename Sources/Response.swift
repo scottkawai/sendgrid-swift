@@ -100,7 +100,7 @@ open class Response: HTTPMessage, CustomStringConvertible {
         self.request = request
         self.data = data
         self.urlResponse = urlResponse
-        self.rateLimit = RateLimit.rateLimitInfoFromUrlResponse(urlResponse)
+        self.rateLimit = RateLimit.rateLimitInfo(from: urlResponse)
     }
     
 }

@@ -30,7 +30,7 @@ class RateLimitTests: XCTestCase {
         ]
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
         
-        guard let info = RateLimit.rateLimitInfoFromUrlResponse(response) else
+        guard let info = RateLimit.rateLimitInfo(from: response) else
         {
             XCTFail("Received `nil` from Rate limit initializer.")
             return

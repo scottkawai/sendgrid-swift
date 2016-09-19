@@ -150,7 +150,7 @@ open class Personalization: JSONConvertible, Validatable, HeaderValidator, Sched
         }
 
         if let head = self.headers {
-            try self.validateHeaders(head)
+            try self.validate(headers: head)
         }
         
         if let sub = self.substitutions , sub.count > Constants.SubstitutionLimit {

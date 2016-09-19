@@ -26,7 +26,7 @@ class SessionTests: XCTestCase {
         let personalization = [Personalization(recipients: "test@example.com")]
         let email = Email(personalizations: personalization, from: Address(emailAddress: "foo@bar.com"), content: [Content.plainTextContent("plain")], subject: "Hello World")
         do {
-            try session.send(email)
+            try session.send(request: email)
             XCTFail("Expected failure when sending a request without authentication, but nothing was thrown.")
         } catch {
             XCTAssertEqual("\(error)", SGError.Session.authenticationMissing.description)

@@ -488,7 +488,7 @@ class EmailTests: XCTestCase {
         test.asm = ASM(groupID: 1)
         do {
             let creds = Session(auth: Authentication.credential(username: "foo", password: "bar"))
-            try creds.send(test)
+            try creds.send(request: test)
             XCTFail("Expected error to be thrown when using the mail send API with credentials, but nothing was thrown")
         } catch {
             XCTAssertEqual("\(error)", "The `Email` class does not allow authentication with credentials. Please try using another Authentication type.")
@@ -498,7 +498,7 @@ class EmailTests: XCTestCase {
             let creds = Session.shared
             creds.authentication = Authentication.apiKey("asdf")
             let expectation = self.expectation(description: "Test Send")
-            try creds.send(test, onComplete: { (response, error) in
+            try creds.send(request: test, onComplete: { (response, error) in
                 XCTAssertTrue(true)
                 expectation.fulfill()
             })
@@ -514,7 +514,7 @@ class EmailTests: XCTestCase {
         
         do {
             let s = Session(auth: Authentication.apiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789"))
-            _ = try test.requestForSession(s, onBehalfOf: "foobar")
+            _ = try test.request(for: s, onBehalfOf: "foobar")
             XCTFail("Expected an error to be thrown when a subuser username is provided in the `onBehalfOf` parameter, but nothing was thrown.")
         } catch {
             XCTAssertEqual("\(error)", SGError.Request.impersonationNotSupported(Email.self).description)

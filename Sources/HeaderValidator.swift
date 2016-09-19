@@ -21,7 +21,7 @@ public protocol HeaderValidator {
      - parameter headers:	A dictionary representing the header names and values.
      
      */
-    func validateHeaders(_ headers: [String:String]) throws
+    func validate(headers: [String:String]) throws
 }
 
 public extension HeaderValidator {
@@ -43,7 +43,7 @@ public extension HeaderValidator {
      - BCC
      
      */
-    public func validateHeaders(_ headers: [String:String]) throws {
+    public func validate(headers: [String:String]) throws {
         let reserved: [String] = [
             "x-sg-id",
             "x-sg-eid",

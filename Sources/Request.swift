@@ -38,7 +38,7 @@ public protocol Request: HTTPMessage, CustomStringConvertible, Validatable {
      - returns: A URLRequest with all the proper properties and authentication information set.
      
      */
-    func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest
+    func request(for session: Session, onBehalfOf: String?) throws -> URLRequest
 }
 
 public extension Request {

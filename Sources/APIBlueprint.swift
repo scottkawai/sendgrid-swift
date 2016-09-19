@@ -82,9 +82,9 @@ open class APIBlueprint: CustomStringConvertible {
         if let params = parameters , aMethod.hasBody {
             switch aContentType {
             case .formUrlEncoded:
-                content = ParameterEncoding.formUrlEncodedString(params: params)
+                content = ParameterEncoding.formUrlEncodedString(from: params)
             case .json:
-                content = ParameterEncoding.jsonString(params: params, prettyPrint: true)
+                content = ParameterEncoding.jsonString(from: params, prettyPrint: true)
             default:
                 content = nil
             }
@@ -102,7 +102,7 @@ open class APIBlueprint: CustomStringConvertible {
     convenience init(request: Request) {
         var location = "/" + request.endpoint
         if let params = request.parameters,
-            let query = ParameterEncoding.formUrlEncodedString(params: params),
+            let query = ParameterEncoding.formUrlEncodedString(from: params),
             !request.method.hasBody
         {
             location += "?" + query
@@ -122,14 +122,14 @@ open class APIBlueprint: CustomStringConvertible {
         let resource = response.request
         var location = "/" + resource.endpoint
         if let params = resource.parameters,
-            let query = ParameterEncoding.formUrlEncodedString(params: params)
+            let query = ParameterEncoding.formUrlEncodedString(from: params)
             , !resource.method.hasBody
         {
             location += "?" + query
         }
         var b: String?
         if let json = response.jsonValue , content.description == ContentType.json.description {
-            b = ParameterEncoding.jsonString(params: json, prettyPrint: true)
+            b = ParameterEncoding.jsonString(from: json, prettyPrint: true)
         }
         self.init(method: resource.method, location: location, contentType: content, type: .Response, headers: response.messageHeaders, body: b, statusCode: response.statusCode)
     }

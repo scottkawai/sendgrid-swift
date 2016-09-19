@@ -16,12 +16,12 @@ import Foundation
 struct ParameterEncoding {
     
     /// Encodes `Any` into "application/x-www-form-urlencoded" data.
-    static func formUrlEncoded(params: Any) -> Data? {
-        return self.formUrlEncodedString(params: params)?.data(using: String.Encoding.utf8)
+    static func formUrlEncodedData(from params: Any) -> Data? {
+        return self.formUrlEncodedString(from: params)?.data(using: String.Encoding.utf8)
     }
     
     /// Encodes `Any` into a "application/x-www-form-urlencoded" string.
-    static func formUrlEncodedString(params: Any) -> String? {
+    static func formUrlEncodedString(from params: Any) -> String? {
         guard let hash = params as? [AnyHashable: Any] else { return nil }
         var components = URLComponents()
         components.queryItems = hash.map { (key, value) -> URLQueryItem in
@@ -31,15 +31,15 @@ struct ParameterEncoding {
     }
     
     /// Encodes `Any` into JSON data.
-    static func jsonData(params: [AnyHashable:Any], prettyPrint: Bool = false) -> Data? {
+    static func jsonData(from params: [AnyHashable:Any], prettyPrint: Bool = false) -> Data? {
         guard JSONSerialization.isValidJSONObject(params) else { return nil }
         let options: JSONSerialization.WritingOptions = prettyPrint ? [.prettyPrinted] : []
         return try? JSONSerialization.data(withJSONObject: params, options: options)
     }
     
     /// Encodes `Any` into a JSON string.
-    static func jsonString(params: [AnyHashable:Any], prettyPrint: Bool = false) -> String? {
-        guard let d = self.jsonData(params: params, prettyPrint: prettyPrint) else { return nil }
+    static func jsonString(from params: [AnyHashable:Any], prettyPrint: Bool = false) -> String? {
+        guard let d = self.jsonData(from: params, prettyPrint: prettyPrint) else { return nil }
         return String(data: d, encoding: String.Encoding.utf8)
     }
 }

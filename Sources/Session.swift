@@ -67,14 +67,14 @@ open class Session {
      - parameter onComplete:    A completion handler to run after the HTTP request.
      
      */
-    open func send(_ request: Request, onBehalfOf: String?, onComplete: ResponseHandler?) throws {
+    open func send(request: Request, onBehalfOf: String?, onComplete: ResponseHandler?) throws {
         // Check that we have authentication set.
         guard let _ = self.authentication else { throw SGError.Session.authenticationMissing }
         
         try request.validate()
         
         // Get the NSURLRequest
-        let payload = try request.requestForSession(self, onBehalfOf: onBehalfOf)
+        let payload = try request.request(for: self, onBehalfOf: onBehalfOf)
         
         // Make the HTTP request
         let task = URLSession.shared.dataTask(with: payload) { (data, response, error) in
@@ -94,7 +94,7 @@ open class Session {
      - parameter onComplete:    A completion handler to run after the HTTP request.
      
      */
-    open func send(_ request: Request, onComplete: ResponseHandler? = nil) throws {
-        try self.send(request, onBehalfOf: nil, onComplete: onComplete)
+    open func send(request: Request, onComplete: ResponseHandler? = nil) throws {
+        try self.send(request: request, onBehalfOf: nil, onComplete: onComplete)
     }
 }

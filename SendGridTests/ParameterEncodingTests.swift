@@ -24,11 +24,10 @@ class ParameterEncodingTests: XCTestCase {
     func testFormURLEncoded() {
         // Should result in `foo=one&bar=two`
         let goodParams = ["foo":"one", "bar":"two"]
-        XCTAssertEqual(ParameterEncoding.formUrlEncodedString(params: goodParams), "foo=one&bar=two")
-        
+        XCTAssertEqual(ParameterEncoding.formUrlEncodedString(from: goodParams), "foo=one&bar=two")
         // Should return nil if not provided a dictionary.
         let badParams = ["foo", "bar"]
-        XCTAssertNil(ParameterEncoding.formUrlEncoded(params: badParams))
+        XCTAssertNil(ParameterEncoding.formUrlEncodedData(from: badParams))
     }
 
 }

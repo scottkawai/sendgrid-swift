@@ -311,7 +311,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         
         // Validate the headers
         if let head = self.headers {
-            try self.validateHeaders(head)
+            try self.validate(headers: head)
         }
         
         // Validate the categories
@@ -334,9 +334,9 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
                     merged[key] = value
                 }
             }
-            let bytes = ParameterEncoding.jsonData(params: merged)?.count ?? 0
+            let bytes = ParameterEncoding.jsonData(from: merged)?.count ?? 0
             if bytes > Constants.CustomArguments.MaximumBytes {
-                throw SGError.Mail.tooManyCustomArguments(bytes, ParameterEncoding.jsonString(params: merged))
+                throw SGError.Mail.tooManyCustomArguments(bytes, ParameterEncoding.jsonString(from: merged))
             }
         }
         
@@ -358,13 +358,13 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    open override func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest {
+    open override func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
         if let auth = session.authentication , auth.description == "credential" {
             throw SGError.Session.authenticationTypeNotAllowed(type(of: self), auth)
         }
         
         if let _ = onBehalfOf { throw SGError.Request.impersonationNotSupported(type(of: self)) }
         
-        return try super.requestForSession(session, onBehalfOf: onBehalfOf)
+        return try super.request(for: session, onBehalfOf: onBehalfOf)
     }
 }

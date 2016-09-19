@@ -41,7 +41,7 @@ open class APIV3 {
      - returns: A NSMutableURLRequest with all the proper properties and authentication information set.
      
      */
-    open func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest {
+    open func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
         guard let resource = self as? Request else { throw SGError.Request.nonConformingRequest(type(of: self)) }
         
         guard let location = URL(string: session.host)?.appendingPathComponent(resource.endpoint) else { throw SGError.Request.unableToConstructUrl }
@@ -62,14 +62,14 @@ open class APIV3 {
                 var body: Data?
                 switch resource.contentType {
                 case .formUrlEncoded:
-                    body = ParameterEncoding.formUrlEncoded(params: params)
+                    body = ParameterEncoding.formUrlEncodedData(from: params)
                 case .json:
-                    body = ParameterEncoding.jsonData(params: params)
+                    body = ParameterEncoding.jsonData(from: params)
                 default:
                     body = nil
                 }
                 request.httpBody = body
-            } else if let query = ParameterEncoding.formUrlEncodedString(params: params),
+            } else if let query = ParameterEncoding.formUrlEncodedString(from: params),
                 let newURL = URL(string: location.absoluteString + "?" + query)
             {
                 request.url = newURL
