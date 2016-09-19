@@ -69,7 +69,7 @@ open class Attachment: JSONConvertible, Validatable {
      - returns: Return
      
      */
-    public init(filename: String, content: Data, disposition: ContentDisposition = .Attachment, type: ContentType? = nil, contentID: String? = nil) {
+    public init(filename: String, content: Data, disposition: ContentDisposition = .attachment, type: ContentType? = nil, contentID: String? = nil) {
         self.filename = filename
         self.content = content
         self.disposition = disposition

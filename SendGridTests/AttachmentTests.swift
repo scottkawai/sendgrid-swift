@@ -31,13 +31,13 @@ class AttachmentTests: XCTestCase {
         if let image = self.image {
             let basic = Attachment(filename: "dot.png", content: image)
             XCTAssertEqual(basic.filename, "dot.png")
-            XCTAssertEqual(basic.disposition, ContentDisposition.Attachment)
+            XCTAssertEqual(basic.disposition, ContentDisposition.attachment)
             XCTAssertNil(basic.contentID)
             XCTAssertNil(basic.type)
             
-            let advance = Attachment(filename: "dot_inline.png", content: image, disposition: ContentDisposition.Inline, type: ContentType.png, contentID: "dot")
+            let advance = Attachment(filename: "dot_inline.png", content: image, disposition: ContentDisposition.inline, type: ContentType.png, contentID: "dot")
             XCTAssertEqual(advance.filename, "dot_inline.png")
-            XCTAssertEqual(advance.disposition, ContentDisposition.Inline)
+            XCTAssertEqual(advance.disposition, ContentDisposition.inline)
             XCTAssertEqual(advance.type!.description, ContentType.png.description)
             XCTAssertEqual(advance.contentID, "dot")
         } else {
@@ -50,7 +50,7 @@ class AttachmentTests: XCTestCase {
             let basic = Attachment(filename: "dot.png", content: image)
             XCTAssertEqual(basic.jsonValue, "{\"content\":\"iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4\\/\\/8\\/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\",\"filename\":\"dot.png\",\"disposition\":\"attachment\"}")
             
-            let advance = Attachment(filename: "dot_inline.png", content: image, disposition: ContentDisposition.Inline, type: ContentType.png, contentID: "dot")
+            let advance = Attachment(filename: "dot_inline.png", content: image, disposition: ContentDisposition.inline, type: ContentType.png, contentID: "dot")
             XCTAssertEqual(advance.jsonValue, "{\"content\":\"iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4\\/\\/8\\/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\",\"filename\":\"dot_inline.png\",\"type\":\"image\\/png\",\"disposition\":\"inline\",\"content_id\":\"dot\"}")
         } else {
             XCTFail("Unable to locate `dot.png` file to run Attachment tests.")
@@ -61,7 +61,7 @@ class AttachmentTests: XCTestCase {
         if let image = self.image {
             do {
                 // Validation should pass with a valid content type.
-                let good = Attachment(filename: "dot.png", content: image, disposition: .Attachment, type: .png, contentID: nil)
+                let good = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: nil)
                 try good.validate()
                 XCTAssertTrue(true)
             } catch {
@@ -79,7 +79,7 @@ class AttachmentTests: XCTestCase {
             
             do {
                 // Should fail when content type has a semicolon.
-                let semicolon = Attachment(filename: "dot.png", content: image, disposition: .Attachment, type: .other("image/png;"), contentID: nil)
+                let semicolon = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .other("image/png;"), contentID: nil)
                 try semicolon.validate()
                 XCTFail("Expected errot to be thrown when providing a content type with a semicolon, but no error was thrown")
             } catch {
@@ -88,7 +88,7 @@ class AttachmentTests: XCTestCase {
             
             do {
                 // Should fail when content type has a semicolon.
-                let newline = Attachment(filename: "dot.png", content: image, disposition: .Attachment, type: .other("image/png\n"), contentID: nil)
+                let newline = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .other("image/png\n"), contentID: nil)
                 try newline.validate()
                 XCTFail("Expected errot to be thrown when providing a content type with a semicolon, but no error was thrown")
             } catch {
@@ -97,7 +97,7 @@ class AttachmentTests: XCTestCase {
             
             do {
                 //Should fail if filename has semicolons and newlines.
-                let newline = Attachment(filename: "dot;\n.png", content: image, disposition: .Attachment, type: .png, contentID: nil)
+                let newline = Attachment(filename: "dot;\n.png", content: image, disposition: .attachment, type: .png, contentID: nil)
                 try newline.validate()
                 XCTFail("Expected error to be thrown when providing a filename with a semicolon, but no error was thrown")
             } catch {
@@ -106,7 +106,7 @@ class AttachmentTests: XCTestCase {
             
             do {
                 //Should fail if content ID has semicolons and newlines.
-                let newline = Attachment(filename: "dot.png", content: image, disposition: .Attachment, type: .png, contentID: "asdf,asdf")
+                let newline = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: "asdf,asdf")
                 try newline.validate()
                 XCTFail("Expected error to be thrown when providing a content ID with a commma, but no error was thrown")
             } catch {
@@ -115,7 +115,7 @@ class AttachmentTests: XCTestCase {
             
             do {
                 //Should fail if content ID is a blank string.
-                let newline = Attachment(filename: "dot.png", content: image, disposition: .Attachment, type: .png, contentID: "")
+                let newline = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: "")
                 try newline.validate()
                 XCTFail("Expected error to be thrown when providing a blank string for the content ID, but no error was thrown")
             } catch {

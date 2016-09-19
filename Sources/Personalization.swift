@@ -117,7 +117,7 @@ open class Personalization: JSONConvertible, Validatable, HeaderValidator, Sched
      */
     public convenience init(recipients: String...) {
         let list: [Address] = recipients.map { (em) -> Address in
-            return Address(emailAddress: em)
+            return Address(em)
         }
         self.init(to: list)
     }

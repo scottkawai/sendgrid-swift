@@ -11,7 +11,7 @@ import XCTest
 
 class EmailTests: XCTestCase {
     
-    let goodFrom = Address(emailAddress: "from@example.com")
+    let goodFrom = Address("from@example.com")
     
     override func setUp() {
         super.setUp()
@@ -26,7 +26,7 @@ class EmailTests: XCTestCase {
     func generatePersonalizations(_ amount: Int) -> [Personalization] {
         var list: [Personalization] = []
         for i in 0..<amount {
-            let recipient = Address(emailAddress: "test\(i)@example.com")
+            let recipient = Address("test\(i)@example.com")
             list.append(Personalization(to: [recipient]))
         }
         return list
@@ -74,9 +74,9 @@ class EmailTests: XCTestCase {
             // Over 1000 recipients should throw an error.
             var personalizations: [Personalization] = []
             for i in 0...334 {
-                let to = Address(emailAddress: "to\(i)@example.com")
-                let cc = Address(emailAddress: "cc\(i)@example.com")
-                let bcc = Address(emailAddress: "bcc\(i)@example.com")
+                let to = Address("to\(i)@example.com")
+                let cc = Address("cc\(i)@example.com")
+                let bcc = Address("bcc\(i)@example.com")
                 let entry = Personalization(to: [to], cc: [cc], bcc: [bcc], subject: nil, headers: nil, substitutions: nil, customArguments: nil)
                 personalizations.append(entry)
             }
@@ -91,9 +91,9 @@ class EmailTests: XCTestCase {
             // Under 1000 recipients should have no errors.
             var personalizations: [Personalization] = []
             for i in 0...3 {
-                let to = Address(emailAddress: "to\(i)@example.com")
-                let cc = Address(emailAddress: "cc\(i)@example.com")
-                let bcc = Address(emailAddress: "bcc\(i)@example.com")
+                let to = Address("to\(i)@example.com")
+                let cc = Address("cc\(i)@example.com")
+                let bcc = Address("bcc\(i)@example.com")
                 let entry = Personalization(to: [to], cc: [cc], bcc: [bcc], subject: nil, headers: nil, substitutions: nil, customArguments: nil)
                 personalizations.append(entry)
             }
@@ -107,7 +107,7 @@ class EmailTests: XCTestCase {
         do {
             let personalizations: [Personalization] = [
                 Personalization(recipients: "test@example.com"),
-                Personalization(to: [Address(emailAddress:"foo@bar.com")], cc: nil, bcc: [Address(emailAddress: "Test@example.com")], subject: "Hello", headers: nil, substitutions: nil, customArguments: nil)
+                Personalization(to: [Address("foo@bar.com")], cc: nil, bcc: [Address("Test@example.com")], subject: "Hello", headers: nil, substitutions: nil, customArguments: nil)
             ]
             let bad = Email(personalizations: personalizations, from: self.goodFrom, content: [Content.plainTextContent("uh oh")])
             try bad.validate()
@@ -119,7 +119,7 @@ class EmailTests: XCTestCase {
         do {
             let personalizations: [Personalization] = [
                 Personalization(recipients: "test@example.com"),
-                Personalization(to: [Address(emailAddress:"foo@bar.com")], cc: [Address(emailAddress: "Test@example.com")], bcc: nil, subject: "Hello", headers: nil, substitutions: nil, customArguments: nil)
+                Personalization(to: [Address("foo@bar.com")], cc: [Address("Test@example.com")], bcc: nil, subject: "Hello", headers: nil, substitutions: nil, customArguments: nil)
             ]
             let bad = Email(personalizations: personalizations, from: self.goodFrom, content: [Content.plainTextContent("uh oh")])
             try bad.validate()
@@ -142,7 +142,7 @@ class EmailTests: XCTestCase {
         
         do {
             let personalizations: [Personalization] = [Personalization(recipients: "test@example.com")]
-            let fromTest = Email(personalizations: personalizations, from: Address(emailAddress: "from"), content: [Content.plainTextContent("uh oh")], subject: "Hello World")
+            let fromTest = Email(personalizations: personalizations, from: Address("from"), content: [Content.plainTextContent("uh oh")], subject: "Hello World")
             try fromTest.validate()
             XCTFail("Expected error to be thrown when an email has a malformed From address, but nothing was thrown.")
         } catch {
@@ -152,7 +152,7 @@ class EmailTests: XCTestCase {
         do {
             let personalizations: [Personalization] = [Personalization(recipients: "test@example.com")]
             let replyToTest = Email(personalizations: personalizations, from: self.goodFrom, content: [Content.plainTextContent("uh oh")], subject: "Hello World")
-            replyToTest.replyTo = Address(emailAddress: "reply")
+            replyToTest.replyTo = Address("reply")
             try replyToTest.validate()
             XCTFail("Expected error to be thrown when an email has a malformed Reply To address, but nothing was thrown.")
         } catch {
@@ -222,10 +222,10 @@ class EmailTests: XCTestCase {
         
         do {
             let personalizations = [
-                Personalization(to: [Address(emailAddress: "recipient1@example.com")], cc: nil, bcc: nil, subject: "Subject 1", headers: nil, substitutions: nil, customArguments: nil),
+                Personalization(to: [Address("recipient1@example.com")], cc: nil, bcc: nil, subject: "Subject 1", headers: nil, substitutions: nil, customArguments: nil),
                 Personalization(recipients: "recipient2@example.com")
             ]
-            let missing = Email(personalizations: personalizations, from: Address(emailAddress: "from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
+            let missing = Email(personalizations: personalizations, from: Address("from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
             try missing.validate()
             XCTFail("Expected an error to be thrown when a subject is not set as global, and not present in a personalization, but nothing was thrown.")
         } catch {
@@ -234,9 +234,9 @@ class EmailTests: XCTestCase {
         
         do {
             let personalizations = [
-                Personalization(to: [Address(emailAddress: "recipient1@example.com")], cc: nil, bcc: nil, subject: "", headers: nil, substitutions: nil, customArguments: nil),
+                Personalization(to: [Address("recipient1@example.com")], cc: nil, bcc: nil, subject: "", headers: nil, substitutions: nil, customArguments: nil),
                 ]
-            let missing = Email(personalizations: personalizations, from: Address(emailAddress: "from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
+            let missing = Email(personalizations: personalizations, from: Address("from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
             try missing.validate()
             XCTFail("Expected an error to be thrown when a subject is not set as global, and an empty string in a personalization, but nothing was thrown.")
         } catch {
@@ -246,10 +246,10 @@ class EmailTests: XCTestCase {
         do {
             // No error should be thrown when each personalization has a subject line.
             let personalizations = [
-                Personalization(to: [Address(emailAddress: "recipient1@example.com")], cc: nil, bcc: nil, subject: "Subject 1", headers: nil, substitutions: nil, customArguments: nil),
-                Personalization(to: [Address(emailAddress: "recipient2@example.com")], cc: nil, bcc: nil, subject: "Subject 2", headers: nil, substitutions: nil, customArguments: nil),
+                Personalization(to: [Address("recipient1@example.com")], cc: nil, bcc: nil, subject: "Subject 1", headers: nil, substitutions: nil, customArguments: nil),
+                Personalization(to: [Address("recipient2@example.com")], cc: nil, bcc: nil, subject: "Subject 2", headers: nil, substitutions: nil, customArguments: nil),
                 ]
-            let valid = Email(personalizations: personalizations, from: Address(emailAddress: "from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
+            let valid = Email(personalizations: personalizations, from: Address("from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
             try valid.validate()
             XCTAssertTrue(true)
         } catch {
@@ -262,7 +262,7 @@ class EmailTests: XCTestCase {
                 Personalization(recipients: "recipient1@example.com"),
                 Personalization(recipients: "recipient2@example.com")
             ]
-            let valid = Email(personalizations: personalizations, from: Address(emailAddress: "from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
+            let valid = Email(personalizations: personalizations, from: Address("from@example.com"), content: Content.emailContent(plain: "plain", html: "html"))
             valid.templateID = "696DC347-E82F-44EB-8CB1-59320BA1F136"
             try valid.validate()
             XCTAssertTrue(true)
@@ -355,7 +355,7 @@ class EmailTests: XCTestCase {
     
     func testReplyTo() {
         let email = self.generateBaseEmail()
-        email.replyTo = Address(emailAddress: "replyto@example.com")
+        email.replyTo = Address("replyto@example.com")
         XCTAssertEqual(email.replyTo?.email, "replyto@example.com")
         XCTAssertTrue(email.jsonValue!.contains("\"reply_to\":{\"email\":\"replyto@example.com\"}"))
     }
@@ -498,7 +498,7 @@ class EmailTests: XCTestCase {
             let creds = Session.shared
             creds.authentication = Authentication.apiKey("asdf")
             let expectation = self.expectation(description: "Test Send")
-            try creds.send(request: test, onComplete: { (response, error) in
+            try creds.send(request: test, completionHandler: { (response, error) in
                 XCTAssertTrue(true)
                 expectation.fulfill()
             })

@@ -54,7 +54,7 @@ class APIBlueprintTests: XCTestCase {
     func testInitWithRequest() {
         let request = Email(
             personalizations: [Personalization(recipients: "test@example.com")],
-            from: Address(emailAddress: "foo@bar.com"),
+            from: Address("foo@bar.com"),
             content: [Content(contentType: ContentType.plainText, value: "Hello World")],
             subject: "Hello World"
         )
@@ -75,7 +75,7 @@ class APIBlueprintTests: XCTestCase {
     func testInitWithResponse() {
         let request = Email(
             personalizations: [Personalization(recipients: "test@example.com")],
-            from: Address(emailAddress: "foo@bar.com"),
+            from: Address("foo@bar.com"),
             content: [Content(contentType: ContentType.plainText, value: "Hello World")],
             subject: "Hello World"
         )

@@ -19,9 +19,9 @@ public enum ContentDisposition: String {
     //=========================================================================
     
     /// The "inline" disposition, which shows the attachment inline with text.
-    case Inline     = "inline"
+    case inline
     
     /// The "attachment" disposition, which shows the attachment below the text.
-    case Attachment = "attachment"
+    case attachment
     
 }

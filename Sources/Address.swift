@@ -46,13 +46,24 @@ open class Address: JSONConvertible, Validatable {
      
      Initializes the address with an email address and an optional display name.
      
-     - parameter emailAddress:	The email address.
-     - parameter displayName:   An optional display name.
+     - parameter email: The email address.
+     - parameter name:  An optional display name.
      
      */
-    public init(emailAddress: String, displayName: String? = nil) {
-        self.email = emailAddress
-        self.name = displayName
+    public init(email: String, name: String?) {
+        self.email = email
+        self.name = name
+    }
+    
+    /**
+     
+     Initializes the address with a String representing the email address.
+     
+     - parameter email: The email address.
+     
+     */
+    public convenience init(_ email: String) {
+        self.init(email: email, name: nil)
     }
     
     // MARK: - Methods

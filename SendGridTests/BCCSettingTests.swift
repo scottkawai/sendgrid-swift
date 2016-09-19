@@ -22,12 +22,12 @@ class BCCSettingTests: XCTestCase {
     }
     
     func testInitialization() {
-        let good = BCCSetting(enable: true, email: Address(emailAddress: "test@example.com"))
+        let good = BCCSetting(enable: true, email: Address("test@example.com"))
         XCTAssertTrue(good.enable)
         XCTAssertEqual(good.email.email, "test@example.com")
         
         do {
-            let bad = BCCSetting(enable: false, email: Address(emailAddress: "test"))
+            let bad = BCCSetting(enable: false, email: Address("test"))
             try bad.validate()
             XCTFail("Expected a failure when initializing the BCC setting with a malformed email, but no error was thrown.")
         } catch {
@@ -36,7 +36,7 @@ class BCCSettingTests: XCTestCase {
     }
     
     func testJSONValue() {
-        let bcc = BCCSetting(enable: false, email: Address(emailAddress: "test@example.com"))
+        let bcc = BCCSetting(enable: false, email: Address("test@example.com"))
         XCTAssertEqual(bcc.jsonValue, "{\"bcc\":{\"email\":\"test@example.com\",\"enable\":false}}")
     }
     

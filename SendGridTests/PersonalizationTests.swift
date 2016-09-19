@@ -26,7 +26,7 @@ class PersonalizationTests: XCTestCase {
         for i in 0..<amount {
             let number = i + 1
             let email = "\(prefix.lowercased())\(number)@example.com"
-            list.append(Address(emailAddress: email))
+            list.append(Address(email))
         }
         return list
     }
@@ -99,7 +99,7 @@ class PersonalizationTests: XCTestCase {
         
         do {
             let cc = self.generateExample()
-            cc.cc = [Address(emailAddress: "cc")]
+            cc.cc = [Address("cc")]
             try cc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
@@ -108,7 +108,7 @@ class PersonalizationTests: XCTestCase {
         
         do {
             let bcc = self.generateExample()
-            bcc.bcc = [Address(emailAddress: "bcc")]
+            bcc.bcc = [Address("bcc")]
             try bcc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
