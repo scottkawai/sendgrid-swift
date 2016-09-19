@@ -344,7 +344,7 @@ class EmailTests: XCTestCase {
     
     func testBaseJSONValue() {
         let email = self.generateBaseEmail()
-        XCTAssertEqual(email.jsonValue, "{\"subject\":\"Hello World\",\"content\":[{\"value\":\"plain\",\"type\":\"text\\/plain\"}],\"personalizations\":[{\"to\":[{\"email\":\"test0@example.com\"}]}],\"from\":{\"email\":\"from@example.com\"}}")
+        XCTAssertEqual(email.jsonValue, "{\"from\":{\"email\":\"from@example.com\"},\"content\":[{\"type\":\"text\\/plain\",\"value\":\"plain\"}],\"personalizations\":[{\"to\":[{\"email\":\"test0@example.com\"}]}],\"subject\":\"Hello World\"}")
     }
     
     func testSubject() {
@@ -495,7 +495,7 @@ class EmailTests: XCTestCase {
         }
         
         do {
-            let creds = Session.sharedInstance
+            let creds = Session.shared
             creds.authentication = Authentication.apiKey("asdf")
             let expectation = self.expectation(description: "Test Send")
             try creds.send(test, onComplete: { (response, error) in

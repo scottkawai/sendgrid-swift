@@ -40,7 +40,7 @@ class SpamCheckerTests: XCTestCase {
         
         let url = URL(string: "http://localhost")
         let advance = SpamChecker(enable: false, threshold: 8, url: url)
-        XCTAssertEqual(advance.jsonValue, "{\"spam_check\":{\"threshold\":8,\"post_to_url\":\"http:\\/\\/localhost\",\"enable\":false}}")
+        XCTAssertEqual(advance.jsonValue, "{\"spam_check\":{\"post_to_url\":\"http:\\/\\/localhost\",\"threshold\":8,\"enable\":false}}")
     }
     
     func testValidation() {

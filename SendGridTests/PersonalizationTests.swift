@@ -184,10 +184,10 @@ class PersonalizationTests: XCTestCase {
         XCTAssertEqual(simple.jsonValue, "{\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}]}")
         let now = Date()
         simple.sendAt = now
-        XCTAssertEqual(simple.jsonValue, "{\"send_at\":\(Int(now.timeIntervalSince1970)),\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}]}")
+        XCTAssertEqual(simple.jsonValue, "{\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}],\"send_at\":\(Int(now.timeIntervalSince1970))}")
         
         let complex = self.generateExample(false)
-        XCTAssertEqual(complex.jsonValue, "{\"subject\":\"This is a test\",\"headers\":{\"X-Test\":\"Pass\"},\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}],\"bcc\":[{\"email\":\"blind_copy1@example.com\"},{\"email\":\"blind_copy2@example.com\"}],\"substitutions\":{\"%foo%\":\"%bar%\"},\"custom_args\":{\"uid\":\"12345\"},\"cc\":[{\"email\":\"copy1@example.com\"},{\"email\":\"copy2@example.com\"}]}")
+        XCTAssertEqual(complex.jsonValue, "{\"headers\":{\"X-Test\":\"Pass\"},\"custom_args\":{\"uid\":\"12345\"},\"bcc\":[{\"email\":\"blind_copy1@example.com\"},{\"email\":\"blind_copy2@example.com\"}],\"cc\":[{\"email\":\"copy1@example.com\"},{\"email\":\"copy2@example.com\"}],\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}],\"substitutions\":{\"%foo%\":\"%bar%\"},\"subject\":\"This is a test\"}")
     }
     
 }

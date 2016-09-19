@@ -35,7 +35,7 @@ class ContentTests: XCTestCase {
     
     func testJSONValue() {
         let c = Content(contentType: .other("application/json"), value: "{}")
-        XCTAssertEqual(c.jsonValue, "{\"value\":\"{}\",\"type\":\"application\\/json\"}")
+        XCTAssertEqual(c.jsonValue, "{\"type\":\"application\\/json\",\"value\":\"{}\"}")
     }
     
     func testClassInitializers() {

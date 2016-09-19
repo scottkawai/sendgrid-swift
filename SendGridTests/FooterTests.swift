@@ -30,7 +30,7 @@ class FooterTests: XCTestCase {
     
     func testJSONValue() {
         let foot = Footer(enable: false, text: "A footer", html: "<h1>A footer</h1>")
-        XCTAssertEqual(foot.jsonValue, "{\"footer\":{\"html\":\"<h1>A footer<\\/h1>\",\"text\":\"A footer\",\"enable\":false}}")
+        XCTAssertEqual(foot.jsonValue, "{\"footer\":{\"text\":\"A footer\",\"html\":\"<h1>A footer<\\/h1>\",\"enable\":false}}")
     }
 
 }

@@ -49,7 +49,7 @@ class AddressTests: XCTestCase {
         let address1 = Address(emailAddress: "test1@example.com")
         let address2 = Address(emailAddress: "test2@example.com", displayName: "Test Two")
         XCTAssertEqual(address1.jsonValue, "{\"email\":\"test1@example.com\"}")
-        XCTAssertEqual(address2.jsonValue, "{\"email\":\"test2@example.com\",\"name\":\"Test Two\"}")
+        XCTAssertEqual(address2.jsonValue, "{\"name\":\"Test Two\",\"email\":\"test2@example.com\"}")
     }
     
 }

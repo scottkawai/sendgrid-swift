@@ -56,13 +56,13 @@ class SubscriptionTrackingTests: XCTestCase {
     
     func testJSONValue() {
         let basic = SubscriptionTracking(enable: true)
-        XCTAssertEqual(basic.jsonValue, "{\"subscription_tracking\":{\"html\":\"<p>If you would like to unsubscribe and stop receiving these emails <% click here %>.<\\/p>\",\"text\":\"If you would like to unsubscribe and stop receiving these emails click here: <% %>.\",\"enable\":true}}")
+        XCTAssertEqual(basic.jsonValue, "{\"subscription_tracking\":{\"text\":\"If you would like to unsubscribe and stop receiving these emails click here: <% %>.\",\"html\":\"<p>If you would like to unsubscribe and stop receiving these emails <% click here %>.<\\/p>\",\"enable\":true}}")
         
         let complex = SubscriptionTracking(enable: false, plainText: Constants.SubscriptionTracking.DefaultPlainText, HTML: Constants.SubscriptionTracking.DefaultHTMLText, substitutionTag: "%unsub%")
-        XCTAssertEqual(complex.jsonValue, "{\"subscription_tracking\":{\"enable\":false,\"substitution_tag\":\"%unsub%\",\"text\":\"If you would like to unsubscribe and stop receiving these emails click here: <% %>.\",\"html\":\"<p>If you would like to unsubscribe and stop receiving these emails <% click here %>.<\\/p>\"}}")
+        XCTAssertEqual(complex.jsonValue, "{\"subscription_tracking\":{\"substitution_tag\":\"%unsub%\",\"html\":\"<p>If you would like to unsubscribe and stop receiving these emails <% click here %>.<\\/p>\",\"enable\":false,\"text\":\"If you would like to unsubscribe and stop receiving these emails click here: <% %>.\"}}")
         
         let custom = SubscriptionTracking(enable: true, plainText: "Unsubscribe: <% %>", HTML: "<% Unsubscribe %>", substitutionTag: nil)
-        XCTAssertEqual(custom.jsonValue, "{\"subscription_tracking\":{\"html\":\"<% Unsubscribe %>\",\"text\":\"Unsubscribe: <% %>\",\"enable\":true}}")
+        XCTAssertEqual(custom.jsonValue, "{\"subscription_tracking\":{\"text\":\"Unsubscribe: <% %>\",\"html\":\"<% Unsubscribe %>\",\"enable\":true}}")
     }
     
 }

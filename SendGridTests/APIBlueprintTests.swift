@@ -64,7 +64,7 @@ class APIBlueprintTests: XCTestCase {
         XCTAssertEqual(blue.contentType.description, "application/json")
         XCTAssertEqual(blue.type.rawValue, "Request")
         XCTAssertNil(blue.statusCode)
-        XCTAssertEqual(blue.body, "{\n  \"subject\" : \"Hello World\",\n  \"content\" : [\n    {\n      \"value\" : \"Hello World\",\n      \"type\" : \"text\\/plain\"\n    }\n  ],\n  \"personalizations\" : [\n    {\n      \"to\" : [\n        {\n          \"email\" : \"test@example.com\"\n        }\n      ]\n    }\n  ],\n  \"from\" : {\n    \"email\" : \"foo@bar.com\"\n  }\n}")
+        XCTAssertEqual(blue.body, "{\n  \"from\" : {\n    \"email\" : \"foo@bar.com\"\n  },\n  \"content\" : [\n    {\n      \"type\" : \"text\\/plain\",\n      \"value\" : \"Hello World\"\n    }\n  ],\n  \"personalizations\" : [\n    {\n      \"to\" : [\n        {\n          \"email\" : \"test@example.com\"\n        }\n      ]\n    }\n  ],\n  \"subject\" : \"Hello World\"\n}")
         
         let getRequest = RequestTests.Foo()
         let getBlue = APIBlueprint(request: getRequest)

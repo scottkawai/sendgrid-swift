@@ -127,7 +127,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
     open var method: HTTPMethod { return .POST }
     
     /// The parameters sent with the API request.
-    open var parameters: Any? { return self.dictionaryValue }
+    open var parameters: [AnyHashable:Any]? { return self.dictionaryValue }
     
     /// The dictionary representation of the email.
     open var dictionaryValue: [AnyHashable: Any] {

@@ -22,7 +22,7 @@ public protocol Request: HTTPMessage, CustomStringConvertible, Validatable {
     var acceptType: ContentType { get }
     
     /// The parameters that should be sent with the API request.
-    var parameters: Any? { get }
+    var parameters: [AnyHashable:Any]? { get }
     
     
     // MARK: - Methods

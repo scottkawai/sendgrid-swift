@@ -48,10 +48,10 @@ class AttachmentTests: XCTestCase {
     func testJSONValue() {
         if let image = self.image {
             let basic = Attachment(filename: "dot.png", content: image)
-            XCTAssertEqual(basic.jsonValue, "{\"disposition\":\"attachment\",\"content\":\"\(self.dotBase64)\",\"filename\":\"dot.png\"}")
+            XCTAssertEqual(basic.jsonValue, "{\"content\":\"iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4\\/\\/8\\/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\",\"filename\":\"dot.png\",\"disposition\":\"attachment\"}")
             
             let advance = Attachment(filename: "dot_inline.png", content: image, disposition: ContentDisposition.Inline, type: ContentType.png, contentID: "dot")
-            XCTAssertEqual(advance.jsonValue, "{\"disposition\":\"inline\",\"content\":\"\(self.dotBase64)\",\"filename\":\"dot_inline.png\",\"type\":\"image\\/png\",\"content_id\":\"dot\"}")
+            XCTAssertEqual(advance.jsonValue, "{\"content\":\"iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4\\/\\/8\\/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\",\"filename\":\"dot_inline.png\",\"type\":\"image\\/png\",\"disposition\":\"inline\",\"content_id\":\"dot\"}")
         } else {
             XCTFail("Unable to locate `dot.png` file to run Attachment tests.")
         }

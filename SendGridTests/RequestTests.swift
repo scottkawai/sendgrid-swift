@@ -17,7 +17,7 @@ class RequestTests: XCTestCase {
         
         var messageHeaders: [String : String] = [:]
         
-        var parameters: Any? = ["q":"1"]
+        var parameters: [AnyHashable:Any]? = ["q":"1"]
         
         func requestForSession(_ session: Session, onBehalfOf: String?) throws -> URLRequest {
             return URLRequest(url: URL(fileURLWithPath: "/foo"))

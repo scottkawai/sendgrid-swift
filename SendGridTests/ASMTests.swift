@@ -36,7 +36,7 @@ class ASMTests: XCTestCase {
         XCTAssertEqual(basic.jsonValue, "{\"asm\":{\"group_id\":4}}")
         
         let advance = ASM(groupID: 4, groupsToDisplay: [8, 15, 16, 23, 42])
-        XCTAssertEqual(advance.jsonValue, "{\"asm\":{\"groups_to_display\":[8,15,16,23,42],\"group_id\":4}}")
+        XCTAssertEqual(advance.jsonValue, "{\"asm\":{\"group_id\":4,\"groups_to_display\":[8,15,16,23,42]}}")
     }
     
     func testValidation() {

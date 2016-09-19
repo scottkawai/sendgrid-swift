@@ -33,12 +33,7 @@ open class Session {
      A shared singleton instance of SGSession.  Using the shared instance allows you to configure it once with the desired authentication method, and then continually reuse it without the need for re-configuration.
      
      */
-    open class var sharedInstance : Session {
-        struct Static {
-            static let instance : Session = Session()
-        }
-        return Static.instance
-    }
+    open static let shared: Session = Session()
     
     
     /**

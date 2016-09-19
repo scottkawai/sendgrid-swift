@@ -77,14 +77,14 @@ open class APIBlueprint: CustomStringConvertible {
      - parameter statusCode:     The status code of the response.
      
      */
-    public convenience init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: Any?, statusCode status: Int?) {
+    public convenience init(method aMethod: HTTPMethod, location aLocation: String, contentType aContentType: ContentType, type aType: MessageType, headers someHeaders: [String : String]?, parameters: [AnyHashable:Any]?, statusCode status: Int?) {
         var content: String?
         if let params = parameters , aMethod.hasBody {
             switch aContentType {
             case .formUrlEncoded:
                 content = ParameterEncoding.formUrlEncodedString(params: params)
             case .json:
-                content = ParameterEncoding.jsonString(params: params)
+                content = ParameterEncoding.jsonString(params: params, prettyPrint: true)
             default:
                 content = nil
             }
