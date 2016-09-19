@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class RequestTests: XCTestCase {
     
@@ -16,10 +17,10 @@ class RequestTests: XCTestCase {
         
         var messageHeaders: [String : String] = [:]
         
-        var parameters: AnyObject? = ["q":"1"]
+        var parameters: [AnyHashable:Any]? = ["q":"1"]
         
-        func requestForSession(session: Session, onBehalfOf: String?) throws -> NSMutableURLRequest {
-            return NSMutableURLRequest()
+        func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
+            return URLRequest(url: URL(fileURLWithPath: "/foo"))
         }
         
         func validate() throws {}
@@ -42,10 +43,10 @@ class RequestTests: XCTestCase {
         XCTAssertEqual(bar.method.rawValue, HTTPMethod.GET.rawValue)
         
         // Default Content-Type is form URL encoded.
-        XCTAssertEqual(bar.contentType.description, ContentType.FormUrlEncoded.description)
+        XCTAssertEqual(bar.contentType.description, ContentType.formUrlEncoded.description)
         
         // Default accept type is JSON.
-        XCTAssertEqual(bar.acceptType.description, ContentType.JSON.description)
+        XCTAssertEqual(bar.acceptType.description, ContentType.json.description)
         
         // Default description should be an API blueprint.
         XCTAssertEqual(bar.description, "# GET /foo/bar?q=1\n\n+ Request (application/x-www-form-urlencoded)")

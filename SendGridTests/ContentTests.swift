@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class ContentTests: XCTestCase {
 
@@ -21,42 +22,42 @@ class ContentTests: XCTestCase {
     }
 
     func testInitialization() {
-        let c = Content(contentType: .PlainText, value: "Hello World")
+        let c = Content(contentType: .plainText, value: "Hello World")
         XCTAssertEqual(c.type.description, "text/plain")
         XCTAssertEqual(c.value, "Hello World")
     }
     
     func testDictionaryValue() {
-        let c = Content(contentType: .HTMLText, value: "<h1>Hello World</h1>")
+        let c = Content(contentType: .htmlText, value: "<h1>Hello World</h1>")
         XCTAssertEqual(c.dictionaryValue["type"] as? String, "text/html")
         XCTAssertEqual(c.dictionaryValue["value"] as? String, "<h1>Hello World</h1>")
     }
     
     func testJSONValue() {
-        let c = Content(contentType: .Other("application/json"), value: "{}")
-        XCTAssertEqual(c.jsonValue, "{\"value\":\"{}\",\"type\":\"application\\/json\"}")
+        let c = Content(contentType: .other("application/json"), value: "{}")
+        XCTAssertEqual(c.jsonValue, "{\"type\":\"application\\/json\",\"value\":\"{}\"}")
     }
     
     func testClassInitializers() {
         let plain = Content.plainTextContent("plain")
-        XCTAssertEqual(plain.type.description, ContentType.PlainText.description)
+        XCTAssertEqual(plain.type.description, ContentType.plainText.description)
         XCTAssertEqual(plain.value, "plain")
         
         let html = Content.htmlContent("html")
-        XCTAssertEqual(html.type.description, ContentType.HTMLText.description)
+        XCTAssertEqual(html.type.description, ContentType.htmlText.description)
         XCTAssertEqual(html.value, "html")
         
         let both = Content.emailContent(plain: "plain", html: "html")
         XCTAssertEqual(both.count, 2)
         XCTAssertEqual(both[0].value, "plain")
-        XCTAssertEqual(both[0].type.description, ContentType.PlainText.description)
+        XCTAssertEqual(both[0].type.description, ContentType.plainText.description)
         XCTAssertEqual(both[1].value, "html")
-        XCTAssertEqual(both[1].type.description, ContentType.HTMLText.description)
+        XCTAssertEqual(both[1].type.description, ContentType.htmlText.description)
     }
     
     func testValidation() {
         do {
-            let html = Content(contentType: .JPEG, value: "test")
+            let html = Content(contentType: .jpeg, value: "test")
             try html.validate()
             XCTAssertTrue(true)
         } catch {
@@ -64,35 +65,35 @@ class ContentTests: XCTestCase {
         }
         
         do {
-            let semicolon = Content(contentType: .Other("application;json"), value: "{}")
+            let semicolon = Content(contentType: .other("application;json"), value: "{}")
             try semicolon.validate()
             XCTFail("Expected error to be thrown when a content type has a semicolon, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.InvalidContentType("application;json").description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("application;json").description)
         }
         
         do {
-            let nl = Content(contentType: .Other("application\n\rjson"), value: "{}")
+            let nl = Content(contentType: .other("application\n\rjson"), value: "{}")
             try nl.validate()
             XCTFail("Expected error to be thrown when a content type has a newline, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.InvalidContentType("application\n\rjson").description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("application\n\rjson").description)
         }
         
         do {
-            let nl = Content(contentType: .Other(""), value: "{}")
+            let nl = Content(contentType: .other(""), value: "{}")
             try nl.validate()
             XCTFail("Expected error to be thrown when a content type is an empty string, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.InvalidContentType("").description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidContentType("").description)
         }
         
         do {
-            let empty = Content(contentType: .PlainText, value: "")
+            let empty = Content(contentType: .plainText, value: "")
             try empty.validate()
             XCTFail("Expected an empty content value to throw an error, but no error was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.ContentHasEmptyString.description)
+            XCTAssertEqual("\(error)", SGError.Mail.contentHasEmptyString.description)
         }
     }
 

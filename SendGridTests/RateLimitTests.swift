@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class RateLimitTests: XCTestCase {
     
@@ -21,15 +22,15 @@ class RateLimitTests: XCTestCase {
     }
     
     func testStaticInitializer() {
-        let url = NSURL()
+        let url = URL(fileURLWithPath: "/foo")
         let headers: [String:String] = [
             "X-RateLimit-Limit": "500",
             "X-RateLimit-Remaining": "499",
             "X-RateLimit-Reset": "1466435354"
         ]
-        let response = NSHTTPURLResponse(URL: url, statusCode: 200, HTTPVersion: nil, headerFields: headers)
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
         
-        guard let info = RateLimit.rateLimitInfoFromUrlResponse(response) else
+        guard let info = RateLimit.rateLimitInfo(from: response) else
         {
             XCTFail("Received `nil` from Rate limit initializer.")
             return

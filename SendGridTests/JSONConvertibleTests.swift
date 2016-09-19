@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class JSONConvertibleTests: XCTestCase {
 
@@ -22,14 +23,14 @@ class JSONConvertibleTests: XCTestCase {
 
     func testSerialization() {
         struct Good: JSONConvertible {
-            private var dictionaryValue: [NSObject : AnyObject] {
+            fileprivate var dictionaryValue: [AnyHashable: Any] {
                 return ["foo":"bar"]
             }
         }
         
         struct Bad: JSONConvertible {
-            private var dictionaryValue: [NSObject : AnyObject] {
-                return ["test":NSDate()]
+            fileprivate var dictionaryValue: [AnyHashable: Any] {
+                return ["test":Date()]
             }
         }
         

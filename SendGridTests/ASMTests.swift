@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class ASMTests: XCTestCase {
     
@@ -35,7 +36,7 @@ class ASMTests: XCTestCase {
         XCTAssertEqual(basic.jsonValue, "{\"asm\":{\"group_id\":4}}")
         
         let advance = ASM(groupID: 4, groupsToDisplay: [8, 15, 16, 23, 42])
-        XCTAssertEqual(advance.jsonValue, "{\"asm\":{\"groups_to_display\":[8,15,16,23,42],\"group_id\":4}}")
+        XCTAssertEqual(advance.jsonValue, "{\"asm\":{\"group_id\":4,\"groups_to_display\":[8,15,16,23,42]}}")
     }
     
     func testValidation() {
@@ -48,7 +49,7 @@ class ASMTests: XCTestCase {
             try over.validate()
             XCTFail("Expected an error to be thrown when `ASM` is provided more than \(Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups) groups to display, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.TooManyUnsubscribeGroups.description)
+            XCTAssertEqual("\(error)", SGError.Mail.tooManyUnsubscribeGroups.description)
         }
     }
 }

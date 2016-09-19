@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 class PersonalizationTests: XCTestCase {
     
@@ -20,17 +21,17 @@ class PersonalizationTests: XCTestCase {
         super.tearDown()
     }
     
-    func generateRecipients(amount: Int = 1, prefix: String = "person") -> [Address] {
+    func generateRecipients(_ amount: Int = 1, prefix: String = "person") -> [Address] {
         var list: [Address] = []
         for i in 0..<amount {
             let number = i + 1
-            let email = "\(prefix.lowercaseString)\(number)@example.com"
-            list.append(Address(emailAddress: email))
+            let email = "\(prefix.lowercased())\(number)@example.com"
+            list.append(Address(email))
         }
         return list
     }
     
-    func generateExample(isSimple: Bool = true) -> Personalization {
+    func generateExample(_ isSimple: Bool = true) -> Personalization {
         let recipients = self.generateRecipients(2, prefix: "recipient")
         if isSimple {
             return Personalization(to: recipients)
@@ -93,25 +94,25 @@ class PersonalizationTests: XCTestCase {
             try missing.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MissingRecipients.description)
+            XCTAssertEqual("\(error)", SGError.Mail.missingRecipients.description)
         }
         
         do {
             let cc = self.generateExample()
-            cc.cc = [Address(emailAddress: "cc")]
+            cc.cc = [Address("cc")]
             try cc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("cc").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("cc").description)
         }
         
         do {
             let bcc = self.generateExample()
-            bcc.bcc = [Address(emailAddress: "bcc")]
+            bcc.bcc = [Address("bcc")]
             try bcc.validate()
             XCTFail("Expected error to be thrown when providing an empty array of to addresses, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("bcc").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("bcc").description)
         }
         
         do {
@@ -119,29 +120,29 @@ class PersonalizationTests: XCTestCase {
             try badTo.validate()
             XCTFail("Expected error to be thrown when providing a malformed email address, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.MalformedEmailAddress("test").description)
+            XCTAssertEqual("\(error)", SGError.Mail.malformedEmailAddress("test").description)
         }
         
         let test = self.generateExample()
         XCTAssertNil(test.sendAt)
-        let goodDate = NSDate(timeIntervalSinceNow: 4 * 60 * 60)
+        let goodDate = Date(timeIntervalSinceNow: 4 * 60 * 60)
         test.sendAt = goodDate
         do {
             try test.validate()
             XCTAssertEqual(test.sendAt?.timeIntervalSince1970, goodDate.timeIntervalSince1970)
-            XCTAssertTrue(test.jsonValue!.containsString("\"send_at\":\(Int(goodDate.timeIntervalSince1970))"))
+            XCTAssertTrue(test.jsonValue!.contains("\"send_at\":\(Int(goodDate.timeIntervalSince1970))"))
         } catch {
             XCTFail("Unexpected failure when scheduling with a date under 72 hours.")
         }
         
         let failTest = self.generateExample()
-        let badDate = NSDate(timeIntervalSinceNow: 80 * 60 * 60)
+        let badDate = Date(timeIntervalSinceNow: 80 * 60 * 60)
         failTest.sendAt = badDate
         do {
             try failTest.validate()
             XCTFail("Expected a failure when scheduling a date further than 72 hours out, but nothing was thrown.")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.InvalidScheduleDate.description)
+            XCTAssertEqual("\(error)", SGError.Mail.invalidScheduleDate.description)
         }
         
         do {
@@ -153,7 +154,7 @@ class PersonalizationTests: XCTestCase {
             try bad.validate()
             XCTFail("Expected error to be thrown when using a reserved header, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.HeaderNotAllowed("bcc").description)
+            XCTAssertEqual("\(error)", SGError.Mail.headerNotAllowed("bcc").description)
         }
         
         do {
@@ -174,19 +175,19 @@ class PersonalizationTests: XCTestCase {
             try tooManySubs.validate()
             XCTFail("Expected failure when there are more than \(Constants.SubstitutionLimit) substitutions, but nothing was thrown")
         } catch {
-            XCTAssertEqual("\(error)", Error.Mail.TooManySubstitutions.description)
+            XCTAssertEqual("\(error)", SGError.Mail.tooManySubstitutions.description)
         }
     }
     
     func testJSONValue() {
         let simple = self.generateExample()
         XCTAssertEqual(simple.jsonValue, "{\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}]}")
-        let now = NSDate()
+        let now = Date()
         simple.sendAt = now
-        XCTAssertEqual(simple.jsonValue, "{\"send_at\":\(Int(now.timeIntervalSince1970)),\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}]}")
+        XCTAssertEqual(simple.jsonValue, "{\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}],\"send_at\":\(Int(now.timeIntervalSince1970))}")
         
         let complex = self.generateExample(false)
-        XCTAssertEqual(complex.jsonValue, "{\"subject\":\"This is a test\",\"headers\":{\"X-Test\":\"Pass\"},\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}],\"bcc\":[{\"email\":\"blind_copy1@example.com\"},{\"email\":\"blind_copy2@example.com\"}],\"substitutions\":{\"%foo%\":\"%bar%\"},\"custom_args\":{\"uid\":\"12345\"},\"cc\":[{\"email\":\"copy1@example.com\"},{\"email\":\"copy2@example.com\"}]}")
+        XCTAssertEqual(complex.jsonValue, "{\"headers\":{\"X-Test\":\"Pass\"},\"custom_args\":{\"uid\":\"12345\"},\"bcc\":[{\"email\":\"blind_copy1@example.com\"},{\"email\":\"blind_copy2@example.com\"}],\"cc\":[{\"email\":\"copy1@example.com\"},{\"email\":\"copy2@example.com\"}],\"to\":[{\"email\":\"recipient1@example.com\"},{\"email\":\"recipient2@example.com\"}],\"substitutions\":{\"%foo%\":\"%bar%\"},\"subject\":\"This is a test\"}")
     }
     
 }
