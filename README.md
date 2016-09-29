@@ -111,9 +111,9 @@ Here is an advanced example of using personalizations:
 ```swift
 // Send an advanced example
 let recipients = [
-    Address("jose@example.none", displayName: "Jose"),
-    Address("isaac@example.none", displayName: "Isaac"),
-    Address("tim@example.none", displayName: "Tim")
+    Address(email: "jose@example.none", name: "Jose"),
+    Address(email: "isaac@example.none", name: "Isaac"),
+    Address(email: "tim@example.none", name: "Tim")
 ]
 let personalizations = recipients.map { (recipient) -> Personalization in
     let name = recipient.name ?? "there"

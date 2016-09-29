@@ -71,7 +71,7 @@ open class Response: HTTPMessage, CustomStringConvertible {
     /// Returns the JSON representation of the `data` property, if able.
     open var jsonValue: [AnyHashable:Any]? {
         guard let d = self.data else { return nil }
-        return try! JSONSerialization.jsonObject(with: d, options: []) as? [AnyHashable:Any]
+        return (try? JSONSerialization.jsonObject(with: d, options: [])) as? [AnyHashable:Any]
     }
     
     /// Returns an API Blueprint of the response as a String.
