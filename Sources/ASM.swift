@@ -37,9 +37,7 @@ open class ASM: JSONConvertible, Validatable {
         if let groups = self.groupsToDisplay, groups.count > 0 {
             hash["groups_to_display"] = groups
         }
-        return [
-            "asm": hash
-        ]
+        return hash
     }
     
     
