@@ -146,7 +146,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         if let reply = self.replyTo {
             hash["reply_to"] = reply.dictionaryValue
         }
-        if let files = self.attachments {
+        if let files = self.attachments, files.count > 0 {
             hash["attachments"] = files.map({ (file) -> [AnyHashable: Any] in
                 return file.dictionaryValue
             })
@@ -182,7 +182,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         if let pool = self.ipPoolName , pool.characters.count > 0 {
             hash["ip_pool_name"] = pool
         }
-        if let ms = self.mailSettings {
+        if let ms = self.mailSettings, ms.count > 0 {
             hash["mail_settings"] = ms.reduce([AnyHashable: Any](), { (current, setting) -> [AnyHashable: Any] in
                 var updated = current
                 for (key, value) in setting.dictionaryValue {
@@ -191,7 +191,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
                 return updated
             })
         }
-        if let ts = self.trackingSettings {
+        if let ts = self.trackingSettings, ts.count > 0 {
             hash["tracking_settings"] = ts.reduce([AnyHashable: Any](), { (current, setting) -> [AnyHashable: Any] in
                 var updated = current
                 for (key, value) in setting.dictionaryValue {
