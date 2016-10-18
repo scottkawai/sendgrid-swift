@@ -30,7 +30,7 @@ open class Attachment: JSONConvertible, Validatable {
     /// The content-disposition of the attachment specifying how you would like the attachment to be displayed. For example, "inline" results in the attached file being displayed automatically within the message while "attachment" results in the attached file requiring some action to be taken before it is displayed (e.g. opening or downloading the file).
     open let disposition: ContentDisposition
     
-    /// A unique id that you specify for the attachment. This is used when the disposition is set to "inline" and the attachment is an image, allowing the file to be displayed within the body of your email. Ex: <img src="cid:ii_139db99fdb5c3704"></img>
+    /// A unique id that you specify for the attachment. This is used when the disposition is set to "inline" and the attachment is an image, allowing the file to be displayed within the body of your email. Ex: `<img src="cid:ii_139db99fdb5c3704"></img>`
     open let contentID: String?
     
     
@@ -65,8 +65,6 @@ open class Attachment: JSONConvertible, Validatable {
      - parameter disposition:   The content-disposition of the attachment (defaults to `ContentDisposition.Attachment`).
      - parameter type:          The content-type of the attachment.
      - parameter contentID:     The CID of the attachment, used to show the attachments inline with the body of the email.
-     
-     - returns: Return
      
      */
     public init(filename: String, content: Data, disposition: ContentDisposition = .attachment, type: ContentType? = nil, contentID: String? = nil) {
