@@ -88,9 +88,9 @@ public enum Authentication: CustomStringConvertible {
     public var description: String {
         switch self {
         case .credential(_,_):
-            return "credential"
+            return NSLocalizedString("credential", comment: "Authentication credential")
         case .apiKey(_):
-            return "API Key"
+            return NSLocalizedString("API Key", comment: "Authentication API Key")
         }
     }
 
