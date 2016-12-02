@@ -103,10 +103,8 @@ open class Content: JSONConvertible, Validatable {
      
      */
     open func validate() throws {
+        guard self.value.characters.count > 0 else { throw SGError.Mail.contentHasEmptyString }
         try self.type.validate()
-        if self.value.characters.count == 0 {
-            throw SGError.Mail.contentHasEmptyString
-        }
     }
     
 }

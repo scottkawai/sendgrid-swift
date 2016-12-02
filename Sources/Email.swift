@@ -234,14 +234,12 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
     open func validate() throws {
         
         // Check for correct amount of personalizations
-        if self.personalizations.count == 0 || self.personalizations.count > Constants.PersonalizationLimit {
+        guard (1...Constants.PersonalizationLimit).contains(self.personalizations.count) else {
             throw SGError.Mail.invalidNumberOfPersonalizations
         }
         
         // Check for content
-        if self.content.count == 0 {
-            throw SGError.Mail.missingContent
-        }
+        guard self.content.count > 0 else { throw SGError.Mail.missingContent }
         
         // Check for content order
         var isOrdered = true
@@ -251,9 +249,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
             isOrdered = isOrdered && (item.type.index >= previousIndex)
             previousIndex = item.type.index
         }
-        if !isOrdered {
-            throw SGError.Mail.invalidContentOrder
-        }
+        guard isOrdered else { throw SGError.Mail.invalidContentOrder }
         
         // Check for total number of recipients
         var totalRecipients: [String] = []
@@ -289,18 +285,14 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
             try per.validate()
         }
         
-        if totalRecipients.count > Constants.RecipientLimit {
-            throw SGError.Mail.tooManyRecipients
-        }
+        guard totalRecipients.count <= Constants.RecipientLimit else { throw SGError.Mail.tooManyRecipients }
         
         // Check for subject present
         if ((self.subject?.characters.count ?? 0) == 0) && self.templateID == nil {
             let subjectPresent = self.personalizations.reduce(true) { (hasSubject, person) -> Bool in
                 return hasSubject && ((person.subject?.characters.count ?? 0) > 0)
             }
-            if !subjectPresent {
-                throw SGError.Mail.missingSubject
-            }
+            guard subjectPresent else { throw SGError.Mail.missingSubject }
         }
         
         // Validate from address
@@ -316,11 +308,9 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
         
         // Validate the categories
         if let cats = self.categories {
-            if cats.count > Constants.Categories.TotalLimit {
-                throw SGError.Mail.tooManyCategories
-            }
+            guard cats.count <= Constants.Categories.TotalLimit else { throw SGError.Mail.tooManyCategories }
             for cat in cats {
-                if cat.characters.count > Constants.Categories.CharacterLimit {
+                guard cat.characters.count <= Constants.Categories.CharacterLimit else {
                     throw SGError.Mail.categoryTooLong(cat)
                 }
             }
@@ -335,7 +325,7 @@ open class Email: APIV3, Request, JSONConvertible, HeaderValidator, Scheduling {
                 }
             }
             let bytes = ParameterEncoding.jsonData(from: merged)?.count ?? 0
-            if bytes > Constants.CustomArguments.MaximumBytes {
+            guard bytes <= Constants.CustomArguments.MaximumBytes else {
                 throw SGError.Mail.tooManyCustomArguments(bytes, ParameterEncoding.jsonString(from: merged))
             }
         }

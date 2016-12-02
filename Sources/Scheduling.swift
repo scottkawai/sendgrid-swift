@@ -30,8 +30,8 @@ public extension Scheduling {
     
     /// The default implementation validates that the date is less than 72 hours in the future.
     public func validateSendAt() throws {
-        if let date = self.sendAt , date.timeIntervalSinceNow > Constants.ScheduleLimit {
-            throw SGError.Mail.invalidScheduleDate
+        if let date = self.sendAt {
+            guard date.timeIntervalSinceNow <= Constants.ScheduleLimit else { throw SGError.Mail.invalidScheduleDate }
         }
     }
 }

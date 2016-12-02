@@ -66,8 +66,10 @@ open class ASM: JSONConvertible, Validatable {
      
      */
     open func validate() throws {
-        if let display = self.groupsToDisplay , display.count > Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups {
-            throw SGError.Mail.tooManyUnsubscribeGroups
+        if let display = self.groupsToDisplay {
+            guard display.count <= Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups else {
+                throw SGError.Mail.tooManyUnsubscribeGroups
+            }
         }
     }
 }

@@ -42,10 +42,8 @@ open class Response: HTTPMessage, CustomStringConvertible {
     
     /// The HTTP status code abstracted from the urlResponse.
     open var statusCode: Int? {
-        if let http = self.httpResponse {
-            return http.statusCode
-        }
-        return nil
+        guard let http = self.httpResponse else { return nil }
+        return http.statusCode
     }
     
     /// The headers of the response.
@@ -76,8 +74,8 @@ open class Response: HTTPMessage, CustomStringConvertible {
     
     /// Returns an API Blueprint of the response as a String.
     open var description: String {
-        if let blueprint = APIBlueprint(response: self) { return blueprint.description }
-        return ""
+        guard let blueprint = APIBlueprint(response: self) else { return "" }
+        return blueprint.description
     }
     
     

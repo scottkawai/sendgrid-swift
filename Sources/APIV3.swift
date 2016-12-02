@@ -42,9 +42,16 @@ open class APIV3 {
      
      */
     open func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
-        guard let resource = self as? Request else { throw SGError.Request.nonConformingRequest(type(of: self)) }
+        guard let header = session.authentication?.authorizationHeader else {
+            throw SGError.Request.authorizationHeaderError
+        }
+        guard let resource = self as? Request else {
+            throw SGError.Request.nonConformingRequest(type(of: self))
+        }
+        guard let location = URL(string: session.host)?.appendingPathComponent(resource.endpoint) else {
+            throw SGError.Request.unableToConstructUrl
+        }
         
-        guard let location = URL(string: session.host)?.appendingPathComponent(resource.endpoint) else { throw SGError.Request.unableToConstructUrl }
         var request = URLRequest(url: location)
         
         for (key, value) in resource.messageHeaders {
@@ -76,13 +83,9 @@ open class APIV3 {
             }
         }
         
-        guard let header = session.authentication?.authorizationHeader else {
-            throw SGError.Request.authorizationHeaderError
-        }
-        
         request.addValue(header, forHTTPHeaderField: "Authorization")
         request.addValue("sendgrid/\(Constants.Version);swift", forHTTPHeaderField: "User-Agent")
-        
+
         return request
     }
 }
