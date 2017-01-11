@@ -33,9 +33,14 @@ public extension SGError {
         public var description: String {
             switch self {
             case .authenticationMissing:
-                return "Could not make an HTTP request as there was no `Authentication` configured on `Session`. Please set the `authentication` property before calling `send` on `Session`."
-            case .authenticationTypeNotAllowed(let obj, let auth):
-                return "The `\(obj)` class does not allow authentication with \(auth)s. Please try using another Authentication type."
+                return NSLocalizedString(
+                    "Could not make an HTTP request as there was no `Authentication` configured on `Session`. Please set the `authentication` property before calling `send` on `Session`.",
+                    comment: "Authentication missing")
+                
+            case .authenticationTypeNotAllowed(let object, let authType):
+                return String(format: NSLocalizedString(
+                    "The `%@` class does not allow authentication with %@s. Please try using another Authentication type.",
+                    comment: "Authentication type not allowed"), String(describing: object), String(describing: authType))
             }
         }
     }
