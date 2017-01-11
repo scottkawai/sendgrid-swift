@@ -131,7 +131,7 @@ open class Personalization: JSONConvertible, Validatable, HeaderValidator, Sched
      
      */
     open func validate() throws {
-        if self.to.count <= 0 { throw SGError.Mail.missingRecipients }
+        guard self.to.count > 0 else { throw SGError.Mail.missingRecipients }
         for t in self.to {
             try t.validate()
         }
@@ -145,16 +145,16 @@ open class Personalization: JSONConvertible, Validatable, HeaderValidator, Sched
                 try b.validate()
             }
         }
-        if let s = self.subject , s.characters.count == 0 {
-            throw SGError.Mail.missingSubject
+        if let s = self.subject {
+            guard s.characters.count > 0 else { throw SGError.Mail.missingSubject }
         }
 
         if let head = self.headers {
             try self.validate(headers: head)
         }
         
-        if let sub = self.substitutions , sub.count > Constants.SubstitutionLimit {
-            throw SGError.Mail.tooManySubstitutions
+        if let sub = self.substitutions {
+            guard sub.count <= Constants.SubstitutionLimit else { throw SGError.Mail.tooManySubstitutions }
         }
         
         try self.validateSendAt()

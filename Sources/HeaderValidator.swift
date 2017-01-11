@@ -59,11 +59,9 @@ public extension HeaderValidator {
             "bcc"
         ]
         for (key, _) in headers {
-            if let _ = reserved.index(of: key.lowercased()) {
-                throw SGError.Mail.headerNotAllowed(key)
-            }
+            guard reserved.index(of: key.lowercased()) == nil else { throw SGError.Mail.headerNotAllowed(key) }
             let regex = try NSRegularExpression(pattern: "(\\s)", options: [.caseInsensitive, .anchorsMatchLines])
-            if regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.characters.count)) > 0 {
+            guard regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.characters.count)) == 0 else {
                 throw SGError.Mail.malformedHeader(key)
             }
         }

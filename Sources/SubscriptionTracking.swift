@@ -94,7 +94,8 @@ open class SubscriptionTracking: Setting, TrackingSetting, Validatable {
      
      */
     open func validate() throws {
-        if !Validator.subscriptionTrackingText(self.text).valid || !Validator.subscriptionTrackingText(self.html).valid {
+        guard Validator.subscriptionTrackingText(self.text).valid
+            && Validator.subscriptionTrackingText(self.html).valid else {
             throw SGError.Mail.missingSubscriptionTrackingTag
         }
     }

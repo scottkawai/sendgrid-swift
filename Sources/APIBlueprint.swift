@@ -173,16 +173,10 @@ open class APIBlueprint: CustomStringConvertible {
             self.section
         ]
         if let head = self.headerInfo {
-            contents += [
-                "    + Headers",
-                head
-            ]
+            contents += [ "    + Headers", head ]
         }
         if let b = self.bodyInfo {
-            contents += [
-                "    + Body",
-                b
-            ]
+            contents += [ "    + Body", b ]
         }
         return contents.joined(separator: "\n\n")
     }
