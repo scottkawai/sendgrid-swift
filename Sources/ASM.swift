@@ -37,9 +37,7 @@ open class ASM: JSONConvertible, Validatable {
         if let groups = self.groupsToDisplay, groups.count > 0 {
             hash["groups_to_display"] = groups
         }
-        return [
-            "asm": hash
-        ]
+        return hash
     }
     
     
@@ -68,8 +66,10 @@ open class ASM: JSONConvertible, Validatable {
      
      */
     open func validate() throws {
-        if let display = self.groupsToDisplay , display.count > Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups {
-            throw SGError.Mail.tooManyUnsubscribeGroups
+        if let display = self.groupsToDisplay {
+            guard display.count <= Constants.UnsubscribeGroups.MaximumNumberOfDisplayGroups else {
+                throw SGError.Mail.tooManyUnsubscribeGroups
+            }
         }
     }
 }

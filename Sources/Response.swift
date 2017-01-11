@@ -42,10 +42,8 @@ open class Response: HTTPMessage, CustomStringConvertible {
     
     /// The HTTP status code abstracted from the urlResponse.
     open var statusCode: Int? {
-        if let http = self.httpResponse {
-            return http.statusCode
-        }
-        return nil
+        guard let http = self.httpResponse else { return nil }
+        return http.statusCode
     }
     
     /// The headers of the response.
@@ -71,13 +69,13 @@ open class Response: HTTPMessage, CustomStringConvertible {
     /// Returns the JSON representation of the `data` property, if able.
     open var jsonValue: [AnyHashable:Any]? {
         guard let d = self.data else { return nil }
-        return try! JSONSerialization.jsonObject(with: d, options: []) as? [AnyHashable:Any]
+        return (try? JSONSerialization.jsonObject(with: d, options: [])) as? [AnyHashable:Any]
     }
     
     /// Returns an API Blueprint of the response as a String.
     open var description: String {
-        if let blueprint = APIBlueprint(response: self) { return blueprint.description }
-        return ""
+        guard let blueprint = APIBlueprint(response: self) else { return "" }
+        return blueprint.description
     }
     
     
