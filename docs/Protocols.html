@@ -165,10 +165,10 @@
                 <a href="Structs/SGError.html">SGError</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/SGError/Request.html">– Request</a>
+                <a href="Structs/SGError/Mail.html">– Mail</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/SGError/Mail.html">– Mail</a>
+                <a href="Structs/SGError/Request.html">– Request</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/SGError/Session.html">– Session</a>
@@ -190,9 +190,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P8SendGrid11Validatable"></a>
-                    <a name="//apple_ref/swift/Protocol/Validatable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P8SendGrid11Validatable">Validatable</a>
+                    <a name="/s:P8SendGrid21DictionaryConvertible"></a>
+                    <a name="//apple_ref/swift/Protocol/DictionaryConvertible" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P8SendGrid21DictionaryConvertible">DictionaryConvertible</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -200,15 +200,79 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>Validatable</code> protocol defines the functions that a class or struct needs to implement in order to be used as an email property and validate their own values.</p>
+                        <p>The <code>DictionaryConvertible</code> protocol defines the properties a class or struct needs to implement in order to be represented as a dictionary. This is used to help generate the JSON payload that eventually gets sent to the SendGrid API.</p>
 
-                        <a href="Protocols/Validatable.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/DictionaryConvertible.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Validatable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DictionaryConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P8SendGrid15HeaderValidator"></a>
+                    <a name="//apple_ref/swift/Protocol/HeaderValidator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P8SendGrid15HeaderValidator">HeaderValidator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>HeaderValidator</code> protocol provides a method for ensuring custom headers are valid.</p>
+
+                        <a href="Protocols/HeaderValidator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HeaderValidator</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P8SendGrid11HTTPMessage"></a>
+                    <a name="//apple_ref/swift/Protocol/HTTPMessage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P8SendGrid11HTTPMessage">HTTPMessage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>HTTPMessage</code> protocol defines the properties and methods required to be used as an HTTP request or response.</p>
+
+                        <a href="Protocols/HTTPMessage.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HTTPMessage</span></code></pre>
 
                         </div>
                       </div>
@@ -286,38 +350,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P8SendGrid21DictionaryConvertible"></a>
-                    <a name="//apple_ref/swift/Protocol/DictionaryConvertible" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P8SendGrid21DictionaryConvertible">DictionaryConvertible</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>DictionaryConvertible</code> protocol defines the properties a class or struct needs to implement in order to be represented as a dictionary. This is used to help generate the JSON payload that eventually gets sent to the SendGrid API.</p>
-
-                        <a href="Protocols/DictionaryConvertible.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DictionaryConvertible</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:P8SendGrid7Request"></a>
                     <a name="//apple_ref/swift/Protocol/Request" class="dashAnchor"></a>
                     <a class="token" href="#/s:P8SendGrid7Request">Request</a>
@@ -350,9 +382,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P8SendGrid11HTTPMessage"></a>
-                    <a name="//apple_ref/swift/Protocol/HTTPMessage" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P8SendGrid11HTTPMessage">HTTPMessage</a>
+                    <a name="/s:P8SendGrid10Scheduling"></a>
+                    <a name="//apple_ref/swift/Protocol/Scheduling" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P8SendGrid10Scheduling">Scheduling</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -360,15 +392,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>HTTPMessage</code> protocol defines the properties and methods required to be used as an HTTP request or response.</p>
+                        <p>The <code>Scheduling</code> protocol contains the properties and methods needed for a class to support scheduled sends.</p>
 
-                        <a href="Protocols/HTTPMessage.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/Scheduling.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HTTPMessage</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Scheduling</span></code></pre>
 
                         </div>
                       </div>
@@ -414,9 +446,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P8SendGrid15HeaderValidator"></a>
-                    <a name="//apple_ref/swift/Protocol/HeaderValidator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P8SendGrid15HeaderValidator">HeaderValidator</a>
+                    <a name="/s:P8SendGrid11Validatable"></a>
+                    <a name="//apple_ref/swift/Protocol/Validatable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P8SendGrid11Validatable">Validatable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -424,47 +456,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>HeaderValidator</code> protocol provides a method for ensuring custom headers are valid.</p>
+                        <p>The <code>Validatable</code> protocol defines the functions that a class or struct needs to implement in order to be used as an email property and validate their own values.</p>
 
-                        <a href="Protocols/HeaderValidator.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/Validatable.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">HeaderValidator</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P8SendGrid10Scheduling"></a>
-                    <a name="//apple_ref/swift/Protocol/Scheduling" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P8SendGrid10Scheduling">Scheduling</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>Scheduling</code> protocol contains the properties and methods needed for a class to support scheduled sends.</p>
-
-                        <a href="Protocols/Scheduling.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Scheduling</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Validatable</span></code></pre>
 
                         </div>
                       </div>
@@ -476,8 +476,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2017-01-11)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2017-03-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

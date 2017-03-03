@@ -165,10 +165,10 @@
                 <a href="Structs/SGError.html">SGError</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/SGError/Request.html">– Request</a>
+                <a href="Structs/SGError/Mail.html">– Mail</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/SGError/Mail.html">– Mail</a>
+                <a href="Structs/SGError/Request.html">– Request</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/SGError/Session.html">– Session</a>
@@ -190,9 +190,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O8SendGrid10HTTPMethod"></a>
-                    <a name="//apple_ref/swift/Enum/HTTPMethod" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O8SendGrid10HTTPMethod">HTTPMethod</a>
+                    <a name="/s:O8SendGrid14Authentication"></a>
+                    <a name="//apple_ref/swift/Enum/Authentication" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O8SendGrid14Authentication">Authentication</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -200,15 +200,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>HTTPMethod</code> enum represents the various verbs used in an HTTP request.</p>
+                        <p>The <code>Authentication</code> enum is used to represent the various ways you can authenticate with the SendGrid API.  Aside from representing the different methods, they also store the values of the desired authentication method.</p>
 
-                        <a href="Enums/HTTPMethod.html" class="slightly-smaller">See more</a>
+                        <a href="Enums/Authentication.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">HTTPMethod</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Authentication</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -254,38 +254,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:O8SendGrid14Authentication"></a>
-                    <a name="//apple_ref/swift/Enum/Authentication" class="dashAnchor"></a>
-                    <a class="token" href="#/s:O8SendGrid14Authentication">Authentication</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>Authentication</code> enum is used to represent the various ways you can authenticate with the SendGrid API.  Aside from representing the different methods, they also store the values of the desired authentication method.</p>
-
-                        <a href="Enums/Authentication.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Authentication</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:O8SendGrid11ContentType"></a>
                     <a name="//apple_ref/swift/Enum/ContentType" class="dashAnchor"></a>
                     <a class="token" href="#/s:O8SendGrid11ContentType">ContentType</a>
@@ -313,11 +281,43 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O8SendGrid10HTTPMethod"></a>
+                    <a name="//apple_ref/swift/Enum/HTTPMethod" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O8SendGrid10HTTPMethod">HTTPMethod</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>HTTPMethod</code> enum represents the various verbs used in an HTTP request.</p>
+
+                        <a href="Enums/HTTPMethod.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">HTTPMethod</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2017-01-11)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott K.</a>. All rights reserved. (Last updated: 2017-03-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
