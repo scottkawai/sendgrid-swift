@@ -17,8 +17,8 @@ class AttachmentTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let path = Bundle(for: type(of: self)).pathForImageResource("dot.png") {
-            self.image = try? Data(contentsOf: URL(fileURLWithPath: path))
+        if let path = URL(string: "https://upload.wikimedia.org/wikipedia/commons/3/31/Red-dot-5px.png") {
+            self.image = try? Data(contentsOf: path)
         }
     }
     

@@ -402,7 +402,7 @@ class EmailTests: XCTestCase {
     }
     
     func testAttachments() {
-        if let path = Bundle(for: type(of: self)).pathForImageResource("dot.png"), let image = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+        if let path = URL(string: "https://upload.wikimedia.org/wikipedia/commons/3/31/Red-dot-5px.png"), let image = try? Data(contentsOf: path) {
             let email = self.generateBaseEmail()
             email.attachments = [Attachment(filename: "dot.png", content: image)]
             XCTAssertEqual(email.attachments?.count, 1)

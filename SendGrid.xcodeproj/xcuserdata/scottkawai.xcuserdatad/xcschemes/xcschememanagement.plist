@@ -2,22 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
-	<dict>
-		<key>SendGrid.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7708509B1CE64F7500861BA1</key>
+		<key>OBJ_136</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>770850A51CE64F7500861BA1</key>
+		<key>OBJ_145</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>OBJ_89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>OBJ_98</key>
 		<dict>
 			<key>primary</key>
 			<true/>
