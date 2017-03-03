@@ -15,6 +15,7 @@ Full documentation of the library is available [here](http://scottkawai.github.i
 
 - [Installation](#installation)
     + [With Cocoapods](#with-cocoapods)
+    + [Swift Package Manager](#swift-package-manager)
     + [As A Submodule](#as-a-submodule)
 - [Usage](#usage)
     + [Authorization](#authorization)
@@ -37,8 +38,27 @@ Full documentation of the library is available [here](http://scottkawai.github.i
 
 Add the following to your Podfile:
 
-```
+```ruby
 pod 'SendGrid', :git => 'https://github.com/scottkawai/sendgrid-swift.git'
+```
+
+### Swift Package Manager
+
+Add the following to your Package.swift:
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "MyApp",
+    dependencies: [
+        .Package(
+            url: "https://github.com/scottkawai/sendgrid-swift.git",
+            majorVersion: 0, 
+            minor: 2
+        )
+    ]
+)
 ```
 
 ### As A Submodule
