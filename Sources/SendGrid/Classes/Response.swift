@@ -63,7 +63,7 @@ open class Response: HTTPMessage, CustomStringConvertible {
     /// Returns the string representation of the `data` property, if able.
     open var stringValue: String? {
         guard let d = self.data else { return nil }
-        return NSString(data: d, encoding: String.Encoding.utf8.rawValue) as? String
+        return String(data: d, encoding: .utf8)
     }
     
     /// Returns the JSON representation of the `data` property, if able.
