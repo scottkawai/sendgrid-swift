@@ -9,11 +9,7 @@ import Foundation
 
 public extension Exception {
     
-    /**
-     
-     The `Authentication` enum contains all the errors thrown by `Authentication`.
-     
-     */
+    /// The `Authentication` enum contains all the errors thrown by `Authentication`.
     public enum Authentication: Error, CustomStringConvertible {
 
         // MARK: - Cases

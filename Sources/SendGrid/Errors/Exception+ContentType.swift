@@ -9,11 +9,7 @@ import Foundation
 
 public extension Exception {
     
-    /**
-     
-     The `ContentType` enum contains all the errors thrown by `ContentType`.
-     
-     */
+    /// The `ContentType` enum contains all the errors thrown by `ContentType`.
     public enum ContentType: Error, CustomStringConvertible {
         
         // MARK: - Cases
