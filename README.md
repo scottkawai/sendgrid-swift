@@ -1,3 +1,14 @@
+# WORK IN PROGRESS
+
+This is the working branch for version 1.0.0.  The focus areas for this version are:
+
+- Rewrite from the ground up using Swift 4.
+- Use the new Codable protocol in Swift 4.
+- Add support for Linux.
+- Add support for more API calls other than mail send.
+
+----
+
 # SendGrid-Swift
 
 This library allows you to quickly and easily send emails through SendGrid using Swift.
