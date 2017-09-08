@@ -2,8 +2,7 @@
 //  Exception.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 5/13/16.
-//  Copyright © 2016 Scott Kawai. All rights reserved.
+//  Created by Scott Kawai on 9/8/17.
 //
 
 import Foundation
