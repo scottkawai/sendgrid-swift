@@ -96,11 +96,11 @@ open class Request<ModelType : Codable> {
     ///
     /// - Parameter host: The host to build the endpoint off of.
     /// - Returns: A URL or `nil` if there was a problem.
-    public func endpoint(for host: URL) -> URL? {
+    public func endpoint(for host: URL) throws -> URL? {
         guard var components = URLComponents(url: host, resolvingAgainstBaseURL: false)
-            else { return nil }
+            else { throw Exception.Request.couldNotConstructUrlRequest }
         components.path = "/" + self.path.joined(separator: "/")
-        if !self.method.hasBody, let queryData = self.encodeParameters(with: .formUrlEncoded) {
+        if !self.method.hasBody, let queryData = try self.encodeParameters(with: .formUrlEncoded) {
             components.query = String(data: queryData, encoding: .utf8)
         }
         return components.url
