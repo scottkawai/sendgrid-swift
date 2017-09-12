@@ -11,7 +11,7 @@ import Foundation
 ///
 /// This class contains a `ModelType` generic, which is used to map the API
 /// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Codable> {
+open class Request<ModelType : Codable>: Validatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -24,6 +24,9 @@ open class Request<ModelType : Codable> {
     
     /// The Content-Type of the call.
     open var contentType: ContentType
+    
+    /// The Accept header value.
+    open var acceptType: ContentType = .json
     
     /// An array representing the path portion of the request's API endpoint.
     /// For example, if the endpoint was the following:
@@ -67,45 +70,46 @@ open class Request<ModelType : Codable> {
     
     // MARK: - Methods
     //=========================================================================
-    
-    /// Provides the `parameters` property as `Data` encoded encording to the
-    /// provided content type.
+    /// Generates a `URLRequest` representation of the request.
     ///
-    /// - Parameter contentType:    The content type to encode the parameters
-    ///                             with.
-    /// - Returns: The encoded parameters, represented as `Data`.
-    open func encodeParameters(with contentType: ContentType? = nil) throws -> Data? {
-        guard let params = self.parameters else { return nil }
-        let type = contentType ?? self.contentType
-        switch type.subtype {
-        case "json":
-            return try JSONEncoder().encode(params)
-        case "x-www-form-urlencoded":
-            var components = URLComponents()
-            components.queryItems = params.map { (key, value) -> URLQueryItem in
-                return URLQueryItem(name: "\(key)", value: "\(value)")
+    /// - Returns:  A `URLRequest` instance.
+    /// - Throws:   Errors can be thrown if there was a problem encoding the
+    ///             parameters or constructing the API URL endpoint.
+    open func generateUrlRequest() throws -> URLRequest {
+        var path = Constants.ApiHost + self.path.joined(separator: "/")
+        var body: Data?
+        if let params = self.parameters {
+            if self.method.hasBody {
+                body = try JSONEncoder().encode(params)
+            } else {
+                let query = params.map { URLQueryItem(name: "\($0.key)", value: "\($0.value)").description }
+                path += "?" + query.joined(separator: "&")
             }
-            return components.query?.data(using: .utf8)
-        default:
-            throw Exception.Request.unsupportedContentType(type.description)
         }
+        guard let url = URL(string: path) else {
+            throw Exception.Request.couldNotConstructUrlRequest
+        }
+        var req = URLRequest(url: url)
+        req.httpBody = body
+        req.httpMethod = self.method.rawValue
+        req.addValue(self.contentType.description, forHTTPHeaderField: "Content-Type")
+        req.addValue(self.acceptType.description, forHTTPHeaderField: "Accept")
+        return req
+    }
+    
+    /// Validates that the content and accept types are valid.
+    public func validate() throws {
+        try self.contentType.validate()
+        try self.acceptType.validate()
     }
     
     
-    /// Generates the URL endpoint for a given host.
-    ///
-    /// - Parameter host: The host to build the endpoint off of.
-    /// - Returns: A URL or `nil` if there was a problem.
-    public func endpoint(for host: URL) throws -> URL? {
-        guard var components = URLComponents(url: host, resolvingAgainstBaseURL: false)
-            else { throw Exception.Request.couldNotConstructUrlRequest }
-        components.path = "/" + self.path.joined(separator: "/")
-        if !self.method.hasBody, let queryData = try self.encodeParameters(with: .formUrlEncoded) {
-            components.query = String(data: queryData, encoding: .utf8)
-        }
-        return components.url
+    // MARK: - Deprecations
+    //=========================================================================
+    @available(*, unavailable, message: "use the `generateUrlRequest` method instead.")
+    open func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
+        throw Exception.Global.methodUnavailable(type(of: self), "request(for:onBehalfOf:)")
     }
-    
     
 }
 

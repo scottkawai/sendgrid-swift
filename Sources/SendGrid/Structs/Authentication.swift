@@ -76,7 +76,7 @@ public extension Authentication {
     ///
     /// - returns: An `Authentication` instance.
     static func apiKey(_ key: String) -> Authentication {
-        return Authentication(prefix: "Bearer", value: key, description: "Authentication API Key")
+        return Authentication(prefix: "Bearer", value: key, description: "API Key")
     }
     
     /// Creates an `Authentication` instance representing a username and
@@ -91,7 +91,7 @@ public extension Authentication {
         guard let data = str.data(using: String.Encoding.utf8) else {
             throw Exception.Authentication.unableToEncodeCredentials
         }
-        return Authentication(prefix: "Basic", value: data.base64EncodedString(), description: "Authentication credential")
+        return Authentication(prefix: "Basic", value: data.base64EncodedString(), description: "credential")
     }
     
 }
