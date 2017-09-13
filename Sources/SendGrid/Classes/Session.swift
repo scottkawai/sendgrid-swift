@@ -65,17 +65,18 @@ open class Session {
     ///   - completionHandler:  A completion block taht will be called after the API call completes.
     open func send<ModelType>(request: Request<ModelType>, onBehalfOf subuser: String? = nil, completionHandler: @escaping (Response<ModelType>?) -> Void = { _ in }) throws {
         // Check that we have authentication set.
-        guard let _ = self.authentication else { throw Exception.Session.authenticationMissing }
+        guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         
         try request.validate()
         
         // Get the NSURLRequest
         var payload = try request.generateUrlRequest()
+        payload.addValue(auth.authorizationHeader, forHTTPHeaderField: "Authorization")
         if let sub = subuser { payload.addValue(sub, forHTTPHeaderField: "On-behalf-of") }
         
         // Make the HTTP request
         let task = URLSession.shared.dataTask(with: payload) { (data, response, error) in
-            let resp = Response<ModelType>(data: data, response: response, error: error)
+            let resp = Response<ModelType>(data: data, response: response, error: error, dateDecodingStrategy: request.dateDecodingStrategy)
             completionHandler(resp)
         }
         task.resume()

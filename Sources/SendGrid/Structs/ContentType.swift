@@ -84,6 +84,16 @@ extension ContentType: Validatable {
     
 }
 
+/// Encodable conformance.
+extension ContentType: Encodable {
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.description)
+    }
+    
+}
+
 /// Predefined content types.
 public extension ContentType {
     

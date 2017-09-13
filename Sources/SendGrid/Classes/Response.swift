@@ -46,11 +46,12 @@ open class Response<ModelType : Codable> {
     ///   - data:       The data (if present) returned from the request.
     ///   - response:   The URLResponse returned from the request.
     ///   - error:      The error that arose during the request (if applicable).
-    public init(data: Data?, response: URLResponse?, error: Error?) {
+    public init(data: Data?, response: URLResponse?, error: Error?, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) {
         self.data = data
         self.urlResponse = response
         self.error = error
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = dateDecodingStrategy
         if let d = data,
             let parsed = try? decoder.decode(ModelType.self, from: d)
         {

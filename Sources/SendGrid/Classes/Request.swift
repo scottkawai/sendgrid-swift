@@ -28,6 +28,9 @@ open class Request<ModelType : Codable>: Validatable {
     /// The Accept header value.
     open var acceptType: ContentType = .json
     
+    /// The decoding strategy for dates.
+    open var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .secondsSince1970
+    
     /// An array representing the path portion of the request's API endpoint.
     /// For example, if the endpoint was the following:
     ///
