@@ -14,19 +14,19 @@ open class Attachment: Encodable {
     //=========================================================================
     
     /// The content, or data, of the attachment.
-    open let content: Data
+    public let content: Data
     
     /// The filename of the attachment.
-    open let filename: String
+    public let filename: String
     
     /// The content (or MIME) type of the attachment.
-    open let type: ContentType?
+    public let type: ContentType?
     
     /// The content-disposition of the attachment specifying how you would like the attachment to be displayed. For example, "inline" results in the attached file being displayed automatically within the message while "attachment" results in the attached file requiring some action to be taken before it is displayed (e.g. opening or downloading the file).
-    open let disposition: ContentDisposition
+    public let disposition: ContentDisposition
     
     /// A unique id that you specify for the attachment. This is used when the disposition is set to "inline" and the attachment is an image, allowing the file to be displayed within the body of your email. Ex: `<img src="cid:ii_139db99fdb5c3704"></img>`
-    open let contentID: String?
+    public let contentID: String?
     
     
     // MARK: - Initialization
