@@ -28,8 +28,11 @@ open class Request<ModelType : Codable>: Validatable {
     /// The Accept header value.
     open var acceptType: ContentType = .json
     
-    /// The decoding strategy for dates.
-    open var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .secondsSince1970
+    /// The decoding strategy.
+    open var decodingStrategy: DecodingStrategy = DecodingStrategy()
+    
+    /// The encoding strategy.
+    open var encodingStrategy: EncodingStrategy = EncodingStrategy()
     
     /// An array representing the path portion of the request's API endpoint.
     /// For example, if the endpoint was the following:
@@ -83,7 +86,10 @@ open class Request<ModelType : Codable>: Validatable {
         var body: Data?
         if let params = self.parameters {
             if self.method.hasBody {
-                body = try JSONEncoder().encode(params)
+                let encoder = JSONEncoder()
+                encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                encoder.dataEncodingStrategy = self.encodingStrategy.data
+                body = try encoder.encode(params)
             } else {
                 let query = params.map { URLQueryItem(name: "\($0.key)", value: "\($0.value)").description }
                 path += "?" + query.joined(separator: "&")

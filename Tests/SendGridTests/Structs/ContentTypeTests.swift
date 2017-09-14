@@ -8,7 +8,17 @@
 import XCTest
 @testable import SendGrid
 
-class ContentTypeTests: XCTestCase {
+class ContentTypeTests: XCTestCase, EncodingTester {
+    
+    typealias EncodableObject = TestObject
+    struct TestObject: Encodable {
+        let type: ContentType
+    }
+    
+    func testEncoding() {
+        let test = TestObject(type: .json)
+        XCTAssert(encodableObject: test, equals: ["type": "application/json"])
+    }
     
     func testInitializerAndDescription() {
         let type = ContentType(type: "foo", subtype: "bar")

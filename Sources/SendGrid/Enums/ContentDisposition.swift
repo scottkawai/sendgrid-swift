@@ -11,7 +11,7 @@ import Foundation
 ///
 /// - inline: Shows the attachment inline with text.
 /// - attachment: Shows the attachment below the text.
-public enum ContentDisposition: String {
+public enum ContentDisposition: String, Encodable {
     
     // MARK: - Cases
     //=========================================================================
@@ -21,15 +21,5 @@ public enum ContentDisposition: String {
     
     /// The "attachment" disposition, which shows the attachment below the text.
     case attachment
-    
-}
-
-/// Encodable conformance.
-extension ContentDisposition: Encodable {
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(self.rawValue)
-    }
     
 }

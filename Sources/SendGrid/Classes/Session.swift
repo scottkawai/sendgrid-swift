@@ -76,7 +76,7 @@ open class Session {
         
         // Make the HTTP request
         let task = URLSession.shared.dataTask(with: payload) { (data, response, error) in
-            let resp = Response<ModelType>(data: data, response: response, error: error, dateDecodingStrategy: request.dateDecodingStrategy)
+            let resp = Response<ModelType>(data: data, response: response, error: error, decodingStrategy: request.decodingStrategy)
             completionHandler(resp)
         }
         task.resume()

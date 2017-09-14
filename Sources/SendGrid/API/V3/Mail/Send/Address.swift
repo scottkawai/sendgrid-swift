@@ -7,9 +7,9 @@
 
 import Foundation
 
-/// The `Address` class represents an email address and contains the email
+/// The `Address` struct represents an email address and contains the email
 /// address along with an optional display name.
-open class Address: Encodable {
+public struct Address: Encodable {
     
     // MARK: - Properties
     //=========================================================================
@@ -29,16 +29,13 @@ open class Address: Encodable {
     /// - Parameters:
     ///   - email:  The email address.
     ///   - name:   An optional display name.
-    public init(email: String, name: String?) {
+    public init(email: String, name: String? = nil) {
         self.email = email
         self.name = name
     }
     
-	
-    /// Initializes the address with a String representing the email address.
-    ///
-    /// - Parameter email: The email address.
-    public convenience init(_ email: String) {
+    @available(*, unavailable, message: "use 'init(email:)' instead")
+    public init(_ email: String) {
         self.init(email: email, name: nil)
     }
     
@@ -48,7 +45,7 @@ open class Address: Encodable {
 extension Address: Validatable {
     
     /// Validates that the email address is an RFC compliant email address.
-    open func validate() throws {
+    public func validate() throws {
         guard Validate.email(self.email) else {
             throw Exception.Mail.malformedEmailAddress(self.email)
         }

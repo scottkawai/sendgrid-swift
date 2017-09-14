@@ -43,15 +43,19 @@ open class Response<ModelType : Codable> {
     /// class then parses the data to try and create models from the response.
     ///
     /// - Parameters:
-    ///   - data:       The data (if present) returned from the request.
-    ///   - response:   The URLResponse returned from the request.
-    ///   - error:      The error that arose during the request (if applicable).
-    public init(data: Data?, response: URLResponse?, error: Error?, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) {
+    ///   - data:                   The data (if present) returned from the
+    ///                             request.
+    ///   - response:               The URLResponse returned from the request.
+    ///   - error:                  The error that arose during the request (if
+    ///                             applicable).
+    ///   - decodingStrategy:       The strategy for decoding dates and data.
+    public init(data: Data?, response: URLResponse?, error: Error?, decodingStrategy: DecodingStrategy) {
         self.data = data
         self.urlResponse = response
         self.error = error
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = dateDecodingStrategy
+        decoder.dateDecodingStrategy = decodingStrategy.dates
+        decoder.dataDecodingStrategy = decodingStrategy.data
         if let d = data,
             let parsed = try? decoder.decode(ModelType.self, from: d)
         {
