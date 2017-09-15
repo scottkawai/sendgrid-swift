@@ -56,6 +56,8 @@ extension EncodingTester {
             for item in lArray.enumerated() {
                 XCTAssertDeepEquals(item.element, rArray[item.offset])
             }
+        } else if let lBool = lhs as? Bool, let rBool = rhs as? Bool {
+            XCTAssertEqual(lBool, rBool)
         } else if let left = lhs, let right = rhs {
             XCTAssertEqual("\(left)", "\(right)")
         } else {

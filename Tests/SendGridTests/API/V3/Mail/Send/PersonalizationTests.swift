@@ -23,9 +23,9 @@ class PersonalizationTests: XCTestCase, EncodingTester {
             subject: "Hello World",
             headers: ["X-Foo": "Bar"],
             substitutions: ["%foo%": "bar"],
-            customArguments: ["foo": "bar"]
+            customArguments: ["foo": "bar"],
+            sendAt: Date(timeIntervalSince1970: 1505510705)
         )
-        complete.sendAt = Date(timeIntervalSince1970: 1505510705)
         let expected: [String : Any] = [
             "to": [
                 [

@@ -69,7 +69,8 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     ///                         personalization. The keys and values in the
     ///                         dictionary should represent the argument names
     ///                         and values, respectively.
-    public init(to: [Address], cc: [Address]? = nil, bcc: [Address]? = nil, subject: String? = nil, headers: [String:String]? = nil, substitutions: [String:String]? = nil, customArguments: [String:String]? = nil) {
+    ///   - sendAt:             A time to send the email at.
+    public init(to: [Address], cc: [Address]? = nil, bcc: [Address]? = nil, subject: String? = nil, headers: [String:String]? = nil, substitutions: [String:String]? = nil, customArguments: [String:String]? = nil, sendAt: Date? = nil) {
         self.to = to
         self.cc = cc
         self.bcc = bcc
@@ -77,6 +78,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
         self.headers = headers
         self.substitutions = substitutions
         self.customArguments = customArguments
+        self.sendAt = sendAt
     }
     
     
