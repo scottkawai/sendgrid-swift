@@ -16,7 +16,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
     func testEncoding() {
         let data = Data(bytes: self.redDotBytes)
         let minimalAttachment = Attachment(filename: "red.png", content: data)
-        XCTAssert(encodableObject: minimalAttachment, equals: [
+        XCTAssertEncodedObject(minimalAttachment, equals: [
             "content": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
             "filename": "red.png",
             "disposition": "attachment"
@@ -24,7 +24,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         )
         
         let maxAttachment = Attachment(filename: "red-dot.png", content: data, disposition: .inline, type: .png, contentID: "ABC-123")
-        XCTAssert(encodableObject: maxAttachment, equals: [
+        XCTAssertEncodedObject(maxAttachment, equals: [
             "content_id": "ABC-123",
             "content": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
             "filename": "red-dot.png",

@@ -13,7 +13,7 @@ class ContentTests: XCTestCase, EncodingTester {
     
     func testEncoding() {
         let plain = Content.plainText(body: "Hello World")
-        XCTAssert(encodableObject: plain, equals: ["type": "text/plain", "value": "Hello World"])
+        XCTAssertEncodedObject(plain, equals: ["type": "text/plain", "value": "Hello World"])
     }
     
 }

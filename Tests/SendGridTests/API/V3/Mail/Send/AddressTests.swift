@@ -16,8 +16,8 @@ class AddressTests: XCTestCase, EncodingTester {
         let withoutName = Address(email: "foo@bar.com")
         let withName = Address(email: "foo@bar.com", name: "Foo Bar")
         
-        XCTAssert(encodableObject: withoutName, equals: ["email": "foo@bar.com"])
-        XCTAssert(encodableObject: withName, equals: ["name": "Foo Bar", "email": "foo@bar.com"])
+        XCTAssertEncodedObject(withoutName, equals: ["email": "foo@bar.com"])
+        XCTAssertEncodedObject(withName, equals: ["name": "Foo Bar", "email": "foo@bar.com"])
     }
     
 }

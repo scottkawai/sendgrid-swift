@@ -17,7 +17,7 @@ class ContentTypeTests: XCTestCase, EncodingTester {
     
     func testEncoding() {
         let test = TestObject(type: .json)
-        XCTAssert(encodableObject: test, equals: ["type": "application/json"])
+        XCTAssertEncodedObject(test, equals: ["type": "application/json"])
     }
     
     func testInitializerAndDescription() {
