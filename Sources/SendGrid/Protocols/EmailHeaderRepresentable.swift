@@ -12,7 +12,7 @@ import Foundation
 public protocol EmailHeaderRepresentable {
     
     /// A dictionary representing the headers that should be added to the email.
-    var headers: [String : String] { get set }
+    var headers: [String : String]? { get set }
     
     /// Validates the `headers` property to ensure they are not using any
     /// reserved headers. If there is a problem, an error is thrown. If
@@ -40,6 +40,7 @@ public extension EmailHeaderRepresentable {
     /// - CC
     /// - BCC
     public func validateHeaders() throws {
+        guard let head = self.headers else { return }
         let reserved: [String] = [
             "x-sg-id",
             "x-sg-eid",
@@ -54,7 +55,7 @@ public extension EmailHeaderRepresentable {
             "cc",
             "bcc"
         ]
-        for (key, _) in self.headers {
+        for (key, _) in head {
             guard reserved.index(of: key.lowercased()) == nil else { throw Exception.Mail.headerNotAllowed(key) }
             let regex = try NSRegularExpression(pattern: "(\\s)", options: [.caseInsensitive, .anchorsMatchLines])
             guard regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.characters.count)) == 0 else {

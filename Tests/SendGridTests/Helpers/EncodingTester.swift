@@ -6,12 +6,13 @@
 //
 
 import XCTest
+@testable import SendGrid
 
 protocol EncodingTester: class {
     
     associatedtype EncodableObject: Encodable
     
-    func encode(_ obj: EncodableObject) throws -> Data
+    func encode(_ obj: EncodableObject, strategy: EncodingStrategy) throws -> Data
     
     func XCTAssertEncodedObject(_ encodableObject: EncodableObject, equals dictionary: [String : Any])
     
@@ -21,8 +22,11 @@ protocol EncodingTester: class {
 
 extension EncodingTester {
     
-    func encode(_ obj: EncodableObject) throws -> Data {
-        return try JSONEncoder().encode(obj)
+    func encode(_ obj: EncodableObject, strategy: EncodingStrategy = EncodingStrategy()) throws -> Data {
+        let encoder = JSONEncoder()
+        encoder.dataEncodingStrategy = strategy.data
+        encoder.dateEncodingStrategy = strategy.dates
+        return try encoder.encode(obj)
     }
     
     func XCTAssertEncodedObject(_ encodableObject: EncodableObject, equals dictionary: [String : Any]) {
