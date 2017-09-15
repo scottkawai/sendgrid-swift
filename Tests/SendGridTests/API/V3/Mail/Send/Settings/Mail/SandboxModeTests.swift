@@ -14,7 +14,7 @@ class SandboxModeTests: XCTestCase, EncodingTester {
     
     func testEncoding() {
         let setting = SandboxMode()
-        XCTAssertEncodedObject(setting, equals: ["sandbox_mode": ["enable": true]])
+        XCTAssertEncodedObject(setting, equals: ["enable": true])
     }
     
 }

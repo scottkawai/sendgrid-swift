@@ -10,7 +10,7 @@ import Foundation
 /// This allows you to send a test email to ensure that your request body is
 /// valid and formatted correctly. For more information, please see the
 /// [SendGrid docs](https://sendgrid.com/docs/Classroom/Send/v3_Mail_Send/sandbox_mode.html).
-public struct SandboxMode: MailSetting {
+public struct SandboxMode: Encodable {
     
     // MARK: - Properties
     //=========================================================================
@@ -28,25 +28,6 @@ public struct SandboxMode: MailSetting {
     ///                     or off (default is `true`).
     public init(enable: Bool = true) {
         self.enable = enable
-    }
-    
-}
-
-/// Encodable conformance
-public extension SandboxMode {
-    
-    public enum CodingKeys: String, CodingKey {
-        case sandboxMode = "sandbox_mode"
-    }
-    
-    public enum AdditionalKeys: String, CodingKey {
-        case enable
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        var additionalInfo = container.nestedContainer(keyedBy: AdditionalKeys.self, forKey: .sandboxMode)
-        try additionalInfo.encode(self.enable, forKey: .enable)
     }
     
 }
