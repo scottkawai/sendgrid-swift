@@ -18,6 +18,7 @@ class MailSettingsTests: XCTestCase, EncodingTester {
         settings.bypassListManagement = BypassListManagement()
         settings.footer = Footer(text: "Hello World", html: "<p>Hello World</p>")
         settings.sandboxMode = SandboxMode()
+        settings.spamCheck = SpamChecker(threshold: 8)
         let expected: [String : Any] = [
             "bcc": [
                 "enable": true,
@@ -29,7 +30,11 @@ class MailSettingsTests: XCTestCase, EncodingTester {
                 "text": "Hello World",
                 "html": "<p>Hello World</p>"
             ],
-            "sandbox_mode": ["enable": true]
+            "sandbox_mode": ["enable": true],
+            "spam_check": [
+                "enable": true,
+                "threshold": 8
+            ]
         ]
         XCTAssertEncodedObject(settings, equals: expected)
     }

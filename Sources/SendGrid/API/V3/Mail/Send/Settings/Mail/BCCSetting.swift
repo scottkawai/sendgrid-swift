@@ -7,11 +7,9 @@
 
 import Foundation
 
-/**
- 
- This allows you to have a blind carbon copy automatically sent to the specified email address for every email that is sent.
- 
- */
+
+/// This allows you to have a blind carbon copy automatically sent to the
+/// specified email address for every email that is sent.
 public struct BCCSetting {
     
     // MARK: - Properties

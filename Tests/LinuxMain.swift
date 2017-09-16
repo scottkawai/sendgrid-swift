@@ -91,6 +91,15 @@ extension SandboxModeTests {
 }
 
 
+extension SpamCheckerTests {
+    static var allTests : [(String, (SpamCheckerTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
 extension AuthenticationTests {
     static var allTests : [(String, (AuthenticationTests) -> () throws -> Void)] {
         return [
@@ -138,6 +147,7 @@ XCTMain([
     testCase(FooterTests.allTests),
     testCase(MailSettingsTests.allTests),
     testCase(SandboxModeTests.allTests),
+    testCase(SpamCheckerTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),
     testCase(ValidateTests.allTests)

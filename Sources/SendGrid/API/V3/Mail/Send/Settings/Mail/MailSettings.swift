@@ -26,6 +26,9 @@ public struct MailSettings: Encodable {
     /// The sandbox mode setting.
     public var sandboxMode: SandboxMode?
     
+    /// The spam checker setting.
+    public var spamCheck: SpamChecker?
+    
     
     // MARK: - Initialization
     //=========================================================================
@@ -44,6 +47,7 @@ public extension MailSettings {
         case bypassListManagement   = "bypass_list_management"
         case footer
         case sandboxMode            = "sandbox_mode"
+        case spamCheck              = "spam_check"
         
     }
     
