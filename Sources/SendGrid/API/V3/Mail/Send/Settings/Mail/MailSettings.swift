@@ -17,6 +17,9 @@ public struct MailSettings: Encodable {
     /// The BCC setting.
     public var bcc: BCCSetting?
     
+    /// The bypass list management setting.
+    public var bypassListManagement: BypassListManagement?
+    
     /// The sandbox mode setting.
     public var sandboxMode: SandboxMode?
     
@@ -35,7 +38,8 @@ public extension MailSettings {
     public enum CodingKeys: String, CodingKey {
         
         case bcc
-        case sandboxMode    = "sandbox_mode"
+        case bypassListManagement   = "bypass_list_management"
+        case sandboxMode            = "sandbox_mode"
         
     }
     

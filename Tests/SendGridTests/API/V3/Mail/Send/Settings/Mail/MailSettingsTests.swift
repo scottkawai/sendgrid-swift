@@ -15,12 +15,14 @@ class MailSettingsTests: XCTestCase, EncodingTester {
     func testEncoding() {
         var settings = MailSettings()
         settings.bcc = BCCSetting(email: "foo@example.none")
+        settings.bypassListManagement = BypassListManagement()
         settings.sandboxMode = SandboxMode()
         let expected: [String : Any] = [
             "bcc": [
                 "enable": true,
                 "email": "foo@example.none"
             ],
+            "bypass_list_management": ["enable": true],
             "sandbox_mode": ["enable": true]
         ]
         XCTAssertEncodedObject(settings, equals: expected)
