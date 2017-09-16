@@ -14,8 +14,13 @@ class MailSettingsTests: XCTestCase, EncodingTester {
     
     func testEncoding() {
         var settings = MailSettings()
+        settings.bcc = BCCSetting(email: "foo@example.none")
         settings.sandboxMode = SandboxMode()
         let expected: [String : Any] = [
+            "bcc": [
+                "enable": true,
+                "email": "foo@example.none"
+            ],
             "sandbox_mode": ["enable": true]
         ]
         XCTAssertEncodedObject(settings, equals: expected)

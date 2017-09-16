@@ -13,27 +13,34 @@ public extension Exception {
     public enum Mail: Error, CustomStringConvertible {
         
         // MARK: - Cases
-        //=========================================================================
+        //======================================================================
         
-        /// The error thrown when an email address was expected, but received a String that isn't RFC 5322 compliant.
+        /// The error thrown when an email address was expected, but received a
+        /// String that isn't RFC 5322 compliant.
         case malformedEmailAddress(String)
         
-        /// The error thrown when an email is scheduled further than 72 hours out.
+        /// The error thrown when an email is scheduled further than 72 hours
+        /// out.
         case invalidScheduleDate
         
-        /// The error thrown if the subscription tracking setting is configured with text that doesn't contain a `<% %>` tag.
+        /// The error thrown if the subscription tracking setting is configured
+        /// with text that doesn't contain a `<% %>` tag.
         case missingSubscriptionTrackingTag
         
-        /// The error thrown if a personalization doesn't have at least 1 recipient.
+        /// The error thrown if a personalization doesn't have at least 1
+        /// recipient.
         case missingRecipients
         
-        /// The error thrown when the SpamChecker setting is provided a threshold outside the 1-10 range.
+        /// The error thrown when the SpamChecker setting is provided a
+        /// threshold outside the 1-10 range.
         case thresholdOutOfRange(Int)
         
-        /// The error thrown when more than 25 unsubscribe groups are provided in the `ASM` struct.
+        /// The error thrown when more than 25 unsubscribe groups are provided
+        /// in the `ASM` struct.
         case tooManyUnsubscribeGroups
         
-        /// The error thrown if the number of personalizations in an email is less than 1 or more than 100.
+        /// The error thrown if the number of personalizations in an email is
+        /// less than 1 or more than 100.
         case invalidNumberOfPersonalizations
         
         /// The error thrown if an email doesn't contain any content.
@@ -42,16 +49,19 @@ public extension Exception {
         /// The error thrown if a `Content` instance has an empty string value.
         case contentHasEmptyString
         
-        /// Thrown if the array of `Content` instances used in an `Email` instances is in an incorrect order.
+        /// Thrown if the array of `Content` instances used in an `Email`
+        /// instances is in an incorrect order.
         case invalidContentOrder
         
-        /// Thrown when an email contains too many recipients across all the `to`, `cc`, and `bcc` properties of the personalizations.
+        /// Thrown when an email contains too many recipients across all the
+        /// `to`, `cc`, and `bcc` properties of the personalizations.
         case tooManyRecipients
         
         /// Thrown if an email does not contain a subject line.
         case missingSubject
         
-        /// Thrown if a reserved header was specified in the custom headers section.
+        /// Thrown if a reserved header was specified in the custom headers
+        /// section.
         case headerNotAllowed(String)
         
         /// Thrown if a header's name contains spaces.
@@ -81,8 +91,9 @@ public extension Exception {
         /// Thrown when an attachment's filename contains invalid characters.
         case invalidFilename(String)
         
+        
         // MARK: - Properties
-        //=========================================================================
+        //=====================================================================
         
         /// A description for the error.
         public var description: String {

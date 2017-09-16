@@ -13,11 +13,11 @@ class AddressTests: XCTestCase, EncodingTester {
     typealias EncodableObject = Address
     
     func testEncoding() {
-        let withoutName = Address(email: "foo@bar.com")
-        let withName = Address(email: "foo@bar.com", name: "Foo Bar")
+        let withoutName = Address(email: "foo@example.none")
+        let withName = Address(email: "foo@example.none", name: "Foo Bar")
         
-        XCTAssertEncodedObject(withoutName, equals: ["email": "foo@bar.com"])
-        XCTAssertEncodedObject(withName, equals: ["name": "Foo Bar", "email": "foo@bar.com"])
+        XCTAssertEncodedObject(withoutName, equals: ["email": "foo@example.none"])
+        XCTAssertEncodedObject(withName, equals: ["name": "Foo Bar", "email": "foo@example.none"])
     }
     
 }

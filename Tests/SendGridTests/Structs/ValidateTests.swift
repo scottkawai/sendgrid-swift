@@ -18,10 +18,10 @@ class ValidateTests: XCTestCase {
     }
     
     func testEmail() {
-        for goodEmail in ["foo@bar.com", "foo@bar.co.jp"] {
+        for goodEmail in ["foo@example.none", "foo@example.co.none"] {
             XCTAssertTrue(Validate.email(goodEmail), "'\(goodEmail)' validates successfully")
         }
-        for badEmail in ["foobar.com", "foo@bar"] {
+        for badEmail in ["example.none", "foo@example"] {
             XCTAssertFalse(Validate.email(badEmail), "'\(badEmail)' fails validation")
         }
     }
