@@ -18,7 +18,7 @@ public struct BypassListManagement: Encodable {
     //=========================================================================
     
     /// A bool indicating if the setting should be toggle on or off.
-    public var enable: Bool
+    public let enable: Bool
     
     
     // MARK: - Initialization

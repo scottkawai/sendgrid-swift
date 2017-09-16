@@ -100,6 +100,15 @@ extension SpamCheckerTests {
 }
 
 
+extension ClickTrackingTests {
+    static var allTests : [(String, (ClickTrackingTests) -> () throws -> Void)] {
+        return [
+            ("testExample", testExample)
+        ]
+    }
+}
+
+
 extension AuthenticationTests {
     static var allTests : [(String, (AuthenticationTests) -> () throws -> Void)] {
         return [
@@ -148,6 +157,7 @@ XCTMain([
     testCase(MailSettingsTests.allTests),
     testCase(SandboxModeTests.allTests),
     testCase(SpamCheckerTests.allTests),
+    testCase(ClickTrackingTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),
     testCase(ValidateTests.allTests)
