@@ -15,7 +15,7 @@ public struct BCCSetting {
     // MARK: - Properties
     //=========================================================================
     
-    /// A bool indicating if the setting should be toggle on or off.
+    /// A bool indicating if the setting should be toggled on or off.
     public var enable: Bool { return self.email != nil }
     
     /// The email address that you would like to receive the BCC.

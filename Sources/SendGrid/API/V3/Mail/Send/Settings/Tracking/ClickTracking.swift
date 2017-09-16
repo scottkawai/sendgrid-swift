@@ -14,8 +14,8 @@ public struct ClickTracking: Encodable {
     // MARK: - Properties
     //=========================================================================
     
-    /// A bool indicating if the setting should be toggle on or off.
-    public var enable: Bool
+    /// A bool indicating if the setting should be toggled on or off.
+    public let enable: Bool
     
     /// A boolean indicating if click tracking should also be applied to links
     /// inside a plain text email.

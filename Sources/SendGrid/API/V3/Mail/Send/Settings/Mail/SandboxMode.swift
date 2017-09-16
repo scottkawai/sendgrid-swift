@@ -15,7 +15,7 @@ public struct SandboxMode: Encodable {
     // MARK: - Properties
     //=========================================================================
     
-    /// A bool indicating if the setting should be toggle on or off.
+    /// A bool indicating if the setting should be toggled on or off.
     public let enable: Bool
     
     

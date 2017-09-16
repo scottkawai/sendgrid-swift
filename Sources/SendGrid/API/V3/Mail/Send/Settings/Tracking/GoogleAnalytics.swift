@@ -14,7 +14,8 @@ public struct GoogleAnalytics {
     // MARK: - Properties
     //=========================================================================
     
-    /// Name of the referrer source. (e.g. Google, SomeDomain.com, or Marketing Email)
+    /// Name of the referrer source. (e.g. Google, SomeDomain.com, or Marketing
+    /// Email)
     public let source: String?
     
     /// Name of the marketing medium. (e.g. Email)

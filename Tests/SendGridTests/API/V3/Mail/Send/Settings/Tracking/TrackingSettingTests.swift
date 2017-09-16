@@ -16,6 +16,7 @@ class TrackingSettingTests: XCTestCase, EncodingTester {
         var settings = TrackingSetting()
         settings.clickTracking = ClickTracking(section: .htmlBody)
         settings.googleAnalytics = GoogleAnalytics(source: "test")
+        settings.openTracking = OpenTracking(location: .bottom)
         let expected: [String : Any] = [
             "click_tracking": [
                 "enable": true,
@@ -24,6 +25,9 @@ class TrackingSettingTests: XCTestCase, EncodingTester {
             "ganalytics": [
                 "enable": true,
                 "utm_source": "test"
+            ],
+            "open_tracking": [
+                "enable": true
             ]
         ]
         XCTAssertEncodedObject(settings, equals: expected)

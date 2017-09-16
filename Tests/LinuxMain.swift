@@ -109,6 +109,24 @@ extension ClickTrackingTests {
 }
 
 
+extension GoogleAnalyticsTests {
+    static var allTests : [(String, (GoogleAnalyticsTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension OpenTrackingTests {
+    static var allTests : [(String, (OpenTrackingTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
 extension TrackingSettingTests {
     static var allTests : [(String, (TrackingSettingTests) -> () throws -> Void)] {
         return [
@@ -167,6 +185,8 @@ XCTMain([
     testCase(SandboxModeTests.allTests),
     testCase(SpamCheckerTests.allTests),
     testCase(ClickTrackingTests.allTests),
+    testCase(GoogleAnalyticsTests.allTests),
+    testCase(OpenTrackingTests.allTests),
     testCase(TrackingSettingTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),

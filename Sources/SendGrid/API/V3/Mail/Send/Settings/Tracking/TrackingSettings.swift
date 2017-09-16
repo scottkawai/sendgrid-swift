@@ -15,11 +15,14 @@ public struct TrackingSetting: Encodable {
     // MARK: - Properties
     //=========================================================================
     
-    /// The BCC setting.
+    /// The click tracking setting.
     public var clickTracking: ClickTracking?
     
     /// The Google Analytics setting.
     public var googleAnalytics: GoogleAnalytics?
+    
+    /// The open tracking setting.
+    public var openTracking: OpenTracking?
     
     
     // MARK: - Initialization
@@ -37,6 +40,7 @@ public extension TrackingSetting {
         
         case clickTracking      = "click_tracking"
         case googleAnalytics    = "ganalytics"
+        case openTracking       = "open_tracking"
         
     }
     
