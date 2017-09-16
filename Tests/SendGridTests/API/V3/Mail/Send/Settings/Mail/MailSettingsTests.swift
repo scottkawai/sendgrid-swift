@@ -16,6 +16,7 @@ class MailSettingsTests: XCTestCase, EncodingTester {
         var settings = MailSettings()
         settings.bcc = BCCSetting(email: "foo@example.none")
         settings.bypassListManagement = BypassListManagement()
+        settings.footer = Footer(text: "Hello World", html: "<p>Hello World</p>")
         settings.sandboxMode = SandboxMode()
         let expected: [String : Any] = [
             "bcc": [
@@ -23,6 +24,11 @@ class MailSettingsTests: XCTestCase, EncodingTester {
                 "email": "foo@example.none"
             ],
             "bypass_list_management": ["enable": true],
+            "footer": [
+                "enable": true,
+                "text": "Hello World",
+                "html": "<p>Hello World</p>"
+            ],
             "sandbox_mode": ["enable": true]
         ]
         XCTAssertEncodedObject(settings, equals: expected)

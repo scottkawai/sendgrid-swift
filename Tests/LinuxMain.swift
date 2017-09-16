@@ -10,6 +10,15 @@ extension AddressTests {
 }
 
 
+extension ASMTests {
+    static var allTests : [(String, (ASMTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
 extension AttachmentTests {
     static var allTests : [(String, (AttachmentTests) -> () throws -> Void)] {
         return [
@@ -21,6 +30,60 @@ extension AttachmentTests {
 
 extension ContentTests {
     static var allTests : [(String, (ContentTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension PersonalizationTests {
+    static var allTests : [(String, (PersonalizationTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension BCCSettingTests {
+    static var allTests : [(String, (BCCSettingTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension BypassListManagementTests {
+    static var allTests : [(String, (BypassListManagementTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension FooterTests {
+    static var allTests : [(String, (FooterTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension MailSettingsTests {
+    static var allTests : [(String, (MailSettingsTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension SandboxModeTests {
+    static var allTests : [(String, (SandboxModeTests) -> () throws -> Void)] {
         return [
             ("testEncoding", testEncoding)
         ]
@@ -66,8 +129,15 @@ extension ValidateTests {
 
 XCTMain([
     testCase(AddressTests.allTests),
+    testCase(ASMTests.allTests),
     testCase(AttachmentTests.allTests),
     testCase(ContentTests.allTests),
+    testCase(PersonalizationTests.allTests),
+    testCase(BCCSettingTests.allTests),
+    testCase(BypassListManagementTests.allTests),
+    testCase(FooterTests.allTests),
+    testCase(MailSettingsTests.allTests),
+    testCase(SandboxModeTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),
     testCase(ValidateTests.allTests)

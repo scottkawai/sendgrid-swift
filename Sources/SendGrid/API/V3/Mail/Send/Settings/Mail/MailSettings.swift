@@ -20,6 +20,9 @@ public struct MailSettings: Encodable {
     /// The bypass list management setting.
     public var bypassListManagement: BypassListManagement?
     
+    /// The footer setting.
+    public var footer: Footer?
+    
     /// The sandbox mode setting.
     public var sandboxMode: SandboxMode?
     
@@ -39,6 +42,7 @@ public extension MailSettings {
         
         case bcc
         case bypassListManagement   = "bypass_list_management"
+        case footer
         case sandboxMode            = "sandbox_mode"
         
     }

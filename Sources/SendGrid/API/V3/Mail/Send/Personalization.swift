@@ -123,7 +123,7 @@ extension Personalization: Validatable {
         try self.bcc?.forEach { try $0.validate() }
         
         if let s = self.subject {
-            guard s.characters.count > 0 else { throw Exception.Mail.missingSubject }
+            guard s.count > 0 else { throw Exception.Mail.missingSubject }
         }
         
         if let sub = self.substitutions {
