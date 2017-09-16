@@ -18,6 +18,9 @@ public struct TrackingSetting: Encodable {
     /// The BCC setting.
     public var clickTracking: ClickTracking?
     
+    /// The Google Analytics setting.
+    public var googleAnalytics: GoogleAnalytics?
+    
     
     // MARK: - Initialization
     //=========================================================================
@@ -32,7 +35,8 @@ public extension TrackingSetting {
     
     public enum CodingKeys: String, CodingKey {
         
-        case clickTracking  = "click_tracking"
+        case clickTracking      = "click_tracking"
+        case googleAnalytics    = "ganalytics"
         
     }
     

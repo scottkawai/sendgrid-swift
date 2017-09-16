@@ -15,10 +15,15 @@ class TrackingSettingTests: XCTestCase, EncodingTester {
     func testEncoding() {
         var settings = TrackingSetting()
         settings.clickTracking = ClickTracking(section: .htmlBody)
+        settings.googleAnalytics = GoogleAnalytics(source: "test")
         let expected: [String : Any] = [
             "click_tracking": [
                 "enable": true,
                 "enable_text": false
+            ],
+            "ganalytics": [
+                "enable": true,
+                "utm_source": "test"
             ]
         ]
         XCTAssertEncodedObject(settings, equals: expected)
