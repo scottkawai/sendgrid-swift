@@ -9,7 +9,7 @@ import Foundation
 
 /// The `GoogleAnalytics` class is used to toggle the Google Analytics setting,
 /// which adds GA parameters to links in the email.
-public struct GoogleAnalytics {
+public struct GoogleAnalytics: Encodable {
     
     // MARK: - Properties
     //=========================================================================
@@ -31,16 +31,7 @@ public struct GoogleAnalytics {
     public let campaign: String?
     
     /// A `Bool` indicating if the setting is enabled or not.
-    public var enable: Bool {
-        let paths: [KeyPath<GoogleAnalytics, String?>] = [
-            \.source,
-            \.medium,
-            \.term,
-            \.content,
-            \.campaign
-        ]
-        return paths.reduce(false) { $0 || self[keyPath:$1] != nil }
-    }
+    public let enable: Bool
     
     
     // MARK: - Initializers
@@ -67,12 +58,13 @@ public struct GoogleAnalytics {
         self.term = term
         self.content = content
         self.campaign = campaign
+        self.enable = [source, medium, term, content, campaign].reduce(false) { $0 || $1 != nil }
     }
     
 }
 
 /// Encodable conformance.
-extension GoogleAnalytics: Encodable {
+public extension GoogleAnalytics {
     
     public enum CodingKeys: String, CodingKey {
         case enable
@@ -81,21 +73,6 @@ extension GoogleAnalytics: Encodable {
         case term       = "utm_term"
         case content    = "utm_content"
         case campaign   = "utm_campaign"
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.enable, forKey: .enable)
-        let properties: [CodingKeys : KeyPath<GoogleAnalytics, String?>] = [
-            .source: \.source,
-            .medium: \.medium,
-            .term: \.term,
-            .content: \.content,
-            .campaign: \.campaign
-        ]
-        for (key, path) in properties {
-            try container.encodeIfPresent(self[keyPath: path], forKey: key)
-        }
     }
     
 }
