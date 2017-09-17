@@ -9,7 +9,7 @@ import Foundation
 
 /// The `Footer` mail setting allows you to specify a footer that will be
 /// appended to the bottom of every email.
-public struct Footer {
+public struct Footer: Encodable {
     
     // MARK: - Properties
     //=========================================================================
@@ -21,7 +21,7 @@ public struct Footer {
     public let html: String?
     
     /// A `Bool` indicating if the setting is enabled or not.
-    public var enable: Bool { return self.text != nil && self.html != nil }
+    public let enable: Bool
     
     
     // MARK: - Initialization
@@ -41,6 +41,7 @@ public struct Footer {
     public init(text: String, html: String) {
         self.text = text
         self.html = html
+        self.enable = true
     }
     
     /// Initializes the setting with no templates, indicating that the footer
@@ -52,22 +53,16 @@ public struct Footer {
     public init() {
         self.text = nil
         self.html = nil
+        self.enable = false
     }
     
 }
 
 /// Encodable conformance
-extension Footer: Encodable {
+public extension Footer {
     
     public enum CodingKeys: String, CodingKey {
         case enable, text, html
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.enable, forKey: .enable)
-        try container.encodeIfPresent(self.text, forKey: .text)
-        try container.encodeIfPresent(self.html, forKey: .html)
     }
     
 }
