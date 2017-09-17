@@ -19,7 +19,7 @@ class ClickTrackingTests: XCTestCase, EncodingTester {
         let onSettingMax = ClickTracking(section: .plainTextAndHTMLBodies)
         XCTAssertEncodedObject(onSettingMax, equals: ["enable": true, "enable_text": true])
         
-        let offSetting = ClickTracking(section: .none)
+        let offSetting = ClickTracking(section: .off)
         XCTAssertEncodedObject(offSetting, equals: ["enable": false])
     }
     

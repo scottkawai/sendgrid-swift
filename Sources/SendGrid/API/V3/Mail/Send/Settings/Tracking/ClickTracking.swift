@@ -37,13 +37,13 @@ public struct ClickTracking: Encodable {
     /// plain text body.
     ///
     /// If click tracking is normally enabled on your SendGrid account and you
-    /// want to disable it for this particular email, use the `.none` case.
+    /// want to disable it for this particular email, use the `.off` case.
     ///
-    /// - Parameter section:    The section to track links in, or `.none` to
+    /// - Parameter section:    The section to track links in, or `.off` to
     ///                         disable the setting.
     public init(section: ClickTracking.Section) {
         switch section {
-        case .none:
+        case .off:
             self.enable = false
             self.enableText = nil
         case .htmlBody:
@@ -89,9 +89,9 @@ public extension ClickTracking {
     /// plain text body.
     ///
     /// If click tracking is normally enabled on your SendGrid account and you
-    /// want to disable it for this particular email, use the `.none` case.
+    /// want to disable it for this particular email, use the `.off` case.
     ///
-    /// - none:                     If used, the setting will be disabled for
+    /// - off:                      If used, the setting will be disabled for
     ///                             this email.
     /// - htmlBody:                 If used, links in the HTML body of the email
     ///                             will be encoded and tracked.
@@ -99,7 +99,7 @@ public extension ClickTracking {
     ///                             the plain text body will be encoded and
     ///                             tracked.
     public enum Section {
-        case none, htmlBody, plainTextAndHTMLBodies
+        case off, htmlBody, plainTextAndHTMLBodies
     }
     
 }
