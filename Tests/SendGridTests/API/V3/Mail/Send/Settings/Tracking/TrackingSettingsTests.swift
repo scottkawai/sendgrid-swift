@@ -1,5 +1,5 @@
 //
-//  TrackingSettingTests.swift
+//  TrackingSettingsTests.swift
 //  SendGridTests
 //
 //  Created by Scott Kawai on 9/16/17.
@@ -8,12 +8,12 @@
 import XCTest
 @testable import SendGrid
 
-class TrackingSettingTests: XCTestCase, EncodingTester {
+class TrackingSettingsTests: XCTestCase, EncodingTester {
     
-    typealias EncodableObject = TrackingSetting
+    typealias EncodableObject = TrackingSettings
     
     func testEncoding() {
-        var settings = TrackingSetting()
+        var settings = TrackingSettings()
         settings.clickTracking = ClickTracking(section: .htmlBody)
         settings.googleAnalytics = GoogleAnalytics(source: "test")
         settings.openTracking = OpenTracking(location: .bottom)

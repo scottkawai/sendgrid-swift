@@ -8,9 +8,9 @@
 import Foundation
 
 
-/// The `TrackingSetting` struct houses any tracking settings an email should be
+/// The `TrackingSettings` struct houses any tracking settings an email should be
 /// configured with.
-public struct TrackingSetting: Encodable {
+public struct TrackingSettings: Encodable {
     
     // MARK: - Properties
     //=========================================================================
@@ -37,7 +37,7 @@ public struct TrackingSetting: Encodable {
 }
 
 /// Encodable conformance.
-public extension TrackingSetting {
+public extension TrackingSettings {
     
     public enum CodingKeys: String, CodingKey {
         
@@ -51,7 +51,7 @@ public extension TrackingSetting {
 }
 
 /// Validatable conformance.
-extension TrackingSetting: Validatable {
+extension TrackingSettings: Validatable {
     
     /// Bubbles up the `subscriptionTracking` validation.
     public func validate() throws {

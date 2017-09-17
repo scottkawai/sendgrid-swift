@@ -11,16 +11,13 @@ import Foundation
 ///
 /// This class contains a `ModelType` generic, which is used to map the API
 /// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Codable>: Validatable {
+open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     
     // MARK: - Properties
     //=========================================================================
     
     /// The HTTP verb to use in the call.
     open var method: HTTPMethod
-    
-    /// The parameters that should be sent with the API request.
-    open var parameters: [AnyHashable:Any]?
     
     /// The Content-Type of the call.
     open var contentType: ContentType
@@ -34,16 +31,36 @@ open class Request<ModelType : Codable>: Validatable {
     /// The encoding strategy.
     open var encodingStrategy: EncodingStrategy = EncodingStrategy()
     
-    /// An array representing the path portion of the request's API endpoint.
-    /// For example, if the endpoint was the following:
-    ///
-    ///     https://api.sendgrid.com/v3/mail/send
-    ///
-    /// Then the value of this property would be:
-    ///
-    ///     ["v3", "mail", "send"]
-    ///
-    open var path: [String]
+    /// The full URL endpoint for the API call.
+    open var endpoint: URLComponents? = URLComponents(string: Constants.ApiHost)
+    
+    /// The description of the request, represented as an [API
+    /// Blueprint](https://apiblueprint.org/)
+    public var description: String {
+        let path = self.endpoint?.path ?? ""
+        var blueprint = """
+        # \(self.method) \(path)
+        
+        + Request (\(self.contentType)
+        
+            + Headers
+        
+                Accept: \(self.acceptType)
+        
+        """
+        if self.method.hasBody,
+        let encodable = self as? AutoEncodable,
+            let bodyData = encodable.encode(formatting: [.prettyPrinted]),
+            let bodyString = String(data: bodyData, encoding: .utf8)
+        {
+            blueprint += """
+                + Body
+            
+                    \(bodyString)
+            """
+        }
+        return blueprint
+    }
     
     
     // MARK: - Initialization
@@ -56,21 +73,9 @@ open class Request<ModelType : Codable>: Validatable {
     ///   - parameters: Any parameters to send with the API call.
     ///   - path:       An array of strings representing the path of the
     ///                 endpoint.
-    public init(method: HTTPMethod = .GET, contentType: ContentType = .formUrlEncoded, parameters: [AnyHashable : Any]? = nil, path: [String]) {
-        self.path = path
+    public init(method: HTTPMethod = .GET, contentType: ContentType = .formUrlEncoded) {
         self.method = method
-        self.parameters = parameters
         self.contentType = contentType
-    }
-    
-    /// Initializes the request.
-    ///
-    /// - Parameters:
-    ///   - method:     The HTTP verb to use in the API call.
-    ///   - parameters: Any parameters to send with the API call.
-    ///   - pathItems:  A list of strings representing the path of the endpoint.
-    public convenience init(method: HTTPMethod = .GET, contentType: ContentType = .formUrlEncoded, parameters: [AnyHashable : Any]? = nil, pathItems: String...) {
-        self.init(method: method, contentType: contentType, parameters: parameters, path: pathItems)
     }
     
     
@@ -82,27 +87,16 @@ open class Request<ModelType : Codable>: Validatable {
     /// - Throws:   Errors can be thrown if there was a problem encoding the
     ///             parameters or constructing the API URL endpoint.
     open func generateUrlRequest() throws -> URLRequest {
-        var path = Constants.ApiHost + self.path.joined(separator: "/")
-        var body: Data?
-        if let params = self.parameters {
-            if self.method.hasBody {
-                let encoder = JSONEncoder()
-                encoder.dateEncodingStrategy = self.encodingStrategy.dates
-                encoder.dataEncodingStrategy = self.encodingStrategy.data
-                body = try encoder.encode(params)
-            } else {
-                let query = params.map { URLQueryItem(name: "\($0.key)", value: "\($0.value)").description }
-                path += "?" + query.joined(separator: "&")
-            }
-        }
-        guard let url = URL(string: path) else {
+        guard let url = self.endpoint?.url else {
             throw Exception.Request.couldNotConstructUrlRequest
         }
         var req = URLRequest(url: url)
-        req.httpBody = body
         req.httpMethod = self.method.rawValue
         req.addValue(self.contentType.description, forHTTPHeaderField: "Content-Type")
         req.addValue(self.acceptType.description, forHTTPHeaderField: "Accept")
+        if self.method.hasBody, let enc = self as? AutoEncodable {
+            req.httpBody = enc.encode()
+        }
         return req
     }
     
