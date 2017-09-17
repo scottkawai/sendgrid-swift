@@ -26,7 +26,7 @@ public extension Exception {
         public var description: String {
             switch self {
             case .invalidContentType(let type):
-                return "Invalid content type '\(type)': Content types cannot contain ';', ',', spaces, or CLRF characters."
+                return "Invalid content type '\(type)': Content types cannot contain ';', ',', spaces, or CLRF characters and must be at least 3 characters long."
             }
         }
     }

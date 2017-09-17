@@ -76,9 +76,6 @@ public extension Exception {
         /// Thrown when there are too many substitutions.
         case tooManySubstitutions
         
-        /// Thrown if a content type is used with a semicolon or CRLF character.
-        case invalidContentType(String)
-        
         /// Thrown when an email address is listed multiple times in an email.
         case duplicateRecipient(String)
         
@@ -132,8 +129,6 @@ public extension Exception {
                 return "A category cannot have more than \(Constants.Categories.CharacterLimit) characters (attempted to use category named \"\(str)\")."
             case .tooManySubstitutions:
                 return "You cannot have more than \(Constants.SubstitutionLimit) substitutions in a personalization."
-            case .invalidContentType(let str):
-                return "Invalid content type \"\(str)\": Content types cannot contain ‘;’, spaces, or CRLF characters, and must be at least 1 character long."
             case .duplicateRecipient(let str):
                 return "Each unique email address in the `personalizations` array should only be included once. You have included \"\(str)\" more than once."
             case .tooManyCustomArguments(let amount, let args):

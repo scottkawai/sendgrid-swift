@@ -20,4 +20,20 @@ class AddressTests: XCTestCase, EncodingTester {
         XCTAssertEncodedObject(withName, equals: ["name": "Foo Bar", "email": "foo@example.none"])
     }
     
+    func testInitialization() {
+        let good = Address(email: "test@example.com", name: "Good Email")
+        XCTAssertEqual("test@example.com", good.email)
+        XCTAssertEqual("Good Email", good.name)
+    }
+    
+    func testValidation() {
+        do {
+            let bad = Address(email: "testexample")
+            try bad.validate()
+            XCTFail("Initialization should have failed with a bad address, but no error was thrown.")
+        } catch {
+            XCTAssertEqual("\(error)", SendGrid.Exception.Mail.malformedEmailAddress("testexample").description)
+        }
+    }
+    
 }

@@ -77,7 +77,7 @@ extension ContentType: Validatable {
     
     /// Validates that the content-type has no CLRF characters.
     public func validate() throws {
-        guard Validate.noCLRF(in: self.description) else {
+        guard self.description.count > 2, Validate.noCLRF(in: self.description) else {
             throw Exception.ContentType.invalidContentType(self.description)
         }
     }
