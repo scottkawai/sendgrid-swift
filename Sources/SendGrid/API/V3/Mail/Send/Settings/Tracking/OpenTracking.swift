@@ -29,14 +29,14 @@ public struct OpenTracking: Encodable {
     ///
     /// If the open tracking setting is enabled by default on your SendGrid
     /// account and you want to disable it for this specific email, you should
-    /// use the `.none` case.
+    /// use the `.off` case.
     ///
     /// - Parameter location:   The location to put the open tracking pixel at
     ///                         in the email. If you want to turn the setting
-    ///                         off, use the `.none` case.
+    ///                         off, use the `.off` case.
     public init(location: Location) {
         switch location {
-        case .none:
+        case .off:
             self.enable = false
             self.substitutionTag = nil
         case .bottom:
@@ -68,9 +68,9 @@ public extension OpenTracking {
     ///
     /// If the open tracking setting is enabled by default on your SendGrid
     /// account and you want to disable it for this specific email, you should
-    /// use the `.none` case.
+    /// use the `.off` case.
     ///
-    /// - none:     Disables open tracking for the email.
+    /// - off:      Disables open tracking for the email.
     /// - bottom:   Places the open tracking pixel at the bottom of the email
     ///             body.
     /// - at:       Places the open tracking pixel at a specified substitution
@@ -81,7 +81,7 @@ public extension OpenTracking {
     ///             "%open_tracking%" at the top. The tag will then be replaced
     ///             with the open tracking pixel.
     public enum Location {
-        case none, bottom, at(tag: String)
+        case off, bottom, at(tag: String)
     }
     
 }
