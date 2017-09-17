@@ -24,6 +24,9 @@ public struct TrackingSetting: Encodable {
     /// The open tracking setting.
     public var openTracking: OpenTracking?
     
+    /// The subscription tracking setting.
+    public var subscriptionTracking: SubscriptionTracking?
+    
     
     // MARK: - Initialization
     //=========================================================================
@@ -38,9 +41,10 @@ public extension TrackingSetting {
     
     public enum CodingKeys: String, CodingKey {
         
-        case clickTracking      = "click_tracking"
-        case googleAnalytics    = "ganalytics"
-        case openTracking       = "open_tracking"
+        case clickTracking          = "click_tracking"
+        case googleAnalytics        = "ganalytics"
+        case openTracking           = "open_tracking"
+        case subscriptionTracking   = "subscription_tracking"
         
     }
     

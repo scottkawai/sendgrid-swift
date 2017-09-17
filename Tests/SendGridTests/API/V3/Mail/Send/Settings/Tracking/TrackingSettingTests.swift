@@ -17,6 +17,7 @@ class TrackingSettingTests: XCTestCase, EncodingTester {
         settings.clickTracking = ClickTracking(section: .htmlBody)
         settings.googleAnalytics = GoogleAnalytics(source: "test")
         settings.openTracking = OpenTracking(location: .bottom)
+        settings.subscriptionTracking = SubscriptionTracking(substitutionTag: "%unsub%")
         let expected: [String : Any] = [
             "click_tracking": [
                 "enable": true,
@@ -28,6 +29,10 @@ class TrackingSettingTests: XCTestCase, EncodingTester {
             ],
             "open_tracking": [
                 "enable": true
+            ],
+            "subscription_tracking": [
+                "enable": true,
+                "substitution_tag": "%unsub%"
             ]
         ]
         XCTAssertEncodedObject(settings, equals: expected)
