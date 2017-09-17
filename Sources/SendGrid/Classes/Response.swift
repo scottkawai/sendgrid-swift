@@ -35,6 +35,9 @@ open class Response<ModelType : Codable> {
     /// If the response contained the total number of records, you can access it here.
     public let count: Int?
     
+    /// The rate limit information extracted from the response.
+    public let rateLimit: RateLimit?
+    
     
     // MARK: - Initialization
     //=========================================================================
@@ -53,6 +56,7 @@ open class Response<ModelType : Codable> {
         self.data = data
         self.urlResponse = response
         self.error = error
+        self.rateLimit = RateLimit.from(response: response)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = decodingStrategy.dates
         decoder.dataDecodingStrategy = decodingStrategy.data
