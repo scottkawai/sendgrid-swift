@@ -52,3 +52,14 @@ public extension MailSettings {
     }
     
 }
+
+/// Validatable conformance.
+extension MailSettings: Validatable {
+    
+    /// Bubbles up the validations for `bcc` and `spamCheck`.
+    public func validate() throws {
+        try self.bcc?.validate()
+        try self.spamCheck?.validate()
+    }
+    
+}

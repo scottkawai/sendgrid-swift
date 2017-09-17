@@ -49,3 +49,13 @@ public extension TrackingSetting {
     }
     
 }
+
+/// Validatable conformance.
+extension TrackingSetting: Validatable {
+    
+    /// Bubbles up the `subscriptionTracking` validation.
+    public func validate() throws {
+        try self.subscriptionTracking?.validate()
+    }
+    
+}

@@ -144,10 +144,9 @@ extension SubscriptionTracking: Validatable {
     public func validate() throws {
         let bodies: [String?] = [self.text, self.html]
         try bodies.forEach { (body) in
-            if let b = body {
-                guard Validate.subscriptionTracking(body: b) else {
-                    throw Exception.Mail.missingSubscriptionTrackingTag
-                }
+            guard let b = body else { return }
+            guard Validate.subscriptionTracking(body: b) else {
+                throw Exception.Mail.missingSubscriptionTrackingTag
             }
         }
     }
