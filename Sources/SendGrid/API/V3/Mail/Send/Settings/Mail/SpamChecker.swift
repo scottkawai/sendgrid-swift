@@ -9,7 +9,7 @@ import Foundation
 
 /// The `SpamChecker` mail setting allows you to test the content of your email
 /// for spam.
-public struct SpamChecker {
+public struct SpamChecker: Encodable {
     
     // MARK: - Properties
     //=========================================================================
@@ -24,7 +24,7 @@ public struct SpamChecker {
     public let postURL: URL?
     
     /// A `Bool` indicating if the setting is enabled or not.
-    public var enable: Bool { return self.threshold != nil }
+    public let enable: Bool
     
     
     // MARK: - Initialization
@@ -47,6 +47,7 @@ public struct SpamChecker {
     public init(threshold: Int, url: URL? = nil) {
         self.threshold = threshold
         self.postURL = url
+        self.enable = true
     }
     
     /// Initializes the setting with no threshold, indicating that the spam
@@ -58,24 +59,18 @@ public struct SpamChecker {
     public init() {
         self.threshold = nil
         self.postURL = nil
+        self.enable = false
     }
     
 }
 
 /// Encodable conformance.
-extension SpamChecker: Encodable {
+public extension SpamChecker {
     
     public enum CodingKeys: String, CodingKey {
         case enable
         case threshold
         case postURL = "post_to_url"
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.enable, forKey: .enable)
-        try container.encodeIfPresent(self.threshold, forKey: .threshold)
-        try container.encodeIfPresent(self.postURL, forKey: .postURL)
     }
     
 }
