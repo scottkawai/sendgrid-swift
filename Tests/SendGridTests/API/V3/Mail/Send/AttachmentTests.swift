@@ -58,7 +58,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
             try good.validate()
             XCTAssertTrue(true)
         } catch {
-            XCTFail("Unexpected error: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -67,7 +67,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
             try good.validate()
             XCTAssertTrue(true)
         } catch {
-            XCTFail("Unexpected error: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -78,7 +78,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
             XCTAssertEqual(errorType, "image/png;")
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -89,7 +89,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
             XCTAssertEqual(errorType, "image/png\n\n")
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -100,7 +100,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.invalidFilename(let errorName) {
             XCTAssertEqual(errorName, "dot;\n.png")
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -111,7 +111,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.invalidContentID(let errorID) {
             XCTAssertEqual(errorID, "asdf,asdf")
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -122,7 +122,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.invalidContentID(let errorID) {
             XCTAssertEqual(errorID, "")
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
     }
     

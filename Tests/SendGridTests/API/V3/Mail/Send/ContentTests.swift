@@ -45,7 +45,7 @@ class ContentTests: XCTestCase, EncodingTester {
             try html.validate()
             XCTAssertTrue(true)
         } catch {
-            XCTFail("Unexpected error: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -55,7 +55,7 @@ class ContentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
             XCTAssertEqual(errorType, "application;/json")
         } catch {
-            XCTFail("Unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -65,7 +65,7 @@ class ContentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
             XCTAssertEqual(errorType, "application\n\r/json")
         } catch {
-            XCTFail("Unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -75,7 +75,7 @@ class ContentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
             XCTAssertEqual(errorType, "/")
         } catch {
-            XCTFail("Unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -85,7 +85,7 @@ class ContentTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.contentHasEmptyString {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("Unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
     }
     

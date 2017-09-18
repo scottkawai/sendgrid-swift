@@ -125,7 +125,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.missingRecipients {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -136,7 +136,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.malformedEmailAddress(_) {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -147,7 +147,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.malformedEmailAddress(_) {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -157,7 +157,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.malformedEmailAddress(_) {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         let test = self.generateExample()
@@ -168,7 +168,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
             try test.validate()
             XCTAssertEqual(test.sendAt?.timeIntervalSince1970, goodDate.timeIntervalSince1970)
         } catch {
-            XCTFail("Unexpected failure when scheduling with a date under 72 hours.")
+            XCTFailUnknownError(error)
         }
         
         let failTest = self.generateExample()
@@ -180,7 +180,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.invalidScheduleDate {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -194,7 +194,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.headerNotAllowed(_) {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -202,7 +202,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
             try goodSubstitutions.validate()
             XCTAssertTrue(true)
         } catch {
-            XCTFail("Unexpected error: \(error)")
+            XCTFailUnknownError(error)
         }
         
         do {
@@ -217,7 +217,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         } catch SendGrid.Exception.Mail.tooManySubstitutions {
             XCTAssertTrue(true)
         } catch {
-            XCTFail("An unexpected error was thrown: \(error)")
+            XCTFailUnknownError(error)
         }
     }
     
