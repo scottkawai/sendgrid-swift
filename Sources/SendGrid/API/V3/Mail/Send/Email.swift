@@ -181,9 +181,9 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
         guard totalRecipients.count <= Constants.RecipientLimit else { throw Exception.Mail.tooManyRecipients }
         
         // Check for subject present
-        if ((self.subject?.characters.count ?? 0) == 0) && self.templateID == nil {
+        if ((self.subject?.count ?? 0) == 0) && self.templateID == nil {
             let subjectPresent = self.personalizations.reduce(true) { (hasSubject, person) -> Bool in
-                return hasSubject && ((person.subject?.characters.count ?? 0) > 0)
+                return hasSubject && ((person.subject?.count ?? 0) > 0)
             }
             guard subjectPresent else { throw Exception.Mail.missingSubject }
         }
