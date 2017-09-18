@@ -88,6 +88,9 @@ public extension Exception {
         /// Thrown when an attachment's filename contains invalid characters.
         case invalidFilename(String)
         
+        /// Thrown when a category has been specified more than once.
+        case duplicateCategory(String)
+        
         
         // MARK: - Properties
         //=====================================================================
@@ -141,6 +144,8 @@ public extension Exception {
                 return "Invalid content ID \"\(str)\" for attachment: Content IDs cannot contain ‘;’, spaces, or CRLF characters, and must be at least 1 character long."
             case .invalidFilename(let str):
                 return "Invalid filename \"\(str)\" for attachment: Filenames cannot contain ‘;’, spaces, or CRLF characters, and must be at least 1 character long."
+            case .duplicateCategory(let cat):
+                return "You cannot specify the category '\(cat)' more than once."
             }
         }
     }

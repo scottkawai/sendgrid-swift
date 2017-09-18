@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Email: Request<[String:Any]>, AutoEncodable, EmailHeaderRepresentable, Scheduling {
+public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling {
     
     // MARK: - Properties
     //=========================================================================
@@ -200,10 +200,15 @@ public class Email: Request<[String:Any]>, AutoEncodable, EmailHeaderRepresentab
         // Validate the categories
         if let cats = self.categories {
             guard cats.count <= Constants.Categories.TotalLimit else { throw Exception.Mail.tooManyCategories }
-            try cats.forEach({ (cat) in
-                guard cat.characters.count <= Constants.Categories.CharacterLimit else {
+            _ = try cats.reduce([String](), { (list, cat) -> [String] in
+                guard cat.count <= Constants.Categories.CharacterLimit else {
                     throw Exception.Mail.categoryTooLong(cat)
                 }
+                let lower = cat.lowercased()
+                if list.contains(lower) {
+                    throw Exception.Mail.duplicateCategory(lower)
+                }
+                return list + [lower]
             })
         }
         
@@ -233,4 +238,54 @@ public class Email: Request<[String:Any]>, AutoEncodable, EmailHeaderRepresentab
         // validate the tracking settings.
         try self.trackingSettings.validate()
     }
+}
+
+/// Encodable conformance.
+extension Email: AutoEncodable {
+    
+    public enum CodingKeys: String, CodingKey {
+        case asm
+        case attachments
+        case batchID            = "batch_id"
+        case categories
+        case content
+        case customArguments    = "custom_args"
+        case from
+        case headers
+        case ipPoolName         = "ip_pool_name"
+        case mailSettings       = "mail_settings"
+        case personalizations
+        case replyTo            = "reply_to"
+        case sections
+        case sendAt             = "send_at"
+        case subject
+        case templateID         = "template_id"
+        case trackingSettings   = "tracking_settings"
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.personalizations, forKey: .personalizations)
+        try container.encode(self.from, forKey: .from)
+        try container.encode(self.content, forKey: .content)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.replyTo, forKey: .replyTo)
+        try container.encodeIfPresent(self.attachments, forKey: .attachments)
+        try container.encodeIfPresent(self.templateID, forKey: .templateID)
+        try container.encodeIfPresent(self.sections, forKey: .sections)
+        try container.encodeIfPresent(self.headers, forKey: .headers)
+        try container.encodeIfPresent(self.categories, forKey: .categories)
+        try container.encodeIfPresent(self.customArguments, forKey: .customArguments)
+        try container.encodeIfPresent(self.asm, forKey: .asm)
+        try container.encodeIfPresent(self.sendAt, forKey: .sendAt)
+        try container.encodeIfPresent(self.batchID, forKey: .batchID)
+        try container.encodeIfPresent(self.ipPoolName, forKey: .ipPoolName)
+        if self.mailSettings.hasSettings {
+            try container.encode(self.mailSettings, forKey: .mailSettings)
+        }
+        if self.trackingSettings.hasSettings {
+            try container.encode(self.trackingSettings, forKey: .trackingSettings)
+        }
+    }
+    
 }

@@ -27,6 +27,14 @@ public struct TrackingSettings: Encodable {
     /// The subscription tracking setting.
     public var subscriptionTracking: SubscriptionTracking?
     
+    /// A `Bool` indicating if at least one of the settings have been specified.
+    public var hasSettings: Bool {
+        return self.clickTracking != nil ||
+            self.googleAnalytics != nil ||
+            self.openTracking != nil ||
+            self.subscriptionTracking != nil
+    }
+    
     
     // MARK: - Initialization
     //=========================================================================

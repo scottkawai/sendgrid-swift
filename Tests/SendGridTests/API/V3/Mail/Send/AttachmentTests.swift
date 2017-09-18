@@ -11,14 +11,14 @@ import XCTest
 class AttachmentTests: XCTestCase, EncodingTester {
     
     typealias EncodableObject = Attachment
-    let redDotBytes: [UInt8] = [137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 5, 0, 0, 0, 5, 8, 6, 0, 0, 0, 141, 111, 38, 229, 0, 0, 0, 28, 73, 68, 65, 84, 8, 215, 99, 248, 255, 255, 63, 195, 127, 6, 32, 5, 195, 32, 18, 132, 208, 49, 241, 130, 88, 205, 4, 0, 14, 245, 53, 203, 209, 142, 14, 31, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130]
-    let dotBase64: String = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+    static let redDotBytes: [UInt8] = [137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 5, 0, 0, 0, 5, 8, 6, 0, 0, 0, 141, 111, 38, 229, 0, 0, 0, 28, 73, 68, 65, 84, 8, 215, 99, 248, 255, 255, 63, 195, 127, 6, 32, 5, 195, 32, 18, 132, 208, 49, 241, 130, 88, 205, 4, 0, 14, 245, 53, 203, 209, 142, 14, 31, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130]
+    static let dotBase64: String = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
     
     func testEncoding() {
-        let data = Data(bytes: self.redDotBytes)
+        let data = Data(bytes: AttachmentTests.redDotBytes)
         let minimalAttachment = Attachment(filename: "red.png", content: data)
         XCTAssertEncodedObject(minimalAttachment, equals: [
-            "content": self.dotBase64,
+            "content": AttachmentTests.dotBase64,
             "filename": "red.png",
             "disposition": "attachment"
             ]
@@ -27,7 +27,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
         let maxAttachment = Attachment(filename: "red-dot.png", content: data, disposition: .inline, type: .png, contentID: "ABC-123")
         XCTAssertEncodedObject(maxAttachment, equals: [
             "content_id": "ABC-123",
-            "content": self.dotBase64,
+            "content": AttachmentTests.dotBase64,
             "filename": "red-dot.png",
             "type": "image/png",
             "disposition": "inline"
@@ -36,7 +36,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
     }
     
     func testInitialization() {
-        let data = Data(bytes: self.redDotBytes)
+        let data = Data(bytes: AttachmentTests.redDotBytes)
         let basic = Attachment(filename: "dot.png", content: data)
         XCTAssertEqual(basic.filename, "dot.png")
         XCTAssertEqual(basic.disposition, ContentDisposition.attachment)
@@ -51,7 +51,7 @@ class AttachmentTests: XCTestCase, EncodingTester {
     }
     
     func testValidation() {
-        let image = Data(bytes: self.redDotBytes)
+        let image = Data(bytes: AttachmentTests.redDotBytes)
         do {
             // Validation should pass with a valid content type.
             let good = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: nil)

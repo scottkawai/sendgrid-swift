@@ -29,6 +29,15 @@ public struct MailSettings: Encodable {
     /// The spam checker setting.
     public var spamCheck: SpamChecker?
     
+    /// A `Bool` indicating if at least one of the settings have been specified.
+    public var hasSettings: Bool {
+        return self.bcc != nil ||
+            self.bypassListManagement != nil ||
+            self.footer != nil ||
+            self.sandboxMode != nil ||
+            self.spamCheck != nil
+    }
+    
     
     // MARK: - Initialization
     //=========================================================================
