@@ -36,6 +36,7 @@ Full documentation of the library is available [here](http://scottkawai.github.i
 - [Usage](#usage)
     + [Authorization](#authorization)
     + [API Calls](#api-calls)
+- [Development](#development)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -54,19 +55,27 @@ pod 'SendGrid', :git => 'https://github.com/scottkawai/sendgrid-swift.git'
 Add the following to your Package.swift:
 
 ```swift
+// swift-tools-version:4.0
+
 import PackageDescription
 
 let package = Package(
     name: "MyApp",
     dependencies: [
-        .Package(
+        .package(
             url: "https://github.com/scottkawai/sendgrid-swift.git",
-            majorVersion: 1, 
-            minor: 0
+            from: "1.0.0"
         )
+    ],
+    targets: [
+        .target(
+            name: "MyApp",
+            dependencies: ["SendGrid"])
     ]
 )
 ```
+
+**Note!** Make sure you also list "SendGrid" as a dependency in the "targets" section of your manifest.
 
 ### As A Submodule
 
@@ -85,14 +94,25 @@ This will add a `sendgrid-swift` folder to your directory. Next, you need to add
 
 The V3 endpoint supports authorization via API keys (preferred) and basic authentication via your SendGrid username and password (*Note:* the Mail Send API only allows API keys). Using the `Session` class, you can configure an instance with your authorization method to be used over and over again to send email requests:
 
-```swift
-let session = Session()
-session.authentication = Authentication.apiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
+It is also highly recommended that you do not hard-code any credentials in your code. If you're running this on Linux, it's recommended that you use environment variables instead, like so:
 
-/*
-`Session` also has a singleton instance that you can configure once and reuse throughout your code.
-*/
-Session.shared.authentication = Authentication.apiKey("SG.abcdefghijklmnop.qrstuvwxyz012345-6789")
+```swift
+///
+/// Assuming you set your SendGrid API key as an environment variable
+/// named "SG_API_KEY"...
+///
+let session = Session()
+guard let myApiKey = ProcessInfo.processInfo.environment["SG_API_KEY"] else { 
+    print("Unable to retrieve API key")
+    return
+}
+session.authentication = Authentication.apiKey(myApiKey)
+
+///
+/// Alternatively `Session` has a singleton instance that you can 
+/// configure once and reuse throughout your code.
+///
+///     Session.shared.authentication = Authentication.apiKey(myApiKey)
 ```
 
 ### API Calls
@@ -100,6 +120,17 @@ Session.shared.authentication = Authentication.apiKey("SG.abcdefghijklmnop.qrstu
 All the available API calls are located in their own folders under the `./Sources/SendGrid/API` folder, and each one has its own README explaining how to use it. Below is a list of the currently available API calls:
 
 - [Mail Send](Sources/SendGrid/API/V3/Mail/Send)
+
+## Development
+
+If you're developing on macOS, you an generate an Xcode project by running the following:
+
+```shell
+cd /path/to/sendgrid-swift
+swift package generate-xcodeproj
+```
+
+This project also contains a Dockerfile and a docker-compose.yml file which runs Ubuntu 16.04 with Swift 4 installed. Running `docker-compose up` will execute the `swift build` command in the Linux container. If you want to run other commands, you can run `docker-compose run --rm app <command>`.
 
 ## Contributing
 
