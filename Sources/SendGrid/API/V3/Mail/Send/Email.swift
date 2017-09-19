@@ -134,8 +134,7 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
         self.from = from
         self.content = content
         self.subject = subject
-        super.init(method: .POST, contentType: .json)
-        self.endpoint?.path = "v3/mail/send"
+        super.init(method: .POST, contentType: .json, path: "/v3/mail/send")
     }
     
     // MARK: - Methods

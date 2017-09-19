@@ -32,7 +32,7 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     open var encodingStrategy: EncodingStrategy = EncodingStrategy()
     
     /// The full URL endpoint for the API call.
-    open var endpoint: URLComponents? = URLComponents(string: Constants.ApiHost)
+    open var endpoint: URLComponents?
     
     /// The description of the request, represented as an [API
     /// Blueprint](https://apiblueprint.org/)
@@ -71,11 +71,15 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     /// - Parameters:
     ///   - method:     The HTTP verb to use in the API call.
     ///   - parameters: Any parameters to send with the API call.
-    ///   - path:       An array of strings representing the path of the
-    ///                 endpoint.
-    public init(method: HTTPMethod = .GET, contentType: ContentType = .formUrlEncoded) {
+    ///   - path:       The path portion of the API endpoint, such as
+    ///                 "/v3/mail/send". The path *must* start with a forward
+    ///                 slash (`/`).
+    public init(method: HTTPMethod, contentType: ContentType, path: String?) {
         self.method = method
         self.contentType = contentType
+        var components = URLComponents(string: Constants.ApiHost)
+        if let p = path { components?.path = p }
+        self.endpoint = components
     }
     
     
