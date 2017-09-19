@@ -49,6 +49,8 @@ extension ContentTests {
 extension EmailTests {
     static var allTests : [(String, (EmailTests) -> () throws -> Void)] {
         return [
+            ("testOnlyApiKeys", testOnlyApiKeys),
+            ("testNoImpersonation", testNoImpersonation),
             ("testEncoding", testEncoding),
             ("testInitialization", testInitialization),
             ("testPersonalizationValidation", testPersonalizationValidation),
@@ -173,6 +175,26 @@ extension TrackingSettingsTests {
 }
 
 
+extension BlockDeleteTests {
+    static var allTests : [(String, (BlockDeleteTests) -> () throws -> Void)] {
+        return [
+            ("testInitializer", testInitializer),
+            ("testDeleteAll", testDeleteAll)
+        ]
+    }
+}
+
+
+extension BlockGetTests {
+    static var allTests : [(String, (BlockGetTests) -> () throws -> Void)] {
+        return [
+            ("testGetAllInitialization", testGetAllInitialization),
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+        ]
+    }
+}
+
+
 extension BounceDeleteTests {
     static var allTests : [(String, (BounceDeleteTests) -> () throws -> Void)] {
         return [
@@ -274,6 +296,8 @@ XCTMain([
     testCase(OpenTrackingTests.allTests),
     testCase(SubscriptionTrackingTests.allTests),
     testCase(TrackingSettingsTests.allTests),
+    testCase(BlockDeleteTests.allTests),
+    testCase(BlockGetTests.allTests),
     testCase(BounceDeleteTests.allTests),
     testCase(BounceGetTests.allTests),
     testCase(SessionTests.allTests),

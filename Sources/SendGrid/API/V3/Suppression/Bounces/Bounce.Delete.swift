@@ -9,6 +9,8 @@ import Foundation
 
 public extension Bounce {
 
+    /// The `Bounce.Delete` class represents the API call to [delete from the
+    /// bounce list](https://sendgrid.com/docs/API_Reference/Web_API_v3/bounces.html#Delete-bounces-DELETE).
     public class Delete: Request<[String:Any]>, AutoEncodable {
         
         // MARK: - Properties
@@ -64,8 +66,8 @@ public extension Bounce {
         /// Initializes the request with an array of bounce events that should
         /// be removed from the bounce list.
         ///
-        /// - Parameter emails: An array of bounce events containing email
-        ///                     addresses to remove from the bounce list.
+        /// - Parameter bounces:    An array of bounce events containing email
+        ///                         addresses to remove from the bounce list.
         public convenience init(bounces: [Bounce]) {
             let emails = bounces.map { $0.email }
             self.init(emails: emails)
@@ -74,8 +76,8 @@ public extension Bounce {
         /// Initializes the request with an array of bounce events that should
         /// be removed from the bounce list.
         ///
-        /// - Parameter emails: An array of bounce events containing email
-        ///                     addresses to remove from the bounce list.
+        /// - Parameter bounces:    An array of bounce events containing email
+        ///                         addresses to remove from the bounce list.
         public convenience init(bounces: Bounce...) {
             self.init(bounces: bounces)
         }
