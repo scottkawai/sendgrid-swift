@@ -38,6 +38,9 @@ open class Response<ModelType : Codable> {
     /// The rate limit information extracted from the response.
     public let rateLimit: RateLimit?
     
+    /// The pagination info from the response, if specified.
+    public let pages: Pagination?
+    
     
     // MARK: - Initialization
     //=========================================================================
@@ -57,6 +60,7 @@ open class Response<ModelType : Codable> {
         self.urlResponse = response
         self.error = error
         self.rateLimit = RateLimit.from(response: response)
+        self.pages = Pagination.from(response: response)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = decodingStrategy.dates
         decoder.dataDecodingStrategy = decodingStrategy.data

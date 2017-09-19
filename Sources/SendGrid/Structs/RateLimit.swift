@@ -46,8 +46,8 @@ public struct RateLimit {
     ///
     /// - Parameter response:   An instance of `URLResponse`.
     /// - Returns:              An instance of `RateLimit` using information
-    ///                         from an NSURLResponse (if rate limit information
-    ///                         was returned in the NSURLResponse).
+    ///                         from an URLResponse (if rate limit information
+    ///                         was returned in the URLResponse).
     static func from(response: URLResponse?) -> RateLimit? {
         guard let http = response as? HTTPURLResponse,
             let limitStr = http.allHeaderFields["X-RateLimit-Limit"] as? String,
