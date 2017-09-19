@@ -18,6 +18,9 @@ public extension Exception {
         /// Thrown in the event an old, deprecated method is called.
         case methodUnavailable(AnyClass, String)
         
+        /// Thrown if a `limit` property has an out-of-range value.
+        case limitOutOfRange(Int, CountableClosedRange<Int>)
+        
         
         // MARK: - Properties
         //=========================================================================
@@ -27,6 +30,8 @@ public extension Exception {
             switch self {
             case .methodUnavailable(let klass, let methodName):
                 return "The `\(methodName)` method on \(klass) is no longer available."
+            case .limitOutOfRange(let value, let range):
+                return "The `limit` value must be between \(range.lowerBound) and \(range.upperBound) (inclusive). You specified \(value)."
             }
         }
         
