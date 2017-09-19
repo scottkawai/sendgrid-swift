@@ -9,7 +9,7 @@ import Foundation
 
 /// The `ContentType` struct represents the common types of Content Types used
 /// when sending through the SendGrid API.
-public struct ContentType: CustomStringConvertible {
+public struct ContentType: CustomStringConvertible, Equatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -70,6 +70,11 @@ public struct ContentType: CustomStringConvertible {
             else { return nil }
         self.init(type: type, subtype: subtype)
     }
+}
+
+/// Equatable conformance.
+public func ==(lhs: ContentType, rhs: ContentType) -> Bool {
+    return lhs.type == rhs.type && lhs.subtype == rhs.subtype
 }
 
 /// Validatable conformance.

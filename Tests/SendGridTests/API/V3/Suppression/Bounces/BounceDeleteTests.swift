@@ -12,45 +12,18 @@ class BounceDeleteTests: XCTestCase {
     
     func testInitializer() {
         let request = Bounce.Delete(emails: "foo@example.none", "bar@example.none")
-        let expectedBlueprint = """
-        # DELETE /v3/suppression/bounces
-
-        + Request (application/json)
-
-            + Headers
-
-                Accept: application/json
-
-            + Body
-
-                {
-                  "emails" : [
-                    "foo@example.none",
-                    "bar@example.none"
-                  ]
-                }
-        """
-        XCTAssertEqual(request.description, expectedBlueprint)
+        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/suppression/bounces")
+        XCTAssertEqual(request.method, .DELETE)
+        XCTAssertEqual(request.contentType, ContentType.json)
+        XCTAssertEqual(request.encodedString(), "{\"emails\":[\"foo@example.none\",\"bar@example.none\"]}")
     }
     
     func testDeleteAll() {
         let request = Bounce.Delete.all
-        let expectedBlueprint = """
-        # DELETE /v3/suppression/bounces
-
-        + Request (application/json)
-
-            + Headers
-
-                Accept: application/json
-
-            + Body
-
-                {
-                  "delete_all" : true
-                }
-        """
-        XCTAssertEqual(request.description, expectedBlueprint)
+        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/suppression/bounces")
+        XCTAssertEqual(request.method, .DELETE)
+        XCTAssertEqual(request.contentType, ContentType.json)
+        XCTAssertEqual(request.encodedString(), "{\"delete_all\":true}")
     }
     
 }

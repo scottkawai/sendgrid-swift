@@ -17,6 +17,9 @@ public protocol AutoEncodable: Encodable {
     /// The encoded data representation.
     func encode(formatting: JSONEncoder.OutputFormatting) -> Data?
     
+    /// The encoded string representation.
+    func encodedString(formatting: JSONEncoder.OutputFormatting) -> String?
+    
 }
 
 public extension AutoEncodable {
@@ -28,6 +31,12 @@ public extension AutoEncodable {
         encoder.dateEncodingStrategy = self.encodingStrategy.dates
         encoder.outputFormatting = formatting
         return try? encoder.encode(self)
+    }
+    
+    /// The default implementation uses `JSONEncoder` to encode the object.
+    func encodedString(formatting: JSONEncoder.OutputFormatting = []) -> String? {
+        guard let d = self.encode(formatting: formatting) else { return nil }
+        return String(data: d, encoding: .utf8)
     }
     
 }
