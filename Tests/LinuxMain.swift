@@ -173,6 +173,16 @@ extension TrackingSettingsTests {
 }
 
 
+extension BounceDeleteTests {
+    static var allTests : [(String, (BounceDeleteTests) -> () throws -> Void)] {
+        return [
+            ("testInitializer", testInitializer),
+            ("testDeleteAll", testDeleteAll)
+        ]
+    }
+}
+
+
 extension BounceGetTests {
     static var allTests : [(String, (BounceGetTests) -> () throws -> Void)] {
         return [
@@ -264,6 +274,7 @@ XCTMain([
     testCase(OpenTrackingTests.allTests),
     testCase(SubscriptionTrackingTests.allTests),
     testCase(TrackingSettingsTests.allTests),
+    testCase(BounceDeleteTests.allTests),
     testCase(BounceGetTests.allTests),
     testCase(SessionTests.allTests),
     testCase(AuthenticationTests.allTests),

@@ -41,7 +41,7 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
         var blueprint = """
         # \(self.method) \(path)
         
-        + Request (\(self.contentType)
+        + Request (\(self.contentType))
         
             + Headers
         
@@ -53,10 +53,12 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
             let bodyData = encodable.encode(formatting: [.prettyPrinted]),
             let bodyString = String(data: bodyData, encoding: .utf8)
         {
+            let indented = bodyString.split(separator: "\n").map { "        \($0)" }
             blueprint += """
+            
                 + Body
             
-                    \(bodyString)
+            \(indented.joined(separator: "\n"))
             """
         }
         return blueprint

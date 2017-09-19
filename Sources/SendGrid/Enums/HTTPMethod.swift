@@ -35,8 +35,8 @@ public enum HTTPMethod: String, CustomStringConvertible {
     /// request.
     public var hasBody: Bool {
         switch self {
-        case .GET, .DELETE: return false
-        default:            return true
+        case .GET:  return false
+        default:    return true
         }
     }
 }

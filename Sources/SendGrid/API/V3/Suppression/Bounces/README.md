@@ -6,6 +6,8 @@ This folder contains the classes used to make the [Bounces API](https://sendgrid
 
 - [Get All Bounces](#get-all-bounces)
 - [Get Specific Bounce](#get-specific-bounce)
+- [Delete All Bounces](#delete-all-bounces)
+- [Delete Specific Bounces](#delete-specific-bounces)
 
 ## Get All Bounces
 
@@ -64,6 +66,36 @@ do {
         if let match = response?.model?.first {
           print("\(match.email) bounced with reason \"\(match.reason)\"")
         }
+    }
+} catch {
+    print(error)
+}
+```
+
+## Delete All Bounces
+
+To delete all bounces, use the request returned from `Bounce.Delete.all`.  This request will delete all bounces on your bounce list.
+
+```swift
+do {
+    let request = Bounce.Delete.all
+    try Session.shared.send(request: request) { (response) in
+        print(response?.httpUrlResponse?.statusCode)
+    }
+} catch {
+    print(error)
+}
+```
+
+## Delete Specific Bounces
+
+To delete specific entries from your bounce list, use the `Bounce.Delete` class. You can either specify email addresses (as strings), or you can use `Bounce` instances (useful for if you just retrieved some from the [Get Bounces](#get-all-bounces) call above).
+
+```swift
+do {
+    let request = Bounce.Delete(emails: "foo@example.none", "bar@example.none")
+    try Session.shared.send(request: request) { (response) in
+        print(response?.httpUrlResponse?.statusCode)
     }
 } catch {
     print(error)
