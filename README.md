@@ -148,7 +148,7 @@ This project also contains a Dockerfile and a docker-compose.yml file which runs
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Scott K.
+Copyright (c) 2017 Scott K.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

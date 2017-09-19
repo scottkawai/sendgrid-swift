@@ -25,6 +25,13 @@ open class Session {
     /// Key) for the API requests via the `Authentication` enum.
     open var authentication: Authentication?
     
+    /// If you're authenticating with a parent account, you can set this
+    /// property to the username of a subuser. Doing so will authenticate with
+    /// the parent account, but retrieve the information of the specified
+    /// subuser, effectively impersonating them as though you had authenticated
+    /// with the subuser's credentials.
+    open var onBehalfOf: String?
+    
     /// The `URLSession` to make the HTTPRequests with.
     #if os(Linux)
     let urlSession = URLSession(configuration: .default)
@@ -48,9 +55,12 @@ open class Session {
     
     /// Initiates an instance of SGSession with the given authentication method.
     ///
-    /// - Parameter auth: The Authentication to use for the API call.
-    public init(auth: Authentication) {
+    /// - Parameters:
+    ///   - auth:       The Authentication to use for the API call.
+    ///   - subuser:    A username of a subuser to impersonate.
+    public init(auth: Authentication, onBehalfOf subuser: String? = nil) {
         self.authentication = auth
+        self.onBehalfOf = subuser
     }
     
     #if os(Linux)
@@ -67,22 +77,32 @@ open class Session {
     
     // MARK: - Methods
     //=========================================================================
+    
     /// Makes the HTTP request with the given `Request` object.
     ///
     /// - Parameters:
     ///   - request:            The `Request` instance to send.
-    ///   - subuser:            Optional. The username of a subuser to make the request on behalf of.
-    ///   - completionHandler:  A completion block taht will be called after the API call completes.
-    open func send<ModelType>(request: Request<ModelType>, onBehalfOf subuser: String? = nil, completionHandler: @escaping (Response<ModelType>?) -> Void = { _ in }) throws {
+    ///   - subuser:            Optional. The username of a subuser to make the
+    ///                         request on behalf of.
+    ///   - completionHandler:  A completion block that will be called after the
+    ///                         API call completes.
+    open func send<ModelType>(request: Request<ModelType>, completionHandler: @escaping (Response<ModelType>?) -> Void = { _ in }) throws {
         // Check that we have authentication set.
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
+        guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
         
         try request.validate()
         
         // Get the NSURLRequest
         var payload = try request.generateUrlRequest()
         payload.addValue(auth.authorizationHeader, forHTTPHeaderField: "Authorization")
-        if let sub = subuser { payload.addValue(sub, forHTTPHeaderField: "On-behalf-of") }
+        if let sub = self.onBehalfOf {
+            if request.supportsImpersonation {
+                payload.addValue(sub, forHTTPHeaderField: "On-behalf-of")
+            } else {
+                throw Exception.Session.impersonationNotAllowed
+            }
+        }
         
         // Make the HTTP request
         let task = self.urlSession.dataTask(with: payload) { (data, response, error) in

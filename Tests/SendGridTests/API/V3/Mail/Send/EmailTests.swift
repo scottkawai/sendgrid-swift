@@ -31,6 +31,36 @@ class EmailTests: XCTestCase, EncodingTester {
         )
     }
     
+    func testOnlyApiKeys() {
+        do {
+            let auth = try Authentication.credential(username: "foo", password: "bar")
+            let session = Session(auth: auth)
+            let goodContent = Content.emailBody(plain: "plain", html: "html")
+            let email = Email(personalizations: self.generatePersonalizations(1), from: self.goodFrom, content: goodContent, subject: "Test")
+            try session.send(request: email)
+            XCTFail("Expected an error to be thrown when using basic auth with the mail send API, but nothing was thrown.")
+        } catch SendGrid.Exception.Session.unsupportedAuthetication(let desc) {
+            XCTAssertEqual(desc, "credential")
+        } catch {
+            XCTFailUnknownError(error)
+        }
+    }
+    
+    func testNoImpersonation() {
+        do {
+            let auth = Authentication.apiKey("foobar")
+            let session = Session(auth: auth, onBehalfOf: "baz")
+            let goodContent = Content.emailBody(plain: "plain", html: "html")
+            let email = Email(personalizations: self.generatePersonalizations(1), from: self.goodFrom, content: goodContent, subject: "Test")
+            try session.send(request: email)
+            XCTFail("Expected an error to be thrown when using basic auth with the mail send API, but nothing was thrown.")
+        } catch SendGrid.Exception.Session.impersonationNotAllowed {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+    }
+    
     func testEncoding() {
         let goodContent = Content.emailBody(plain: "plain", html: "html")
         let min = Email(personalizations: self.generatePersonalizations(1), from: self.goodFrom, content: goodContent)

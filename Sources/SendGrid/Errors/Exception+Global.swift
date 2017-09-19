@@ -22,6 +22,8 @@ public extension Exception {
         case limitOutOfRange(Int, CountableClosedRange<Int>)
         
         
+        
+        
         // MARK: - Properties
         //=========================================================================
         

@@ -12,34 +12,37 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
     // MARK: - Properties
     //=========================================================================
     
+    /// A `Bool` indicating if the request supports the "On-behalf-of" header.
+    public override var supportsImpersonation: Bool { return false }
+    
     /// An array of personalization instances representing the various
     /// recipients of the email.
-    open var personalizations: [Personalization]
+    public var personalizations: [Personalization]
     
     /// The content sections of the email.
-    open var content: [Content]
+    public var content: [Content]
     
     /// The subject of the email. If the personalizations in the email contain
     /// subjects, those will override this subject.
-    open var subject: String?
+    public var subject: String?
     
     /// The sending address on the email.
-    open var from: Address
+    public var from: Address
     
     /// The reply to address on the email.
-    open var replyTo: Address?
+    public var replyTo: Address?
     
     /// Attachments to add to the email.
-    open var attachments: [Attachment]?
+    public var attachments: [Attachment]?
     
     /// The ID of a template from the Template Engine to use with the email.
-    open var templateID: String?
+    public var templateID: String?
     
     /// Additional headers that should be added to the email.
-    open var headers: [String:String]?
+    public var headers: [String:String]?
     
     /// Categories to associate with the email.
-    open var categories: [String]?
+    public var categories: [String]?
     
     /// A dictionary of key/value pairs that define large blocks of content that
     /// can be inserted into your emails using substitution tags. An example of
@@ -90,7 +93,7 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
     ///         ":event1": "New User Event on :event_date",
     ///         ":event2": "Veteran User Appreciation on :event_date"
     ///     ]
-    open var sections: [String:String]?
+    public var sections: [String:String]?
     
     /// A set of custom arguments to add to the email. The keys of the
     /// dictionary should be the names of the custom arguments, while the values
@@ -98,14 +101,14 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
     /// in the email also contain custom arguments, they will be merged with
     /// these custom arguments, taking a preference to the personalization's
     /// custom arguments in the case of a conflict.
-    open var customArguments: [String:String]?
+    public var customArguments: [String:String]?
     
     /// An `ASM` instance representing the unsubscribe group settings to apply
     /// to the email.
-    open var asm: ASM?
+    public var asm: ASM?
     
     /// An optional time to send the email at.
-    open var sendAt: Date? = nil
+    public var sendAt: Date? = nil
     
     /// This ID represents a batch of emails (AKA multiple sends of the same
     /// email) to be associated to each other for scheduling. Including a
@@ -113,18 +116,18 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
     /// batch, and also enables you to cancel or pause the delivery of that
     /// entire batch. For more information, please read about [Cancel Scheduled
     /// Sends](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html).
-    open var batchID: String? = nil
+    public var batchID: String? = nil
     
     /// The IP Pool that you would like to send this email from. See the [docs
     /// page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html#-POST)
     /// for more information about creating IP Pools.
-    open var ipPoolName: String? = nil
+    public var ipPoolName: String? = nil
     
     /// An optional array of mail settings to configure the email with.
-    open var mailSettings = MailSettings()
+    public var mailSettings = MailSettings()
     
     /// An optional array of tracking settings to configure the email with.
-    open var trackingSettings = TrackingSettings()
+    public var trackingSettings = TrackingSettings()
     
     // MARK: - Initialization
     //=========================================================================
@@ -236,6 +239,20 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
         
         // validate the tracking settings.
         try self.trackingSettings.validate()
+    }
+    
+    /// Before a `Session` instance makes an API call, it will call this method
+    /// to double check that the auth method it's about to use is supported by
+    /// the endpoint. In general, this will always return `true`, however some
+    /// endpoints, such as the mail send endpoint, only support API keys.
+    ///
+    /// - Parameter auth:   The `Authentication` instance that's about to be
+    ///                     used.
+    /// - Returns:          A `Bool` indicating if the authentication method is
+    ///                     supported.
+    public override func supports(auth: Authentication) -> Bool {
+        // The mail send endpoint only supports API Keys.
+        return auth.prefix == "Bearer"
     }
 }
 

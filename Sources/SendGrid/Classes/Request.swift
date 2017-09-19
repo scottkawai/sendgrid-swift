@@ -16,6 +16,9 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     // MARK: - Properties
     //=========================================================================
     
+    /// A `Bool` indicating if the request supports the "On-behalf-of" header.
+    open var supportsImpersonation: Bool { return true }
+    
     /// The HTTP verb to use in the call.
     open var method: HTTPMethod
     
@@ -110,6 +113,19 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     public func validate() throws {
         try self.contentType.validate()
         try self.acceptType.validate()
+    }
+    
+    /// Before a `Session` instance makes an API call, it will call this method
+    /// to double check that the auth method it's about to use is supported by
+    /// the endpoint. In general, this will always return `true`, however some
+    /// endpoints, such as the mail send endpoint, only support API keys.
+    ///
+    /// - Parameter auth:   The `Authentication` instance that's about to be
+    ///                     used.
+    /// - Returns:          A `Bool` indicating if the authentication method is
+    ///                     supported.
+    public func supports(auth: Authentication) -> Bool {
+        return true
     }
     
     
