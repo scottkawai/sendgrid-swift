@@ -26,7 +26,11 @@ open class Session {
     open var authentication: Authentication?
     
     /// The `URLSession` to make the HTTPRequests with.
+    #if os(Linux)
     let urlSession = URLSession(configuration: .default)
+    #else
+    let urlSession = URLSession.shared
+    #endif
     
     
     // MARK: - Initialization
@@ -49,10 +53,16 @@ open class Session {
         self.authentication = auth
     }
     
+    #if os(Linux)
     /// Invalidates the `URLSession` on deinit.
-    deinit {
-        self.urlSession.invalidateAndCancel()
-    }
+    // deinit {
+        /// FIX-ME: We whould really invalidate the URLSession here, but because
+        /// it hasn't been implemented yet, we can't.
+        /// https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Status.md
+    
+         // self.urlSession.invalidateAndCancel()
+    // }
+    #endif
     
     
     // MARK: - Methods

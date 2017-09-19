@@ -4,7 +4,9 @@ import XCTest
 extension AddressTests {
     static var allTests : [(String, (AddressTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -13,7 +15,9 @@ extension AddressTests {
 extension ASMTests {
     static var allTests : [(String, (ASMTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -22,7 +26,9 @@ extension ASMTests {
 extension AttachmentTests {
     static var allTests : [(String, (AttachmentTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -31,7 +37,27 @@ extension AttachmentTests {
 extension ContentTests {
     static var allTests : [(String, (ContentTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testClassInitializers", testClassInitializers),
+            ("testValidation", testValidation)
+        ]
+    }
+}
+
+
+extension EmailTests {
+    static var allTests : [(String, (EmailTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testPersonalizationValidation", testPersonalizationValidation),
+            ("testContentValidation", testContentValidation),
+            ("testSubjectValidation", testSubjectValidation),
+            ("testHeaderValidation", testHeaderValidation),
+            ("testCategoryValidation", testCategoryValidation),
+            ("testCustomArgs", testCustomArgs),
+            ("testSendAt", testSendAt)
         ]
     }
 }
@@ -40,7 +66,9 @@ extension ContentTests {
 extension PersonalizationTests {
     static var allTests : [(String, (PersonalizationTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -127,10 +155,38 @@ extension OpenTrackingTests {
 }
 
 
-extension TrackingSettingTests {
-    static var allTests : [(String, (TrackingSettingTests) -> () throws -> Void)] {
+extension SubscriptionTrackingTests {
+    static var allTests : [(String, (SubscriptionTrackingTests) -> () throws -> Void)] {
         return [
             ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension TrackingSettingsTests {
+    static var allTests : [(String, (TrackingSettingsTests) -> () throws -> Void)] {
+        return [
+            ("testEncoding", testEncoding)
+        ]
+    }
+}
+
+
+extension BounceGetTests {
+    static var allTests : [(String, (BounceGetTests) -> () throws -> Void)] {
+        return [
+            ("testGetAllInitialization", testGetAllInitialization),
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+        ]
+    }
+}
+
+
+extension SessionTests {
+    static var allTests : [(String, (SessionTests) -> () throws -> Void)] {
+        return [
+            ("testSendWithoutAuth", testSendWithoutAuth)
         ]
     }
 }
@@ -160,6 +216,15 @@ extension ContentTypeTests {
 }
 
 
+extension RateLimitTests {
+    static var allTests : [(String, (RateLimitTests) -> () throws -> Void)] {
+        return [
+            ("testStaticInitializer", testStaticInitializer)
+        ]
+    }
+}
+
+
 extension ValidateTests {
     static var allTests : [(String, (ValidateTests) -> () throws -> Void)] {
         return [
@@ -177,6 +242,7 @@ XCTMain([
     testCase(ASMTests.allTests),
     testCase(AttachmentTests.allTests),
     testCase(ContentTests.allTests),
+    testCase(EmailTests.allTests),
     testCase(PersonalizationTests.allTests),
     testCase(BCCSettingTests.allTests),
     testCase(BypassListManagementTests.allTests),
@@ -187,8 +253,12 @@ XCTMain([
     testCase(ClickTrackingTests.allTests),
     testCase(GoogleAnalyticsTests.allTests),
     testCase(OpenTrackingTests.allTests),
-    testCase(TrackingSettingTests.allTests),
+    testCase(SubscriptionTrackingTests.allTests),
+    testCase(TrackingSettingsTests.allTests),
+    testCase(BounceGetTests.allTests),
+    testCase(SessionTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),
+    testCase(RateLimitTests.allTests),
     testCase(ValidateTests.allTests)
 ])
