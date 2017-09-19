@@ -216,6 +216,15 @@ extension ContentTypeTests {
 }
 
 
+extension PaginationTests {
+    static var allTests : [(String, (PaginationTests) -> () throws -> Void)] {
+        return [
+            ("testStaticInitializer", testStaticInitializer)
+        ]
+    }
+}
+
+
 extension RateLimitTests {
     static var allTests : [(String, (RateLimitTests) -> () throws -> Void)] {
         return [
@@ -259,6 +268,7 @@ XCTMain([
     testCase(SessionTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),
+    testCase(PaginationTests.allTests),
     testCase(RateLimitTests.allTests),
     testCase(ValidateTests.allTests)
 ])
