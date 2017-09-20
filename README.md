@@ -122,6 +122,8 @@ All the available API calls are located in their own folders under the `./Source
 - Suppressions
     + [Blocks API](Sources/SendGrid/API/V3/Suppression/Blocks)
     + [Bounces API](Sources/SendGrid/API/V3/Suppression/Bounces)
+    + [Invalid Emails API](Sources/SendGrid/API/V3/Suppression/Invalid%20Emails)
+    + [Global Unsubscribes](Sources/SendGrid/API/V3/Suppression/Global%20Unsubscribes)
     + [Spam Reports API](Sources/SendGrid/API/V3/Suppression/Spam%20Reports)
 - [Mail Send](Sources/SendGrid/API/V3/Mail/Send)
 
