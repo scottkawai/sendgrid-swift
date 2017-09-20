@@ -17,7 +17,7 @@ To retrieve the list of all blocks, use the `Block.Get` class with the `init(sta
 do {
     // If you don't specify any parameters, then the first page of your entire
     // block list will be fetched:
-    let request = try Block.Get()
+    let request = Block.Get()
     try Session.shared.send(request: request) { (response) in
         // The `model` property will be an array of `Block` structs.
         response?.model?.forEach { print($0.email) }
@@ -26,7 +26,7 @@ do {
         // You can use this to get the next page, if you wish.
         //
         // if let nextPage = response?.pages?.next {
-        //    let nextRequest = try? Block.Get(page: nextPage)
+        //    let nextRequest = Block.Get(page: nextPage)
         // }
     }
 } catch {
@@ -44,7 +44,7 @@ do {
     let now = Date()
     let start = now.addingTimeInterval(-86400) // 24 hours
 
-    let request = try Block.Get(start: start, end: now, page: page)
+    let request = Block.Get(start: start, end: now, page: page)
     try Session.shared.send(request: request) { (response) in
         // The `model` property will be an array of `Block` structs.
         response?.model?.forEach { print($0.email) }

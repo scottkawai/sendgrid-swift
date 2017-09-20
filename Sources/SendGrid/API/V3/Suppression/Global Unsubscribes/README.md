@@ -17,7 +17,7 @@ To retrieve the list of all global unsubscribes, use the `GlobalUnsubscribe.Get`
 do {
     // If you don't specify any parameters, then the first page of your entire
     // global unsubscribe list will be fetched:
-    let request = try GlobalUnsubscribe.Get()
+    let request = GlobalUnsubscribe.Get()
     try Session.shared.send(request: request) { (response) in
         // The `model` property will be an array of `GlobalUnsubscribe` structs.
         response?.model?.forEach { print($0.email) }
@@ -26,7 +26,7 @@ do {
         // You can use this to get the next page, if you wish.
         //
         // if let nextPage = response?.pages?.next {
-        //    let nextRequest = try? GlobalUnsubscribe.Get(page: nextPage)
+        //    let nextRequest = GlobalUnsubscribe.Get(page: nextPage)
         // }
     }
 } catch {
@@ -44,7 +44,7 @@ do {
     let now = Date()
     let start = now.addingTimeInterval(-86400) // 24 hours
 
-    let request = try GlobalUnsubscribe.Get(start: start, end: now, page: page)
+    let request = GlobalUnsubscribe.Get(start: start, end: now, page: page)
     try Session.shared.send(request: request) { (response) in
         response?.model?.forEach { print($0.email) }
     }

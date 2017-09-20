@@ -175,6 +175,17 @@ extension TrackingSettingsTests {
 }
 
 
+extension StatisticGlobalGetTests {
+    static var allTests : [(String, (StatisticGlobalGetTests) -> () throws -> Void)] {
+        return [
+            ("testMinimalInitialization", testMinimalInitialization),
+            ("testMaxInitialization", testMaxInitialization),
+            ("testValidation", testValidation)
+        ]
+    }
+}
+
+
 extension BlockDeleteTests {
     static var allTests : [(String, (BlockDeleteTests) -> () throws -> Void)] {
         return [
@@ -189,7 +200,8 @@ extension BlockGetTests {
     static var allTests : [(String, (BlockGetTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
-            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -209,7 +221,8 @@ extension BounceGetTests {
     static var allTests : [(String, (BounceGetTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
-            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -237,7 +250,8 @@ extension GlobalUnsubscribeGetTests {
     static var allTests : [(String, (GlobalUnsubscribeGetTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
-            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -257,7 +271,8 @@ extension InvalidEmailGetTests {
     static var allTests : [(String, (InvalidEmailGetTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
-            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -277,7 +292,8 @@ extension SpamReportGetTests {
     static var allTests : [(String, (SpamReportGetTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
-            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -364,6 +380,7 @@ XCTMain([
     testCase(OpenTrackingTests.allTests),
     testCase(SubscriptionTrackingTests.allTests),
     testCase(TrackingSettingsTests.allTests),
+    testCase(StatisticGlobalGetTests.allTests),
     testCase(BlockDeleteTests.allTests),
     testCase(BlockGetTests.allTests),
     testCase(BounceDeleteTests.allTests),

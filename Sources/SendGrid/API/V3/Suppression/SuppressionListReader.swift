@@ -14,12 +14,42 @@ public class SuppressionListReader<T : EmailEventRepresentable & Codable>: Reque
     
     // MARK: - Properties
     //=========================================================================
-
+    
+    /// The date to start looking for events.
+    public let startDate: Date?
+    
+    /// The date to stop looking for events.
+    public let endDate: Date?
+    
+    /// The page of results to look for.
+    public let page: Page?
+    
     /// The path for the request's API endpoint.
     internal var path: String {
         return "/"
     }
-
+    
+    /// The query params for the request.
+    internal var queryItems: [URLQueryItem]? {
+        var items: [(String, String)]?
+        func append(_ str: String, _ val: Any) {
+            let element = (str, "\(val)")
+            if items == nil {
+                items = [element]
+            } else {
+                items?.append(element)
+            }
+        }
+        
+        if let p = self.page {
+            append("limit", p.limit)
+            append("offset", p.offset)
+        }
+        if let s = self.startDate { append("start_time", Int(s.timeIntervalSince1970)) }
+        if let e = self.endDate { append("end_time", Int(e.timeIntervalSince1970)) }
+        return items?.map { URLQueryItem(name: $0.0, value: $0.1) }
+    }
+    
     
     // MARK: - Initialization
     //======================================================================
@@ -29,6 +59,9 @@ public class SuppressionListReader<T : EmailEventRepresentable & Codable>: Reque
     ///
     /// - Parameter email: The email address to look for in the bounce list.
     public init(email: String) {
+        self.startDate = nil
+        self.endDate = nil
+        self.page = nil
         super.init(
             method: .GET,
             contentType: .formUrlEncoded,
@@ -51,21 +84,28 @@ public class SuppressionListReader<T : EmailEventRepresentable & Codable>: Reque
     ///             offset will be set to 0.
     /// - Throws:   An error will be thrown if the `limit` value in `page`
     ///             is out of range.
-    public init(start: Date? = nil, end: Date? = nil, page: Page = Page(limit: 500, offset: 0)) throws {
-        let range = 1...500
-        guard range ~= page.limit else { throw Exception.Global.limitOutOfRange(page.limit, range) }
+    public init(start: Date? = nil, end: Date? = nil, page: Page? = nil) {
+        self.startDate = start
+        self.endDate = end
+        self.page = page
         super.init(
             method: .GET,
             contentType: .formUrlEncoded,
             path: self.path
         )
-        var queryItems: [(String, Any)] = [
-            ("limit", page.limit),
-            ("offset", page.offset)
-        ]
-        if let s = start { queryItems.append(("start_time", Int(s.timeIntervalSince1970))) }
-        if let e = end { queryItems.append(("end_time", Int(e.timeIntervalSince1970))) }
-        self.endpoint?.queryItems = queryItems.map { URLQueryItem(name: $0.0, value: "\($0.1)") }
+        self.endpoint?.queryItems = self.queryItems
+    }
+    
+    // MARK: - Methods
+    //=========================================================================
+    
+    /// Validates that the `limit` value isn't over 500.
+    public override func validate() throws {
+        try super.validate()
+        if let limit = self.page?.limit {
+            let range = 1...500
+            guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
+        }
     }
     
 }

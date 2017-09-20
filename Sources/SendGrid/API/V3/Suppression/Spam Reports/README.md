@@ -17,7 +17,7 @@ To retrieve the list of all spam reports, use the `SpamReport.Get` class with th
 do {
     // If you don't specify any parameters, then the first page of your entire
     // spam report list will be fetched:
-    let request = try SpamReport.Get()
+    let request = SpamReport.Get()
     try Session.shared.send(request: request) { (response) in
         // The `model` property will be an array of `SpamReport` structs.
         response?.model?.forEach { print($0.email) }
@@ -26,7 +26,7 @@ do {
         // You can use this to get the next page, if you wish.
         //
         // if let nextPage = response?.pages?.next {
-        //    let nextRequest = try? SpamReport.Get(page: nextPage)
+        //    let nextRequest = SpamReport.Get(page: nextPage)
         // }
     }
 } catch {
@@ -44,7 +44,7 @@ do {
     let now = Date()
     let start = now.addingTimeInterval(-86400) // 24 hours
 
-    let request = try SpamReport.Get(start: start, end: now, page: page)
+    let request = SpamReport.Get(start: start, end: now, page: page)
     try Session.shared.send(request: request) { (response) in
         // The `model` property will be an array of `SpamReport` structs.
         response?.model?.forEach { print($0.email) }

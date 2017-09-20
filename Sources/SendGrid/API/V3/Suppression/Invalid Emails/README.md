@@ -17,7 +17,7 @@ To retrieve the list of all invalid emails, use the `InvalidEmail.Get` class wit
 do {
     // If you don't specify any parameters, then the first page of your entire
     // invalid email list will be fetched:
-    let request = try InvalidEmail.Get()
+    let request = InvalidEmail.Get()
     try Session.shared.send(request: request) { (response) in
         // The `model` property will be an array of `InvalidEmail` structs.
         response?.model?.forEach { print($0.email) }
@@ -26,7 +26,7 @@ do {
         // You can use this to get the next page, if you wish.
         //
         // if let nextPage = response?.pages?.next {
-        //    let nextRequest = try? InvalidEmail.Get(page: nextPage)
+        //    let nextRequest = InvalidEmail.Get(page: nextPage)
         // }
     }
 } catch {
@@ -44,7 +44,7 @@ do {
     let now = Date()
     let start = now.addingTimeInterval(-86400) // 24 hours
 
-    let request = try InvalidEmail.Get(start: start, end: now, page: page)
+    let request = InvalidEmail.Get(start: start, end: now, page: page)
     try Session.shared.send(request: request) { (response) in
         response?.model?.forEach { print($0.email) }
     }

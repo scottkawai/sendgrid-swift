@@ -22,23 +22,23 @@ public class StatisticFetcher<T : StatisticSampleRepresentable & Codable>: Reque
     public let endDate: Date?
     
     /// The format used for dates.
-    let dateFormat: String
+    internal let dateFormat: String
     
     /// The path for the endpoint.
-    var path: String {
+    internal var path: String {
         return "/"
     }
     
     /// The query items generated from the various properties.
-    var queryItems: [URLQueryItem] {
+    internal var queryItems: [URLQueryItem] {
         let formatter = DateFormatter()
         formatter.dateFormat = self.dateFormat
-        var items: [String : String] = [
-            "start_date": formatter.string(from: self.startDate)
+        var items: [(String, String)] = [
+            ("start_date", formatter.string(from: self.startDate))
         ]
-        if let e = self.endDate { items["end_date"] = formatter.string(from: e) }
-        if let a = self.aggregatedBy { items["aggregated_by"] = a.rawValue }
-        return items.map { URLQueryItem(name: $0.key, value: $0.value) }
+        if let e = self.endDate { items.append(("end_date", formatter.string(from: e))) }
+        if let a = self.aggregatedBy { items.append(("aggregated_by", a.rawValue)) }
+        return items.map { URLQueryItem(name: $0.0, value: $0.1) }
     }
     
     
