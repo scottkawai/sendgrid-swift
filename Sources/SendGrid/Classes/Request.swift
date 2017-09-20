@@ -49,7 +49,7 @@ open class Request<ModelType : Codable>: Validatable {
     ///   - path:       The path portion of the API endpoint, such as
     ///                 "/v3/mail/send". The path *must* start with a forward
     ///                 slash (`/`).
-    public init(method: HTTPMethod, contentType: ContentType, path: String?) {
+    public init(method: HTTPMethod, contentType: ContentType, path: String?, encoding: EncodingStrategy = EncodingStrategy(), decoding: DecodingStrategy = DecodingStrategy()) {
         self.method = method
         self.contentType = contentType
         var components = URLComponents(string: Constants.ApiHost)
@@ -115,8 +115,12 @@ extension Request: CustomStringConvertible {
     /// Blueprint](https://apiblueprint.org/)
     public var description: String {
         let path = self.endpoint?.path ?? ""
+        var query: String {
+            guard let q = self.endpoint?.query else { return "" }
+            return "?\(q)"
+        }
         var blueprint = """
-        # \(self.method) \(path)
+        # \(self.method) \(path + query)
         
         + Request (\(self.contentType))
         
