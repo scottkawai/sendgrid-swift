@@ -1,5 +1,5 @@
 //
-//  Block.Get.swift
+//  SpamReport.Get.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/19/17.

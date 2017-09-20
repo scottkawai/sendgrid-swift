@@ -215,6 +215,26 @@ extension BounceGetTests {
 }
 
 
+extension InvalidEmailDeleteTests {
+    static var allTests : [(String, (InvalidEmailDeleteTests) -> () throws -> Void)] {
+        return [
+            ("testInitializer", testInitializer),
+            ("testDeleteAll", testDeleteAll)
+        ]
+    }
+}
+
+
+extension InvalidEmailGetTests {
+    static var allTests : [(String, (InvalidEmailGetTests) -> () throws -> Void)] {
+        return [
+            ("testGetAllInitialization", testGetAllInitialization),
+            ("testEmailSpecificInitializer", testEmailSpecificInitializer)
+        ]
+    }
+}
+
+
 extension SpamReportDeleteTests {
     static var allTests : [(String, (SpamReportDeleteTests) -> () throws -> Void)] {
         return [
@@ -320,6 +340,8 @@ XCTMain([
     testCase(BlockGetTests.allTests),
     testCase(BounceDeleteTests.allTests),
     testCase(BounceGetTests.allTests),
+    testCase(InvalidEmailDeleteTests.allTests),
+    testCase(InvalidEmailGetTests.allTests),
     testCase(SpamReportDeleteTests.allTests),
     testCase(SpamReportGetTests.allTests),
     testCase(SessionTests.allTests),

@@ -1,5 +1,5 @@
 //
-//  SpamReport.Delete.swift
+//  InvalidEmail.Delete.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/19/17.
@@ -7,22 +7,22 @@
 
 import Foundation
 
-public extension SpamReport {
+public extension InvalidEmail {
 
-    /// The `SpamReport.Delete` class represents the API call to [delete from
-    /// the spam report list](https://sendgrid.com/docs/API_Reference/Web_API_v3/spam_reports.html#Delete-a-specific-spam-report-DELETE).
-    public class Delete: SuppressionListDeleter<SpamReport>, AutoEncodable {
+    /// The `InvalidEmail.Delete` class represents the API call to [delete from
+    /// the invalid email list](https://sendgrid.com/docs/API_Reference/Web_API_v3/invalid_emails.html#Delete-invalid-emails-DELETE).
+    public class Delete: SuppressionListDeleter<InvalidEmail>, AutoEncodable {
         
         // MARK: - Properties
         //======================================================================
         
         /// The path for the spam report API
-        override var path: String { return "/v3/suppression/spam_reports" }
+        override var path: String { return "/v3/suppression/invalid_emails" }
         
         /// Returns a request that will delete *all* the entries on your spam
         /// report list.
-        public static var all: SpamReport.Delete {
-            return SpamReport.Delete(deleteAll: true, emails: nil)
+        public static var all: InvalidEmail.Delete {
+            return InvalidEmail.Delete(deleteAll: true, emails: nil)
         }
         
     }
@@ -30,7 +30,7 @@ public extension SpamReport {
 }
 
 /// Encodable conformance
-public extension SpamReport.Delete {
+public extension InvalidEmail.Delete {
     
     public enum CodingKeys: String, CodingKey {
         case deleteAll  = "delete_all"
