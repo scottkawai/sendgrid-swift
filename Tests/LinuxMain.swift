@@ -215,6 +215,15 @@ extension BounceGetTests {
 }
 
 
+extension GlobalUnsubcribeAddTests {
+    static var allTests : [(String, (GlobalUnsubcribeAddTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
 extension GlobalUnsubscribeDeleteTests {
     static var allTests : [(String, (GlobalUnsubscribeDeleteTests) -> () throws -> Void)] {
         return [
@@ -359,6 +368,7 @@ XCTMain([
     testCase(BlockGetTests.allTests),
     testCase(BounceDeleteTests.allTests),
     testCase(BounceGetTests.allTests),
+    testCase(GlobalUnsubcribeAddTests.allTests),
     testCase(GlobalUnsubscribeDeleteTests.allTests),
     testCase(GlobalUnsubscribeGetTests.allTests),
     testCase(InvalidEmailDeleteTests.allTests),

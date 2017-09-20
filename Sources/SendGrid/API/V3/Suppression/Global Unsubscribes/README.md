@@ -6,6 +6,7 @@ This folder contains the classes used to make the [Global Unsubscribes API](http
 
 - [Get All Global Unsubscribes](#get-all-global-unsubscribes)
 - [Get Specific Global Unsubscribe](#get-specific-global-unsubscribe)
+- [Add Global Unsubscribes](#add-global-unsubscribes)
 - [Delete Global Unsubscribe](#delete-global-unsubscribe)
 
 ## Get All Global Unsubscribes
@@ -61,6 +62,21 @@ do {
     let request = GlobalUnsubscribe.Get(email: "foo@example")
     try Session.shared.send(request: request) { (response) in
         response?.model?.forEach { print($0.email) }
+    }
+} catch {
+    print(error)
+}
+```
+
+## Add Global Unsubscribes
+
+To add email addresses to your global unsubscribe list, use the `GlobalUnsubscribe.Add` class. You can specify email addresses (as strings), or you can use `Address` instances.
+
+```swift
+do {
+    let request = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
+    try Session.shared.send(request: request) { (response) in 
+        print(response?.httpUrlResponse?.statusCode)
     }
 } catch {
     print(error)

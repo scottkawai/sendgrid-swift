@@ -11,7 +11,7 @@ import Foundation
 ///
 /// This class contains a `ModelType` generic, which is used to map the API
 /// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
+open class Request<ModelType : Codable>: Validatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -36,36 +36,6 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     
     /// The full URL endpoint for the API call.
     open var endpoint: URLComponents?
-    
-    /// The description of the request, represented as an [API
-    /// Blueprint](https://apiblueprint.org/)
-    public var description: String {
-        let path = self.endpoint?.path ?? ""
-        var blueprint = """
-        # \(self.method) \(path)
-        
-        + Request (\(self.contentType))
-        
-            + Headers
-        
-                Accept: \(self.acceptType)
-        
-        """
-        if self.method.hasBody,
-        let encodable = self as? AutoEncodable,
-            let bodyData = encodable.encode(formatting: [.prettyPrinted]),
-            let bodyString = String(data: bodyData, encoding: .utf8)
-        {
-            let indented = bodyString.split(separator: "\n").map { "        \($0)" }
-            blueprint += """
-            
-                + Body
-            
-            \(indented.joined(separator: "\n"))
-            """
-        }
-        return blueprint
-    }
     
     
     // MARK: - Initialization
@@ -134,6 +104,41 @@ open class Request<ModelType : Codable>: Validatable, CustomStringConvertible {
     @available(*, unavailable, message: "use the `generateUrlRequest` method instead.")
     open func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
         throw Exception.Global.methodUnavailable(type(of: self), "request(for:onBehalfOf:)")
+    }
+    
+}
+
+/// CustomStringConvertible conformance
+extension Request: CustomStringConvertible {
+    
+    /// The description of the request, represented as an [API
+    /// Blueprint](https://apiblueprint.org/)
+    public var description: String {
+        let path = self.endpoint?.path ?? ""
+        var blueprint = """
+        # \(self.method) \(path)
+        
+        + Request (\(self.contentType))
+        
+            + Headers
+        
+                    Accept: \(self.acceptType)
+        
+        """
+        if self.method.hasBody,
+            let encodable = self as? AutoEncodable,
+            let bodyData = encodable.encode(formatting: [.prettyPrinted]),
+            let bodyString = String(data: bodyData, encoding: .utf8)
+        {
+            let indented = bodyString.split(separator: "\n").map { "            \($0)" }
+            blueprint += """
+            
+                + Body
+            
+            \(indented.joined(separator: "\n"))
+            """
+        }
+        return blueprint
     }
     
 }

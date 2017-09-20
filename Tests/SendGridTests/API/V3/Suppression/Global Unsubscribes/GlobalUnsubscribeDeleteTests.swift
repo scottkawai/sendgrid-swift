@@ -12,7 +12,6 @@ class GlobalUnsubscribeDeleteTests: XCTestCase {
     
     func testInitializer() {
         let request = GlobalUnsubscribe.Delete(email: "foo@example.none")
-        print(request)
         XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/asm/suppressions/global/foo@example.none")
         XCTAssertEqual(request.method, .DELETE)
         XCTAssertEqual(request.contentType, ContentType.json)
