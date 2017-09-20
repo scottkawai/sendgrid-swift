@@ -1,5 +1,5 @@
 //
-//  Bounce.swift
+//  SpamReport.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/19/17.
@@ -7,8 +7,9 @@
 
 import Foundation
 
-/// The `Bounce` struct represents a bounce event.
-public struct Bounce: EmailEventRepresentable, Codable {
+
+/// The `SpamReport` struct represents a bounce event.
+public struct SpamReport: EmailEventRepresentable, Codable {
     
     // MARK: - Properties
     //=========================================================================
@@ -19,11 +20,8 @@ public struct Bounce: EmailEventRepresentable, Codable {
     /// The date and time the event occurred on.
     public let created: Date
     
-    /// The response from the recipient server.
-    public let reason: String
-    
-    /// The status code of the event.
-    public let status: String
+    /// The IP address of the user when they marked the email as spam.
+    public let ip: String
     
     
     // MARK: - Initialization
@@ -34,12 +32,11 @@ public struct Bounce: EmailEventRepresentable, Codable {
     /// - Parameters:
     ///   - email:      The email address on the event.
     ///   - created:    The date and time the event occurred on.
-    ///   - reason:     The response from the recipient server.
-    ///   - status:     The status code of the event.
-    public init(email: String, created: Date, reason: String, status: String) {
+    ///   - ip:         The IP address of the user when they marked the email as
+    ///                 spam.
+    public init(email: String, created: Date, ip: String) {
         self.email = email
         self.created = created
-        self.reason = reason
-        self.status = status
+        self.ip = ip
     }
 }
