@@ -29,10 +29,10 @@ open class Request<ModelType : Codable>: Validatable {
     open var acceptType: ContentType = .json
     
     /// The decoding strategy.
-    open var decodingStrategy: DecodingStrategy = DecodingStrategy()
+    open var decodingStrategy: DecodingStrategy
     
     /// The encoding strategy.
-    open var encodingStrategy: EncodingStrategy = EncodingStrategy()
+    open var encodingStrategy: EncodingStrategy
     
     /// The full URL endpoint for the API call.
     open var endpoint: URLComponents?
@@ -55,6 +55,8 @@ open class Request<ModelType : Codable>: Validatable {
         var components = URLComponents(string: Constants.ApiHost)
         if let p = path { components?.path = p }
         self.endpoint = components
+        self.encodingStrategy = encoding
+        self.decodingStrategy = decoding
     }
     
     
