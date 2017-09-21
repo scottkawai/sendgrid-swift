@@ -20,4 +20,25 @@ class BCCSettingTests: XCTestCase, EncodingTester {
         XCTAssertEncodedObject(offSetting, equals: ["enable": false])
     }
     
+    func testInitialization() {
+        let good = BCCSetting(email: "test@example.com")
+        XCTAssertTrue(good.enable)
+        XCTAssertEqual(good.email?.email, "test@example.com")
+    }
+    
+    func testValidation() {
+        let good = BCCSetting(email: "test@example.com")
+        XCTAssertNoThrow(try good.validate())
+        
+        do {
+            let bad = BCCSetting(email: "test")
+            try bad.validate()
+            XCTFail("Expected a failure when initializing the BCC setting with a malformed email, but no error was thrown.")
+        } catch SendGrid.Exception.Mail.malformedEmailAddress(let em) {
+            XCTAssertEqual(em, "test")
+        } catch {
+            XCTFailUnknownError(error)
+        }
+    }
+    
 }

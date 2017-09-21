@@ -35,9 +35,7 @@ public struct Address: Encodable {
     }
     
     @available(*, unavailable, message: "use 'init(email:)' instead")
-    public init(_ email: String) {
-        self.init(email: email, name: nil)
-    }
+    public init(_ email: String) { self.init(email: email, name: nil) }
     
 }
 

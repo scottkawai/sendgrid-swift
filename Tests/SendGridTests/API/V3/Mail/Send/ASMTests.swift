@@ -31,6 +31,9 @@ class ASMTests: XCTestCase, EncodingTester {
     }
     
     func testValidation() {
+        let over = ASM(groupID: 815, groupsToDisplay: Array(1...3))
+        XCTAssertNoThrow(try over.validate())
+        
         do {
             let over = ASM(groupID: 815, groupsToDisplay: Array(1...30))
             try over.validate()
