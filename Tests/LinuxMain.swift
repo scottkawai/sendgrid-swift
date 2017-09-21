@@ -79,7 +79,9 @@ extension PersonalizationTests {
 extension BCCSettingTests {
     static var allTests : [(String, (BCCSettingTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -124,7 +126,9 @@ extension SandboxModeTests {
 extension SpamCheckerTests {
     static var allTests : [(String, (SpamCheckerTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -175,8 +179,19 @@ extension TrackingSettingsTests {
 }
 
 
-extension StatisticGlobalGetTests {
-    static var allTests : [(String, (StatisticGlobalGetTests) -> () throws -> Void)] {
+extension StatisticCategoryTests {
+    static var allTests : [(String, (StatisticCategoryTests) -> () throws -> Void)] {
+        return [
+            ("testMinimalInitialization", testMinimalInitialization),
+            ("testMaxInitialization", testMaxInitialization),
+            ("testValidation", testValidation)
+        ]
+    }
+}
+
+
+extension StatisticGlobalTests {
+    static var allTests : [(String, (StatisticGlobalTests) -> () throws -> Void)] {
         return [
             ("testMinimalInitialization", testMinimalInitialization),
             ("testMaxInitialization", testMaxInitialization),
@@ -380,7 +395,8 @@ XCTMain([
     testCase(OpenTrackingTests.allTests),
     testCase(SubscriptionTrackingTests.allTests),
     testCase(TrackingSettingsTests.allTests),
-    testCase(StatisticGlobalGetTests.allTests),
+    testCase(StatisticCategoryTests.allTests),
+    testCase(StatisticGlobalTests.allTests),
     testCase(BlockDeleteTests.allTests),
     testCase(BlockGetTests.allTests),
     testCase(BounceDeleteTests.allTests),
