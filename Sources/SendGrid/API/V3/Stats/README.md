@@ -1,6 +1,6 @@
 # Statistics API
 
-This folder contains the class used to make the [Global Stats API](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html) call.
+This folder contains the classes used to make the [Stats API](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/index.html) calls.
 
 ## Table Of Contents
 
@@ -9,7 +9,7 @@ This folder contains the class used to make the [Global Stats API](https://sendg
 
 ## Get Global Stats
 
-To retrieve the global stats, use the `Statistic.Global` class. At minimum you need to specify a start date.
+To retrieve the [global stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html), use the `Statistic.Global` class. At minimum you need to specify a start date.
 
 ```swift
 do {
@@ -29,7 +29,7 @@ do {
 
 ## Get Category Stats
 
-To retrieve category stats, use the `Statistic.Category` class. At minimum, you need to specify a start date and some categories.
+To retrieve [category stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/categories.html), use the `Statistic.Category` class. At minimum, you need to specify a start date and some categories.
 
 ```swift
 do {
