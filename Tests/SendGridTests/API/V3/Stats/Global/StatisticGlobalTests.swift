@@ -27,6 +27,9 @@ class StatisticGlobalTests: XCTestCase {
     }
     
     func testValidation() {
+        let good = Statistic.Global(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
+        XCTAssertNoThrow(try good.validate())
+        
         do {
             let request = Statistic.Global(startDate: date(day: 20), endDate: date(day: 19))
             try request.validate()

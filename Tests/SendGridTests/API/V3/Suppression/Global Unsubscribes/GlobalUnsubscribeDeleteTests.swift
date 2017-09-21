@@ -11,10 +11,18 @@ import XCTest
 class GlobalUnsubscribeDeleteTests: XCTestCase {
     
     func testInitializer() {
-        let request = GlobalUnsubscribe.Delete(email: "foo@example.none")
-        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/asm/suppressions/global/foo@example.none")
-        XCTAssertEqual(request.method, .DELETE)
-        XCTAssertEqual(request.contentType, ContentType.json)
+        func assert(request: GlobalUnsubscribe.Delete) {
+            XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/asm/suppressions/global/foo@example.none")
+            XCTAssertEqual(request.method, .DELETE)
+            XCTAssertEqual(request.contentType, ContentType.json)
+        }
+        
+        let email = GlobalUnsubscribe.Delete(email: "foo@example.none")
+        assert(request: email)
+        
+        let event = GlobalUnsubscribe(email: "foo@example.none", created: Date())
+        let request = GlobalUnsubscribe.Delete(event: event)
+        assert(request: request)
     }
     
 }

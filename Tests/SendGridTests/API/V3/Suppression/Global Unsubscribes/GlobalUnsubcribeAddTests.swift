@@ -11,11 +11,18 @@ import XCTest
 class GlobalUnsubcribeAddTests: XCTestCase {
     
     func testInitialization() {
-        let request = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
-        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/asm/suppressions/global")
-        XCTAssertEqual(request.method, .POST)
-        XCTAssertEqual(request.contentType, ContentType.json)
-        XCTAssertEqual(request.encodedString(), "{\"recipient_emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+        func assert(request: GlobalUnsubscribe.Add) {
+            XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/asm/suppressions/global")
+            XCTAssertEqual(request.method, .POST)
+            XCTAssertEqual(request.contentType, ContentType.json)
+            XCTAssertEqual(request.encodedString(), "{\"recipient_emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+        }
+        
+        let emails = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
+        assert(request: emails)
+        
+        let addresses = GlobalUnsubscribe.Add(addresses: Address(email: "foo@example.none"), Address(email: "bar@example.none"))
+        assert(request: addresses)
     }
     
 }

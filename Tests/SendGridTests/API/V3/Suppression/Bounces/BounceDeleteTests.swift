@@ -11,11 +11,19 @@ import XCTest
 class BounceDeleteTests: XCTestCase {
     
     func testInitializer() {
-        let request = Bounce.Delete(emails: "foo@example.none", "bar@example.none")
-        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/suppression/bounces")
-        XCTAssertEqual(request.method, .DELETE)
-        XCTAssertEqual(request.contentType, ContentType.json)
-        XCTAssertEqual(request.encodedString(), "{\"emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+        func assert(request: Bounce.Delete) {
+            XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/suppression/bounces")
+            XCTAssertEqual(request.method, .DELETE)
+            XCTAssertEqual(request.contentType, ContentType.json)
+            XCTAssertEqual(request.encodedString(), "{\"emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+        }
+        let emails = Bounce.Delete(emails: "foo@example.none", "bar@example.none")
+        assert(request: emails)
+        
+        let fooBounce = Bounce(email: "foo@example.none", created: Date(), reason: "Because", status: "4.8.15")
+        let barBounce = Bounce(email: "bar@example.none", created: Date(), reason: "Because", status: "16.23.42")
+        let events = Bounce.Delete(events: fooBounce, barBounce)
+        assert(request: events)
     }
     
     func testDeleteAll() {

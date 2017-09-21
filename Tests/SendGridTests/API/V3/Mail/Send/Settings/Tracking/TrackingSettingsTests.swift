@@ -38,4 +38,29 @@ class TrackingSettingsTests: XCTestCase, EncodingTester {
         XCTAssertEncodedObject(settings, equals: expected)
     }
     
+    func testValidation() {
+        var plain = TrackingSettings()
+        XCTAssertNoThrow(try plain.validate())
+        
+        plain.subscriptionTracking = SubscriptionTracking(
+            plainText: "Click here to unsubscribe: <% %>.",
+            html: "<p><% Click here %> to unsubscribe.</p>"
+        )
+        
+        XCTAssertNoThrow(try plain.validate())
+        
+        do {
+            var subTest = TrackingSettings()
+            subTest.subscriptionTracking = SubscriptionTracking(
+                plainText: "Click here to unsubscribe.",
+                html: "<p><% Click here %> to unsubscribe.</p>"
+            )
+            try subTest.validate()
+        } catch SendGrid.Exception.Mail.missingSubscriptionTrackingTag {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+    }
+    
 }

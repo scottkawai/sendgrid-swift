@@ -15,6 +15,9 @@ class ValidateTests: XCTestCase {
         let fail = Validate.input("Hello World", against: "Foo")
         XCTAssertTrue(pass)
         XCTAssertFalse(fail)
+        
+        let badPattern = Validate.input("(", against: "(")
+        XCTAssertFalse(badPattern)
     }
     
     func testEmail() {

@@ -57,12 +57,3 @@ public struct Footer: Encodable {
     }
     
 }
-
-/// Encodable conformance
-public extension Footer {
-    
-    public enum CodingKeys: String, CodingKey {
-        case enable, text, html
-    }
-    
-}

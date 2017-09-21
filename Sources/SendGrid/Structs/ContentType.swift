@@ -131,8 +131,6 @@ public extension ContentType {
     
     /// A case used for any content type that isn't explicity stated in the enum.
     @available(*, unavailable, message: "use the designated initializer for ContentType or one of the static functions")
-    static func other(_ rawValue: String) -> ContentType {
-        return ContentType(type: "text", subtype: "plain")
-    }
+    static func other(_ rawValue: String) -> ContentType { return ContentType(rawValue: rawValue)! }
     
 }

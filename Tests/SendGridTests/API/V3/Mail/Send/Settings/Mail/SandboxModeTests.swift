@@ -13,8 +13,14 @@ class SandboxModeTests: XCTestCase, EncodingTester {
     typealias EncodableObject = SandboxMode
     
     func testEncoding() {
-        let setting = SandboxMode()
-        XCTAssertEncodedObject(setting, equals: ["enable": true])
+        let on = SandboxMode(enable: true)
+        XCTAssertEncodedObject(on, equals: ["enable": true])
+        
+        let off = SandboxMode(enable: false)
+        XCTAssertEncodedObject(off, equals: ["enable": false])
+        
+        let unspecified = SandboxMode()
+        XCTAssertEncodedObject(unspecified, equals: ["enable": true])
     }
     
 }

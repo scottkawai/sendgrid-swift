@@ -39,4 +39,35 @@ class MailSettingsTests: XCTestCase, EncodingTester {
         XCTAssertEncodedObject(settings, equals: expected)
     }
     
+    func testValidation() {
+        var noErrors = MailSettings()
+        XCTAssertNoThrow(try noErrors.validate())
+        
+        noErrors.bcc = BCCSetting(email: "foo@example.none")
+        XCTAssertNoThrow(try noErrors.validate())
+        
+        noErrors.spamCheck = SpamChecker(threshold: 8)
+        XCTAssertNoThrow(try noErrors.validate())
+        
+        do {
+            var bccTest = MailSettings()
+            bccTest.bcc = BCCSetting(email: "foo")
+            try bccTest.validate()
+        } catch SendGrid.Exception.Mail.malformedEmailAddress(let em) {
+            XCTAssertEqual(em, "foo")
+        } catch {
+            XCTFailUnknownError(error)
+        }
+        
+        do {
+            var spamTest = MailSettings()
+            spamTest.spamCheck = SpamChecker(threshold: 815)
+            try spamTest.validate()
+        } catch SendGrid.Exception.Mail.thresholdOutOfRange(let i) {
+            XCTAssertEqual(i, 815)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+    }
+    
 }

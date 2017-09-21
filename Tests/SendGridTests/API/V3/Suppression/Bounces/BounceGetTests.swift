@@ -26,6 +26,9 @@ class BounceGetTests: XCTestCase {
     }
     
     func testValidation() {
+        let good = Bounce.Get(page: Page(limit: 1, offset: 1))
+        XCTAssertNoThrow(try good.validate())
+        
         do {
             let request = Bounce.Get(page: Page(limit: 0, offset: 0))
             try request.validate()
