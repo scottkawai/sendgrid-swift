@@ -7,12 +7,12 @@
 
 import Foundation
 
-public extension Statistic.Global {
+public extension Statistic {
     
-    /// The `Statistic.Global.Get` class is used to make the
+    /// The `Statistic.Global` class is used to make the
     /// [Get Global Stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html)
     /// API call.
-    public class Get: StatisticFetcher<Statistic.Global>, Encodable {
+    public class Global: StatisticFetcher {
         
         /// The path for the global unsubscribe endpoint.
         override var path: String { return "/v3/stats" }

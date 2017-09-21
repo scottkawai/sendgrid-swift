@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class StatisticFetcher<T : StatisticSampleRepresentable & Decodable>: Request<[Statistic.Period<T>]> {
+public class StatisticFetcher: Request<[Statistic]> {
     
     // MARK: - Properties
     //=========================================================================

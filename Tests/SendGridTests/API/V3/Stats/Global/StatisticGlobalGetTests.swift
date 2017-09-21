@@ -17,18 +17,18 @@ class StatisticGlobalGetTests: XCTestCase {
     }
     
     func testMinimalInitialization() {
-        let request = Statistic.Global.Get(startDate: date(day: 20))
+        let request = Statistic.Global(startDate: date(day: 20))
         XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/stats?start_date=2017-09-20")
     }
     
     func testMaxInitialization() {
-        let request = Statistic.Global.Get(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
+        let request = Statistic.Global(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
         XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/stats?start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week")
     }
     
     func testValidation() {
         do {
-            let request = Statistic.Global.Get(startDate: date(day: 20), endDate: date(day: 19))
+            let request = Statistic.Global(startDate: date(day: 20), endDate: date(day: 19))
             try request.validate()
             XCTFail("Expected a failure to be thrown when the end date is before the start date, but nothing was thrown.")
         } catch SendGrid.Exception.Statistic.invalidEndDate {
