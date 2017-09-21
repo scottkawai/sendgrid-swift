@@ -11,7 +11,7 @@ import Foundation
 ///
 /// This class contains a `ModelType` generic, which is used to map the API
 /// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Codable>: Validatable {
+open class Request<ModelType : Decodable>: Validatable {
     
     // MARK: - Properties
     //=========================================================================

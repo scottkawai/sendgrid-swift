@@ -9,7 +9,7 @@ import Foundation
 
 /// The `GlobalUnsubscribe` struct represents an entry on the "Global
 /// Unsubscribe" suppression list.
-public struct GlobalUnsubscribe: EmailEventRepresentable, Codable {
+public struct GlobalUnsubscribe: EmailEventRepresentable, Decodable {
     
     // MARK: - Properties
     //=========================================================================

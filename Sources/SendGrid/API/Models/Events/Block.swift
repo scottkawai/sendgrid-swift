@@ -8,7 +8,7 @@
 import Foundation
 
 /// The `Block` struct represents a block event.
-public struct Block: EmailEventRepresentable, Codable {
+public struct Block: EmailEventRepresentable, Decodable {
     
     // MARK: - Properties
     //=========================================================================

@@ -9,7 +9,7 @@ import Foundation
 
 
 /// The `SpamReport` struct represents a spam report event.
-public struct SpamReport: EmailEventRepresentable, Codable {
+public struct SpamReport: EmailEventRepresentable, Decodable {
     
     // MARK: - Properties
     //=========================================================================

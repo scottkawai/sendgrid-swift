@@ -12,7 +12,7 @@ public extension Statistic {
     /// The `Statistic.Period` struct represents the enclosing structure of
     /// statistics returning from the various stat API calls. It contains the
     /// date of the aggregated time period, along with the raw stats.
-    public struct Period<T : StatisticSampleRepresentable & Codable>: Codable {
+    public struct Period<T : StatisticSampleRepresentable & Decodable>: Decodable {
         
         // MARK: - Properties
         //=========================================================================

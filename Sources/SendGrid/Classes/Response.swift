@@ -10,7 +10,7 @@ import Foundation
 /// The `Response` class is a wrapper used after an API call is made. It
 /// includes all the raw data, but also attempts to parse it into the
 /// appropriate models.
-open class Response<ModelType : Codable> {
+open class Response<ModelType : Decodable> {
     
     // MARK: - Read Only Properties
     //=========================================================================

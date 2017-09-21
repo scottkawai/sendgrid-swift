@@ -11,7 +11,7 @@ public extension Statistic {
     
     /// The `Statistic.Metric` struct represents the raw statistics for a given
     /// time period.
-    public struct Metric: Codable {
+    public struct Metric: Decodable {
         
         // MARK: - Properties
         //======================================================================
@@ -71,7 +71,7 @@ public extension Statistic {
     
 }
 
-/// Codable conformance.
+/// Decodable conformance.
 public extension Statistic.Metric {
     
     public enum CodingKeys: String, CodingKey {

@@ -11,10 +11,10 @@ public extension Statistic {
     
     /// The `Statistic.Global` struct represents the stats returned from the "Global
     /// Stats" endpoint.
-    public struct Global: StatisticSampleRepresentable, Codable {
+    public struct Global: StatisticSampleRepresentable, Decodable {
         
         /// The raw metrics for each email event type.
-        public var metrics: Metric
+        public let metrics: Metric
         
     }
     
