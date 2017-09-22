@@ -18,6 +18,10 @@ class BCCSettingTests: XCTestCase, EncodingTester {
         
         let offSetting = BCCSetting()
         XCTAssertEncodedObject(offSetting, equals: ["enable": false])
+        
+        let address = Address(email: "foo@example.none")
+        let withAddress = BCCSetting(address: address)
+        XCTAssertEncodedObject(withAddress, equals: ["enable": true, "email": "foo@example.none"])
     }
     
     func testValidation() {

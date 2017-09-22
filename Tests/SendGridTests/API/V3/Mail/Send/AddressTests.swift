@@ -21,8 +21,8 @@ class AddressTests: XCTestCase, EncodingTester {
     }
     
     func testInitialization() {
-        let good = Address(email: "test@example.com", name: "Good Email")
-        XCTAssertEqual("test@example.com", good.email)
+        let good = Address(email: "test@example.none", name: "Good Email")
+        XCTAssertEqual("test@example.none", good.email)
         XCTAssertEqual("Good Email", good.name)
     }
     

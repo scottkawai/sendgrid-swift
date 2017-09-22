@@ -100,14 +100,6 @@ open class Request<ModelType : Decodable>: Validatable {
         return true
     }
     
-    
-    // MARK: - Deprecations
-    //=========================================================================
-    @available(*, unavailable, message: "use the `generateUrlRequest` method instead.")
-    open func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {
-        throw Exception.Global.methodUnavailable(type(of: self), "request(for:onBehalfOf:)")
-    }
-    
 }
 
 /// CustomStringConvertible conformance

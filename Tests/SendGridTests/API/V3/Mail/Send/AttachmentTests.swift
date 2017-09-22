@@ -52,23 +52,13 @@ class AttachmentTests: XCTestCase, EncodingTester {
     
     func testValidation() {
         let image = Data(bytes: AttachmentTests.redDotBytes)
-        do {
-            // Validation should pass with a valid content type.
-            let good = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: nil)
-            try good.validate()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFailUnknownError(error)
-        }
+        // Validation should pass with a valid content type.
+        let good1 = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: nil)
+        XCTAssertNoThrow(try good1.validate())
         
-        do {
-            // Validation should pass when no content type is present.
-            let good = Attachment(filename: "dot.png", content: image)
-            try good.validate()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFailUnknownError(error)
-        }
+        // Validation should pass when no content type is present.
+        let good2 = Attachment(filename: "dot.png", content: image)
+        XCTAssertNoThrow(try good2.validate())
         
         do {
             // Should fail when content type has a semicolon.

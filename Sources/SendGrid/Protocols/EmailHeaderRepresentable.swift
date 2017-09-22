@@ -64,7 +64,3 @@ public extension EmailHeaderRepresentable {
         }
     }
 }
-
-@available(*, unavailable, message: "'HeaderValidator' has been renamed to 'EmailHeaderRepresentable'.")
-public typealias HeaderValidator = EmailHeaderRepresentable
-

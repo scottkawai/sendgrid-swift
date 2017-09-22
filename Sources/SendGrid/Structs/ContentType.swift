@@ -129,8 +129,4 @@ public extension ContentType {
     /// The "image/jpeg" content type, used for JPEG images.
     static let jpeg = ContentType(type: "image", subtype: "jpeg")
     
-    /// A case used for any content type that isn't explicity stated in the enum.
-    @available(*, unavailable, message: "use the designated initializer for ContentType or one of the static functions")
-    static func other(_ rawValue: String) -> ContentType { return ContentType(rawValue: rawValue)! }
-    
 }

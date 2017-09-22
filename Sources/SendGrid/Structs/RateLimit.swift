@@ -59,7 +59,4 @@ public struct RateLimit {
             else { return nil }
         return RateLimit(limit: li, remaining: re, resetDate: Date(timeIntervalSince1970: date))
     }
-    
-    @available(*, unavailable, message: "use `RateLimit.from(response:)` instead")
-    static func rateLimitInfo(from response: URLResponse?) -> RateLimit? { return nil }
 }

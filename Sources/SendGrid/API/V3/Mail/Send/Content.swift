@@ -82,14 +82,4 @@ extension Content {
         ]
     }
     
-    // MARK: - Deprecations
-    //=========================================================================
-    @available(*, unavailable, message: "use the 'plainText(body:)' method instead.")
-    public static func plainTextContent(_ value: String) -> Content { return .plainText(body: value) }
-    
-    @available(*, unavailable, message: "use the 'html(body:)' method instead.")
-    public static func htmlContent(_ value: String) -> Content { return .html(body: value) }
-    
-    @available(*, unavailable, message: "use the 'emailBody(plain:html:)' method instead.")
-    public static func emailContent(plain: String, html: String) -> [Content] { return Content.emailBody(plain: plain, html: html) }
 }

@@ -34,9 +34,6 @@ public struct Address: Encodable {
         self.name = name
     }
     
-    @available(*, unavailable, message: "use 'init(email:)' instead")
-    public init(_ email: String) { self.init(email: email, name: nil) }
-    
 }
 
 /// Validatable conformance.

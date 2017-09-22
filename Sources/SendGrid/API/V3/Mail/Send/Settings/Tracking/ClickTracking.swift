@@ -55,14 +55,6 @@ public struct ClickTracking: Encodable {
         }
     }
     
-    // MARK: - Deprecations
-    //=========================================================================
-    @available(*, unavailable, message: "use the `init(section:)` initializer instead.")
-    public init(enable: Bool, enablePlainText: Bool? = nil) {
-        self.enable = enable
-        self.enableText = enablePlainText
-    }
-    
 }
 
 /// Encodable conformance.
