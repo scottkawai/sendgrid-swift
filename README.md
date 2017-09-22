@@ -122,6 +122,7 @@ All the available API calls are located in their own folders under the `./Source
 - [Statistics](Sources/SendGrid/API/V3/Stats)
     + [Global Stats](Sources/SendGrid/API/V3/Stats#get-global-stats)
     + [Category Stats](Sources/SendGrid/API/V3/Stats#get-category-stats)
+    + [Subuser Stats](Sources/SendGrid/API/V3/Stats#get-subuser-stats)
 - Suppressions
     + [Blocks API](Sources/SendGrid/API/V3/Suppression/Blocks)
     + [Bounces API](Sources/SendGrid/API/V3/Suppression/Bounces)

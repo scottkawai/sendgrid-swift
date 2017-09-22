@@ -27,6 +27,27 @@ class StatisticCategoryTests: XCTestCase {
     }
     
     func testValidation() {
+        let good = Statistic.Category(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, categories: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
+        XCTAssertNoThrow(try good.validate())
+        
+        do {
+            let under = Statistic.Category(startDate: date(day: 20), categories: [])
+            try under.validate()
+        } catch SendGrid.Exception.Statistic.invalidNumberOfCategories {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+        
+        do {
+            let over = Statistic.Category(startDate: date(day: 20), categories: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven")
+            try over.validate()
+        } catch SendGrid.Exception.Statistic.invalidNumberOfCategories {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+        
         do {
             let request = Statistic.Category(startDate: date(day: 20), endDate: date(day: 19))
             try request.validate()
