@@ -1,6 +1,51 @@
 import XCTest
 @testable import SendGridTests
 
+extension BlockTests {
+    static var allTests : [(String, (BlockTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
+extension BounceTests {
+    static var allTests : [(String, (BounceTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
+extension GlobalUnsubscribeTests {
+    static var allTests : [(String, (GlobalUnsubscribeTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
+extension InvalidEmailTests {
+    static var allTests : [(String, (InvalidEmailTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
+extension SpamReportTests {
+    static var allTests : [(String, (SpamReportTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
 extension AddressTests {
     static var allTests : [(String, (AddressTests) -> () throws -> Void)] {
         return [
@@ -80,7 +125,6 @@ extension BCCSettingTests {
     static var allTests : [(String, (BCCSettingTests) -> () throws -> Void)] {
         return [
             ("testEncoding", testEncoding),
-            ("testInitialization", testInitialization),
             ("testValidation", testValidation)
         ]
     }
@@ -108,7 +152,8 @@ extension FooterTests {
 extension MailSettingsTests {
     static var allTests : [(String, (MailSettingsTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -164,7 +209,8 @@ extension OpenTrackingTests {
 extension SubscriptionTrackingTests {
     static var allTests : [(String, (SubscriptionTrackingTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -173,7 +219,8 @@ extension SubscriptionTrackingTests {
 extension TrackingSettingsTests {
     static var allTests : [(String, (TrackingSettingsTests) -> () throws -> Void)] {
         return [
-            ("testEncoding", testEncoding)
+            ("testEncoding", testEncoding),
+            ("testValidation", testValidation)
         ]
     }
 }
@@ -314,10 +361,38 @@ extension SpamReportGetTests {
 }
 
 
+extension SuppressionListDeleterTests {
+    static var allTests : [(String, (SuppressionListDeleterTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
+extension SuppressionListReaderTests {
+    static var allTests : [(String, (SuppressionListReaderTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization)
+        ]
+    }
+}
+
+
 extension SessionTests {
     static var allTests : [(String, (SessionTests) -> () throws -> Void)] {
         return [
             ("testSendWithoutAuth", testSendWithoutAuth)
+        ]
+    }
+}
+
+
+extension HTTPMethodTests {
+    static var allTests : [(String, (HTTPMethodTests) -> () throws -> Void)] {
+        return [
+            ("testDescription", testDescription),
+            ("testHasBody", testHasBody)
         ]
     }
 }
@@ -350,7 +425,9 @@ extension ContentTypeTests {
 extension PaginationTests {
     static var allTests : [(String, (PaginationTests) -> () throws -> Void)] {
         return [
-            ("testStaticInitializer", testStaticInitializer)
+            ("testStaticInitializer", testStaticInitializer),
+            ("testNoHeader", testNoHeader),
+            ("testBadHeaders", testBadHeaders)
         ]
     }
 }
@@ -359,7 +436,8 @@ extension PaginationTests {
 extension RateLimitTests {
     static var allTests : [(String, (RateLimitTests) -> () throws -> Void)] {
         return [
-            ("testStaticInitializer", testStaticInitializer)
+            ("testStaticInitializer", testStaticInitializer),
+            ("testBadHeaders", testBadHeaders)
         ]
     }
 }
@@ -378,6 +456,11 @@ extension ValidateTests {
 
 
 XCTMain([
+    testCase(BlockTests.allTests),
+    testCase(BounceTests.allTests),
+    testCase(GlobalUnsubscribeTests.allTests),
+    testCase(InvalidEmailTests.allTests),
+    testCase(SpamReportTests.allTests),
     testCase(AddressTests.allTests),
     testCase(ASMTests.allTests),
     testCase(AttachmentTests.allTests),
@@ -408,7 +491,10 @@ XCTMain([
     testCase(InvalidEmailGetTests.allTests),
     testCase(SpamReportDeleteTests.allTests),
     testCase(SpamReportGetTests.allTests),
+    testCase(SuppressionListDeleterTests.allTests),
+    testCase(SuppressionListReaderTests.allTests),
     testCase(SessionTests.allTests),
+    testCase(HTTPMethodTests.allTests),
     testCase(AuthenticationTests.allTests),
     testCase(ContentTypeTests.allTests),
     testCase(PaginationTests.allTests),
