@@ -259,6 +259,16 @@ extension StatisticSubuserTests {
 }
 
 
+extension SubuserGetTests {
+    static var allTests : [(String, (SubuserGetTests) -> () throws -> Void)] {
+        return [
+            ("testInitialization", testInitialization),
+            ("testValidation", testValidation)
+        ]
+    }
+}
+
+
 extension BlockDeleteTests {
     static var allTests : [(String, (BlockDeleteTests) -> () throws -> Void)] {
         return [
@@ -492,6 +502,7 @@ XCTMain([
     testCase(StatisticCategoryTests.allTests),
     testCase(StatisticGlobalTests.allTests),
     testCase(StatisticSubuserTests.allTests),
+    testCase(SubuserGetTests.allTests),
     testCase(BlockDeleteTests.allTests),
     testCase(BlockGetTests.allTests),
     testCase(BounceDeleteTests.allTests),
