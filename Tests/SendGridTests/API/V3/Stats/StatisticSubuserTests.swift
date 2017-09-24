@@ -19,6 +19,10 @@ class StatisticSubuserTests: XCTestCase {
     func testMinimalInitialization() {
         let request = Statistic.Subuser(startDate: date(day: 20), subusers: "foo")
         XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/subusers/stats?start_date=2017-09-20&subusers=foo")
+        
+        let testSub = Subuser(id: 1, username: "foo", email: "foobar@example.nonet", disabled: false)
+        let subRequest = Statistic.Subuser(startDate: date(day: 20), subusers: testSub)
+        XCTAssertEqual(subRequest.endpoint?.string, "https://api.sendgrid.com/v3/subusers/stats?start_date=2017-09-20&subusers=foo")
     }
     
     func testMaxInitialization() {
@@ -31,7 +35,7 @@ class StatisticSubuserTests: XCTestCase {
         XCTAssertNoThrow(try good.validate())
         
         do {
-            let under = Statistic.Subuser(startDate: date(day: 20), subusers: [])
+            let under = Statistic.Subuser(startDate: date(day: 20), subusers: [String]())
             try under.validate()
         } catch SendGrid.Exception.Statistic.invalidNumberOfSubusers {
             XCTAssertTrue(true)

@@ -58,6 +58,33 @@ public extension Statistic {
             self.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy, subusers: subusers)
         }
         
+        /// Initializes the request with a start date and subusers, as well as
+        /// an end date and/or aggregation method.
+        ///
+        /// - Parameters:
+        ///   - startDate:      The starting date of the statistics to retrieve.
+        ///   - endDate:        The end date of the statistics to retrieve.
+        ///   - aggregatedBy:   Indicates how the statistics should be grouped.
+        ///   - subusers:       An array of `Subuser` instances to retrieve
+        ///                     stats for (max 10).
+        public init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil, subusers: [SendGrid.Subuser]) {
+            self.subusers = subusers.map { $0.username }
+            super.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy)
+        }
+        
+        /// Initializes the request with a start date and subusers, as well as
+        /// an end date and/or aggregation method.
+        ///
+        /// - Parameters:
+        ///   - startDate:      The starting date of the statistics to retrieve.
+        ///   - endDate:        The end date of the statistics to retrieve.
+        ///   - aggregatedBy:   Indicates how the statistics should be grouped.
+        ///   - subusers:       An array of `Subuser` instances to retrieve
+        ///                     stats for (max 10).
+        public convenience init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil, subusers: SendGrid.Subuser...) {
+            self.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy, subusers: subusers)
+        }
+        
         
         // MARK: - Methods
         //=========================================================================
