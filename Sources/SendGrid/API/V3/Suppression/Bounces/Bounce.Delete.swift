@@ -32,11 +32,13 @@ public extension Bounce {
 /// Encodable conformance
 public extension Bounce.Delete {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case deleteAll  = "delete_all"
         case emails
     }
     
+    /// :nodoc:
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.deleteAll, forKey: .deleteAll)

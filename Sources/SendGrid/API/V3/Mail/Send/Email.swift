@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The `Email` class is used to make the Mail Send API call.
 public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling {
     
     // MARK: - Properties
@@ -132,6 +133,15 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
     // MARK: - Initialization
     //=========================================================================
     
+    /// Initializes the email request with a list of personalizations, a from
+    /// address, content, and a subject.
+    ///
+    /// - Parameters:
+    ///   - personalizations:   An array of personalization instances.
+    ///   - from:               A from address to use in the email.
+    ///   - content:            An array of content instances to use in the
+    ///                         body.
+    ///   - subject:            An optional global subject line.
     public init(personalizations: [Personalization], from: Address, content: [Content], subject: String? = nil) {
         self.personalizations = personalizations
         self.from = from
@@ -259,6 +269,7 @@ public class Email: Request<[String:Any]>, EmailHeaderRepresentable, Scheduling 
 /// Encodable conformance.
 extension Email: AutoEncodable {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case asm
         case attachments
@@ -279,6 +290,7 @@ extension Email: AutoEncodable {
         case trackingSettings   = "tracking_settings"
     }
     
+    /// :nodoc:
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.personalizations, forKey: .personalizations)

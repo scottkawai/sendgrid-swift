@@ -53,6 +53,7 @@ public struct OpenTracking: Encodable {
 /// Encodable conformance
 public extension OpenTracking {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case enable
         case substitutionTag    = "substitution_tag"
@@ -81,7 +82,20 @@ public extension OpenTracking {
     ///             "%open_tracking%" at the top. The tag will then be replaced
     ///             with the open tracking pixel.
     public enum Location {
-        case off, bottom, at(tag: String)
+        
+        /// Disables open tracking for the email.
+        case off
+        
+        /// Places the open tracking pixel at the bottom of the email body.
+        case bottom
+        
+        /// Places the open tracking pixel at a specified substitution tag. For
+        /// instance, if you wanted to place the open tracking pixel at the top
+        /// of your email, you can specify this case with a tag, such as
+        /// `.at(tag: "%open_tracking%")`, and then in the body of your email
+        /// you can place the text "%open_tracking%" at the top. The tag will
+        /// then be replaced with the open tracking pixel.
+        case at(tag: String)
     }
     
 }

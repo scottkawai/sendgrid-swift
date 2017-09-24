@@ -62,6 +62,7 @@ open class Attachment: Encodable {
 /// Encodable conformance.
 extension Attachment {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case content
         case filename

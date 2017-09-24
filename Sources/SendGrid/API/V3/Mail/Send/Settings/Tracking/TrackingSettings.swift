@@ -47,6 +47,7 @@ public struct TrackingSettings: Encodable {
 /// Encodable conformance.
 public extension TrackingSettings {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         
         case clickTracking          = "click_tracking"

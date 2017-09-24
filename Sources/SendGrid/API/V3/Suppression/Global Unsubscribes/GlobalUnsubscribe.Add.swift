@@ -72,6 +72,7 @@ public extension GlobalUnsubscribe {
 /// Encodable conformance.
 public extension GlobalUnsubscribe.Add {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case emails = "recipient_emails"
     }

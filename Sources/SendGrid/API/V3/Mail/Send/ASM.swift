@@ -43,6 +43,7 @@ public struct ASM: Encodable {
 /// Encodable conformance.
 extension ASM {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case id                 = "group_id"
         case groupsToDisplay    = "groups_to_display"

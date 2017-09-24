@@ -50,6 +50,7 @@ public struct MailSettings: Encodable {
 /// Encodable conformance.
 public extension MailSettings {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         
         case bcc

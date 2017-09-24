@@ -9,6 +9,8 @@ import Foundation
 
 public extension Exception {
     
+    /// The `Exception.Statistic` enum represents all the errors that can be thrown
+    /// on the statistics calls.
     public enum Statistic: Error, CustomStringConvertible {
         
         /// Thrown if the end date is before the start date.

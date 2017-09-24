@@ -128,6 +128,7 @@ public struct SubscriptionTracking: Encodable {
 /// Encodable configuration
 public extension SubscriptionTracking {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case enable
         case text

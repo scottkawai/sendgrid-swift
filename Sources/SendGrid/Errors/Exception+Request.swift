@@ -9,7 +9,8 @@ import Foundation
 
 public extension Exception {
     
-    /// The `Request` enum contains all the errors thrown by `Request`.
+    /// The `Exception.Request` enum contains all the errors thrown by
+    /// `Request`.
     public enum Request: Error, CustomStringConvertible {
         
         // MARK: - Cases

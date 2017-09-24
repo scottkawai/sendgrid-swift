@@ -67,6 +67,7 @@ public struct SpamChecker: Encodable {
 /// Encodable conformance.
 public extension SpamChecker {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case enable
         case threshold

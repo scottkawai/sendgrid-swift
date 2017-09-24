@@ -18,11 +18,11 @@ public class SuppressionListDeleter<T : EmailEventRepresentable>: Request<[Strin
     /// The path for the request's API endpoint.
     internal var path: String { return "/" }
     
-    // A `Bool` indicating if all the events on the suppression list should be
-    // deleted.
+    /// A `Bool` indicating if all the events on the suppression list should be
+    /// deleted.
     public let deleteAll: Bool?
     
-    // An array of emails to delete from the suppression list.
+    /// An array of emails to delete from the suppression list.
     public let emails: [String]?
     
     

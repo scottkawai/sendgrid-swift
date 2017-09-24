@@ -35,6 +35,7 @@ public struct EncodingStrategy {
 }
 
 #if os(Linux)
+    /// :nodoc:
     /// For some reason, on macOS we have
     /// `JSONEncoder.DataEncodingStrategy.base64` and on Linux we have
     /// `JSONEncoder.DataEncodingStrategy.base64Encode`, so this extension is to

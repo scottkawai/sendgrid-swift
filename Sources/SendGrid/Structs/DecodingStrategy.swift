@@ -36,6 +36,7 @@ public struct DecodingStrategy {
 }
 
 #if os(Linux)
+    /// :nodoc:
     /// For some reason, on macOS we have
     /// `JSONDecoder.DataDecodingStrategy.base64` and on Linux we have
     /// `JSONDecoder.DataDecodingStrategy.base64Decode`, so this extension is to

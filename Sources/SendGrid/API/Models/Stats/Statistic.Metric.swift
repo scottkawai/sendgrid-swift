@@ -74,6 +74,7 @@ public extension Statistic {
 /// Decodable conformance.
 public extension Statistic.Metric {
     
+    /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case blocks
         case bounceDrops        = "bounce_drops"

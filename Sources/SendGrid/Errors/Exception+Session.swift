@@ -9,8 +9,8 @@ import Foundation
 
 public extension Exception {
     
-    /// The `Session` enum contains all the errors thrown when attempting to
-    /// build an HTTP request.
+    /// The `Exception.Session` enum contains all the errors thrown when 
+    /// attempting to build an HTTP request.
     public enum Session: Error, CustomStringConvertible {
         
         // MARK: - Cases

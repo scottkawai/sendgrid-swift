@@ -36,6 +36,7 @@ public struct Page: Equatable {
     
 }
 
+/// :nodoc:
 /// Equatable conformance.
 public func ==(lhs: Page, rhs: Page) -> Bool {
     return lhs.limit == rhs.limit && lhs.offset == rhs.offset

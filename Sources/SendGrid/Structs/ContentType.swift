@@ -72,6 +72,7 @@ public struct ContentType: CustomStringConvertible, Equatable {
     }
 }
 
+/// :nodoc:
 /// Equatable conformance.
 public func ==(lhs: ContentType, rhs: ContentType) -> Bool {
     return lhs.type == rhs.type && lhs.subtype == rhs.subtype
@@ -92,6 +93,7 @@ extension ContentType: Validatable {
 /// Encodable conformance.
 extension ContentType: Encodable {
     
+    /// :nodoc:
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.description)

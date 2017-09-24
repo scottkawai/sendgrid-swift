@@ -9,7 +9,8 @@ import Foundation
 
 public extension Exception {
     
-    /// The `Mail` enum contains all the errors thrown for the mail send API.
+    /// The `Exception.Mail` enum contains all the errors thrown for the mail
+    /// send API.
     public enum Mail: Error, CustomStringConvertible {
         
         // MARK: - Cases
