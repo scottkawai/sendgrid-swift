@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SendGrid"
-  s.version      = "0.2.3"
-  s.summary      = "A library that allows you to easily send emails through SendGrid using Swift."
+  s.version      = "1.0.0"
+  s.summary      = "A library that allows you to easily make SendGrid V3 API calls."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  A library that allows you to easily send emails through SendGrid's V3 Mail Send API using Swift.
+  A library that allows you to easily make API calls via SendGrid's V3 API.
   DESC
 
   s.homepage     = "https://github.com/scottkawai/sendgrid-swift"
