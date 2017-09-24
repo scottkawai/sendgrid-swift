@@ -1,16 +1,6 @@
-# WORK IN PROGRESS
-
-This is the working branch for version 1.0.0.  The focus areas for this version are:
-
-- Rewrite from the ground up using Swift 4.
-- Use the new Codable protocol in Swift 4.
-- Add support for Linux.
-- Add a Docker container for development.
-- Add support for more API calls other than mail send.
-
-----
-
 # SendGrid-Swift
+
+![swift4](https://img.shields.io/badge/swift-v4.0-green.svg) ![macOS](https://img.shields.io/badge/os-macOS-blue.svg) ![iOS](https://img.shields.io/badge/os-iOS-blue.svg) ![Linux\*](https://img.shields.io/badge/os-Linux\*-blue.svg)
 
 This library allows you to quickly and easily send emails through SendGrid using Swift.
 
@@ -22,6 +12,10 @@ Versions 1.0.0 and higher have been migrated to Swift 4 and adds Linux support, 
 
 - Versions 0.2.0 and higher uses Swift 3, which introduces breaking changes from previous versions.
 - Versions 0.1.0 and higher have been migrated over to use SendGrid's [V3 Mail Send Endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html), which contains code-breaking changes.
+
+## \*A Note About Linux
+
+While this library does function on Linux via the Swift Package Manager, it relies upon the [open source Foundation library](https://github.com/apple/swift-corelibs-foundation) (specifically `URLSession`).  As it stands, [`URLSession` hasn't been fully implemented yet](https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Status.md). While this library uses what has been implemented to make the HTTP requests, critical implementations such as invalidating the session are unavailable, which could lead to unexpected behaviors such as memory leaks. This being said, Linux supported in this library should be treated as *experimental*.
 
 ## Full Documentation
 
