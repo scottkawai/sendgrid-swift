@@ -1,0 +1,8 @@
+clean: true
+author: Scott Kawai
+module: SendGrid
+readme: README.md
+xcodebuild_arguments: [-target,SendGrid]
+github_url: https://github.com/scottkawai/sendgrid-swift
+exclude:
+  - Sources/SendGrid/Deprecations/*
