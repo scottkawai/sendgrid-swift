@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SpamReport Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/SpamReport" class="dashAnchor"></a>
+    <a title="SpamReport Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SendGrid Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/scottkawai/sendgrid-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SendGrid Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SpamReport Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Attachment.html">Attachment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Email.html">Email</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Personalization.html">Personalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListDeleter.html">SuppressionListDeleter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListReader.html">SuppressionListReader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ContentDisposition.html">ContentDisposition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AutoEncodable.html">AutoEncodable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailEventRepresentable.html">EmailEventRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailHeaderRepresentable.html">EmailHeaderRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Scheduling.html">Scheduling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Validatable.html">Validatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ASM.html">ASM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BCCSetting.html">BCCSetting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block.html">Block</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block.html#/s:8SendGrid5BlockV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce.html">Bounce</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce.html#/s:8SendGrid6BounceV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BypassListManagement.html">BypassListManagement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking.html">ClickTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking/Section.html">– Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContentType.html">ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DecodingStrategy.html">DecodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EncodingStrategy.html">EncodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Authentication.html">– Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/ContentType.html">– ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Session.html">– Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Statistic.html">– Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Footer.html">Footer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe.html">GlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe/Add.html">– Add</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GoogleAnalytics.html">GoogleAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail.html">InvalidEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MailSettings.html">MailSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking.html">OpenTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Page.html">Page</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RateLimit.html">RateLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SandboxMode.html">SandboxMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamChecker.html">SpamChecker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport.html">SpamReport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic.html">Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Metric.html">– Metric</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Sample.html">– Sample</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Category.html">– Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Subuser.html">– Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Aggregation.html">– Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SubscriptionTracking.html">SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subuser.html">Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subuser/Get.html">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TrackingSettings.html">TrackingSettings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SpamReport</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SpamReport</span><span class="p">:</span> <span class="kt"><a href="../Protocols/EmailEventRepresentable.html">EmailEventRepresentable</a></span><span class="p">,</span> <span class="kt">Decodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>SpamReport</code> struct represents a spam report event.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid10SpamReportV5emailSSv"></a>
+                    <a name="//apple_ref/swift/Property/email" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid10SpamReportV5emailSSv">email</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The email address on the event.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid10SpamReportV7created10Foundation4DateVv"></a>
+                    <a name="//apple_ref/swift/Property/created" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid10SpamReportV7created10Foundation4DateVv">created</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The date and time the event occurred on.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">created</span><span class="p">:</span> <span class="kt">Date</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid10SpamReportV2ipSSv"></a>
+                    <a name="//apple_ref/swift/Property/ip" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid10SpamReportV2ipSSv">ip</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The IP address of the user when they marked the email as spam.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">ip</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid10SpamReportVACSS5email_10Foundation4DateV7createdSS2iptcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(email:created:ip:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid10SpamReportVACSS5email_10Foundation4DateV7createdSS2iptcfc">init(email:created:ip:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the event with all the required properties.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">created</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">ip</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The email address on the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>created</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The date and time the event occurred on.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ip</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IP address of the user when they marked the email as
+        spam.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid10SpamReportV6DeleteC"></a>
+                    <a name="//apple_ref/swift/Class/Delete" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid10SpamReportV6DeleteC">Delete</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>SpamReport.Delete</code> class represents the API call to <a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/spam_reports.html#Delete-a-specific-spam-report-DELETE">delete from
+the spam report list</a>.
+You can use it to delete the entire list, or specific entries from the 
+list.</p>
+<h2 id='delete-all-spam-reports' class='heading'>Delete All Spam Reports</h2>
+
+<p>To delete all spam reports, use the request returned from 
+<code><a href="../Structs/SpamReport/Delete.html#/s:8SendGrid10SpamReportV6DeleteC3allAEvZ">SpamReport.Delete.all</a></code>.  This request will delete all spam reports on 
+your spam report list.</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">SpamReport</span><span class="o">.</span><span class="kt">Delete</span><span class="o">.</span><span class="n">all</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='delete-specific-spam-reports' class='heading'>Delete Specific Spam Reports</h2>
+
+<p>To delete specific entries from your spam report list, use the 
+<code>SpamReport.Delete</code> class. You can either specify email addresses (as 
+strings), or you can use <code><a href="../Structs/SpamReport.html">SpamReport</a></code> instances (useful for if you just 
+retrieved some from the <code><a href="../Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC">SpamReport.Get</a></code> class).</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">SpamReport</span><span class="o">.</span><span class="kt">Delete</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">,</span> <span class="s">"bar@example.none"</span><span class="p">)</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                        <a href="../Structs/SpamReport/Delete.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Delete</span><span class="p">:</span> <span class="kt"><a href="../Classes/SuppressionListDeleter.html">SuppressionListDeleter</a></span><span class="o">&lt;</span><span class="kt"><a href="../Structs/SpamReport.html">SpamReport</a></span><span class="o">&gt;</span><span class="p">,</span> <span class="kt"><a href="../Protocols/AutoEncodable.html">AutoEncodable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid10SpamReportV3GetC"></a>
+                    <a name="//apple_ref/swift/Class/Get" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid10SpamReportV3GetC">Get</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>SpamReport.Get</code> class represents the API call to <a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/spam_reports.html#List-all-spam-reports-GET">retrieve the
+spam reports list</a>.
+You can use it to retrieve the entire list, or specific entries on the 
+list.</p>
+<h2 id='get-all-spam-reports' class='heading'>Get All Spam Reports</h2>
+
+<p>To retrieve the list of all spam reports, use the <code>SpamReport.Get</code> class 
+with the <code>init(start:end:page:)</code> initializer. The library will 
+automatically map the response to the <code>SpamReport</code> struct model, 
+accessible via the <code>model</code> property on the response instance you get 
+back.</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// If you don't specify any parameters, then the first page of your </span>
+    <span class="c1">// entire spam report list will be fetched:</span>
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">SpamReport</span><span class="o">.</span><span class="kt">Get</span><span class="p">()</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+        <span class="c1">// The `model` property will be an array of `SpamReport` structs.</span>
+        <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+
+        <span class="c1">// The response object has a `Pagination` instance on it as well.</span>
+        <span class="c1">// You can use this to get the next page, if you wish.</span>
+        <span class="c1">//</span>
+        <span class="c1">// if let nextPage = response?.pages?.next {</span>
+        <span class="c1">//    let nextRequest = SpamReport.Get(page: nextPage)</span>
+        <span class="c1">// }</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>You can also specify any or all of the init parameters to filter your 
+search down:</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// Retrieve page 2</span>
+    <span class="k">let</span> <span class="nv">page</span> <span class="o">=</span> <span class="kt">Page</span><span class="p">(</span><span class="nv">limit</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span>
+    <span class="c1">// Spam Reports starting from yesterday</span>
+    <span class="k">let</span> <span class="nv">now</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">()</span>
+    <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">)</span> <span class="c1">// 24 hours</span>
+
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">SpamReport</span><span class="o">.</span><span class="kt">Get</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="n">page</span><span class="p">)</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+        <span class="c1">// The `model` property will be an array of `SpamReport` </span>
+        <span class="c1">// structs.</span>
+        <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='get-specific-spam-report' class='heading'>Get Specific Spam Report</h2>
+
+<p>If you&rsquo;re looking for a specific email address in the spam report list, 
+you can use the <code>init(email:)</code> initializer on <code>SpamReport.Get</code>:</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">SpamReport</span><span class="o">.</span><span class="kt">Get</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">)</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+        <span class="c1">// The `model` property will be an array of `SpamReport` </span>
+        <span class="c1">// structs.</span>
+        <span class="n">response</span><span class="p">?</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Get</span><span class="p">:</span> <span class="kt"><a href="../Classes/SuppressionListReader.html">SuppressionListReader</a></span><span class="o">&lt;</span><span class="kt">SpamReport</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2017-09-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

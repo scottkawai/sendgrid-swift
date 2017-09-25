@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SubscriptionTracking Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/SubscriptionTracking" class="dashAnchor"></a>
+    <a title="SubscriptionTracking Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SendGrid Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/scottkawai/sendgrid-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SendGrid Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SubscriptionTracking Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Attachment.html">Attachment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Email.html">Email</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Personalization.html">Personalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListDeleter.html">SuppressionListDeleter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListReader.html">SuppressionListReader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ContentDisposition.html">ContentDisposition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AutoEncodable.html">AutoEncodable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailEventRepresentable.html">EmailEventRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailHeaderRepresentable.html">EmailHeaderRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Scheduling.html">Scheduling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Validatable.html">Validatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ASM.html">ASM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BCCSetting.html">BCCSetting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block.html">Block</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block.html#/s:8SendGrid5BlockV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce.html">Bounce</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce.html#/s:8SendGrid6BounceV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BypassListManagement.html">BypassListManagement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking.html">ClickTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking/Section.html">– Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContentType.html">ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DecodingStrategy.html">DecodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EncodingStrategy.html">EncodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Authentication.html">– Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/ContentType.html">– ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Session.html">– Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Statistic.html">– Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Footer.html">Footer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe.html">GlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe/Add.html">– Add</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GoogleAnalytics.html">GoogleAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail.html">InvalidEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MailSettings.html">MailSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking.html">OpenTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Page.html">Page</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RateLimit.html">RateLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SandboxMode.html">SandboxMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamChecker.html">SpamChecker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport.html">SpamReport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic.html">Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Metric.html">– Metric</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Sample.html">– Sample</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Category.html">– Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Subuser.html">– Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Aggregation.html">– Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SubscriptionTracking.html">SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subuser.html">Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subuser/Get.html">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TrackingSettings.html">TrackingSettings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SubscriptionTracking</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SubscriptionTracking</span><span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>SubscriptionTracking</code> class is used to modify the subscription tracking
+setting on an email.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingV4textSSSgv"></a>
+                    <a name="//apple_ref/swift/Property/text" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingV4textSSSgv">text</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Text to be appended to the email, with the subscription tracking link.
+You may control where the link is by using the tag <code>&lt;% %&gt;</code>. For example:</p>
+<pre class="highlight plaintext"><code>Click here to unsubscribe: &lt;% %&gt;
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingV4htmlSSSgv"></a>
+                    <a name="//apple_ref/swift/Property/html" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingV4htmlSSSgv">html</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTML to be appended to the email, with the subscription tracking link.
+You may control where the link is by using the tag <code>&lt;% %&gt;</code>. For example:</p>
+<pre class="highlight plaintext"><code>&lt;p&gt;&lt;% Click here %&gt; to unsubscribe.&lt;/p&gt;
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">html</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingV15substitutionTagSSSgv"></a>
+                    <a name="//apple_ref/swift/Property/substitutionTag" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingV15substitutionTagSSSgv">substitutionTag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A tag that will be replaced with the unsubscribe URL. For example:
+<code>[unsubscribe_url</code>. If this parameter is used, it will override both
+the <code><a href="../Structs/SubscriptionTracking.html#/s:8SendGrid20SubscriptionTrackingV4textSSSgv">text</a></code> and <code><a href="../Structs/SubscriptionTracking.html#/s:8SendGrid20SubscriptionTrackingV4htmlSSSgv">html</a></code> parameters. The URL of the link will be placed at
+the substitution tag&rsquo;s location, with no additional formatting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">substitutionTag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingV6enableSbv"></a>
+                    <a name="//apple_ref/swift/Property/enable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingV6enableSbv">enable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>Bool</code> indicating if the setting is enabled or not.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">enable</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingVACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingVACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the setting with no templates or substitution tags,
+effectively disabling the setting. Use this initializer if the
+subscription tracking setting is enabled on your SendGrid account by
+default and you want to disable it for this specific email.</p>
+
+<p>If you want to enable the setting and/or modify the configuration of the
+setting for this email, use either the <code><a href="../Structs/SubscriptionTracking.html#/s:8SendGrid20SubscriptionTrackingVACSS9plainText_SS4htmltcfc">init(plainText:html:)</a></code> or the
+<code><a href="../Structs/SubscriptionTracking.html#/s:8SendGrid20SubscriptionTrackingVACSS15substitutionTag_tcfc">init(substitutionTag:)</a></code> initializer instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingVACSS9plainText_SS4htmltcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(plainText:html:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingVACSS9plainText_SS4htmltcfc">init(plainText:html:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the setting with a plain text and HTML template to put at
+the bottom of the email.</p>
+
+<p>Both templates must use the <code>&lt;% %&gt;</code> tag to indicate where to place the
+actual unsubscribe link. For instance, this would be a valid template
+for the plain text template:</p>
+<pre class="highlight plaintext"><code>Click here to unsubscribe: &lt;% %&gt;.
+</code></pre>
+
+<p>…and this would be a valid template for the HTML portion:</p>
+<pre class="highlight plaintext"><code>&lt;p&gt;&lt;% Click here %&gt; to unsubscribe.&lt;/p&gt;
+</code></pre>
+
+<p>If you want to place the unsubscribe link somewhere other than the
+bottom of the email, use the <code><a href="../Structs/SubscriptionTracking.html#/s:8SendGrid20SubscriptionTrackingVACSS15substitutionTag_tcfc">init(substitutionTag:)</a></code> initializer
+instead.</p>
+
+<p>If the subscription tracking setting is enabled by default on your
+SendGrid account and you want to disable it for this email, use the
+<code><a href="../Structs/SubscriptionTracking.html#/s:8SendGrid20SubscriptionTrackingVACycfc">init()</a></code> initializer instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">plainText</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">html</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>plainText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Text to be appended to the email, with the subscription
+        tracking link. You may control where the link is by
+        using the tag <code>&lt;% %&gt;</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>html</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>HTML to be appended to the email, with the subscription
+        tracking link. You may control where the link is by
+        using the tag <code>&lt;% %&gt;</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingVACSS15substitutionTag_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(substitutionTag:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingVACSS15substitutionTag_tcfc">init(substitutionTag:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the setting with a substitution tag to place the unsubscribe
+URL at. <strong>Note:</strong> the tag you specify will be replaced with the
+unsubscribe URL only, not the templates defined in the setting.</p>
+
+<p>So for example, if you specified <code>%unsubscribe%</code> as your substitution
+tag, then in your plain text portion of your email, you would want to
+have something like this:</p>
+<pre class="highlight plaintext"><code>Click here to unsubscribe: %unsubscribe%
+</code></pre>
+
+<p>…and then in your HTML body you would want something like this:</p>
+<pre class="highlight plaintext"><code>&lt;p&gt;&lt;a href="%unsubscribe%"&gt;Click here&lt;/a&gt; to unsubscribe.&lt;/p&gt;
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">substitutionTag</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>substitutionTag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A tag to indicate where to place the
+                            unsubscribe URL.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid20SubscriptionTrackingV8validateyyKF"></a>
+                    <a name="//apple_ref/swift/Method/validate()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid20SubscriptionTrackingV8validateyyKF">validate()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validates that the plain text and HTML text contain the proper tag.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2017-09-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

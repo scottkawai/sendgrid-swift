@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Metric Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Metric" class="dashAnchor"></a>
+    <a title="Metric Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../../index.html">SendGrid Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/scottkawai/sendgrid-swift"><img src="../../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../../index.html">SendGrid Reference</a>
+        <img id="carat" src="../../img/carat.png" />
+        Metric Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Classes/Attachment.html">Attachment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Email.html">Email</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Personalization.html">Personalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/SuppressionListDeleter.html">SuppressionListDeleter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/SuppressionListReader.html">SuppressionListReader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Enums/ContentDisposition.html">ContentDisposition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols/AutoEncodable.html">AutoEncodable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/EmailEventRepresentable.html">EmailEventRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/EmailHeaderRepresentable.html">EmailHeaderRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/Scheduling.html">Scheduling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Protocols/Validatable.html">Validatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Structs/ASM.html">ASM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/BCCSetting.html">BCCSetting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Block.html">Block</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Block/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Block.html#/s:8SendGrid5BlockV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Bounce.html">Bounce</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Bounce/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Bounce.html#/s:8SendGrid6BounceV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/BypassListManagement.html">BypassListManagement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ClickTracking.html">ClickTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ClickTracking/Section.html">– Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/ContentType.html">ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DecodingStrategy.html">DecodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/EncodingStrategy.html">EncodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/Authentication.html">– Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/ContentType.html">– ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/Session.html">– Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception/Statistic.html">– Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Footer.html">Footer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/GlobalUnsubscribe.html">GlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/GlobalUnsubscribe/Add.html">– Add</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/GlobalUnsubscribe/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/GoogleAnalytics.html">GoogleAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/InvalidEmail.html">InvalidEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/InvalidEmail/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/MailSettings.html">MailSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/OpenTracking.html">OpenTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/OpenTracking/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Page.html">Page</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/RateLimit.html">RateLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SandboxMode.html">SandboxMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SpamChecker.html">SpamChecker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SpamReport.html">SpamReport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SpamReport/Delete.html">– Delete</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic.html">Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Metric.html">– Metric</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Sample.html">– Sample</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Category.html">– Category</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Subuser.html">– Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Aggregation.html">– Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Statistic/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/SubscriptionTracking.html">SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Subuser.html">Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Subuser/Get.html">– Get</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/TrackingSettings.html">TrackingSettings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Metric</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Metric</span><span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>Statistic.Metric</code> struct represents the raw statistics for a given
+time period.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV6blocksSiv"></a>
+                    <a name="//apple_ref/swift/Property/blocks" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV6blocksSiv">blocks</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of block events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">blocks</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV11bounceDropsSiv"></a>
+                    <a name="//apple_ref/swift/Property/bounceDrops" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV11bounceDropsSiv">bounceDrops</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of emails dropped due to the address being on the bounce
+list for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bounceDrops</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV7bouncesSiv"></a>
+                    <a name="//apple_ref/swift/Property/bounces" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV7bouncesSiv">bounces</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of bounce events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bounces</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV6clicksSiv"></a>
+                    <a name="//apple_ref/swift/Property/clicks" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV6clicksSiv">clicks</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of click events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">clicks</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV8deferredSiv"></a>
+                    <a name="//apple_ref/swift/Property/deferred" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV8deferredSiv">deferred</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of deferred events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">deferred</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV9deliveredSiv"></a>
+                    <a name="//apple_ref/swift/Property/delivered" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV9deliveredSiv">delivered</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of delivered events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">delivered</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV13invalidEmailsSiv"></a>
+                    <a name="//apple_ref/swift/Property/invalidEmails" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV13invalidEmailsSiv">invalidEmails</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of invalid email events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">invalidEmails</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV5opensSiv"></a>
+                    <a name="//apple_ref/swift/Property/opens" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV5opensSiv">opens</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of open events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">opens</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV9processedSiv"></a>
+                    <a name="//apple_ref/swift/Property/processed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV9processedSiv">processed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of processed events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">processed</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV8requestsSiv"></a>
+                    <a name="//apple_ref/swift/Property/requests" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV8requestsSiv">requests</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of requests for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">requests</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV15spamReportDropsSiv"></a>
+                    <a name="//apple_ref/swift/Property/spamReportDrops" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV15spamReportDropsSiv">spamReportDrops</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of emails dropped due to the address being on the spam
+report list for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">spamReportDrops</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV11spamReportsSiv"></a>
+                    <a name="//apple_ref/swift/Property/spamReports" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV11spamReportsSiv">spamReports</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of spam report events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">spamReports</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV12uniqueClicksSiv"></a>
+                    <a name="//apple_ref/swift/Property/uniqueClicks" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV12uniqueClicksSiv">uniqueClicks</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of unique click events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">uniqueClicks</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV11uniqueOpensSiv"></a>
+                    <a name="//apple_ref/swift/Property/uniqueOpens" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV11uniqueOpensSiv">uniqueOpens</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of unique open events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">uniqueOpens</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV16unsubscribeDropsSiv"></a>
+                    <a name="//apple_ref/swift/Property/unsubscribeDrops" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV16unsubscribeDropsSiv">unsubscribeDrops</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of emails dropped due to the address being on the
+unsubscribe list for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">unsubscribeDrops</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid9StatisticV6MetricV12unsubscribesSiv"></a>
+                    <a name="//apple_ref/swift/Property/unsubscribes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid9StatisticV6MetricV12unsubscribesSiv">unsubscribes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of unsubscribe events for the given period.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">unsubscribes</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2017-09-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
