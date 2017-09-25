@@ -2,18 +2,16 @@
 //  ContentDisposition.swift
 //  SendGrid
 //
-//  Created by Scott Kawai on 5/17/16.
-//  Copyright © 2016 Scott Kawai. All rights reserved.
+//  Created by Scott Kawai on 9/8/17.
 //
-
 import Foundation
 
-/**
- 
- The `ContentDisposition` represents the various content-dispositions an attachment can have.
- 
- */
-public enum ContentDisposition: String {
+/// The `ContentDisposition` represents the various content-dispositions an
+/// attachment can have.
+///
+/// - inline: Shows the attachment inline with text.
+/// - attachment: Shows the attachment below the text.
+public enum ContentDisposition: String, Encodable {
     
     // MARK: - Cases
     //=========================================================================
