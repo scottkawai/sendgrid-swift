@@ -11,7 +11,28 @@ public extension Statistic {
     
     /// The `Statistic.Subuser` class is used to make the
     /// [Get Subuser Stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/subusers.html)
-    /// API call.
+    /// API call. At minimum you need to specify a start date.
+    ///
+    /// ```swift
+    /// do {
+    ///     let now = Date()
+    ///     let lastMonth = now.addingTimeInterval(-2592000) // 30 days
+    ///     let request = Statistic.Subuser(
+    ///         startDate: lastMonth,
+    ///         endDate: now,
+    ///         aggregatedBy: .week,
+    ///         subusers: "Foo", "Bar"
+    ///     )
+    ///     try Session.shared.send(request: request) { (response) in
+    ///         // The `model` property will be an array of `Statistic` structs.
+    ///         response?.model?.forEach{ (stat) in
+    ///             // Do something with the stats here...
+    ///         }
+    ///     }
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
     public class Subuser: Statistic.Global {
         
         // MARK: - Properties

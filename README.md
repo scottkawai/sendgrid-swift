@@ -113,18 +113,30 @@ session.authentication = Authentication.apiKey(myApiKey)
 
 All the available API calls are located in their own folders under the `./Sources/SendGrid/API` folder, and each one has its own README explaining how to use it. Below is a list of the currently available API calls:
 
-- [Statistics](Sources/SendGrid/API/V3/Stats)
-    + [Global Stats](Sources/SendGrid/API/V3/Stats#get-global-stats)
-    + [Category Stats](Sources/SendGrid/API/V3/Stats#get-category-stats)
-    + [Subuser Stats](Sources/SendGrid/API/V3/Stats#get-subuser-stats)
-- [Subuser API](Sources/SendGrid/API/V3/Subuser)
+- Statistics
+    + [Global Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Global.html)
+    + [Category Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Category.html)
+    + [Subuser Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Subuser.html)
+- Subuser API
+    + [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Subuser/Get.html)
 - Suppressions
-    + [Blocks API](Sources/SendGrid/API/V3/Suppression/Blocks)
-    + [Bounces API](Sources/SendGrid/API/V3/Suppression/Bounces)
-    + [Invalid Emails API](Sources/SendGrid/API/V3/Suppression/Invalid%20Emails)
-    + [Global Unsubscribes API](Sources/SendGrid/API/V3/Suppression/Global%20Unsubscribes)
-    + [Spam Reports API](Sources/SendGrid/API/V3/Suppression/Spam%20Reports)
-- [Mail Send](Sources/SendGrid/API/V3/Mail/Send)
+    + Blocks API
+        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block.html#/s:8SendGrid5BlockV3GetC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block/Delete.html)
+    + Bounces API
+        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce.html#/s:8SendGrid6BounceV3GetC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce/Delete.html)
+    + Invalid Emails API
+        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail/Delete.html)
+    + Global Unsubscribes API
+        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC)
+        * [Add](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe/Add.html)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe/Delete.html)
+    + Spam Reports API
+        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport/Delete.html)
+- [Mail Send](http://scottkawai.github.io/sendgrid-swift/docs/Classes/Email.html)
 
 ## Development
 

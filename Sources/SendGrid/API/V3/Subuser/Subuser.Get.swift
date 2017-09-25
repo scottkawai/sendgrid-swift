@@ -12,6 +12,25 @@ public extension Subuser {
     /// This class is used to make the
     /// [get subusers](https://sendgrid.com/docs/API_Reference/Web_API_v3/subusers.html#List-all-Subusers-for-a-parent-GET)
     /// API call.
+    ///
+    /// You can provide pagination information, and also search by username.  If 
+    /// you partial searches are allowed, so for instance if you had a subuser 
+    /// with username `foobar`, searching for `foo` would return it.
+    /// 
+    /// ```swift
+    /// do {
+    ///     let search = Subuser.Get(username: "foo")
+    ///     try Session.shared.send(request: search) { (response) in
+    ///         if let list = response?.model {
+    ///             // The `model` property on the response will be an array of
+    ///             // `Subuser` instances.
+    ///             list.forEach { print($0.username) }
+    ///         }
+    ///     }
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
     public class Get: Request<[SendGrid.Subuser]> {
         
         // MARK: - Properties

@@ -11,6 +11,20 @@ public extension GlobalUnsubscribe {
     
     /// The `GlobalUnsubscribe.Add` class represents the API call to add email
     /// addresses to the global unsubscribe list.
+    ///
+    /// You can specify email addresses (as strings), or you can use `Address` 
+    /// instances.
+    /// 
+    /// ```swift
+    /// do {
+    ///     let request = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
+    ///     try Session.shared.send(request: request) { (response) in 
+    ///         print(response?.httpUrlResponse?.statusCode)
+    ///     }
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
     public class Add: Request<[String:Any]>, AutoEncodable {
         
         // MARK: - Properties

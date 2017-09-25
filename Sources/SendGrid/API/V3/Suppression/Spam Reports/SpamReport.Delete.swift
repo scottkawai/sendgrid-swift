@@ -11,6 +11,43 @@ public extension SpamReport {
 
     /// The `SpamReport.Delete` class represents the API call to [delete from
     /// the spam report list](https://sendgrid.com/docs/API_Reference/Web_API_v3/spam_reports.html#Delete-a-specific-spam-report-DELETE).
+    /// You can use it to delete the entire list, or specific entries from the 
+    /// list.
+    ///
+    /// ## Delete All Spam Reports
+    /// 
+    /// To delete all spam reports, use the request returned from 
+    /// `SpamReport.Delete.all`.  This request will delete all spam reports on 
+    /// your spam report list.
+    /// 
+    /// ```swift
+    /// do {
+    ///     let request = SpamReport.Delete.all
+    ///     try Session.shared.send(request: request) { (response) in
+    ///         print(response?.httpUrlResponse?.statusCode)
+    ///     }
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
+    /// 
+    /// ## Delete Specific Spam Reports
+    /// 
+    /// To delete specific entries from your spam report list, use the 
+    /// `SpamReport.Delete` class. You can either specify email addresses (as 
+    /// strings), or you can use `SpamReport` instances (useful for if you just 
+    /// retrieved some from the `SpamReport.Get` class).
+    /// 
+    /// ```swift
+    /// do {
+    ///     let request = SpamReport.Delete(emails: "foo@example.none", "bar@example.none")
+    ///     try Session.shared.send(request: request) { (response) in
+    ///         print(response?.httpUrlResponse?.statusCode)
+    ///     }
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
     public class Delete: SuppressionListDeleter<SpamReport>, AutoEncodable {
         
         // MARK: - Properties
