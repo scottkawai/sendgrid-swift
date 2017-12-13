@@ -14,7 +14,7 @@ public extension GlobalUnsubscribe {
     ///
     /// You can specify an email address (as a 
     /// string), or you can use a `GlobalUnsubscribe` instance (useful for if 
-    /// you just retrieved some from the `GlobalUnsubscribe.Delete` class).
+    /// you just retrieved some from the `GlobalUnsubscribe.Get` class).
     /// 
     /// ```swift
     /// do {
