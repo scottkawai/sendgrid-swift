@@ -1,6 +1,6 @@
 # SendGrid-Swift
 
-![swift4](https://img.shields.io/badge/swift-v4.0-green.svg) ![macOS](https://img.shields.io/badge/os-macOS-blue.svg) ![iOS](https://img.shields.io/badge/os-iOS-blue.svg) ![Linux\*](https://img.shields.io/badge/os-Linux\*-blue.svg)
+![swift4](https://img.shields.io/badge/swift-v4.0.3-green.svg) ![macOS](https://img.shields.io/badge/os-macOS-blue.svg) ![iOS](https://img.shields.io/badge/os-iOS-blue.svg) ![Linux\*](https://img.shields.io/badge/os-Linux\*-blue.svg)
 
 This library allows you to quickly and easily send emails through SendGrid using Swift.
 
@@ -86,7 +86,7 @@ This will add a `sendgrid-swift` folder to your directory. Next, you need to add
 
 ### Authorization
 
-The V3 endpoint supports authorization via API keys (preferred) and basic authentication via your SendGrid username and password (*Note:* the Mail Send API only allows API keys). Using the `Session` class, you can configure an instance with your authorization method to be used over and over again to send email requests:
+The V3 endpoint supports authorization via API keys (preferred) and basic authentication via your SendGrid username and password (*Note:* the Mail Send API only allows API keys). Using the `Session` class, you can configure an instance with your authorization method to be used over and over again to send email requests.
 
 It is also highly recommended that you do not hard-code any credentials in your code. If you're running this on Linux, it's recommended that you use environment variables instead, like so:
 
