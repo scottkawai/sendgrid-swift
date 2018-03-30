@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 /// The `JSONValue` enum is used to decode an API response that doesn't have an
 /// explicit model in this library. Normally we would use something like
 /// `[String : Any]`, but `Any` doesn't conform to `Codable`. Therefore, this
@@ -22,29 +23,29 @@ import Foundation
 /// - array: An array value.
 /// - boolean: A boolean value.
 /// - null: A null value.
-public enum JSONValue {
-    
+public enum JSONValue: Codable {
+
     /// A string value.
     case string(String)
-    
+
     /// An integer value.
     case int(Int)
-    
-    /// A doubel value.
+
+    /// A double value.
     case double(Double)
-    
+
     /// An object/dictionary value.
     case dictionary([String:JSONValue])
-    
+
     /// An array value.
     case array([JSONValue])
-    
+
     /// A boolean value.
     case boolean(Bool)
-    
+
     /// A null value.
     case null
-    
+
     /// The underlying value stored in the enum.
     public var rawValue: Codable? {
         switch self {
@@ -57,50 +58,6 @@ public enum JSONValue {
         case .null:                 return nil
         }
     }
-}
-
-extension JSONValue: CustomStringConvertible {
-    
-    /// :nodoc:
-    public var description: String {
-        switch self.rawValue {
-        case nil:
-            return "<null>"
-        case let desc as CustomStringConvertible:
-            return desc.description
-        default:
-            return "\(self)"
-        }
-    }
-    
-}
-
-extension JSONValue: Encodable {
-    
-    /// :nodoc:
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .string(let str):
-            try container.encode(str)
-        case .int(let i):
-            try container.encode(i)
-        case .double(let d):
-            try container.encode(d)
-        case .dictionary(let hash):
-            try container.encode(hash)
-        case .array(let list):
-            try container.encode(list)
-        case .boolean(let b):
-            try container.encode(b)
-        case .null:
-            try container.encodeNil()
-        }
-    }
-    
-}
-
-extension JSONValue: Decodable {
     
     /// :nodoc:
     public init(from decoder: Decoder) throws {
@@ -125,4 +82,41 @@ extension JSONValue: Decodable {
         }
     }
     
+    /// :nodoc:
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let str):
+            try container.encode(str)
+        case .int(let i):
+            try container.encode(i)
+        case .double(let d):
+            try container.encode(d)
+        case .dictionary(let hash):
+            try container.encode(hash)
+        case .array(let list):
+            try container.encode(list)
+        case .boolean(let b):
+            try container.encode(b)
+        case .null:
+            try container.encodeNil()
+        }
+    }
 }
+
+extension JSONValue: CustomStringConvertible {
+
+    /// :nodoc:
+    public var description: String {
+        switch self.rawValue {
+        case nil:
+            return "<null>"
+        case let desc as CustomStringConvertible:
+            return desc.description
+        default:
+            return "\(self)"
+        }
+    }
+
+}
+
