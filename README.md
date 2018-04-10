@@ -151,10 +151,6 @@ swift package generate-xcodeproj
 
 This project also contains a Dockerfile and a docker-compose.yml file which runs Ubuntu 16.04 with Swift 4 installed. Running `docker-compose up` will execute the `swift build` command in the Linux container. If you want to run other commands, you can run `docker-compose run --rm app <command>`.
 
-## Generating The Documentation
-
-To generate the documentation, make sure you have Docker installed and run `docker-compose run --rm app ./bin/doc`. This will create a "docs" folder containing the documentation website found at [http://scottkawai.github.io/sendgrid-swift/docs/](http://scottkawai.github.io/sendgrid-swift/docs/).
-
 ## Contributing
 
 1. Fork it
