@@ -15,7 +15,7 @@ struct Constants {
     //=========================================================================
     
     /// The host to use for the API calls.
-    static let ApiHost: String = "https://api.sendgrid.com/"
+    static var ApiHost: String = "https://api.sendgrid.com/"
     
     /// The version number of the library.
     static let Version: String = "1.1.0"
