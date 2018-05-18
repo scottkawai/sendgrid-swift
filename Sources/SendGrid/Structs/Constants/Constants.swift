@@ -9,38 +9,38 @@ import Foundation
 
 /// The `Constants` struct houses all the constant values used throughout the
 /// library.
-struct Constants {
+public struct Constants {
     
     // MARK: - Global Constants
     //=========================================================================
     
     /// The host to use for the API calls.
-    static var ApiHost: String = "https://api.sendgrid.com/"
+    public static var ApiHost: String = "https://api.sendgrid.com/"
     
     /// The version number of the library.
-    static let Version: String = "1.1.0"
+    public static let Version: String = "1.1.0"
     
     /// The upper limit to the number of personalizations allowed in an email.
-    static let PersonalizationLimit: Int = 1000
+    public static let PersonalizationLimit: Int = 1000
     
     /// The upper limit to the number of recipients that can be in an email.
-    static let RecipientLimit: Int = 1000
+    public static let RecipientLimit: Int = 1000
     
     /// The upper limit on how many substitutions are allowed.
-    static let SubstitutionLimit: Int = 10000
+    public static let SubstitutionLimit: Int = 10000
     
     /// The maximum amount of seconds in the future an email can be scheduled
     /// for.
-    static let ScheduleLimit: TimeInterval = (72 * 60 * 60)
+    public static let ScheduleLimit: TimeInterval = (72 * 60 * 60)
     
     /// Constants for categories
-    struct Categories {
+    public struct Categories {
         
         /// The max number of categories allowed in an email.
-        static let TotalLimit: Int = 10
+        public static let TotalLimit: Int = 10
         
         /// The max number of characters allowed in a category name.
-        static let CharacterLimit: Int = 255
+        public static let CharacterLimit: Int = 255
     }
     
     /// Constants for the subscription tracking setting.
