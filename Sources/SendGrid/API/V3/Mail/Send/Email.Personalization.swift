@@ -16,7 +16,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     //=========================================================================
     
     /// An array of recipients to send the email to.
-    open let to: [Address]
+    public var to: [Address]
     
     /// An array of recipients to add as a CC on the email.
     open var cc: [Address]?
