@@ -13,8 +13,8 @@ RUN apt-get update; apt-get install -y \
 RUN mkdir -p /swift
 WORKDIR /swift
 
-ENV SWIFT_BRANCH swift-4.1-release
-ENV SWIFT_VERSION swift-4.1-RELEASE
+ENV SWIFT_BRANCH swift-4.2-branch
+ENV SWIFT_VERSION swift-4.2-DEVELOPMENT-SNAPSHOT-2018-06-04-a
 RUN wget https://swift.org/builds/${SWIFT_BRANCH}/ubuntu1604/${SWIFT_VERSION}/${SWIFT_VERSION}-ubuntu16.04.tar.gz
 RUN tar xzvf ${SWIFT_VERSION}-ubuntu16.04.tar.gz -C /swift
 ENV PATH /swift/${SWIFT_VERSION}-ubuntu16.04/usr/bin:$PATH
