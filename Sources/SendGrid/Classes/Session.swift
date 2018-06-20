@@ -66,17 +66,78 @@ open class Session {
     #if os(Linux)
     /// Invalidates the `URLSession` on deinit.
     // deinit {
-        /// FIX-ME: We whould really invalidate the URLSession here, but because
-        /// it hasn't been implemented yet, we can't.
-        /// https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Status.md
+    /// FIX-ME: We whould really invalidate the URLSession here, but because
+    /// it hasn't been implemented yet, we can't.
+    /// https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Status.md
     
-         // self.urlSession.invalidateAndCancel()
+    // self.urlSession.invalidateAndCancel()
     // }
     #endif
     
     
     // MARK: - Methods
     //=========================================================================
+    
+    /// This method is the most generic method to make an API call with. It
+    /// allows you to specify the individual properties of an API call and
+    /// retrieve the raw response back. If you use this method, you'll most
+    /// likely need to take the `Data` from the response and convert it into
+    /// JSON (with something like `JSONSerialization` or `JSONDecoder`).
+    ///
+    /// - Parameters:
+    ///   - path:               The path of the endpoint. This should not
+    ///                         include the host. For example,
+    ///                         "/v3/user/profile" (**note** the path must start
+    ///                         with a `/`).
+    ///   - method:             The HTTP method to make the API call with.
+    ///   - parameters:         Optional parameters to include with the HTTP
+    ///                         request.
+    ///   - encodingStrategy:   The encoding strategy for any dates or data in
+    ///                         the parameters.
+    ///   - completionHandler:  A callback containing the response information.
+    /// - Throws:               If there was a problem constructing or making
+    ///                         the API call, an error will be thrown.
+    open func request<T : Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
+        guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
+        
+        var components = URLComponents(string: Constants.ApiHost)
+        components?.path = path
+        let body: Data?
+        if let params = parameters {
+            if method.hasBody {
+                let encoder = JSONEncoder()
+                encoder.dateEncodingStrategy = encodingStrategy.dates
+                encoder.dataEncodingStrategy = encodingStrategy.data
+                body = try encoder.encode(params)
+            } else {
+                let encoder = FormURLEncoder()
+                encoder.dateEncodingStrategy = encodingStrategy.dates
+                components?.queryItems = try encoder.queryItemEncode(params)
+                body = nil
+            }
+        } else {
+            body = nil
+        }
+        guard let url = components?.url else {
+            throw Exception.Request.couldNotConstructUrlRequest
+        }
+        
+        var payload = URLRequest(url: url)
+        payload.httpBody = body
+        payload.addValue(auth.authorizationHeader, forHTTPHeaderField: "Authorization")
+        payload.addValue("sendgrid/\(Constants.Version);swift", forHTTPHeaderField: "User-Agent")
+        if let sub = self.onBehalfOf {
+            payload.addValue(sub, forHTTPHeaderField: "On-behalf-of")
+        }
+        
+        let task: URLSessionDataTask
+        if let callback = completionHandler {
+            task = self.urlSession.dataTask(with: payload, completionHandler: callback)
+        } else {
+            task = self.urlSession.dataTask(with: payload)
+        }
+        task.resume()
+    }
     
     /// Makes the HTTP request with the given `Request` object.
     ///
