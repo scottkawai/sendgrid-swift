@@ -47,3 +47,22 @@ extension Address: Validatable {
     }
     
 }
+
+/// Conformance to `ExpressibleByStringLiteral` to allow initialization from a
+/// raw `String`:
+extension Address: ExpressibleByStringLiteral {
+    
+    /// This initializer allows you to create an `Address` instance from a
+    /// `String`:
+    ///
+    /// ```
+    /// let address: Address = "foo@bar.none"
+    /// ```
+    ///
+    /// - Parameter value: The email address to use in the `Address`.
+    public init(stringLiteral value: String) {
+        self.init(email: value)
+    }
+    
+    
+}
