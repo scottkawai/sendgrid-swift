@@ -11,7 +11,7 @@ import Foundation
 ///
 /// This class contains a `ModelType` generic, which is used to map the API
 /// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Decodable>: Validatable {
+open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     
     // MARK: - Properties
     //=========================================================================
@@ -34,8 +34,14 @@ open class Request<ModelType : Decodable>: Validatable {
     /// The encoding strategy.
     open var encodingStrategy: EncodingStrategy
     
-    /// The full URL endpoint for the API call.
-    open var endpoint: URLComponents?
+    /// The path component of the API endpoint. This should start with a `/`,
+    /// for example "/v3/mail/send".
+    open var path: String
+    
+    /// The parameters that should be sent with the API call. These parameters
+    /// will either be encoded into the body of the request or the query items
+    /// of the request
+    open var parameters: Parameters?
     
     
     // MARK: - Initialization
@@ -49,12 +55,14 @@ open class Request<ModelType : Decodable>: Validatable {
     ///   - path:       The path portion of the API endpoint, such as
     ///                 "/v3/mail/send". The path *must* start with a forward
     ///                 slash (`/`).
-    public init(method: HTTPMethod, contentType: ContentType, path: String?, encoding: EncodingStrategy = EncodingStrategy(), decoding: DecodingStrategy = DecodingStrategy()) {
+    ///   - parameters: Optional parameters to include in the API call.
+    ///   - encoding:   The encoding strategy for the parameters.
+    ///   - decoding:   The decoding strategy for the response.
+    public init(method: HTTPMethod, contentType: ContentType, path: String, parameters: Parameters? = nil, encoding: EncodingStrategy = EncodingStrategy(), decoding: DecodingStrategy = DecodingStrategy()) {
         self.method = method
         self.contentType = contentType
-        var components = URLComponents(string: Constants.ApiHost)
-        if let p = path { components?.path = p }
-        self.endpoint = components
+        self.path = path
+        self.parameters = parameters
         self.encodingStrategy = encoding
         self.decodingStrategy = decoding
     }
@@ -62,29 +70,14 @@ open class Request<ModelType : Decodable>: Validatable {
     
     // MARK: - Methods
     //=========================================================================
-    /// Generates a `URLRequest` representation of the request.
-    ///
-    /// - Returns:  A `URLRequest` instance.
-    /// - Throws:   Errors can be thrown if there was a problem encoding the
-    ///             parameters or constructing the API URL endpoint.
-    open func generateUrlRequest() throws -> URLRequest {
-        guard let url = self.endpoint?.url else {
-            throw Exception.Request.couldNotConstructUrlRequest
-        }
-        var req = URLRequest(url: url)
-        req.httpMethod = self.method.rawValue
-        req.addValue(self.contentType.description, forHTTPHeaderField: "Content-Type")
-        req.addValue(self.acceptType.description, forHTTPHeaderField: "Accept")
-        if self.method.hasBody, let enc = self as? AutoEncodable {
-            req.httpBody = enc.encode()
-        }
-        return req
-    }
     
     /// Validates that the content and accept types are valid.
-    public func validate() throws {
+    open func validate() throws {
         try self.contentType.validate()
         try self.acceptType.validate()
+        if let paramValidate = self.parameters as? Validatable {
+            try paramValidate.validate()
+        }
     }
     
     /// Before a `Session` instance makes an API call, it will call this method
@@ -96,7 +89,7 @@ open class Request<ModelType : Decodable>: Validatable {
     ///                     used.
     /// - Returns:          A `Bool` indicating if the authentication method is
     ///                     supported.
-    public func supports(auth: Authentication) -> Bool {
+    open func supports(auth: Authentication) -> Bool {
         return true
     }
     
@@ -108,9 +101,30 @@ extension Request: CustomStringConvertible {
     /// The description of the request, represented as an [API
     /// Blueprint](https://apiblueprint.org/)
     public var description: String {
-        let path = self.endpoint?.path ?? ""
+        let path = self.path
+        let parameterString: String?
+        paramEncoding: do {
+            guard let params = self.parameters else {
+                parameterString = nil
+                break paramEncoding
+            }
+            if self.method.hasBody {
+                let encoder = JSONEncoder()
+                encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                encoder.dataEncodingStrategy = self.encodingStrategy.data
+                guard let data = try? encoder.encode(params) else {
+                    parameterString = nil
+                    break paramEncoding
+                }
+                parameterString = String(data: data, encoding: .utf8)
+            } else {
+                let encoder = FormURLEncoder()
+                encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                parameterString = try? encoder.stringEncode(params, percentEncoded: true)
+            }
+        }
         var query: String {
-            guard let q = self.endpoint?.query else { return "" }
+            guard !self.method.hasBody, let q = parameterString else { return "" }
             return "?\(q)"
         }
         var blueprint = """
@@ -123,11 +137,7 @@ extension Request: CustomStringConvertible {
                     Accept: \(self.acceptType)
         
         """
-        if self.method.hasBody,
-            let encodable = self as? AutoEncodable,
-            let bodyData = encodable.encode(formatting: [.prettyPrinted]),
-            let bodyString = String(data: bodyData, encoding: .utf8)
-        {
+        if self.method.hasBody, let bodyString = parameterString {
             let indented = bodyString.split(separator: "\n").map { "            \($0)" }
             blueprint += """
             
