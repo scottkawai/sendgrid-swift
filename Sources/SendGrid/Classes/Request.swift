@@ -22,17 +22,17 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     /// The HTTP verb to use in the call.
     open var method: HTTPMethod
     
-    /// The Content-Type of the call.
-    open var contentType: ContentType
-    
-    /// The Accept header value.
-    open var acceptType: ContentType = .json
+    /// The headers to be included in the request.
+    open var headers: [String : String] = [
+        "Content-Type": ContentType.json.description,
+        "Accept-Type": ContentType.json.description
+    ]
     
     /// The decoding strategy.
-    open var decodingStrategy: DecodingStrategy
+    open var decodingStrategy: DecodingStrategy = DecodingStrategy()
     
     /// The encoding strategy.
-    open var encodingStrategy: EncodingStrategy
+    open var encodingStrategy: EncodingStrategy = EncodingStrategy()
     
     /// The path component of the API endpoint. This should start with a `/`,
     /// for example "/v3/mail/send".
@@ -58,13 +58,10 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     ///   - parameters: Optional parameters to include in the API call.
     ///   - encoding:   The encoding strategy for the parameters.
     ///   - decoding:   The decoding strategy for the response.
-    public init(method: HTTPMethod, contentType: ContentType, path: String, parameters: Parameters? = nil, encoding: EncodingStrategy = EncodingStrategy(), decoding: DecodingStrategy = DecodingStrategy()) {
+    public init(method: HTTPMethod, path: String, parameters: Parameters? = nil) {
         self.method = method
-        self.contentType = contentType
         self.path = path
         self.parameters = parameters
-        self.encodingStrategy = encoding
-        self.decodingStrategy = decoding
     }
     
     
@@ -73,8 +70,6 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     
     /// Validates that the content and accept types are valid.
     open func validate() throws {
-        try self.contentType.validate()
-        try self.acceptType.validate()
         if let paramValidate = self.parameters as? Validatable {
             try paramValidate.validate()
         }

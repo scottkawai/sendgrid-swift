@@ -17,4 +17,12 @@ public extension Request {
     public func generateUrlRequest() throws -> URLRequest {
         throw Exception.Request.couldNotConstructUrlRequest
     }
+    
+    /// :nodoc:
+    @available(*, deprecated, message: "use the `headers` property to set any headers on the request.")
+    public var contentType: ContentType { return .json }
+    
+    /// :nodoc:
+    @available(*, deprecated, message: "use the `headers` property to set any headers on the request.")
+    public var acceptType: ContentType { return .json }
 }

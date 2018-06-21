@@ -25,6 +25,9 @@ open class Session {
     /// Key) for the API requests via the `Authentication` enum.
     open var authentication: Authentication?
     
+    /// The user agent applied to all requests sent through this `Session`.
+    open var userAgent: String = "sendgrid/\(Constants.Version);swift"
+    
     /// If you're authenticating with a parent account, you can set this
     /// property to the username of a subuser. Doing so will authenticate with
     /// the parent account, but retrieve the information of the specified
@@ -58,7 +61,7 @@ open class Session {
     /// - Parameters:
     ///   - auth:       The Authentication to use for the API call.
     ///   - subuser:    A username of a subuser to impersonate.
-    public init(auth: Authentication, onBehalfOf subuser: String? = nil) {
+    public convenience init(auth: Authentication, onBehalfOf subuser: String? = nil) {
         self.authentication = auth
         self.onBehalfOf = subuser
     }
@@ -92,12 +95,13 @@ open class Session {
     ///   - method:             The HTTP method to make the API call with.
     ///   - parameters:         Optional parameters to include with the HTTP
     ///                         request.
+    ///   - headers:            Headers to add to the request.
     ///   - encodingStrategy:   The encoding strategy for any dates or data in
     ///                         the parameters.
     ///   - completionHandler:  A callback containing the response information.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func request<T : Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
+    open func request<T : Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String : String], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         
         var components = URLComponents(string: Constants.ApiHost)
@@ -125,7 +129,10 @@ open class Session {
         var payload = URLRequest(url: url)
         payload.httpBody = body
         payload.addValue(auth.authorizationHeader, forHTTPHeaderField: "Authorization")
-        payload.addValue("sendgrid/\(Constants.Version);swift", forHTTPHeaderField: "User-Agent")
+        payload.addValue(self.userAgent, forHTTPHeaderField: "User-Agent")
+        for (header, value) in headers {
+            payload.addValue(value, forHTTPHeaderField: header)
+        }
         if let sub = self.onBehalfOf {
             payload.addValue(sub, forHTTPHeaderField: "On-behalf-of")
         }
@@ -147,30 +154,19 @@ open class Session {
     ///                         request on behalf of.
     ///   - completionHandler:  A completion block that will be called after the
     ///                         API call completes.
-    open func send<ModelType>(request: Request<ModelType>, completionHandler: @escaping (Response<ModelType>?) -> Void = { _ in }) throws {
+    /// - Throws:               If there was a problem constructing or making
+    ///                         the API call, an error will be thrown.
+    open func send<ModelType : Decodable, Parameters : Encodable>(request: Request<ModelType, Parameters>, completionHandler: ((Response<ModelType>?) -> Void)? = nil) throws {
         // Check that we have authentication set.
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
         
         try request.validate()
         
-        // Get the NSURLRequest
-        var payload = try request.generateUrlRequest()
-        payload.addValue(auth.authorizationHeader, forHTTPHeaderField: "Authorization")
-        payload.addValue("sendgrid/\(Constants.Version);swift", forHTTPHeaderField: "User-Agent")
-        if let sub = self.onBehalfOf {
-            if request.supportsImpersonation {
-                payload.addValue(sub, forHTTPHeaderField: "On-behalf-of")
-            } else {
-                throw Exception.Session.impersonationNotAllowed
-            }
-        }
-        
-        // Make the HTTP request
-        let task = self.urlSession.dataTask(with: payload) { (data, response, error) in
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { (data, response, error) in
+            guard let callback = completionHandler else { return }
             let resp = Response<ModelType>(data: data, response: response, error: error, decodingStrategy: request.decodingStrategy)
-            completionHandler(resp)
+            callback(resp)
         }
-        task.resume()
     }
 }
