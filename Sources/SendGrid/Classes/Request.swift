@@ -68,6 +68,19 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     // MARK: - Methods
     //=========================================================================
     
+    /// Retrieves a the value of a specific header, or `nil` if it doesn't
+    /// exist.
+    ///
+    /// - Parameter name:   The name of the header to look for.
+    /// - Returns:          The value, or `nil` if it doesn't exist.
+    open func headerValue(named name: String) -> String? {
+        var value: String?
+        for entry in self.headers {
+            if entry.key == name { value = entry.value }
+        }
+        return value
+    }
+    
     /// Validates that the content and accept types are valid.
     open func validate() throws {
         if let paramValidate = self.parameters as? Validatable {
@@ -122,16 +135,28 @@ extension Request: CustomStringConvertible {
             guard !self.method.hasBody, let q = parameterString else { return "" }
             return "?\(q)"
         }
+        var requestTitle: String {
+            let content = "+ Request"
+            guard let contentType = self.headerValue(named: "Content-Type") else { return content }
+            return content + " (\(contentType)"
+        }
         var blueprint = """
         # \(self.method) \(path + query)
         
-        + Request (\(self.contentType))
-        
-            + Headers
-        
-                    Accept: \(self.acceptType)
+        \(requestTitle)
         
         """
+        let formattedHeaders = self.headers.map { (entry) -> String in
+            return "            \(entry.key): \(entry.value)"
+        }
+        if formattedHeaders.count > 0 {
+            blueprint += """
+                + Headers
+            
+            \(formattedHeaders.joined(separator: "\n"))
+            
+            """
+        }
         if self.method.hasBody, let bodyString = parameterString {
             let indented = bodyString.split(separator: "\n").map { "            \($0)" }
             blueprint += """

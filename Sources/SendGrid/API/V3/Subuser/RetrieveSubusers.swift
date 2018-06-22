@@ -48,7 +48,6 @@ public class RetrieveSubusers: Request<[Subuser], RetrieveSubusers.Parameters> {
     public init(page: Page? = nil, username: String? = nil) {
         super.init(
             method: .GET,
-            contentType: .formUrlEncoded,
             path: "/v3/subusers",
             parameters: Parameters(page: page, username: username)
         )
@@ -84,7 +83,7 @@ public extension RetrieveSubusers /* Parameters Struct */ {
         }
         
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: Subuser.Get.Parameters.CodingKeys)
+            var container = encoder.container(keyedBy: RetrieveSubusers.Parameters.CodingKeys.self)
             try container.encodeIfPresent(self.page?.limit, forKey: .limit)
             try container.encodeIfPresent(self.page?.offset, forKey: .offset)
             try container.encodeIfPresent(self.username, forKey: .username)
