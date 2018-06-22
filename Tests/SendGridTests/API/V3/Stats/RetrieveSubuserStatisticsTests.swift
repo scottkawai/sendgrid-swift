@@ -53,7 +53,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
         }
         
         do {
-            let request = Statistic.Category(startDate: date(day: 20), endDate: date(day: 19))
+            let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 19))
             try request.validate()
             XCTFail("Expected a failure to be thrown when the end date is before the start date, but nothing was thrown.")
         } catch SendGrid.Exception.Statistic.invalidEndDate {

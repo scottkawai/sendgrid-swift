@@ -1,5 +1,5 @@
 //
-//  SpamReportGetTests.swift
+//  RetrieveBouncesTests.swift
 //  SendGridTests
 //
 //  Created by Scott Kawai on 9/19/17.
@@ -8,26 +8,29 @@
 import XCTest
 @testable import SendGrid
 
-class SpamReportGetTests: XCTestCase {
+class RetrieveBouncesTests: XCTestCase {
     
     func testGetAllInitialization() {
-        let minRequest = SpamReport.Get()
-        XCTAssertEqual(minRequest.endpoint?.string, "https://api.sendgrid.com/v3/suppression/spam_reports")
+        let minRequest = RetrieveBounces()
+        XCTAssertEqual(minRequest.description, "https://api.sendgrid.com/v3/suppression/bounces")
         
         let start = Date(timeIntervalSince1970: 15)
         let end = Date(timeIntervalSince1970: 16)
-        let maxRequest = SpamReport.Get(start: start, end: end, page: Page(limit: 4, offset: 8))
-        XCTAssertEqual(maxRequest.endpoint?.string, "https://api.sendgrid.com/v3/suppression/spam_reports?limit=4&offset=8&start_time=15&end_time=16")
+        let maxRequest = RetrieveBounces(start: start, end: end, page: Page(limit: 4, offset: 8))
+        XCTAssertEqual(maxRequest.description, "https://api.sendgrid.com/v3/suppression/bounces?limit=4&offset=8&start_time=15&end_time=16")
     }
     
     func testEmailSpecificInitializer() {
-        let request = SpamReport.Get(email: "foo@example.none")
-        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/suppression/spam_reports/foo@example.none")
+        let request = RetrieveBounces(email: "foo@example.none")
+        XCTAssertEqual(request.description, "https://api.sendgrid.com/v3/suppression/bounces/foo@example.none")
     }
     
     func testValidation() {
+        let good = RetrieveBounces(page: Page(limit: 1, offset: 1))
+        XCTAssertNoThrow(try good.validate())
+        
         do {
-            let request = SpamReport.Get(page: Page(limit: 0, offset: 0))
+            let request = RetrieveBounces(page: Page(limit: 0, offset: 0))
             try request.validate()
             XCTFail("Expected an error to be thrown when the limit is below 1, but no error was thrown.")
         } catch SendGrid.Exception.Global.limitOutOfRange(let i, let range) {
@@ -38,7 +41,7 @@ class SpamReportGetTests: XCTestCase {
         }
         
         do {
-            let request = SpamReport.Get(page: Page(limit: 501, offset: 0))
+            let request = RetrieveBounces(page: Page(limit: 501, offset: 0))
             try request.validate()
             XCTFail("Expected an error to be thrown when the limit is above 500, but no error was thrown.")
         } catch SendGrid.Exception.Global.limitOutOfRange(let i, let range) {
