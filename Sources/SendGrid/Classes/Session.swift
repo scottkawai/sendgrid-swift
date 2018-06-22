@@ -61,7 +61,7 @@ open class Session {
     /// - Parameters:
     ///   - auth:       The Authentication to use for the API call.
     ///   - subuser:    A username of a subuser to impersonate.
-    public convenience init(auth: Authentication, onBehalfOf subuser: String? = nil) {
+    public init(auth: Authentication, onBehalfOf subuser: String? = nil) {        
         self.authentication = auth
         self.onBehalfOf = subuser
     }
