@@ -1,5 +1,5 @@
 //
-//  Bounce.Get.swift
+//  RetrieveBlocks.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/19/17.
@@ -7,32 +7,32 @@
 
 import Foundation
 
-/// The `Bounce.Get` class represents the API call to [retrieve the bounce
-/// list](https://sendgrid.com/docs/API_Reference/Web_API_v3/bounces.html#List-all-bounces-GET).
+/// The `Block.Get` class represents the API call to [retrieve the block
+/// list](https://sendgrid.com/docs/API_Reference/Web_API_v3/blocks.html#List-all-blocks-GET).
 /// You can use it to retrieve the entire list, or specific entries in the
 /// list.
 ///
-/// ## Get All Bounces
+/// ## Get All Blocks
 ///
-/// To retrieve the list of all bounces, use the `Bounce.Get` class with the
+/// To retrieve the list of all blocks, use the `Block.Get` class with the
 /// `init(start:end:page:)` initializer. The library will automatically map
-/// the response to the `Bounce` struct model, accessible via the `model`
+/// the response to the `Block` struct model, accessible via the `model`
 /// property on the response instance you get back.
 ///
 /// ```swift
 /// do {
-///     // If you don't specify any parameters, then the first page of your entire
-///     // bounce list will be fetched:
-///     let request = Bounce.Get()
+///     // If you don't specify any parameters, then the first page of your
+///     // entire block list will be fetched:
+///     let request = Block.Get()
 ///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Bounce` structs.
+///         // The `model` property will be an array of `Block` structs.
 ///         response?.model?.forEach { print($0.email) }
 ///
 ///         // The response object has a `Pagination` instance on it as well.
 ///         // You can use this to get the next page, if you wish.
 ///         //
 ///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = Bounce.Get(page: nextPage)
+///         //    let nextRequest = Block.Get(page: nextPage)
 ///         // }
 ///     }
 /// } catch {
@@ -47,13 +47,13 @@ import Foundation
 /// do {
 ///     // Retrieve page 2
 ///     let page = Page(limit: 500, offset: 500)
-///     // Bounces starting from yesterday
+///     // Blocks starting from yesterday
 ///     let now = Date()
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
-///     let request = Bounce.Get(start: start, end: now, page: page)
+///     let request = Block.Get(start: start, end: now, page: page)
 ///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Bounce` structs.
+///         // The `model` property will be an array of `Block` structs.
 ///         response?.model?.forEach { print($0.email) }
 ///     }
 /// } catch {
@@ -61,29 +61,29 @@ import Foundation
 /// }
 /// ```
 ///
-/// ## Get Specific Bounce
+/// ## Get Specific Block
 ///
-/// If you're looking for a specific email address in the bounce list, you
-/// can use the `init(email:)` initializer on `Bounce.Get`:
+/// If you're looking for a specific email address in the block list, you
+/// can use the `init(email:)` initializer on `Block.Get`:
 ///
 /// ```swift
 /// do {
-///     let request = Bounce.Get(email: "foo@example.none")
+///     let request = Block.Get(email: "foo@example.none")
 ///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Bounce` structs.
-///         if let match = response?.model?.first {
-///           print("\(match.email) bounced with reason \"\(match.reason)\"")
+///         // The `model` property will be an array of `Block` structs.
+///         response?.model?.forEach { (item) in
+///           print("\(item.email) was blocked with reason \"\(item.reason)\"")
 ///         }
 ///     }
 /// } catch {
 ///     print(error)
 /// }
 /// ```
-public class RetrieveBounces: SuppressionListReader<Bounce> {
+public class RetrieveBlocks: SuppressionListReader<Block> {
     
     override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
-            path: "/v3/suppression/bounces",
+            path: "/v3/suppression/blocks",
             email: email,
             start: start,
             end: end,

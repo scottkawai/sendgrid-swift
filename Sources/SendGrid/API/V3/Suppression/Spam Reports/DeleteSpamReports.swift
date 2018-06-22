@@ -1,5 +1,5 @@
 //
-//  Bounce.Delete.swift
+//  DeleteSpamReports.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/19/17.
@@ -7,20 +7,20 @@
 
 import Foundation
 
-/// The `Bounce.Delete` class represents the API call to [delete from the
-/// bounce list](https://sendgrid.com/docs/API_Reference/Web_API_v3/bounces.html#Delete-bounces-DELETE).
+/// The `SpamReport.Delete` class represents the API call to [delete from
+/// the spam report list](https://sendgrid.com/docs/API_Reference/Web_API_v3/spam_reports.html#Delete-a-specific-spam-report-DELETE).
 /// You can use it to delete the entire list, or specific entries from the
 /// list.
 ///
-/// ## Delete All Bounces
+/// ## Delete All Spam Reports
 ///
-/// To delete all bounces, use the request returned from
-/// `Bounce.Delete.all`.  This request will delete all bounces on your
-/// bounce list.
+/// To delete all spam reports, use the request returned from
+/// `SpamReport.Delete.all`.  This request will delete all spam reports on
+/// your spam report list.
 ///
 /// ```swift
 /// do {
-///     let request = Bounce.Delete.all
+///     let request = SpamReport.Delete.all
 ///     try Session.shared.send(request: request) { (response) in
 ///         print(response?.httpUrlResponse?.statusCode)
 ///     }
@@ -29,16 +29,16 @@ import Foundation
 /// }
 /// ```
 ///
-/// ## Delete Specific Bounces
+/// ## Delete Specific Spam Reports
 ///
-/// To delete specific entries from your bounce list, use the
-/// `Bounce.Delete` class. You can either specify email addresses (as
-/// strings), or you can use `Bounce` instances (useful for if you just
-/// retrieved some from the [Get Bounces](#get-all-bounces) call above).
+/// To delete specific entries from your spam report list, use the
+/// `SpamReport.Delete` class. You can either specify email addresses (as
+/// strings), or you can use `SpamReport` instances (useful for if you just
+/// retrieved some from the `SpamReport.Get` class).
 ///
 /// ```swift
 /// do {
-///     let request = Bounce.Delete(emails: "foo@example.none", "bar@example.none")
+///     let request = SpamReport.Delete(emails: "foo@example.none", "bar@example.none")
 ///     try Session.shared.send(request: request) { (response) in
 ///         print(response?.httpUrlResponse?.statusCode)
 ///     }
@@ -46,15 +46,15 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class DeleteBounces: SuppressionListDeleter<Bounce> {
+public class DeleteSpamReports: SuppressionListDeleter<SpamReport> {
     
     // MARK: - Properties
     //======================================================================
     
-    /// Returns a request that will delete *all* the entries on your bounce
-    /// list.
-    public static var all: DeleteBounces {
-        return DeleteBounces(deleteAll: true, emails: nil)
+    /// Returns a request that will delete *all* the entries on your spam
+    /// report list.
+    public static var all: DeleteSpamReports {
+        return DeleteSpamReports(deleteAll: true, emails: nil)
     }
     
     
@@ -69,7 +69,6 @@ public class DeleteBounces: SuppressionListDeleter<Bounce> {
     ///                 list should be deleted.
     ///   - emails:     An array of emails to delete from the suppression list.
     override internal init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
-        super.init(path: "/v3/suppression/bounces", deleteAll: deleteAll, emails: emails)
+        super.init(path: "/v3/suppression/spam_reports", deleteAll: deleteAll, emails: emails)
     }
-    
 }

@@ -1,5 +1,5 @@
 //
-//  InvalidEmail.Delete.swift
+//  DeleteInvalidEmails.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/19/17.

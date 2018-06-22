@@ -1,5 +1,5 @@
 //
-//  GlobalUnsubscribe.Add.swift
+//  AddGlobalUnsubscribes.swift
 //  SendGrid
 //
 //  Created by Scott Kawai on 9/20/17.

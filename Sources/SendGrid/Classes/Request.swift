@@ -25,7 +25,7 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     /// The headers to be included in the request.
     open var headers: [String : String] = [
         "Content-Type": ContentType.json.description,
-        "Accept-Type": ContentType.json.description
+        "Accept": ContentType.json.description
     ]
     
     /// The decoding strategy.
