@@ -38,10 +38,6 @@ public extension Email {
     public var templateID: String? { return nil }
     
     /// :nodoc:
-    @available(*, deprecated, renamed: "parameters.headers")
-    public var headers: [String:String]? { return nil }
-    
-    /// :nodoc:
     @available(*, deprecated, renamed: "parameters.categories")
     public var categories: [String]? { return nil }
     

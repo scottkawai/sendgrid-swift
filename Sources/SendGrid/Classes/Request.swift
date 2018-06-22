@@ -29,10 +29,10 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     ]
     
     /// The decoding strategy.
-    open var decodingStrategy: DecodingStrategy = DecodingStrategy()
+    open var decodingStrategy: DecodingStrategy
     
     /// The encoding strategy.
-    open var encodingStrategy: EncodingStrategy = EncodingStrategy()
+    open var encodingStrategy: EncodingStrategy
     
     /// The path component of the API endpoint. This should start with a `/`,
     /// for example "/v3/mail/send".
@@ -58,10 +58,12 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     ///   - parameters: Optional parameters to include in the API call.
     ///   - encoding:   The encoding strategy for the parameters.
     ///   - decoding:   The decoding strategy for the response.
-    public init(method: HTTPMethod, path: String, parameters: Parameters? = nil) {
+    public init(method: HTTPMethod, path: String, parameters: Parameters? = nil, encodingStrategy: EncodingStrategy = EncodingStrategy(), decodingStrategy: DecodingStrategy = DecodingStrategy()) {
         self.method = method
         self.path = path
         self.parameters = parameters
+        self.encodingStrategy = encodingStrategy
+        self.decodingStrategy = decodingStrategy
     }
     
     
