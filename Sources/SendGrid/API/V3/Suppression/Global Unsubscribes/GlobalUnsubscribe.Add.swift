@@ -7,88 +7,90 @@
 
 import Foundation
 
-public extension GlobalUnsubscribe {
+/// The `GlobalUnsubscribe.Add` class represents the API call to add email
+/// addresses to the global unsubscribe list.
+///
+/// You can specify email addresses (as strings), or you can use `Address`
+/// instances.
+///
+/// ```swift
+/// do {
+///     let request = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
+///     try Session.shared.send(request: request) { (response) in
+///         print(response?.httpUrlResponse?.statusCode)
+///     }
+/// } catch {
+///     print(error)
+/// }
+/// ```
+public class AddGlobalUnsubscribes: Request<EmptyCodable, AddGlobalUnsubscribes.Parameters> {
     
-    /// The `GlobalUnsubscribe.Add` class represents the API call to add email
-    /// addresses to the global unsubscribe list.
+    // MARK: - Initialization
+    //=========================================================================
+    
+    /// Initializes the request with a list of email addresses to add to the
+    /// global unsubscribe list.
     ///
-    /// You can specify email addresses (as strings), or you can use `Address` 
-    /// instances.
-    /// 
-    /// ```swift
-    /// do {
-    ///     let request = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
-    ///     try Session.shared.send(request: request) { (response) in 
-    ///         print(response?.httpUrlResponse?.statusCode)
-    ///     }
-    /// } catch {
-    ///     print(error)
-    /// }
-    /// ```
-    public class Add: Request<JSONValue>, AutoEncodable {
-        
-        // MARK: - Properties
-        //=========================================================================
-        
-        /// The email addresses to add to the global unsubscribe list.
-        public let emails: [String]
-        
-        
-        // MARK: - Initialization
-        //=========================================================================
-        
-        /// Initializes the request with a list of email addresses to add to the
-        /// global unsubscribe list.
-        ///
-        /// - Parameter emails: An array of email addresses to add to the global
-        ///                     unsubscribe list.
-        public init(emails: [String]) {
-            self.emails = emails
-            super.init(
-                method: .POST,
-                contentType: .json,
-                path: "/v3/asm/suppressions/global"
-            )
-        }
-        
-        /// Initializes the request with a list of email addresses to add to the
-        /// global unsubscribe list.
-        ///
-        /// - Parameter emails: An array of email addresses to add to the global
-        ///                     unsubscribe list.
-        public convenience init(emails: String...) {
-            self.init(emails: emails)
-        }
-        
-        /// Initializes the request with a list of addresses to add to the
-        /// global unsubscribe list.
-        ///
-        /// - Parameter emails: An array of addresses to add to the global
-        ///                     unsubscribe list.
-        public convenience init(addresses: [Address]) {
-            let emails = addresses.map { $0.email }
-            self.init(emails: emails)
-        }
-        
-        /// Initializes the request with a list of addresses to add to the
-        /// global unsubscribe list.
-        ///
-        /// - Parameter emails: An array of addresses to add to the global
-        ///                     unsubscribe list.
-        public convenience init(addresses: Address...) {
-            self.init(addresses: addresses)
-        }
-        
+    /// - Parameter emails: An array of email addresses to add to the global
+    ///                     unsubscribe list.
+    public init(emails: [String]) {
+        let params = AddGlobalUnsubscribes.Parameters(emails: emails)
+        super.init(method: .POST, path: "/v3/asm/suppressions/global", parameters: params)
+    }
+    
+    /// Initializes the request with a list of email addresses to add to the
+    /// global unsubscribe list.
+    ///
+    /// - Parameter emails: An array of email addresses to add to the global
+    ///                     unsubscribe list.
+    public convenience init(emails: String...) {
+        self.init(emails: emails)
+    }
+    
+    /// Initializes the request with a list of addresses to add to the
+    /// global unsubscribe list.
+    ///
+    /// - Parameter emails: An array of addresses to add to the global
+    ///                     unsubscribe list.
+    public convenience init(addresses: [Address]) {
+        let emails = addresses.map { $0.email }
+        self.init(emails: emails)
+    }
+    
+    /// Initializes the request with a list of addresses to add to the
+    /// global unsubscribe list.
+    ///
+    /// - Parameter emails: An array of addresses to add to the global
+    ///                     unsubscribe list.
+    public convenience init(addresses: Address...) {
+        self.init(addresses: addresses)
     }
     
 }
 
-/// Encodable conformance.
-public extension GlobalUnsubscribe.Add {
+public extension AddGlobalUnsubscribes /* Parameters Struct */ {
     
-    /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
-        case emails = "recipient_emails"
+    /// The `AddGlobalUnsubscribes.Parameters` struct houses the parameters used
+    /// to add email addresses to the global unsubscribe list.
+    public struct Parameters: Encodable {
+        
+        /// The email addresses to add to the global unsubscribe list.
+        public let emails: [String]
+        
+        /// Initializes the struct with a list of email addresses.
+        ///
+        /// - Parameter emails: An array of email addresses.
+        public init(emails: [String]) {
+            self.emails = emails
+        }
+        
+        /// Initializes the request with a list of email addresses.
+        ///
+        /// - Parameter emails: An array of email addresses.
+        public init(emails: String...) {
+            self.init(emails: emails)
+        }
+        
     }
     
 }
