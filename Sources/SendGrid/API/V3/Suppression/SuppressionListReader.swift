@@ -10,41 +10,7 @@ import Foundation
 /// The `SuppressionListReader` class is base class inherited by requests that
 /// retrieve entries from a supression list. You should not use this class
 /// directly.
-public class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Request<[T]> {
-    
-    // MARK: - Properties
-    //=========================================================================
-    
-    /// The date to start looking for events.
-    public let startDate: Date?
-    
-    /// The date to stop looking for events.
-    public let endDate: Date?
-    
-    /// The page of results to look for.
-    public let page: Page?
-    
-    /// The query params for the request.
-    internal var queryItems: [URLQueryItem]? {
-        var items: [(String, String)]?
-        func append(_ str: String, _ val: Any) {
-            let element = (str, "\(val)")
-            if items == nil {
-                items = [element]
-            } else {
-                items?.append(element)
-            }
-        }
-        
-        if let p = self.page {
-            append("limit", p.limit)
-            append("offset", p.offset)
-        }
-        if let s = self.startDate { append("start_time", Int(s.timeIntervalSince1970)) }
-        if let e = self.endDate { append("end_time", Int(e.timeIntervalSince1970)) }
-        return items?.map { URLQueryItem(name: $0.0, value: $0.1) }
-    }
-    
+open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Request<[T], SuppressionListReaderParameters> {
     
     // MARK: - Initialization
     //======================================================================
@@ -63,9 +29,7 @@ public class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Req
     ///             not specified, the limit will be set to 500 and the
     ///             offset will be set to 0.
     internal init(path: String? = nil, email: String?, start: Date?, end: Date?, page: Page?) {
-        self.startDate = start
-        self.endDate = end
-        self.page = page
+        let parameters = SuppressionListReaderParameters(start: start, end: end, page: page)
         var realPath: String {
             let p = path ?? "/"
             guard let em = email else { return p }
@@ -73,10 +37,9 @@ public class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Req
         }
         super.init(
             method: .GET,
-            contentType: .formUrlEncoded,
-            path: realPath
+            path: realPath,
+            parameters: parameters
         )
-        self.endpoint?.queryItems = self.queryItems
     }
     
     /// Initializes the request with a specific email to look for in the
@@ -108,12 +71,52 @@ public class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Req
     //=========================================================================
     
     /// Validates that the `limit` value isn't over 500.
-    public override func validate() throws {
+    open override func validate() throws {
         try super.validate()
-        if let limit = self.page?.limit {
+        if let limit = self.parameters?.page?.limit {
             let range = 1...500
             guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
         }
+    }
+    
+}
+
+/// The `SuppressionListReaderParameters` serves as the parameters used by the
+/// "get suppressions" API calls.
+public struct SuppressionListReaderParameters: Encodable {
+    
+    /// The date to start looking for events.
+    public let startDate: Date?
+    
+    /// The date to stop looking for events.
+    public let endDate: Date?
+    
+    /// The page of results to look for.
+    public let page: Page?
+    
+    public init(start: Date?, end: Date?, page: Page?) {
+        self.startDate = start
+        self.endDate = end
+        self.page = page
+    }
+    
+    /// :nodoc:
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: SuppressionListReaderParameters.CodingKeys)
+        try container.encodeIfPresent(self.startDate, forKey: .startDate)
+        try container.encodeIfPresent(self.endDate, forKey: .endDate)
+        try container.encodeIfPresent(self.page?.limit, forKey: .limit)
+        try container.encodeIfPresent(self.page?.offset, forKey: .offset)
+    }
+    
+    /// :nodoc:
+    public enum CodingKeys: String, CodingKey {
+        
+        case startDate = "start_time"
+        case endDate = "end_time"
+        case limit
+        case offset
+        
     }
     
 }

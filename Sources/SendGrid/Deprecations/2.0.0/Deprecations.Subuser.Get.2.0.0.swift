@@ -11,6 +11,6 @@ public extension Subuser {
     
     /// :nodoc:
     @available(*, deprecated, renamed: "RetrieveSubusers")
-    class Get {}
+    public class Get {}
     
 }
