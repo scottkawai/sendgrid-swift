@@ -1,5 +1,5 @@
 //
-//  StatisticSubuserTests.swift
+//  RetrieveSubuserStatisticsTests.swift
 //  SendGridTests
 //
 //  Created by Scott Kawai on 9/22/17.
@@ -8,7 +8,7 @@
 import XCTest
 import SendGrid
 
-class StatisticSubuserTests: XCTestCase {
+class RetrieveSubuserStatisticsTests: XCTestCase {
     
     func date(day: Int) -> Date {
         let formatter = DateFormatter()
@@ -17,25 +17,25 @@ class StatisticSubuserTests: XCTestCase {
     }
     
     func testMinimalInitialization() {
-        let request = Statistic.Subuser(startDate: date(day: 20), subusers: "foo")
-        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/subusers/stats?start_date=2017-09-20&subusers=foo")
+        let request = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: "foo")
+        XCTAssertEqual(request.description, "")
         
         let testSub = Subuser(id: 1, username: "foo", email: "foobar@example.nonet", disabled: false)
-        let subRequest = Statistic.Subuser(startDate: date(day: 20), subusers: testSub)
-        XCTAssertEqual(subRequest.endpoint?.string, "https://api.sendgrid.com/v3/subusers/stats?start_date=2017-09-20&subusers=foo")
+        let subRequest = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: testSub)
+        XCTAssertEqual(subRequest.description, "")
     }
     
     func testMaxInitialization() {
-        let request = Statistic.Subuser(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "Foo", "Bar")
-        XCTAssertEqual(request.endpoint?.string, "https://api.sendgrid.com/v3/subusers/stats?start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week&subusers=Foo&subusers=Bar")
+        let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "Foo", "Bar")
+        XCTAssertEqual(request.description, "")
     }
     
     func testValidation() {
-        let good = Statistic.Subuser(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
+        let good = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
         XCTAssertNoThrow(try good.validate())
         
         do {
-            let under = Statistic.Subuser(startDate: date(day: 20), subusers: [String]())
+            let under = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: [String]())
             try under.validate()
         } catch SendGrid.Exception.Statistic.invalidNumberOfSubusers {
             XCTAssertTrue(true)
@@ -44,7 +44,7 @@ class StatisticSubuserTests: XCTestCase {
         }
         
         do {
-            let over = Statistic.Subuser(startDate: date(day: 20), subusers: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven")
+            let over = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven")
             try over.validate()
         } catch SendGrid.Exception.Statistic.invalidNumberOfSubusers {
             XCTAssertTrue(true)
