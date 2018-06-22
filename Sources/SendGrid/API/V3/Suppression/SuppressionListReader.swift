@@ -18,12 +18,11 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
     /// Private initializer that sets all the values.
     ///
     /// - Parameters:
+    ///   - path:   The path of the API endpoint.
     ///   - email:  The email address to look for in the bounce list.
     ///   - start:  Limits the search to a specific start time for the
     ///             event.
     ///   - end:    Limits the search to a specific end time for the event.
-    ///   - range:  A range of dates to search between If `nil`, the entire
-    ///             bounce list will be searched.
     ///   - page:   A `PaginationInfo` instance to limit the search to a
     ///             specific page. The `limit` value cannot exceed 500. If
     ///             not specified, the limit will be set to 500 and the
@@ -94,6 +93,16 @@ public struct SuppressionListReaderParameters: Encodable {
     /// The page of results to look for.
     public let page: Page?
     
+    /// Initializes the struct.
+    ///
+    /// - Parameters:
+    ///   - start:  Limits the search to a specific start time for the
+    ///             event.
+    ///   - end:    Limits the search to a specific end time for the event.
+    ///   - page:   A `PaginationInfo` instance to limit the search to a
+    ///             specific page. The `limit` value cannot exceed 500. If
+    ///             not specified, the limit will be set to 500 and the
+    ///             offset will be set to 0.
     public init(start: Date?, end: Date?, page: Page?) {
         self.startDate = start
         self.endDate = end
@@ -102,7 +111,7 @@ public struct SuppressionListReaderParameters: Encodable {
     
     /// :nodoc:
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: SuppressionListReaderParameters.CodingKeys)
+        var container = encoder.container(keyedBy: SuppressionListReaderParameters.CodingKeys.self)
         try container.encodeIfPresent(self.startDate, forKey: .startDate)
         try container.encodeIfPresent(self.endDate, forKey: .endDate)
         try container.encodeIfPresent(self.page?.limit, forKey: .limit)

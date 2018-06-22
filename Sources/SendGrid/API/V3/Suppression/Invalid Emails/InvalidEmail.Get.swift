@@ -77,7 +77,7 @@ import Foundation
 /// ```
 public class RetrieveInvalidEmails: SuppressionListReader<InvalidEmail> {
     
-    override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/invalid_emails",
             email: email,

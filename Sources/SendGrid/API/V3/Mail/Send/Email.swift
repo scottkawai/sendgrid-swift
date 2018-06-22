@@ -534,7 +534,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class Email: Request<EmptyResponse, Email.Parameters> {
+public class Email: Request<EmptyCodable, Email.Parameters> {
     
     // MARK: - Properties
     //=========================================================================

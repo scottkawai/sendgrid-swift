@@ -81,7 +81,7 @@ import Foundation
 /// ```
 public class RetrieveBounces: SuppressionListReader<Bounce> {
     
-    override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/bounces",
             email: email,
