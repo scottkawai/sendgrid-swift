@@ -1,5 +1,5 @@
 //
-//  DeleteGlobalUnsubscribe.swift
+//  DeleteGlobalUnsubscribeTests.swift
 //  SendGridTests
 //
 //  Created by Scott Kawai on 9/19/17.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import SendGrid
 
-class DeleteGlobalUnsubscribe: XCTestCase {
+class DeleteGlobalUnsubscribeTests: XCTestCase {
     
     func testInitializer() {
         func assert(request: DeleteGlobalUnsubscribe) {
