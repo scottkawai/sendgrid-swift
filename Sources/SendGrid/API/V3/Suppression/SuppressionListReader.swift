@@ -34,10 +34,15 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
             guard let em = email else { return p }
             return "\(p)/\(em)"
         }
+        let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { (date, encoder) in
+            var container = encoder.singleValueContainer()
+            try container.encode(Int(date.timeIntervalSince1970))
+        }
         super.init(
             method: .GET,
             path: realPath,
-            parameters: parameters
+            parameters: parameters,
+            encodingStrategy: EncodingStrategy(dates: dateEncoder)
         )
     }
     

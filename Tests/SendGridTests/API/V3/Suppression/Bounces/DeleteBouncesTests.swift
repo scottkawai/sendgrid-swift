@@ -12,7 +12,21 @@ class DeleteBouncesTests: XCTestCase {
     
     func testInitializer() {
         func assert(request: DeleteBounces) {
-            XCTAssertEqual(request.description, "{\"emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+            XCTAssertEqual(request.description, """
+            # DELETE /v3/suppression/bounces
+
+            + Request (application/json)
+
+                + Headers
+
+                        Content-Type: application/json
+                        Accept: application/json
+
+                + Body
+
+                        {"emails":["foo@example.none","bar@example.none"]}
+
+            """)
         }
 
         let emails = DeleteBounces(emails: "foo@example.none", "bar@example.none")
@@ -26,7 +40,21 @@ class DeleteBouncesTests: XCTestCase {
     
     func testDeleteAll() {
         let request = DeleteBounces.all
-        XCTAssertEqual(request.description, "{\"delete_all\":true}")
+        XCTAssertEqual(request.description, """
+        # DELETE /v3/suppression/bounces
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+            + Body
+
+                    {"delete_all":true}
+
+        """)
     }
     
 }

@@ -12,12 +12,40 @@ class DeleteInvalidEmailsTests: XCTestCase {
     
     func testInitializer() {
         let request = DeleteInvalidEmails(emails: "foo@example.none", "bar@example.none")
-        XCTAssertEqual(request.description, "{\"emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+        XCTAssertEqual(request.description, """
+        # DELETE /v3/suppression/invalid_emails
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+            + Body
+
+                    {"emails":["foo@example.none","bar@example.none"]}
+
+        """)
     }
     
     func testDeleteAll() {
         let request = DeleteInvalidEmails.all
-        XCTAssertEqual(request.description, "{\"delete_all\":true}")
+        XCTAssertEqual(request.description, """
+        # DELETE /v3/suppression/invalid_emails
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+            + Body
+
+                    {"delete_all":true}
+
+        """)
     }
     
 }

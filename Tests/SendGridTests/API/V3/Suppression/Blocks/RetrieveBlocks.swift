@@ -12,17 +12,47 @@ class RetrieveBlocksTests: XCTestCase {
     
     func testGetAllInitialization() {
         let minRequest = RetrieveBlocks()
-        XCTAssertEqual(minRequest.description, "")
+        XCTAssertEqual(minRequest.description, """
+        # GET /v3/suppression/blocks
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
         
         let start = Date(timeIntervalSince1970: 15)
         let end = Date(timeIntervalSince1970: 16)
         let maxRequest = RetrieveBlocks(start: start, end: end, page: Page(limit: 4, offset: 8))
-        XCTAssertEqual(maxRequest.description, "")
+        XCTAssertEqual(maxRequest.description, """
+        # GET /v3/suppression/blocks?offset=8&start_time=15&limit=4&end_time=16
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testEmailSpecificInitializer() {
         let request = RetrieveBlocks(email: "foo@example.none")
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/suppression/blocks/foo@example.none
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {

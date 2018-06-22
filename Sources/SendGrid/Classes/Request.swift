@@ -134,18 +134,19 @@ extension Request: CustomStringConvertible {
             }
         }
         var query: String {
-            guard !self.method.hasBody, let q = parameterString else { return "" }
+            guard !self.method.hasBody, let q = parameterString, q.count > 0 else { return "" }
             return "?\(q)"
         }
         var requestTitle: String {
             let content = "+ Request"
             guard let contentType = self.headerValue(named: "Content-Type") else { return content }
-            return content + " (\(contentType)"
+            return content + " (\(contentType))"
         }
         var blueprint = """
         # \(self.method) \(path + query)
         
         \(requestTitle)
+        
         
         """
         let formattedHeaders = self.headers.map { (entry) -> String in
@@ -166,6 +167,7 @@ extension Request: CustomStringConvertible {
                 + Body
             
             \(indented.joined(separator: "\n"))
+            
             """
         }
         return blueprint

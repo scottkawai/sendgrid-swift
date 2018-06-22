@@ -12,7 +12,21 @@ class AddGlobalUnsubscribesTests: XCTestCase {
     
     func testInitialization() {
         func assert(request: AddGlobalUnsubscribes) {
-            XCTAssertEqual(request.description, "{\"recipient_emails\":[\"foo@example.none\",\"bar@example.none\"]}")
+            XCTAssertEqual(request.description, """
+            # POST /v3/asm/suppressions/global
+            
+            + Request (application/json)
+
+                + Headers
+            
+                        Content-Type: application/json
+                        Accept: application/json
+            
+                + Body
+            
+                        {"emails":["foo@example.none","bar@example.none"]}
+
+            """)
         }
         
         let emails = AddGlobalUnsubscribes(emails: "foo@example.none", "bar@example.none")
