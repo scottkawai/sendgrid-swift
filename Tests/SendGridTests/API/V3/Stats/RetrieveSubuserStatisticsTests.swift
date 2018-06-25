@@ -18,16 +18,46 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
     
     func testMinimalInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: "foo")
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/subusers/stats?start_date=2017-09-20&subusers%5B%5D=foo
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
         
         let testSub = Subuser(id: 1, username: "foo", email: "foobar@example.nonet", disabled: false)
         let subRequest = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: testSub)
-        XCTAssertEqual(subRequest.description, "")
+        XCTAssertEqual(subRequest.description, """
+        # GET /v3/subusers/stats?start_date=2017-09-20&subusers%5B%5D=foo
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testMaxInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "Foo", "Bar")
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/subusers/stats?subusers%5B%5D=Foo&subusers%5B%5D=Bar&start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {

@@ -12,10 +12,30 @@ class RetrieveSubusersTests: XCTestCase {
     
     func testInitialization() {
         let min = RetrieveSubusers()
-        XCTAssertEqual(min.description, "")
+        XCTAssertEqual(min.description, """
+        # GET /v3/subusers
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
         
         let max = RetrieveSubusers(page: Page(limit: 1, offset: 2), username: "foo")
-        XCTAssertEqual(max.description, "")
+        XCTAssertEqual(max.description, """
+        # GET /v3/subusers?offset=2&limit=1&username=foo
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {        

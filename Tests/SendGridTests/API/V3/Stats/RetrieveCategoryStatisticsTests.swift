@@ -18,12 +18,32 @@ class RetrieveCategoryStatisticsTests: XCTestCase {
     
     func testMinimalInitialization() {
         let request = RetrieveCategoryStatistics(startDate: date(day: 20), categories: "Foo")
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/categories/stats?categories%5B%5D=Foo&start_date=2017-09-20
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testMaxInitialization() {
         let request = RetrieveCategoryStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, categories: "Foo", "Bar")
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/categories/stats?categories%5B%5D=Foo&categories%5B%5D=Bar&start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {

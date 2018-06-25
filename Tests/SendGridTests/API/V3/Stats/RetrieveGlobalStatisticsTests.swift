@@ -18,12 +18,32 @@ class RetrieveGlobalStatisticsTests: XCTestCase {
     
     func testMinimalInitialization() {
         let request = RetrieveGlobalStatistics(startDate: date(day: 20))
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/stats?start_date=2017-09-20
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testMaxInitialization() {
         let request = RetrieveGlobalStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
-        XCTAssertEqual(request.description, "")
+        XCTAssertEqual(request.description, """
+        # GET /v3/stats?start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {

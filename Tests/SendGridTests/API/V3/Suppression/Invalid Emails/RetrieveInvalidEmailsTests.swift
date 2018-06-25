@@ -12,17 +12,47 @@ class RetrieveInvalidEmailsTests: XCTestCase {
     
     func testGetAllInitialization() {
         let minRequest = RetrieveInvalidEmails()
-        XCTAssertEqual(minRequest.description, "https://api.sendgrid.com/v3/suppression/invalid_emails")
+        XCTAssertEqual(minRequest.description, """
+        # GET /v3/suppression/invalid_emails
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
         
         let start = Date(timeIntervalSince1970: 15)
         let end = Date(timeIntervalSince1970: 16)
         let maxRequest = RetrieveInvalidEmails(start: start, end: end, page: Page(limit: 4, offset: 8))
-        XCTAssertEqual(maxRequest.description, "https://api.sendgrid.com/v3/suppression/invalid_emails?limit=4&offset=8&start_time=15&end_time=16")
+        XCTAssertEqual(maxRequest.description, """
+        # GET /v3/suppression/invalid_emails?offset=8&start_time=15&limit=4&end_time=16
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testEmailSpecificInitializer() {
         let request = RetrieveInvalidEmails(email: "foo@example.none")
-        XCTAssertEqual(request.description, "https://api.sendgrid.com/v3/suppression/invalid_emails/foo@example.none")
+        XCTAssertEqual(request.description, """
+        # GET /v3/suppression/invalid_emails/foo@example.none
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {

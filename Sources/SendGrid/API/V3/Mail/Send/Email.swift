@@ -576,6 +576,12 @@ public class Email: Request<EmptyCodable, Email.Parameters> {
         // The mail send endpoint only supports API Keys.
         return auth.prefix == "Bearer"
     }
+    
+    /// :nodoc:
+    public override func validate() throws {
+        try super.validate()
+        try self.parameters?.validate()
+    }
 }
 
 public extension Email /* Parameters Struct */ {

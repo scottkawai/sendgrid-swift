@@ -53,7 +53,7 @@ class EmailTests: XCTestCase, EncodingTester {
             let goodContent = Content.emailBody(plain: "plain", html: "html")
             let email = Email(personalizations: self.generatePersonalizations(1), from: self.goodFrom, content: goodContent, subject: "Test")
             try session.send(request: email)
-            XCTFail("Expected an error to be thrown when using basic auth with the mail send API, but nothing was thrown.")
+            XCTFail("Expected an error to be thrown when impersonating a subuser with the mail send API, but nothing was thrown.")
         } catch SendGrid.Exception.Session.impersonationNotAllowed {
             XCTAssertTrue(true)
         } catch {
@@ -462,7 +462,7 @@ class EmailTests: XCTestCase, EncodingTester {
     func testHeaderValidation() {
         do {
             let good = self.generateBaseEmail()
-            good.headers = [
+            good.parameters!.headers = [
                 "X-Custom-Header": "Foo",
                 "X-UID": "12345"
             ]
@@ -474,7 +474,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         do {
             let bad = self.generateBaseEmail()
-            bad.headers = [
+            bad.parameters!.headers = [
                 "X-Custom-Header": "Foo",
                 "subject": "12345"
             ]
@@ -488,7 +488,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         do {
             let bad = self.generateBaseEmail()
-            bad.headers = [
+            bad.parameters!.headers = [
                 "X-Custom Header": "Foo"
             ]
             try bad.validate()

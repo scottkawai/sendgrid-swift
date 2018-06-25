@@ -163,7 +163,16 @@ open class Session {
         
         try request.validate()
         
-        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { (data, response, error) in
+        var headers = request.headers
+        if let sub = self.onBehalfOf {
+            if request.supportsImpersonation {
+                headers["On-behalf-of"] = sub
+            } else {
+                throw Exception.Session.impersonationNotAllowed
+            }
+        }
+        
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: headers, encodingStrategy: request.encodingStrategy) { (data, response, error) in
             guard let callback = completionHandler else { return }
             let resp = Response<ModelType>(data: data, response: response, error: error, decodingStrategy: request.decodingStrategy)
             callback(resp)

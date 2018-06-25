@@ -12,17 +12,47 @@ class RetrieveGlobalUnsubscribesTests: XCTestCase {
     
     func testGetAllInitialization() {
         let minRequest = RetrieveGlobalUnsubscribes()
-        XCTAssertEqual(minRequest.description, "https://api.sendgrid.com/v3/suppression/unsubscribes")
+        XCTAssertEqual(minRequest.description, """
+        # GET /v3/suppression/unsubscribes
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
         
         let start = Date(timeIntervalSince1970: 15)
         let end = Date(timeIntervalSince1970: 16)
         let maxRequest = RetrieveGlobalUnsubscribes(start: start, end: end, page: Page(limit: 4, offset: 8))
-        XCTAssertEqual(maxRequest.description, "https://api.sendgrid.com/v3/suppression/unsubscribes?limit=4&offset=8&start_time=15&end_time=16")
+        XCTAssertEqual(maxRequest.description, """
+        # GET /v3/suppression/unsubscribes?offset=8&start_time=15&limit=4&end_time=16
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testEmailSpecificInitializer() {
         let request = RetrieveGlobalUnsubscribes(email: "foo@example.none")
-        XCTAssertEqual(request.description, "https://api.sendgrid.com/v3/suppression/unsubscribes/foo@example.none")
+        XCTAssertEqual(request.description, """
+        # GET /v3/suppression/unsubscribes/foo@example.none
+
+        + Request (application/json)
+
+            + Headers
+
+                    Content-Type: application/json
+                    Accept: application/json
+
+        """)
     }
     
     func testValidation() {
