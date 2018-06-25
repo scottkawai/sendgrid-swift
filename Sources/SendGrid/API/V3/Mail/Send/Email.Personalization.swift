@@ -93,8 +93,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     
 }
 
-/// Encodable conformance.
-public extension Personalization {
+public extension Personalization /* Encodable Conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -110,7 +109,6 @@ public extension Personalization {
     
 }
 
-/// Validatable conformance.
 extension Personalization: Validatable {
     
     /// Validates that the personalization has recipients and that they are
