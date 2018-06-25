@@ -74,14 +74,30 @@ public extension RetrieveSubusers /* Parameters Struct */ {
     /// can be used in the `RetrieveSubusers` call.
     public struct Parameters: Encodable {
         
+        // MARK: - Properties
+        //=========================================================================
+
+        /// The page range to retrieve.
         public var page: Page?
+        
+        /// A specific username to search for.
         public var username: String?
         
+        
+        // MARK: - Initialization
+        //=========================================================================
+
+        /// Initializes the struct.
+        ///
+        /// - Parameters:
+        ///   - page:       The page range to retrieve.
+        ///   - username:   A specific username to search for.
         public init(page: Page? = nil, username: String? = nil) {
             self.page = page
             self.username = username
         }
         
+        /// :nodoc:
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: RetrieveSubusers.Parameters.CodingKeys.self)
             try container.encodeIfPresent(self.page?.limit, forKey: .limit)
@@ -89,6 +105,7 @@ public extension RetrieveSubusers /* Parameters Struct */ {
             try container.encodeIfPresent(self.username, forKey: .username)
         }
         
+        /// :nodoc:
         public enum CodingKeys: String, CodingKey {
             case limit
             case offset
