@@ -1,3 +1,9 @@
+# Road To 2.0.0
+
+Version 2 of this library re-architects how requests are sent. Previously a `Request` instance housed it's API parameters alongside other properties. Now, `Request` instances hold all their API-related parameters in a new `parameters` property. The `parameters` property is an `Encodable` instance, which simplifies how a request transforms its properties into the API parameters.
+
+Version 2 will also incorporate Swift 4.2 changes/support.
+
 # SendGrid-Swift
 
 ![swift4.1](https://img.shields.io/badge/swift-v4.1-green.svg) ![macOS](https://img.shields.io/badge/os-macOS-blue.svg) ![iOS](https://img.shields.io/badge/os-iOS-blue.svg) ![Linux\*](https://img.shields.io/badge/os-Linux\*-blue.svg)
@@ -51,7 +57,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/scottkawai/sendgrid-swift.git",
-            from: "1.1.0"
+            from: "2.0.0"
         )
     ],
     targets: [
@@ -120,23 +126,23 @@ All the available API calls are located in their own folders under the `./Source
     + [Category Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Category.html)
     + [Subuser Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Subuser.html)
 - Subuser API
-    + [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Subuser/Get.html)
+    + [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Subuser/Get.html)
 - Suppressions
     + Blocks API
-        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block.html#/s:8SendGrid5BlockV3GetC)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block.html#/s:8SendGrid5BlockV3GetC)
         * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block/Delete.html)
     + Bounces API
-        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce.html#/s:8SendGrid6BounceV3GetC)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce.html#/s:8SendGrid6BounceV3GetC)
         * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce/Delete.html)
     + Invalid Emails API
-        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC)
         * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail/Delete.html)
     + Global Unsubscribes API
-        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC)
         * [Add](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe/Add.html)
         * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe/Delete.html)
     + Spam Reports API
-        * [Get](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC)
         * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport/Delete.html)
 - [Mail Send](http://scottkawai.github.io/sendgrid-swift/docs/Classes/Email.html)
 
