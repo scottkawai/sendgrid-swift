@@ -18,7 +18,8 @@ public struct ASM: Encodable {
     public let id: Int
     
     
-    /// A list of IDs that should be shown on the "Manage Subscription" page for this email.
+    /// A list of IDs that should be shown on the "Manage Subscription" page for
+    /// this email.
     public let groupsToDisplay: [Int]?
     
     
@@ -40,8 +41,7 @@ public struct ASM: Encodable {
     
 }
 
-/// Encodable conformance.
-extension ASM {
+extension ASM /* Encodable Conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -51,7 +51,6 @@ extension ASM {
     
 }
 
-/// Validatable conformance.
 extension ASM: Validatable {
     
     /// Validates that there are no more than 25 groups to display.

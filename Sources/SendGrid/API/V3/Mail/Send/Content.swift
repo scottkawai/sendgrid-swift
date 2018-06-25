@@ -7,7 +7,8 @@
 
 import Foundation
 
-/// The `Content` class represents a MIME part of the email message (i.e. the plain text and HTML parts of an email).
+/// The `Content` class represents a MIME part of the email message (i.e. the
+/// plain text and HTML parts of an email).
 public struct Content: Encodable {
     
     // MARK: - Properties
@@ -35,7 +36,6 @@ public struct Content: Encodable {
     
 }
 
-/// Validatable conformance.
 extension Content: Validatable {
     
     /// Validates the content.
@@ -48,8 +48,7 @@ extension Content: Validatable {
     
 }
 
-/// Convenience class initializers.
-extension Content {
+extension Content /* Convenience class initializers */ {
     
     /// Creates a new `Content` instance used to represent a plain text body.
     ///

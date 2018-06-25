@@ -57,8 +57,7 @@ public struct ClickTracking: Encodable {
     
 }
 
-/// Encodable conformance.
-public extension ClickTracking {
+public extension ClickTracking /* Encodable conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -68,8 +67,7 @@ public extension ClickTracking {
     
 }
 
-/// Tracking sections
-public extension ClickTracking {
+public extension ClickTracking /* Tracking sections */ {
     
     /// This enum represents the sections of an email that click tracking should
     /// be applied to. In general, you should use the `.htmlBody` case, as only

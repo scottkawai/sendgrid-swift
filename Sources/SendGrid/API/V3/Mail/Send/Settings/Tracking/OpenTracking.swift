@@ -50,8 +50,7 @@ public struct OpenTracking: Encodable {
     
 }
 
-/// Encodable conformance
-public extension OpenTracking {
+public extension OpenTracking /* Encodable conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -61,8 +60,7 @@ public extension OpenTracking {
     
 }
 
-/// Location enum
-public extension OpenTracking {
+public extension OpenTracking /* Location enum */ {
     
     /// The `OpenTracking.Location` enum represents where the open tracking
     /// pixel should be placed in the email.

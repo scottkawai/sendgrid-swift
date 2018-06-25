@@ -64,8 +64,7 @@ public struct SpamChecker: Encodable {
     
 }
 
-/// Encodable conformance.
-public extension SpamChecker {
+public extension SpamChecker /* Encodable conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -76,7 +75,6 @@ public extension SpamChecker {
     
 }
 
-/// Validatble conformance.
 extension SpamChecker: Validatable {
     
     /// Validates that the threshold is within the correct range.

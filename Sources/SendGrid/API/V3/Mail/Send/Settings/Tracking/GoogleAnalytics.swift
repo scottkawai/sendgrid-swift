@@ -63,8 +63,7 @@ public struct GoogleAnalytics: Encodable {
     
 }
 
-/// Encodable conformance.
-public extension GoogleAnalytics {
+public extension GoogleAnalytics /* Encodable conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {

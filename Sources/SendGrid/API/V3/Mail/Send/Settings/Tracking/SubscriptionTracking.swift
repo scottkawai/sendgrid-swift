@@ -27,7 +27,7 @@ public struct SubscriptionTracking: Encodable {
     public let html: String?
     
     /// A tag that will be replaced with the unsubscribe URL. For example:
-    /// `[unsubscribe_url`. If this parameter is used, it will override both
+    /// `[unsubscribe_url]`. If this parameter is used, it will override both
     /// the `text` and `html` parameters. The URL of the link will be placed at
     /// the substitution tag's location, with no additional formatting.
     public let substitutionTag: String?
@@ -125,8 +125,7 @@ public struct SubscriptionTracking: Encodable {
     
 }
 
-/// Encodable configuration
-public extension SubscriptionTracking {
+public extension SubscriptionTracking /* Encodable configuration */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -138,7 +137,6 @@ public extension SubscriptionTracking {
     
 }
 
-/// Validatable conformance
 extension SubscriptionTracking: Validatable {
     
     /// Validates that the plain text and HTML text contain the proper tag.

@@ -44,8 +44,7 @@ public struct TrackingSettings: Encodable {
     
 }
 
-/// Encodable conformance.
-public extension TrackingSettings {
+public extension TrackingSettings /* Encodable conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -59,7 +58,6 @@ public extension TrackingSettings {
     
 }
 
-/// Validatable conformance.
 extension TrackingSettings: Validatable {
     
     /// Bubbles up the `subscriptionTracking` validation.

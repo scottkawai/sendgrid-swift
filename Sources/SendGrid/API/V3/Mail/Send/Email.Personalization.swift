@@ -31,17 +31,17 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     /// Each key in the dictionary should represent the name of the header, and
     /// the values of the dictionary should be equal to the values of the
     /// headers.
-    open var headers: [String:String]?
+    open var headers: [String : String]?
     
     /// An optional set of substitutions to replace in this personalization. The
     /// keys in the dictionary should represent the substitution tags that
     /// should be replaced, and the values should be the replacement values.
-    open var substitutions: [String:String]?
+    open var substitutions: [String : String]?
     
     /// A set of custom arguments to add to the email. The keys of the
     /// dictionary should be the names of the custom arguments, while the values
     /// should represent the value of each custom argument.
-    open var customArguments: [String:String]?
+    open var customArguments: [String : String]?
     
     /// An optional time to send the email at.
     open var sendAt: Date? = nil

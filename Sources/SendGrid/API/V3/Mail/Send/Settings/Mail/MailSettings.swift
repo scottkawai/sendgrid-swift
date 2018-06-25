@@ -47,8 +47,7 @@ public struct MailSettings: Encodable {
     
 }
 
-/// Encodable conformance.
-public extension MailSettings {
+public extension MailSettings /* Encodable conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -63,7 +62,6 @@ public extension MailSettings {
     
 }
 
-/// Validatable conformance.
 extension MailSettings: Validatable {
     
     /// Bubbles up the validations for `bcc` and `spamCheck`.

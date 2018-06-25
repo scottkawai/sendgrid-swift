@@ -59,8 +59,7 @@ open class Attachment: Encodable {
     
 }
 
-/// Encodable conformance.
-extension Attachment {
+extension Attachment /* Encodable Conformance */ {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
@@ -73,7 +72,6 @@ extension Attachment {
     
 }
 
-/// Validatable conformance.
 extension Attachment: Validatable {
     
     /// Validates that the content type of the attachment is correct.

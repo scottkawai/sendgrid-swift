@@ -50,7 +50,6 @@ public struct BCCSetting: Encodable {
 }
 
 
-/// Validatable conformance
 extension BCCSetting: Validatable {
     
     /// Validates that the BCC email is a valid email address.

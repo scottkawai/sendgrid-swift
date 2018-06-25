@@ -36,7 +36,6 @@ public struct Address: Encodable {
     
 }
 
-/// Validatable conformance.
 extension Address: Validatable {
     
     /// Validates that the email address is an RFC compliant email address.
@@ -48,9 +47,7 @@ extension Address: Validatable {
     
 }
 
-/// Conformance to `ExpressibleByStringLiteral` to allow initialization from a
-/// raw `String`:
-extension Address: ExpressibleByStringLiteral {
+extension Address: ExpressibleByStringLiteral /* Allow initialization from a raw `String` */ {
     
     /// This initializer allows you to create an `Address` instance from a
     /// `String`:
