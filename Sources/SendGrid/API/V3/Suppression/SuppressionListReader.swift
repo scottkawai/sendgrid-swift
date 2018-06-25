@@ -23,10 +23,9 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
     ///   - start:  Limits the search to a specific start time for the
     ///             event.
     ///   - end:    Limits the search to a specific end time for the event.
-    ///   - page:   A `PaginationInfo` instance to limit the search to a
-    ///             specific page. The `limit` value cannot exceed 500. If
-    ///             not specified, the limit will be set to 500 and the
-    ///             offset will be set to 0.
+    ///   - page:   A `Page` instance to limit the search to a specific page.
+    ///             The `limit` value cannot exceed 500. If not specified, the
+    ///             limit will be set to 500 and the offset will be set to 0.
     internal init(path: String? = nil, email: String?, start: Date?, end: Date?, page: Page?) {
         let parameters = SuppressionListReaderParameters(start: start, end: end, page: page)
         var realPath: String {
@@ -63,10 +62,9 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
     ///   - end:    Limits the search to a specific end time for the event.
     ///   - range:  A range of dates to search between If `nil`, the entire
     ///             bounce list will be searched.
-    ///   - page:   A `PaginationInfo` instance to limit the search to a
-    ///             specific page. The `limit` value cannot exceed 500. If
-    ///             not specified, the limit will be set to 500 and the
-    ///             offset will be set to 0.
+    ///   - page:   A `Page` instance to limit the search to a specific page.
+    ///             The `limit` value cannot exceed 500. If not specified, the
+    ///             limit will be set to 500 and the offset will be set to 0.
     public convenience init(start: Date? = nil, end: Date? = nil, page: Page? = nil) {
         self.init(email: nil, start: start, end: end, page: page)
     }
@@ -104,10 +102,9 @@ public struct SuppressionListReaderParameters: Encodable {
     ///   - start:  Limits the search to a specific start time for the
     ///             event.
     ///   - end:    Limits the search to a specific end time for the event.
-    ///   - page:   A `PaginationInfo` instance to limit the search to a
-    ///             specific page. The `limit` value cannot exceed 500. If
-    ///             not specified, the limit will be set to 500 and the
-    ///             offset will be set to 0.
+    ///   - page:   A `Page` instance to limit the search to a specific page.
+    ///             The `limit` value cannot exceed 500. If not specified, the
+    ///             limit will be set to 500 and the offset will be set to 0.
     public init(start: Date?, end: Date?, page: Page?) {
         self.startDate = start
         self.endDate = end

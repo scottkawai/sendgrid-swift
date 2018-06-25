@@ -8,16 +8,16 @@
 import Foundation
 
 
-/// The `GlobalUnsubscribe.Delete` class represents the API call to [delete
+/// The `DeleteGlobalUnsubscribe` class represents the API call to [delete
 /// from the invalid email list](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/global_suppressions.html#Remove-an-email-address-from-the-Global-Unsubscribes-collection-DELETE).
 ///
 /// You can specify an email address (as a
 /// string), or you can use a `GlobalUnsubscribe` instance (useful for if
-/// you just retrieved some from the `GlobalUnsubscribe.Get` class).
+/// you just retrieved some from the `RetrieveGlobalUnsubscribes` class).
 ///
 /// ```swift
 /// do {
-///     let request = GlobalUnsubscribe.Delete(email: "foo@example.none")
+///     let request = DeleteGlobalUnsubscribe(email: "foo@example.none")
 ///     try Session.shared.send(request: request) { (response) in
 ///         print(response?.httpUrlResponse?.statusCode)
 ///     }

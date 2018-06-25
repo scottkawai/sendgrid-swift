@@ -7,14 +7,15 @@
 
 import Foundation
 
-/// The `Bounce.Get` class represents the API call to [retrieve the bounce
+
+/// The `RetrieveBounces` class represents the API call to [retrieve the bounce
 /// list](https://sendgrid.com/docs/API_Reference/Web_API_v3/bounces.html#List-all-bounces-GET).
 /// You can use it to retrieve the entire list, or specific entries in the
 /// list.
 ///
 /// ## Get All Bounces
 ///
-/// To retrieve the list of all bounces, use the `Bounce.Get` class with the
+/// To retrieve the list of all bounces, use the `RetrieveBounces` class with the
 /// `init(start:end:page:)` initializer. The library will automatically map
 /// the response to the `Bounce` struct model, accessible via the `model`
 /// property on the response instance you get back.
@@ -23,7 +24,7 @@ import Foundation
 /// do {
 ///     // If you don't specify any parameters, then the first page of your entire
 ///     // bounce list will be fetched:
-///     let request = Bounce.Get()
+///     let request = RetrieveBounces()
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `Bounce` structs.
 ///         response?.model?.forEach { print($0.email) }
@@ -32,7 +33,7 @@ import Foundation
 ///         // You can use this to get the next page, if you wish.
 ///         //
 ///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = Bounce.Get(page: nextPage)
+///         //    let nextRequest = RetrieveBounces(page: nextPage)
 ///         // }
 ///     }
 /// } catch {
@@ -51,7 +52,7 @@ import Foundation
 ///     let now = Date()
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
-///     let request = Bounce.Get(start: start, end: now, page: page)
+///     let request = RetrieveBounces(start: start, end: now, page: page)
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `Bounce` structs.
 ///         response?.model?.forEach { print($0.email) }
@@ -64,11 +65,11 @@ import Foundation
 /// ## Get Specific Bounce
 ///
 /// If you're looking for a specific email address in the bounce list, you
-/// can use the `init(email:)` initializer on `Bounce.Get`:
+/// can use the `init(email:)` initializer on `RetrieveBounces`:
 ///
 /// ```swift
 /// do {
-///     let request = Bounce.Get(email: "foo@example.none")
+///     let request = RetrieveBounces(email: "foo@example.none")
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `Bounce` structs.
 ///         if let match = response?.model?.first {
@@ -81,6 +82,7 @@ import Foundation
 /// ```
 public class RetrieveBounces: SuppressionListReader<Bounce> {
     
+    /// :nodoc:
     override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/bounces",

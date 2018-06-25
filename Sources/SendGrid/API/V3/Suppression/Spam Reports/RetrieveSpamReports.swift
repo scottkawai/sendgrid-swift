@@ -7,14 +7,14 @@
 
 import Foundation
 
-/// The `SpamReport.Get` class represents the API call to [retrieve the
+/// The `RetrieveSpamReports` class represents the API call to [retrieve the
 /// spam reports list](https://sendgrid.com/docs/API_Reference/Web_API_v3/spam_reports.html#List-all-spam-reports-GET).
 /// You can use it to retrieve the entire list, or specific entries on the
 /// list.
 ///
 /// ## Get All Spam Reports
 ///
-/// To retrieve the list of all spam reports, use the `SpamReport.Get` class
+/// To retrieve the list of all spam reports, use the `RetrieveSpamReports` class
 /// with the `init(start:end:page:)` initializer. The library will
 /// automatically map the response to the `SpamReport` struct model,
 /// accessible via the `model` property on the response instance you get
@@ -24,7 +24,7 @@ import Foundation
 /// do {
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire spam report list will be fetched:
-///     let request = SpamReport.Get()
+///     let request = RetrieveSpamReports()
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `SpamReport` structs.
 ///         response?.model?.forEach { print($0.email) }
@@ -33,7 +33,7 @@ import Foundation
 ///         // You can use this to get the next page, if you wish.
 ///         //
 ///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = SpamReport.Get(page: nextPage)
+///         //    let nextRequest = RetrieveSpamReports(page: nextPage)
 ///         // }
 ///     }
 /// } catch {
@@ -52,7 +52,7 @@ import Foundation
 ///     let now = Date()
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
-///     let request = SpamReport.Get(start: start, end: now, page: page)
+///     let request = RetrieveSpamReports(start: start, end: now, page: page)
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `SpamReport`
 ///         // structs.
@@ -66,11 +66,11 @@ import Foundation
 /// ## Get Specific Spam Report
 ///
 /// If you're looking for a specific email address in the spam report list,
-/// you can use the `init(email:)` initializer on `SpamReport.Get`:
+/// you can use the `init(email:)` initializer on `RetrieveSpamReports`:
 ///
 /// ```swift
 /// do {
-///     let request = SpamReport.Get(email: "foo@example.none")
+///     let request = RetrieveSpamReports(email: "foo@example.none")
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `SpamReport`
 ///         // structs.
@@ -82,6 +82,7 @@ import Foundation
 /// ```
 public class RetrieveSpamReports: SuppressionListReader<SpamReport> {
     
+    /// :nodoc:
     override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/spam_reports",

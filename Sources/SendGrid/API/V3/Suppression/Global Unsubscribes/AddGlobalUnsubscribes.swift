@@ -7,7 +7,8 @@
 
 import Foundation
 
-/// The `GlobalUnsubscribe.Add` class represents the API call to add email
+
+/// The `AddGlobalUnsubscribes` class represents the API call to add email
 /// addresses to the global unsubscribe list.
 ///
 /// You can specify email addresses (as strings), or you can use `Address`
@@ -15,7 +16,7 @@ import Foundation
 ///
 /// ```swift
 /// do {
-///     let request = GlobalUnsubscribe.Add(emails: "foo@example.none", "bar@example.none")
+///     let request = AddGlobalUnsubscribes(emails: "foo@example.none", "bar@example.none")
 ///     try Session.shared.send(request: request) { (response) in
 ///         print(response?.httpUrlResponse?.statusCode)
 ///     }
@@ -23,7 +24,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class AddGlobalUnsubscribes: Request<EmptyCodable, AddGlobalUnsubscribes.Parameters> {
+public class AddGlobalUnsubscribes: Request<AddGlobalUnsubscribes.Parameters, AddGlobalUnsubscribes.Parameters> {
     
     // MARK: - Initialization
     //=========================================================================
@@ -72,7 +73,7 @@ public extension AddGlobalUnsubscribes /* Parameters Struct */ {
     
     /// The `AddGlobalUnsubscribes.Parameters` struct houses the parameters used
     /// to add email addresses to the global unsubscribe list.
-    public struct Parameters: Encodable {
+    public struct Parameters: Codable {
         
         /// The email addresses to add to the global unsubscribe list.
         public let emails: [String]
@@ -89,6 +90,11 @@ public extension AddGlobalUnsubscribes /* Parameters Struct */ {
         /// - Parameter emails: An array of email addresses.
         public init(emails: String...) {
             self.init(emails: emails)
+        }
+        
+        /// :nodoc:
+        public enum CodingKeys: String, CodingKey {
+            case emails = "recipient_emails"
         }
         
     }

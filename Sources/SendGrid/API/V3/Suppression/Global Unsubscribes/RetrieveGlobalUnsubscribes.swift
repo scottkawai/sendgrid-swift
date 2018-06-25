@@ -7,7 +7,8 @@
 
 import Foundation
 
-/// The `GlobalUnsubscribe.Get` class represents the API call to [retrieve
+
+/// The `RetrieveGlobalUnsubscribes` class represents the API call to [retrieve
 /// the global unsubscribe list](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/global_suppressions.html#List-all-globally-unsubscribed-email-addresses-GET).
 /// You can use it to retrieve the entire list, or specific entries on the
 /// list.
@@ -15,7 +16,7 @@ import Foundation
 /// ## Get All Global Unsubscribes
 ///
 /// To retrieve the list of all global unsubscribes, use the
-/// `GlobalUnsubscribe.Get` class with the `init(start:end:page:)`
+/// `RetrieveGlobalUnsubscribes` class with the `init(start:end:page:)`
 /// initializer. The library will automatically map the response to the
 /// `GlobalUnsubscribe` struct model, accessible via the `model` property on
 /// the response instance you get back.
@@ -24,7 +25,7 @@ import Foundation
 /// do {
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire global unsubscribe list will be fetched:
-///     let request = GlobalUnsubscribe.Get()
+///     let request = RetrieveGlobalUnsubscribes()
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `GlobalUnsubscribe` structs.
 ///         response?.model?.forEach { print($0.email) }
@@ -33,7 +34,7 @@ import Foundation
 ///         // You can use this to get the next page, if you wish.
 ///         //
 ///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = GlobalUnsubscribe.Get(page: nextPage)
+///         //    let nextRequest = RetrieveGlobalUnsubscribes(page: nextPage)
 ///         // }
 ///     }
 /// } catch {
@@ -52,7 +53,7 @@ import Foundation
 ///     let now = Date()
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
-///     let request = GlobalUnsubscribe.Get(start: start, end: now, page: page)
+///     let request = RetrieveGlobalUnsubscribes(start: start, end: now, page: page)
 ///     try Session.shared.send(request: request) { (response) in
 ///         response?.model?.forEach { print($0.email) }
 ///     }
@@ -65,11 +66,11 @@ import Foundation
 ///
 /// If you're looking for a specific email address in the global unsubscribe
 /// list, you can use the `init(email:)` initializer on
-/// `GlobalUnsubscribe.Get`:
+/// `RetrieveGlobalUnsubscribes`:
 ///
 /// ```swift
 /// do {
-///     let request = GlobalUnsubscribe.Get(email: "foo@example")
+///     let request = RetrieveGlobalUnsubscribes(email: "foo@example")
 ///     try Session.shared.send(request: request) { (response) in
 ///         response?.model?.forEach { print($0.email) }
 ///     }
@@ -79,6 +80,7 @@ import Foundation
 /// ```
 public class RetrieveGlobalUnsubscribes: SuppressionListReader<GlobalUnsubscribe> {
     
+    /// :nodoc:
     override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/unsubscribes",

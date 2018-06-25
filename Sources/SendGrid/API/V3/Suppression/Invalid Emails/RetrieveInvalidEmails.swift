@@ -7,14 +7,15 @@
 
 import Foundation
 
-/// The `InvalidEmail.Get` class represents the API call to [retrieve the
+
+/// The `RetrieveInvalidEmails` class represents the API call to [retrieve the
 /// invalid email list](https://sendgrid.com/docs/API_Reference/Web_API_v3/invalid_emails.html#List-all-invalid-emails-GET).
 /// You can use it to retrieve the entire list, or specific entries from the
 /// list.
 ///
 /// ## Get All Invalid Emails
 ///
-/// To retrieve the list of all invalid emails, use the `InvalidEmail.Get`
+/// To retrieve the list of all invalid emails, use the `RetrieveInvalidEmails`
 /// class with the `init(start:end:page:)` initializer. The library will
 /// automatically map the response to the `InvalidEmail` struct model,
 /// accessible via the `model` property on the response instance you get
@@ -24,7 +25,7 @@ import Foundation
 /// do {
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire invalid email list will be fetched:
-///     let request = InvalidEmail.Get()
+///     let request = RetrieveInvalidEmails()
 ///     try Session.shared.send(request: request) { (response) in
 ///         // The `model` property will be an array of `InvalidEmail`
 ///         // structs.
@@ -34,7 +35,7 @@ import Foundation
 ///         // well. You can use this to get the next page, if you wish.
 ///         //
 ///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = InvalidEmail.Get(page: nextPage)
+///         //    let nextRequest = RetrieveInvalidEmails(page: nextPage)
 ///         // }
 ///     }
 /// } catch {
@@ -42,7 +43,8 @@ import Foundation
 /// }
 /// ```
 ///
-/// You can also specify any or all of the init parameters to filter your search down:
+/// You can also specify any or all of the init parameters to filter your search
+/// down:
 ///
 /// ```swift
 /// do {
@@ -52,7 +54,7 @@ import Foundation
 ///     let now = Date()
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
-///     let request = InvalidEmail.Get(start: start, end: now, page: page)
+///     let request = RetrieveInvalidEmails(start: start, end: now, page: page)
 ///     try Session.shared.send(request: request) { (response) in
 ///         response?.model?.forEach { print($0.email) }
 ///     }
@@ -63,11 +65,12 @@ import Foundation
 ///
 /// ## Get Specific Invalid Email
 ///
-/// If you're looking for a specific email address in the invalid email list, you can use the `init(email:)` initializer on `InvalidEmail.Get`:
+/// If you're looking for a specific email address in the invalid email list,
+/// you can use the `init(email:)` initializer on `RetrieveInvalidEmails`:
 ///
 /// ```swift
 /// do {
-///     let request = InvalidEmail.Get(email: "foo@example")
+///     let request = RetrieveInvalidEmails(email: "foo@example")
 ///     try Session.shared.send(request: request) { (response) in
 ///         response?.model?.forEach { print($0.email) }
 ///     }
@@ -77,6 +80,7 @@ import Foundation
 /// ```
 public class RetrieveInvalidEmails: SuppressionListReader<InvalidEmail> {
     
+    /// :nodoc:
     override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/invalid_emails",

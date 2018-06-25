@@ -24,7 +24,7 @@ class AddGlobalUnsubscribesTests: XCTestCase {
             
                 + Body
             
-                        {"emails":["foo@example.none","bar@example.none"]}
+                        {"recipient_emails":["foo@example.none","bar@example.none"]}
 
             """)
         }
