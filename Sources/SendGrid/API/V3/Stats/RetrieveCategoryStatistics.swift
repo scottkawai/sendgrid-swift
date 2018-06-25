@@ -15,7 +15,7 @@ import Foundation
 /// do {
 ///     let now = Date()
 ///     let lastMonth = now.addingTimeInterval(-2592000) // 30 days
-///     let request = Statistic.Category(
+///     let request = RetrieveCategoryStatistics(
 ///         startDate: lastMonth,
 ///         endDate: now,
 ///         aggregatedBy: .week,

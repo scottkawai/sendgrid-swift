@@ -626,7 +626,7 @@ public extension Email /* Parameters Struct */ {
         /// can be inserted into your emails using substitution tags. An example of
         /// this might look like the following:
         ///
-        /// ```
+        /// ```swift
         /// let bob = Personalization(recipients: "bob@example.com")
         /// bob.substitutions = [
         ///     ":salutation": ":male",
