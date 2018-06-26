@@ -133,9 +133,6 @@ open class Session {
         for (header, value) in headers {
             payload.addValue(value, forHTTPHeaderField: header)
         }
-        if let sub = self.onBehalfOf {
-            payload.addValue(sub, forHTTPHeaderField: "On-behalf-of")
-        }
         
         let task: URLSessionDataTask
         if let callback = completionHandler {

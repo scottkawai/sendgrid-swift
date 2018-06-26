@@ -16,11 +16,11 @@ class DeleteBlocksTests: XCTestCase {
         # DELETE /v3/suppression/blocks
 
         + Request (application/json)
-        
+
             + Headers
 
-                    Content-Type: application/json
                     Accept: application/json
+                    Content-Type: application/json
 
             + Body
 
@@ -38,8 +38,8 @@ class DeleteBlocksTests: XCTestCase {
 
             + Headers
 
-                    Content-Type: application/json
                     Accept: application/json
+                    Content-Type: application/json
 
             + Body
 

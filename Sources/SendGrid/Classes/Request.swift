@@ -149,9 +149,7 @@ extension Request: CustomStringConvertible {
         
         
         """
-        let formattedHeaders = self.headers.map { (entry) -> String in
-            return "            \(entry.key): \(entry.value)"
-        }
+        let formattedHeaders = self.headers.map { "            \($0.key): \($0.value)" }.sorted { $0 < $1 }
         if formattedHeaders.count > 0 {
             blueprint += """
                 + Headers

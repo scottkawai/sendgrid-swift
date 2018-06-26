@@ -19,8 +19,8 @@ class RetrieveSpamReportsTests: XCTestCase {
 
             + Headers
 
-                    Content-Type: application/json
                     Accept: application/json
+                    Content-Type: application/json
 
         """)
         
@@ -34,8 +34,8 @@ class RetrieveSpamReportsTests: XCTestCase {
 
             + Headers
 
-                    Content-Type: application/json
                     Accept: application/json
+                    Content-Type: application/json
 
         """)
     }
@@ -49,8 +49,8 @@ class RetrieveSpamReportsTests: XCTestCase {
 
             + Headers
 
-                    Content-Type: application/json
                     Accept: application/json
+                    Content-Type: application/json
 
         """)
     }

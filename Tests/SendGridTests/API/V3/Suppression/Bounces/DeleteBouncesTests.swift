@@ -19,8 +19,8 @@ class DeleteBouncesTests: XCTestCase {
 
                 + Headers
 
-                        Content-Type: application/json
                         Accept: application/json
+                        Content-Type: application/json
 
                 + Body
 
@@ -47,8 +47,8 @@ class DeleteBouncesTests: XCTestCase {
 
             + Headers
 
-                    Content-Type: application/json
                     Accept: application/json
+                    Content-Type: application/json
 
             + Body
 
