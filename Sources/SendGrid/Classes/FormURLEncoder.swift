@@ -188,7 +188,9 @@ fileprivate class _FormURLEncoder: Encoder {
         guard let rawValue = container.rawValue else { return nil }
         var list: [URLQueryItem] = []
         if let dictionary = rawValue as? [String: _FormURLEncoderValueWrapper] {
-            for (thisKey, item) in dictionary {
+            let keys = Array(dictionary.keys).sorted { $0 < $1 }
+            for thisKey in keys {
+                guard let item = dictionary[thisKey] else { continue }
                 var path: String {
                     if let thatKey = key {
                         return thatKey + "[" + thisKey + "]"

@@ -28,7 +28,7 @@ class RetrieveBlocksTests: XCTestCase {
         let end = Date(timeIntervalSince1970: 16)
         let maxRequest = RetrieveBlocks(start: start, end: end, page: Page(limit: 4, offset: 8))
         XCTAssertEqual(maxRequest.description, """
-        # GET /v3/suppression/blocks?offset=8&start_time=15&limit=4&end_time=16
+        # GET /v3/suppression/blocks?end_time=16&limit=4&offset=8&start_time=15
 
         + Request (application/json)
 

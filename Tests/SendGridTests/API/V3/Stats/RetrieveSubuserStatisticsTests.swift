@@ -48,7 +48,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
     func testMaxInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "Foo", "Bar")
         XCTAssertEqual(request.description, """
-        # GET /v3/subusers/stats?subusers%5B%5D=Foo&subusers%5B%5D=Bar&start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week
+        # GET /v3/subusers/stats?aggregated_by=week&end_date=2017-09-27&start_date=2017-09-20&subusers%5B%5D=Foo&subusers%5B%5D=Bar
 
         + Request (application/json)
 

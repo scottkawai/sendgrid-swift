@@ -26,7 +26,7 @@ class RetrieveSubusersTests: XCTestCase {
         
         let max = RetrieveSubusers(page: Page(limit: 1, offset: 2), username: "foo")
         XCTAssertEqual(max.description, """
-        # GET /v3/subusers?offset=2&limit=1&username=foo
+        # GET /v3/subusers?limit=1&offset=2&username=foo
 
         + Request (application/json)
 

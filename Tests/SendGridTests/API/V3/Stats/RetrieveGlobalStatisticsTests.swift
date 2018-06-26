@@ -34,7 +34,7 @@ class RetrieveGlobalStatisticsTests: XCTestCase {
     func testMaxInitialization() {
         let request = RetrieveGlobalStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
         XCTAssertEqual(request.description, """
-        # GET /v3/stats?start_date=2017-09-20&end_date=2017-09-27&aggregated_by=week
+        # GET /v3/stats?aggregated_by=week&end_date=2017-09-27&start_date=2017-09-20
 
         + Request (application/json)
 

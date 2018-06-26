@@ -28,7 +28,7 @@ class RetrieveInvalidEmailsTests: XCTestCase {
         let end = Date(timeIntervalSince1970: 16)
         let maxRequest = RetrieveInvalidEmails(start: start, end: end, page: Page(limit: 4, offset: 8))
         XCTAssertEqual(maxRequest.description, """
-        # GET /v3/suppression/invalid_emails?offset=8&start_time=15&limit=4&end_time=16
+        # GET /v3/suppression/invalid_emails?end_time=16&limit=4&offset=8&start_time=15
 
         + Request (application/json)
 
