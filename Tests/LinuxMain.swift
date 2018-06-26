@@ -226,8 +226,8 @@ extension TrackingSettingsTests {
 }
 
 
-extension StatisticCategoryTests {
-    static var allTests : [(String, (StatisticCategoryTests) -> () throws -> Void)] {
+extension RetrieveCategoryStatisticsTests {
+    static var allTests : [(String, (RetrieveCategoryStatisticsTests) -> () throws -> Void)] {
         return [
             ("testMinimalInitialization", testMinimalInitialization),
             ("testMaxInitialization", testMaxInitialization),
@@ -237,8 +237,8 @@ extension StatisticCategoryTests {
 }
 
 
-extension StatisticGlobalTests {
-    static var allTests : [(String, (StatisticGlobalTests) -> () throws -> Void)] {
+extension RetrieveGlobalStatisticsTests {
+    static var allTests : [(String, (RetrieveGlobalStatisticsTests) -> () throws -> Void)] {
         return [
             ("testMinimalInitialization", testMinimalInitialization),
             ("testMaxInitialization", testMaxInitialization),
@@ -248,8 +248,8 @@ extension StatisticGlobalTests {
 }
 
 
-extension StatisticSubuserTests {
-    static var allTests : [(String, (StatisticSubuserTests) -> () throws -> Void)] {
+extension RetrieveSubuserStatisticsTests {
+    static var allTests : [(String, (RetrieveSubuserStatisticsTests) -> () throws -> Void)] {
         return [
             ("testMinimalInitialization", testMinimalInitialization),
             ("testMaxInitialization", testMaxInitialization),
@@ -259,8 +259,8 @@ extension StatisticSubuserTests {
 }
 
 
-extension SubuserGetTests {
-    static var allTests : [(String, (SubuserGetTests) -> () throws -> Void)] {
+extension RetrieveSubusersTests {
+    static var allTests : [(String, (RetrieveSubusersTests) -> () throws -> Void)] {
         return [
             ("testInitialization", testInitialization),
             ("testValidation", testValidation)
@@ -269,8 +269,8 @@ extension SubuserGetTests {
 }
 
 
-extension BlockDeleteTests {
-    static var allTests : [(String, (BlockDeleteTests) -> () throws -> Void)] {
+extension DeleteBlocksTests {
+    static var allTests : [(String, (DeleteBlocksTests) -> () throws -> Void)] {
         return [
             ("testInitializer", testInitializer),
             ("testDeleteAll", testDeleteAll)
@@ -279,8 +279,8 @@ extension BlockDeleteTests {
 }
 
 
-extension BlockGetTests {
-    static var allTests : [(String, (BlockGetTests) -> () throws -> Void)] {
+extension RetrieveBlocksTests {
+    static var allTests : [(String, (RetrieveBlocksTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
             ("testEmailSpecificInitializer", testEmailSpecificInitializer),
@@ -290,8 +290,8 @@ extension BlockGetTests {
 }
 
 
-extension BounceDeleteTests {
-    static var allTests : [(String, (BounceDeleteTests) -> () throws -> Void)] {
+extension DeleteBouncesTests {
+    static var allTests : [(String, (DeleteBouncesTests) -> () throws -> Void)] {
         return [
             ("testInitializer", testInitializer),
             ("testDeleteAll", testDeleteAll)
@@ -300,8 +300,8 @@ extension BounceDeleteTests {
 }
 
 
-extension BounceGetTests {
-    static var allTests : [(String, (BounceGetTests) -> () throws -> Void)] {
+extension RetrieveBouncesTests {
+    static var allTests : [(String, (RetrieveBouncesTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
             ("testEmailSpecificInitializer", testEmailSpecificInitializer),
@@ -311,8 +311,8 @@ extension BounceGetTests {
 }
 
 
-extension GlobalUnsubcribeAddTests {
-    static var allTests : [(String, (GlobalUnsubcribeAddTests) -> () throws -> Void)] {
+extension AddGlobalUnsubscribesTests {
+    static var allTests : [(String, (AddGlobalUnsubscribesTests) -> () throws -> Void)] {
         return [
             ("testInitialization", testInitialization)
         ]
@@ -320,8 +320,8 @@ extension GlobalUnsubcribeAddTests {
 }
 
 
-extension GlobalUnsubscribeDeleteTests {
-    static var allTests : [(String, (GlobalUnsubscribeDeleteTests) -> () throws -> Void)] {
+extension DeleteGlobalUnsubscribeTests {
+    static var allTests : [(String, (DeleteGlobalUnsubscribeTests) -> () throws -> Void)] {
         return [
             ("testInitializer", testInitializer)
         ]
@@ -329,8 +329,8 @@ extension GlobalUnsubscribeDeleteTests {
 }
 
 
-extension GlobalUnsubscribeGetTests {
-    static var allTests : [(String, (GlobalUnsubscribeGetTests) -> () throws -> Void)] {
+extension RetrieveGlobalUnsubscribesTests {
+    static var allTests : [(String, (RetrieveGlobalUnsubscribesTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
             ("testEmailSpecificInitializer", testEmailSpecificInitializer),
@@ -340,8 +340,8 @@ extension GlobalUnsubscribeGetTests {
 }
 
 
-extension InvalidEmailDeleteTests {
-    static var allTests : [(String, (InvalidEmailDeleteTests) -> () throws -> Void)] {
+extension DeleteInvalidEmailsTests {
+    static var allTests : [(String, (DeleteInvalidEmailsTests) -> () throws -> Void)] {
         return [
             ("testInitializer", testInitializer),
             ("testDeleteAll", testDeleteAll)
@@ -350,8 +350,8 @@ extension InvalidEmailDeleteTests {
 }
 
 
-extension InvalidEmailGetTests {
-    static var allTests : [(String, (InvalidEmailGetTests) -> () throws -> Void)] {
+extension RetrieveInvalidEmailsTests {
+    static var allTests : [(String, (RetrieveInvalidEmailsTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
             ("testEmailSpecificInitializer", testEmailSpecificInitializer),
@@ -361,8 +361,8 @@ extension InvalidEmailGetTests {
 }
 
 
-extension SpamReportDeleteTests {
-    static var allTests : [(String, (SpamReportDeleteTests) -> () throws -> Void)] {
+extension DeleteSpamReportsTests {
+    static var allTests : [(String, (DeleteSpamReportsTests) -> () throws -> Void)] {
         return [
             ("testInitializer", testInitializer),
             ("testDeleteAll", testDeleteAll)
@@ -371,8 +371,8 @@ extension SpamReportDeleteTests {
 }
 
 
-extension SpamReportGetTests {
-    static var allTests : [(String, (SpamReportGetTests) -> () throws -> Void)] {
+extension RetrieveSpamReportsTests {
+    static var allTests : [(String, (RetrieveSpamReportsTests) -> () throws -> Void)] {
         return [
             ("testGetAllInitialization", testGetAllInitialization),
             ("testEmailSpecificInitializer", testEmailSpecificInitializer),
@@ -499,21 +499,21 @@ XCTMain([
     testCase(OpenTrackingTests.allTests),
     testCase(SubscriptionTrackingTests.allTests),
     testCase(TrackingSettingsTests.allTests),
-    testCase(StatisticCategoryTests.allTests),
-    testCase(StatisticGlobalTests.allTests),
-    testCase(StatisticSubuserTests.allTests),
-    testCase(SubuserGetTests.allTests),
-    testCase(BlockDeleteTests.allTests),
-    testCase(BlockGetTests.allTests),
-    testCase(BounceDeleteTests.allTests),
-    testCase(BounceGetTests.allTests),
-    testCase(GlobalUnsubcribeAddTests.allTests),
-    testCase(GlobalUnsubscribeDeleteTests.allTests),
-    testCase(GlobalUnsubscribeGetTests.allTests),
-    testCase(InvalidEmailDeleteTests.allTests),
-    testCase(InvalidEmailGetTests.allTests),
-    testCase(SpamReportDeleteTests.allTests),
-    testCase(SpamReportGetTests.allTests),
+    testCase(RetrieveCategoryStatisticsTests.allTests),
+    testCase(RetrieveGlobalStatisticsTests.allTests),
+    testCase(RetrieveSubuserStatisticsTests.allTests),
+    testCase(RetrieveSubusersTests.allTests),
+    testCase(DeleteBlocksTests.allTests),
+    testCase(RetrieveBlocksTests.allTests),
+    testCase(DeleteBouncesTests.allTests),
+    testCase(RetrieveBouncesTests.allTests),
+    testCase(AddGlobalUnsubscribesTests.allTests),
+    testCase(DeleteGlobalUnsubscribeTests.allTests),
+    testCase(RetrieveGlobalUnsubscribesTests.allTests),
+    testCase(DeleteInvalidEmailsTests.allTests),
+    testCase(RetrieveInvalidEmailsTests.allTests),
+    testCase(DeleteSpamReportsTests.allTests),
+    testCase(RetrieveSpamReportsTests.allTests),
     testCase(SuppressionListDeleterTests.allTests),
     testCase(SuppressionListReaderTests.allTests),
     testCase(SessionTests.allTests),
