@@ -32,7 +32,7 @@ extension Validate {
     
     /// Validates if a provided `String` is an email address.
     static func email(_ email: String) -> Bool {
-        return self.input(email, against: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}")
+        return self.input(email, against: "\\S+@\\S+(\\.\\S+)+")
     }
     
     /// Validates text to be used in the subscription tracking setting.
