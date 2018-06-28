@@ -101,7 +101,7 @@ open class Session {
     ///   - completionHandler:  A callback containing the response information.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func request<T : Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String : String], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
+    open func request<T : Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String : String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         
         var components = URLComponents(string: Constants.ApiHost)
