@@ -128,8 +128,12 @@ open class Session {
         
         var payload = URLRequest(url: url)
         payload.httpBody = body
+        payload.httpMethod = method.rawValue
         payload.addValue(auth.authorizationHeader, forHTTPHeaderField: "Authorization")
         payload.addValue(self.userAgent, forHTTPHeaderField: "User-Agent")
+        if let sub = self.onBehalfOf {
+            payload.addValue(sub, forHTTPHeaderField: "On-behalf-of")
+        }
         for (header, value) in headers {
             payload.addValue(value, forHTTPHeaderField: header)
         }
@@ -160,16 +164,13 @@ open class Session {
         
         try request.validate()
         
-        var headers = request.headers
-        if let sub = self.onBehalfOf {
-            if request.supportsImpersonation {
-                headers["On-behalf-of"] = sub
-            } else {
+        if self.onBehalfOf != nil {
+            guard request.supportsImpersonation else {
                 throw Exception.Session.impersonationNotAllowed
             }
         }
         
-        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: headers, encodingStrategy: request.encodingStrategy) { (data, response, error) in
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { (data, response, error) in
             guard let callback = completionHandler else { return }
             let resp = Response<ModelType>(data: data, response: response, error: error, decodingStrategy: request.decodingStrategy)
             callback(resp)
