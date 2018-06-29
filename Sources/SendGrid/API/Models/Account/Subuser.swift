@@ -8,7 +8,7 @@
 import Foundation
 
 /// The `Subuser` struct represents a subuser on a parent account.
-public struct Subuser: Decodable {
+public struct Subuser: Codable {
     
     // MARK: - Properties
     //=========================================================================

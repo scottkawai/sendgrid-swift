@@ -9,7 +9,7 @@ import Foundation
 
 /// The `InvalidEmail` struct represents an entry on the "Invalid Email"
 /// suppression list.
-public struct InvalidEmail: EmailEventRepresentable, Decodable {
+public struct InvalidEmail: EmailEventRepresentable, Codable {
     
     // MARK: - Properties
     //=========================================================================

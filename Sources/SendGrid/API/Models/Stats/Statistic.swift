@@ -11,7 +11,7 @@ import Foundation
 /// The `Statistic` struct represents the enclosing structure of statistics
 /// returning from the various stat API calls. It contains the
 /// date of the aggregated time period, along with the raw stats.
-public struct Statistic: Decodable {
+public struct Statistic: Codable {
     
     // MARK: - Properties
     //=========================================================================
