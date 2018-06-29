@@ -14,7 +14,7 @@ public extension Statistic {
     ///
     /// - category: Represents statistics grouped by category.
     /// - subuser:  Represents statistics grouped by subuser.
-    public enum Dimension: String, Decodable {
+    public enum Dimension: String, Codable {
         
         /// Represents statistics grouped by category.
         case category

@@ -11,7 +11,7 @@ import Foundation
 ///
 /// - inline: Shows the attachment inline with text.
 /// - attachment: Shows the attachment below the text.
-public enum ContentDisposition: String, Encodable {
+public enum ContentDisposition: String, Codable {
     
     // MARK: - Cases
     //=========================================================================
