@@ -87,7 +87,7 @@ public class RetrieveGlobalStatistics: Request<[Statistic], RetrieveStatisticsPa
 }
 
 /// The `RetrieveStatisticsParameters` class represents the
-public class RetrieveStatisticsParameters: Encodable {
+public class RetrieveStatisticsParameters: Codable {
     
     /// Indicates how the statistics should be grouped.
     public let aggregatedBy: Statistic.Aggregation?
@@ -117,16 +117,6 @@ public class RetrieveStatisticsParameters: Encodable {
         self.aggregatedBy = aggregatedBy
         self.categories = categories
         self.subusers = subusers
-    }
-    
-    /// :nodoc:
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: RetrieveStatisticsParameters.CodingKeys.self)
-        try container.encode(self.startDate, forKey: .startDate)
-        try container.encodeIfPresent(self.endDate, forKey: .endDate)
-        try container.encodeIfPresent(self.aggregatedBy, forKey: .aggregatedBy)
-        try container.encodeIfPresent(self.categories, forKey: .categories)
-        try container.encodeIfPresent(self.subusers, forKey: .subusers)
     }
     
     /// :nodoc:

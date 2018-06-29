@@ -68,7 +68,7 @@ public class SuppressionListDeleter<T : EmailEventRepresentable>: Request<EmptyC
 
 /// The `SuppressionListDeleterParameters` struct houses all the parameters that
 /// can be made for the suppression delete calls.
-public struct SuppressionListDeleterParameters: Encodable {
+public struct SuppressionListDeleterParameters: Codable {
     
     /// A `Bool` indicating if all the events on the suppression list should be
     /// deleted.
@@ -86,13 +86,6 @@ public struct SuppressionListDeleterParameters: Encodable {
     public init(deleteAll: Bool?, emails: [String]?) {
         self.deleteAll = deleteAll
         self.emails = emails
-    }
-    
-    /// :nodoc:
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: SuppressionListDeleterParameters.CodingKeys.self)
-        try container.encodeIfPresent(self.deleteAll, forKey: .deleteAll)
-        try container.encodeIfPresent(self.emails, forKey: .emails)
     }
     
     /// :nodoc:

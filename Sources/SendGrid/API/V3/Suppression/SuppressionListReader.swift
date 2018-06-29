@@ -85,7 +85,7 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
 
 /// The `SuppressionListReaderParameters` serves as the parameters used by the
 /// "get suppressions" API calls.
-public struct SuppressionListReaderParameters: Encodable {
+public struct SuppressionListReaderParameters: Codable {
     
     /// The date to start looking for events.
     public let startDate: Date?
@@ -109,6 +109,22 @@ public struct SuppressionListReaderParameters: Encodable {
         self.startDate = start
         self.endDate = end
         self.page = page
+    }
+    
+    /// :nodoc:
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: SuppressionListReaderParameters.CodingKeys.self)
+        self.startDate = try container.decodeIfPresent(Date.self, forKey: .startDate)
+        self.endDate = try container.decodeIfPresent(Date.self, forKey: .endDate)
+        
+        guard let limit = try container.decodeIfPresent(Int.self, forKey: .limit),
+            let offset = try container.decodeIfPresent(Int.self, forKey: .offset)
+            else
+        {
+            self.page = nil
+            return
+        }
+        self.page = Page(limit: limit, offset: offset)
     }
     
     /// :nodoc:

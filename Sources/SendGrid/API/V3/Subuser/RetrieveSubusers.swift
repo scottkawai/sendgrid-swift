@@ -72,11 +72,11 @@ public extension RetrieveSubusers /* Parameters Struct */ {
     
     /// The `RetrieveSubusers.Parameters` struct holds all the parameters that
     /// can be used in the `RetrieveSubusers` call.
-    public struct Parameters: Encodable {
+    public struct Parameters: Codable {
         
         // MARK: - Properties
         //=========================================================================
-
+        
         /// The page range to retrieve.
         public var page: Page?
         
@@ -86,7 +86,7 @@ public extension RetrieveSubusers /* Parameters Struct */ {
         
         // MARK: - Initialization
         //=========================================================================
-
+        
         /// Initializes the struct.
         ///
         /// - Parameters:
@@ -95,6 +95,17 @@ public extension RetrieveSubusers /* Parameters Struct */ {
         public init(page: Page? = nil, username: String? = nil) {
             self.page = page
             self.username = username
+        }
+        
+        /// :nodoc:
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: RetrieveSubusers.Parameters.CodingKeys.self)
+            if let limit = try container.decodeIfPresent(Int.self, forKey: .limit),
+                let offset = try container.decodeIfPresent(Int.self, forKey: .offset)
+            {
+                self.page = Page(limit: limit, offset: offset)
+            }
+            self.username = try container.decodeIfPresent(String.self, forKey: .username)
         }
         
         /// :nodoc:
