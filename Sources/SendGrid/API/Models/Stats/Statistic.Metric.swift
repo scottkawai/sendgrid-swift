@@ -67,6 +67,82 @@ public extension Statistic {
         /// The number of unsubscribe events for the given period.
         public let unsubscribes: Int
         
+        
+        // MARK: - Initialization
+        //=========================================================================
+        
+        /// Initializes the struct.
+        ///
+        /// - Parameters:
+        ///   - blocks:             The number of block events for the given
+        ///                         period.
+        ///   - bounceDrops:        The number of emails dropped due to the
+        ///                         address being on the bounce list for the
+        ///                         given period.
+        ///   - bounces:            The number of bounce events for the given
+        ///                         period.
+        ///   - clicks:             The number of click events for the given
+        ///                         period.
+        ///   - deferred:           The number of deferred events for the given
+        ///                         period.
+        ///   - delivered:          The number of delivered events for the given
+        ///                         period.
+        ///   - invalidEmails:      The number of invalid email events for the
+        ///                         given period.
+        ///   - opens:              The number of open events for the given
+        ///                         period.
+        ///   - processed:          The number of processed events for the given
+        ///                         period.
+        ///   - requests:           The number of requests for the given period.
+        ///   - spamReportDrops:    The number of emails dropped due to the
+        ///                         address being on the spam report list for
+        ///                         the given period.
+        ///   - spamReports:        The number of spam report events for the
+        ///                         given period.
+        ///   - uniqueClicks:       The number of unique click events for the
+        ///                         given period.
+        ///   - uniqueOpens:        The number of unique open events for the
+        ///                         given period.
+        ///   - unsubscribeDrops:   The number of emails dropped due to the
+        ///                         address being on the unsubscribe list for
+        ///                         the given period.
+        ///   - unsubscribes:       The number of unsubscribe events for the
+        ///                         given period.
+        public init(blocks: Int,
+                    bounceDrops: Int,
+                    bounces: Int,
+                    clicks: Int,
+                    deferred: Int,
+                    delivered: Int,
+                    invalidEmails: Int,
+                    opens: Int,
+                    processed: Int,
+                    requests: Int,
+                    spamReportDrops: Int,
+                    spamReports: Int,
+                    uniqueClicks: Int,
+                    uniqueOpens: Int,
+                    unsubscribeDrops: Int,
+                    unsubscribes: Int)
+        {
+            self.blocks = blocks
+            self.bounceDrops = bounceDrops
+            self.bounces = bounces
+            self.clicks = clicks
+            self.deferred = deferred
+            self.delivered = delivered
+            self.invalidEmails = invalidEmails
+            self.opens = opens
+            self.processed = processed
+            self.requests = requests
+            self.spamReportDrops = spamReportDrops
+            self.spamReports = spamReports
+            self.uniqueClicks = uniqueClicks
+            self.uniqueOpens = uniqueOpens
+            self.unsubscribeDrops = unsubscribeDrops
+            self.unsubscribes = unsubscribes
+        }
+        
     }
     
 }

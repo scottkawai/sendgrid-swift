@@ -22,4 +22,18 @@ public struct Statistic: Codable {
     /// The individual stat samples that make up this collection.
     public let stats: [Statistic.Sample]
     
+    
+    // MARK: - Initialization
+    //=========================================================================
+    
+    /// Initializes the struct.
+    ///
+    /// - Parameters:
+    ///   - date:   The date for this statistic set.
+    ///   - stats:  The individual stat samples that make up this collection.
+    public init(date: Date, stats: [Statistic.Sample]) {
+        self.date = date
+        self.stats = stats
+    }
+    
 }
