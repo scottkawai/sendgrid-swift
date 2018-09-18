@@ -6,7 +6,7 @@ Version 2 will also incorporate Swift 4.2 changes/support.
 
 # SendGrid-Swift
 
-![swift4.1](https://img.shields.io/badge/swift-v4.1-green.svg) ![macOS](https://img.shields.io/badge/os-macOS-blue.svg) ![iOS](https://img.shields.io/badge/os-iOS-blue.svg) ![Linux\*](https://img.shields.io/badge/os-Linux\*-blue.svg)
+![swift4.2](https://img.shields.io/badge/swift-v4.2-green.svg) ![macOS](https://img.shields.io/badge/os-macOS-blue.svg) ![iOS](https://img.shields.io/badge/os-iOS-blue.svg) ![Linux\*](https://img.shields.io/badge/os-Linux\*-blue.svg)
 
 This library allows you to quickly and easily send emails through SendGrid using Swift.
 
