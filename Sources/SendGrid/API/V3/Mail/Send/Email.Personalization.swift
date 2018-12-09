@@ -37,6 +37,9 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     /// keys in the dictionary should represent the substitution tags that
     /// should be replaced, and the values should be the replacement values.
     open var substitutions: [String:String]?
+
+    /// An optional set of key/value pairs for dynamic data in transactional email templates
+    open var dynamicTemplateData: [String:String]?
     
     /// A set of custom arguments to add to the email. The keys of the
     /// dictionary should be the names of the custom arguments, while the values
@@ -70,7 +73,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     ///                         dictionary should represent the argument names
     ///                         and values, respectively.
     ///   - sendAt:             A time to send the email at.
-    public init(to: [Address], cc: [Address]? = nil, bcc: [Address]? = nil, subject: String? = nil, headers: [String:String]? = nil, substitutions: [String:String]? = nil, customArguments: [String:String]? = nil, sendAt: Date? = nil) {
+    public init(to: [Address], cc: [Address]? = nil, bcc: [Address]? = nil, subject: String? = nil, headers: [String:String]? = nil, substitutions: [String:String]? = nil, customArguments: [String:String]? = nil, sendAt: Date? = nil, dynamicTemplateData: [String:String]? = nil) {
         self.to = to
         self.cc = cc
         self.bcc = bcc
@@ -79,6 +82,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
         self.substitutions = substitutions
         self.customArguments = customArguments
         self.sendAt = sendAt
+        self.dynamicTemplateData = dynamicTemplateData
     }
     
     
@@ -106,6 +110,7 @@ public extension Personalization {
         case substitutions
         case customArguments = "custom_args"
         case sendAt = "send_at"
+        case dynamicTemplateData = "dynamic_template_data"
     }
     
 }
