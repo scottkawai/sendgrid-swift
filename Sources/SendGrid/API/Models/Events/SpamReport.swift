@@ -7,12 +7,9 @@
 
 import Foundation
 
-
 /// The `SpamReport` struct represents a spam report event.
 public struct SpamReport: EmailEventRepresentable, Codable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -23,9 +20,7 @@ public struct SpamReport: EmailEventRepresentable, Codable {
     /// The IP address of the user when they marked the email as spam.
     public let ip: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///

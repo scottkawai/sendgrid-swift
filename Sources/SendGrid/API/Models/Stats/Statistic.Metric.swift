@@ -8,13 +8,10 @@
 import Foundation
 
 public extension Statistic {
-    
     /// The `Statistic.Metric` struct represents the raw statistics for a given
     /// time period.
-    public struct Metric: Codable {
-        
+    struct Metric: Codable {
         // MARK: - Properties
-        //======================================================================
         
         /// The number of block events for the given period.
         public let blocks: Int
@@ -67,9 +64,7 @@ public extension Statistic {
         /// The number of unsubscribe events for the given period.
         public let unsubscribes: Int
         
-        
         // MARK: - Initialization
-        //=========================================================================
         
         /// Initializes the struct.
         ///
@@ -123,8 +118,7 @@ public extension Statistic {
                     uniqueClicks: Int,
                     uniqueOpens: Int,
                     unsubscribeDrops: Int,
-                    unsubscribes: Int)
-        {
+                    unsubscribes: Int) {
             self.blocks = blocks
             self.bounceDrops = bounceDrops
             self.bounces = bounces
@@ -142,32 +136,28 @@ public extension Statistic {
             self.unsubscribeDrops = unsubscribeDrops
             self.unsubscribes = unsubscribes
         }
-        
     }
-    
 }
 
 /// Decodable conformance.
 public extension Statistic.Metric {
-    
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case blocks
-        case bounceDrops        = "bounce_drops"
+        case bounceDrops = "bounce_drops"
         case bounces
         case clicks
         case deferred
         case delivered
-        case invalidEmails      = "invalid_emails"
+        case invalidEmails = "invalid_emails"
         case opens
         case processed
         case requests
-        case spamReportDrops    = "spam_report_drops"
-        case spamReports        = "spam_reports"
-        case uniqueClicks       = "unique_clicks"
-        case uniqueOpens        = "unique_opens"
-        case unsubscribeDrops   = "unsubscribe_drops"
+        case spamReportDrops = "spam_report_drops"
+        case spamReports = "spam_reports"
+        case uniqueClicks = "unique_clicks"
+        case uniqueOpens = "unique_opens"
+        case unsubscribeDrops = "unsubscribe_drops"
         case unsubscribes
     }
-    
 }

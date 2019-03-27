@@ -32,24 +32,18 @@ import Foundation
 /// */
 /// ```
 open class FormURLEncoder {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The strategy used when encoding dates.
     open var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .deferredToDate
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Creates a new, reusable Form URL encoder with the default date encoding
     /// strategy.
     public init() {}
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Returns the common "no value" error that can be thrown when encoding.
     ///
@@ -108,12 +102,9 @@ open class FormURLEncoder {
     }
 }
 
-
 /// The `_FormURLEncoder` class is the actual encoder used by `FormURLEncoder`.
 fileprivate class _FormURLEncoder: Encoder {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// :nodoc:
     fileprivate var codingPath: [CodingKey]
@@ -132,9 +123,7 @@ fileprivate class _FormURLEncoder: Encoder {
         return self.storage._count == self.codingPath.count
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the encoder with a path and date encoding strategy.
     ///
@@ -148,9 +137,7 @@ fileprivate class _FormURLEncoder: Encoder {
         self.dateEncodingStrategy = dateEncodingStrategy
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// This method takes an `Encodable` instance and converts it into an array
     /// of `URLQueryItem` instances.
@@ -216,9 +203,7 @@ fileprivate class _FormURLEncoder: Encoder {
         return list
     }
     
-    
     // MARK: - Encoder Conformance Methods
-    //=========================================================================
     
     /// :nodoc:
     fileprivate func container<Key>(keyedBy _: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
@@ -259,11 +244,9 @@ fileprivate class _FormURLEncoder: Encoder {
     }
 }
 
-
 /// This extension on `_FormURLEncoder` adds `SingleValueEncodingContainer`
 /// conformance.
 extension _FormURLEncoder: SingleValueEncodingContainer {
-    
     /// Pushes a new wrapper into storage.
     ///
     /// - Parameter wrapper: The new wrapper to add.
@@ -331,13 +314,11 @@ extension _FormURLEncoder: SingleValueEncodingContainer {
     }
 }
 
-
 /// This extension on `_FormURLEncoder` adds methods for "boxing" a value, or in
 /// otherwords, wrapping a value into the shared `_FormURLEncoderValueWrapper`
 /// type. By boxing these values, we can later reliable convert them all to
 /// `URLQueryItem` instances.
 fileprivate extension _FormURLEncoder /* Boxing */ {
-    
     /// Wraps an `Encodable` instance in a `_FormURLEncoderValueWrapper`. This
     /// method looks for specific types and handles them as necessary, such as
     /// `Date` and `Data` instances. In the case of a `Date`, the
@@ -350,7 +331,7 @@ fileprivate extension _FormURLEncoder /* Boxing */ {
     ///                     instance, or `nil` if there was a problem boxing the
     ///                     value.
     /// - Throws:           Encoding errors can be thrown.
-    fileprivate func box<T: Encodable>(_ value: T) throws -> _FormURLEncoderValueWrapper? {
+    func box<T: Encodable>(_ value: T) throws -> _FormURLEncoderValueWrapper? {
         if let date = value as? Date {
             switch self.dateEncodingStrategy {
             case .deferredToDate:
@@ -391,6 +372,9 @@ fileprivate extension _FormURLEncoder /* Boxing */ {
                 }
                 
                 return self.storage._popWrapper()
+                
+            default:
+                fatalError("Encountered an unknown JSON date encoding strategy.")
             }
         } else if let url = value as? URL {
             return _FormURLEncoderValueWrapper(url.absoluteString)
@@ -410,16 +394,12 @@ fileprivate extension _FormURLEncoder /* Boxing */ {
             return self.storage._popWrapper()
         }
     }
-    
 }
-
 
 /// The `_FormURLUnkeyedEncodingContainer` struct functions as an unkeyed
 /// encoding container.
 fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// :nodoc:
     public private(set) var codingPath: [CodingKey]
@@ -435,9 +415,7 @@ fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     /// The wrapper representation that all new values get stored into.
     fileprivate let container: _FormURLEncoderValueWrapper
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the unkeyed container with an encoder, path, and wrapper.
     ///
@@ -451,9 +429,7 @@ fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         self.container = container
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Adds a new wrapper into the `container`.
     ///
@@ -469,9 +445,7 @@ fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         self._add(container: _FormURLEncoderValueWrapper(value))
     }
     
-    
     // MARK: - UnkeyedEncodingContainer Conformance
-    //=========================================================================
     
     /// :nodoc:
     public mutating func encodeNil() throws { self._encode(nil) }
@@ -539,7 +513,7 @@ fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     
     /// :nodoc:
     public mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
-        self.codingPath.append(_FormURLKey(index: count))
+        self.codingPath.append(_FormURLKey(index: self.count))
         defer { self.codingPath.removeLast() }
         let array: _FormURLEncoderValueWrapper = []
         self.container.rawArray?.append(array)
@@ -548,17 +522,14 @@ fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     
     /// :nodoc:
     public mutating func superEncoder() -> Encoder {
-        return _FormURLReferencingEncoder(referencing: self.encoder, key: _FormURLKey(index: count), wrapping: self.container)
+        return _FormURLReferencingEncoder(referencing: self.encoder, key: _FormURLKey(index: self.count), wrapping: self.container)
     }
 }
-
 
 /// The `_FormURLKeyedEncodingContainer` struct functions as a keyed encoding
 /// container.
 fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncodingContainerProtocol {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// :nodoc:
     public private(set) var codingPath: [CodingKey]
@@ -569,9 +540,7 @@ fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncoding
     /// The wrapper representation that all new values get stored into.
     fileprivate let container: _FormURLEncoderValueWrapper
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the unkeyed container with an encoder, path, and wrapper.
     ///
@@ -585,9 +554,7 @@ fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncoding
         self.container = container
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Adds a new value with a given key into the `container`.
     ///
@@ -608,9 +575,7 @@ fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncoding
         self.set(container: container, forKey: key)
     }
     
-    
     // MARK: - KeyedEncodingContainerProtocol Conformance
-    //=========================================================================
     
     /// :nodoc:
     public mutating func encodeNil(forKey key: Key) throws {
@@ -727,7 +692,6 @@ fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncoding
     }
 }
 
-
 /// `_FormURLReferencingEncoder` is a special subclass of `_FormURLEncoder`
 /// which has its own storage, but references the contents of a different
 /// encoder.
@@ -737,9 +701,7 @@ fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncoding
 /// created in, but it doesn't necessarily know when it's done being used (to
 /// write to the original container).
 fileprivate class _FormURLReferencingEncoder: _FormURLEncoder {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The main encoder this encoder is referencing.
     fileprivate let encoder: _FormURLEncoder
@@ -755,9 +717,7 @@ fileprivate class _FormURLReferencingEncoder: _FormURLEncoder {
         return self.storage._count == self.codingPath.count - self.encoder.codingPath.count - 1
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes `self` by referencing the given container in the given
     /// encoder.
@@ -771,7 +731,7 @@ fileprivate class _FormURLReferencingEncoder: _FormURLEncoder {
         self.reference = container
         self.codingKey = key
         super.init(codingPath: encoder.codingPath, dateEncodingStrategy: encoder.dateEncodingStrategy)
-        self.codingPath.append(codingKey)
+        self.codingPath.append(self.codingKey)
     }
     
     /// Finalizes `self` by writing the contents of the storage to the
@@ -794,12 +754,9 @@ fileprivate class _FormURLReferencingEncoder: _FormURLEncoder {
     }
 }
 
-
 /// This struct serves as the main CodingKey used when encoding and decoding.
 fileprivate struct _FormURLKey: CodingKey {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// :nodoc:
     fileprivate var stringValue: String
@@ -810,9 +767,7 @@ fileprivate struct _FormURLKey: CodingKey {
     /// A CodingKey with a "super" `stringValue`.
     fileprivate static let `super` = _FormURLKey(stringValue: "super")!
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// :nodoc:
     fileprivate init?(stringValue: String) {
@@ -834,21 +789,17 @@ fileprivate struct _FormURLKey: CodingKey {
         self.stringValue = "Index \(index)"
         self.intValue = index
     }
-    
 }
-
 
 /// The `_FormURLEncoderValueWrapper` class serves as a wrapper for a value that
 /// needs to be encoded. By storing the values in this class, there is a shared
 /// type that can be passed around for encoding purposes. Compare this to
 /// `JSONEncoder` where `NSObject` was used as a shared type.
 fileprivate class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionaryLiteral, ExpressibleByArrayLiteral {
-    
     /// :nodoc:
     fileprivate typealias RawValue = Encodable
     
     // MARK: - Properties
-    //=========================================================================
     
     /// The raw value that is being encoded.
     fileprivate var rawValue: RawValue?
@@ -876,9 +827,7 @@ fileprivate class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionar
         }
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the wrapper with a value. The value can also be `nil` if
     /// you're trying to encode a `nil` value.
@@ -907,9 +856,7 @@ fileprivate class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionar
         self.init(elements)
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// :nodoc:
     fileprivate func encode(to encoder: Encoder) throws {
@@ -917,13 +864,10 @@ fileprivate class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionar
     }
 }
 
-
 /// The `_FormURLEncoderStorage` struct serves as a storage mechanism for the
 /// encoder, keeping track of new values that are being encoded.
 fileprivate struct _FormURLEncoderStorage {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The current stack of value wrappers in the storage.
     fileprivate var _wrappers: [_FormURLEncoderValueWrapper] = []
@@ -933,16 +877,12 @@ fileprivate struct _FormURLEncoderStorage {
         return self._wrappers.count
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the storage.
     fileprivate init() {}
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Adds a new, empty dictionary wrapper to the stack and returns it.
     ///
@@ -977,5 +917,4 @@ fileprivate struct _FormURLEncoderStorage {
         precondition(!self._wrappers.isEmpty, "Empty container stack.")
         return self._wrappers.popLast()!
     }
-    
 }

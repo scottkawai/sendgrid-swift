@@ -10,10 +10,8 @@ import Foundation
 /// The `SuppressionListReader` class is base class inherited by requests that
 /// retrieve entries from a supression list. You should not use this class
 /// directly.
-open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Request<[T], SuppressionListReaderParameters> {
-    
+open class SuppressionListReader<T: EmailEventRepresentable & Decodable>: Request<[T], SuppressionListReaderParameters> {
     // MARK: - Initialization
-    //======================================================================
     
     /// Private initializer that sets all the values.
     ///
@@ -33,7 +31,7 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
             guard let em = email else { return p }
             return "\(p)/\(em)"
         }
-        let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { (date, encoder) in
+        let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { date, encoder in
             var container = encoder.singleValueContainer()
             try container.encode(Int(date.timeIntervalSince1970))
         }
@@ -53,7 +51,6 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
         self.init(email: email, start: nil, end: nil, page: nil)
     }
     
-    
     /// Initializes the request to retrieve a list of bounces.
     ///
     /// - Parameters:
@@ -70,7 +67,6 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
     }
     
     // MARK: - Methods
-    //=========================================================================
     
     /// Validates that the `limit` value isn't over 500.
     open override func validate() throws {
@@ -80,13 +76,11 @@ open class SuppressionListReader<T : EmailEventRepresentable & Decodable>: Reque
             guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
         }
     }
-    
 }
 
 /// The `SuppressionListReaderParameters` serves as the parameters used by the
 /// "get suppressions" API calls.
 public struct SuppressionListReaderParameters: Codable {
-    
     /// The date to start looking for events.
     public let startDate: Date?
     
@@ -119,8 +113,7 @@ public struct SuppressionListReaderParameters: Codable {
         
         guard let limit = try container.decodeIfPresent(Int.self, forKey: .limit),
             let offset = try container.decodeIfPresent(Int.self, forKey: .offset)
-            else
-        {
+        else {
             self.page = nil
             return
         }
@@ -138,12 +131,9 @@ public struct SuppressionListReaderParameters: Codable {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
-        
         case startDate = "start_time"
         case endDate = "end_time"
         case limit
         case offset
-        
     }
-    
 }

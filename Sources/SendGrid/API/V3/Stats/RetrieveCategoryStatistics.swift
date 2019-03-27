@@ -32,9 +32,7 @@ import Foundation
 /// }
 /// ```
 public class RetrieveCategoryStatistics: RetrieveGlobalStatistics {
-    
     // MARK: - Initialization
-    //======================================================================
     
     /// Initializes the request with a start date and categories, as well as
     /// an end date and/or aggregation method.
@@ -66,9 +64,7 @@ public class RetrieveCategoryStatistics: RetrieveGlobalStatistics {
         self.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy, categories: categories)
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Validates that there are no more than 10 categories specified.
     public override func validate() throws {
@@ -78,5 +74,4 @@ public class RetrieveCategoryStatistics: RetrieveGlobalStatistics {
             throw Exception.Statistic.invalidNumberOfCategories
         }
     }
-    
 }

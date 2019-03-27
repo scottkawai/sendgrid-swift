@@ -10,9 +10,7 @@ import Foundation
 /// This struct houses both the date and data decoding strategies for a
 /// response.
 public struct DecodingStrategy {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The encoding strategy for dates.
     public let dates: JSONDecoder.DateDecodingStrategy
@@ -21,7 +19,6 @@ public struct DecodingStrategy {
     public let data: JSONDecoder.DataDecodingStrategy
     
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct with a date and data strategy.
     ///
@@ -32,5 +29,4 @@ public struct DecodingStrategy {
         self.dates = dates
         self.data = data
     }
-    
 }

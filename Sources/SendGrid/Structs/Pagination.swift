@@ -11,9 +11,7 @@ import Foundation
 /// returned via an API call, often containing a `first`, `previous`, `next`,
 /// and `last` page. This struct represents all those pages as `Page` instances.
 public struct Pagination {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The first page of results.
     public let first: Page?
@@ -28,7 +26,6 @@ public struct Pagination {
     public let last: Page?
     
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct with a first, previous, next, and last page.
     ///
@@ -44,7 +41,6 @@ public struct Pagination {
         self.last = last
     }
     
-    
     /// Returns a new struct instance from a URLResponse, extracting the
     /// information out of the "Link" header (if present).
     ///
@@ -58,13 +54,13 @@ public struct Pagination {
             let link = http.allHeaderFields["Link"] as? String,
             let relRegex = try? NSRegularExpression(pattern: "(?<=rel=\")\\S+(?=\")"),
             let urlRegex = try? NSRegularExpression(pattern: "(?<=<)\\S+(?=>)")
-            else { return nil }
+        else { return nil }
         func first(match pattern: String, in str: String) -> String? {
             let range = str.startIndex..<str.endIndex
             guard let regex = try? NSRegularExpression(pattern: pattern),
                 let result = regex.firstMatch(in: str, range: NSRange(range, in: str)),
                 let matchRange = Range(result.range, in: str)
-                else { return nil }
+            else { return nil }
             return String(str[matchRange])
         }
         let rawPages = link.split(separator: ",").compactMap { (item) -> (String, Page)? in
@@ -74,7 +70,7 @@ public struct Pagination {
                 let limit = Int(limitStr),
                 let offsetStr = first(match: "(?<=offset=)\\d+", in: partial),
                 let offset = Int(offsetStr)
-                else { return nil }
+            else { return nil }
             let info = Page(limit: limit, offset: offset)
             return (name, info)
         }
@@ -89,5 +85,4 @@ public struct Pagination {
             last: page("last")
         )
     }
-    
 }

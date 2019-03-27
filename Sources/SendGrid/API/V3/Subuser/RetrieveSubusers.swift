@@ -30,9 +30,7 @@ import Foundation
 /// }
 /// ```
 public class RetrieveSubusers: Request<[Subuser], RetrieveSubusers.Parameters> {
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the request with pagination info and a username search.
     /// If you don't specify a `username` value, then all subusers will be
@@ -53,9 +51,7 @@ public class RetrieveSubusers: Request<[Subuser], RetrieveSubusers.Parameters> {
         )
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Validates that the `limit` value isn't over 500.
     public override func validate() throws {
@@ -65,17 +61,13 @@ public class RetrieveSubusers: Request<[Subuser], RetrieveSubusers.Parameters> {
             guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
         }
     }
-    
 }
 
 public extension RetrieveSubusers /* Parameters Struct */ {
-    
     /// The `RetrieveSubusers.Parameters` struct holds all the parameters that
     /// can be used in the `RetrieveSubusers` call.
-    public struct Parameters: Codable {
-        
+    struct Parameters: Codable {
         // MARK: - Properties
-        //=========================================================================
         
         /// The page range to retrieve.
         public var page: Page?
@@ -83,9 +75,7 @@ public extension RetrieveSubusers /* Parameters Struct */ {
         /// A specific username to search for.
         public var username: String?
         
-        
         // MARK: - Initialization
-        //=========================================================================
         
         /// Initializes the struct.
         ///
@@ -101,8 +91,7 @@ public extension RetrieveSubusers /* Parameters Struct */ {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: RetrieveSubusers.Parameters.CodingKeys.self)
             if let limit = try container.decodeIfPresent(Int.self, forKey: .limit),
-                let offset = try container.decodeIfPresent(Int.self, forKey: .offset)
-            {
+                let offset = try container.decodeIfPresent(Int.self, forKey: .offset) {
                 self.page = Page(limit: limit, offset: offset)
             }
             self.username = try container.decodeIfPresent(String.self, forKey: .username)
@@ -122,7 +111,5 @@ public extension RetrieveSubusers /* Parameters Struct */ {
             case offset
             case username
         }
-        
     }
-    
 }

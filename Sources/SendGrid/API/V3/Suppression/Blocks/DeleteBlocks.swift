@@ -46,9 +46,7 @@ import Foundation
 /// }
 /// ```
 public class DeleteBlocks: SuppressionListDeleter<Block> {
-    
     // MARK: - Properties
-    //======================================================================
     
     /// Returns a request that will delete *all* the entries on your block
     /// list.
@@ -56,9 +54,7 @@ public class DeleteBlocks: SuppressionListDeleter<Block> {
         return DeleteBlocks(deleteAll: true, emails: nil)
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Private initializer to set all the required properties.
     ///
@@ -67,8 +63,7 @@ public class DeleteBlocks: SuppressionListDeleter<Block> {
     ///   - deleteAll:  A `Bool` indicating if all the events on the suppression
     ///                 list should be deleted.
     ///   - emails:     An array of emails to delete from the suppression list.
-    override internal init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
+    internal override init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
         super.init(path: "/v3/suppression/blocks", deleteAll: deleteAll, emails: emails)
     }
-    
 }

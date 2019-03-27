@@ -10,9 +10,8 @@ import Foundation
 /// The `RateLimit` struct abstracts any rate-limit information returned from an
 /// `Response`.
 public struct RateLimit {
-    
     // MARK: - Properties
-    //=========================================================================
+    
     /// The number of calls allowed for this resource during the refresh period.
     public let limit: Int
     
@@ -23,8 +22,7 @@ public struct RateLimit {
     public let resetDate: Date
     
     // MARK: - Initialization
-    //=========================================================================
-
+    
     /// Initializes the struct.
     ///
     /// - Parameters:
@@ -39,7 +37,6 @@ public struct RateLimit {
     }
     
     // MARK: - Methods
-    //=========================================================================
     
     /// Abstracts out the rate-limiting headers from an `URLResponse` and
     /// stores their value in a new instance of `RateLimit`.
@@ -56,7 +53,7 @@ public struct RateLimit {
             let re = Int(remainStr),
             let dateStr = http.allHeaderFields["X-RateLimit-Reset"] as? String,
             let date = Double(dateStr)
-            else { return nil }
+        else { return nil }
         return RateLimit(limit: li, remaining: re, resetDate: Date(timeIntervalSince1970: date))
     }
 }

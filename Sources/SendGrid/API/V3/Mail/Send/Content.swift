@@ -10,9 +10,7 @@ import Foundation
 /// The `Content` class represents a MIME part of the email message (i.e. the
 /// plain text and HTML parts of an email).
 public struct Content: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The content type of the content.
     public let type: ContentType
@@ -20,9 +18,7 @@ public struct Content: Encodable {
     /// The value of the content.
     public let value: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the content with a content type and value.
     ///
@@ -33,11 +29,9 @@ public struct Content: Encodable {
         self.type = contentType
         self.value = aValue
     }
-    
 }
 
 extension Content: Validatable {
-    
     /// Validates the content.
     public func validate() throws {
         guard self.value.count > 0 else {
@@ -45,11 +39,9 @@ extension Content: Validatable {
         }
         try self.type.validate()
     }
-    
 }
 
 extension Content /* Convenience class initializers */ {
-    
     /// Creates a new `Content` instance used to represent a plain text body.
     ///
     /// - Parameter value:  The plain text value of the body.
@@ -80,5 +72,4 @@ extension Content /* Convenience class initializers */ {
             Content.html(body: html)
         ]
     }
-    
 }

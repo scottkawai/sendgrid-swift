@@ -10,9 +10,7 @@ import Foundation
 /// The `SubscriptionTracking` class is used to modify the subscription tracking
 /// setting on an email.
 public struct SubscriptionTracking: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// Text to be appended to the email, with the subscription tracking link.
     /// You may control where the link is by using the tag `<% %>`. For example:
@@ -35,9 +33,7 @@ public struct SubscriptionTracking: Encodable {
     /// A `Bool` indicating if the setting is enabled or not.
     public let enable: Bool
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Private initializer that sets all of the setting's properties.
     ///
@@ -122,32 +118,27 @@ public struct SubscriptionTracking: Encodable {
     public init(substitutionTag: String) {
         self.init(plainText: nil, html: nil, substitutionTag: substitutionTag)
     }
-    
 }
 
 public extension SubscriptionTracking /* Encodable configuration */ {
-    
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case text
         case html
-        case substitutionTag    = "substitution_tag"
+        case substitutionTag = "substitution_tag"
     }
-    
 }
 
 extension SubscriptionTracking: Validatable {
-    
     /// Validates that the plain text and HTML text contain the proper tag.
     public func validate() throws {
         let bodies: [String?] = [self.text, self.html]
-        try bodies.forEach { (body) in
+        try bodies.forEach { body in
             guard let b = body else { return }
             guard Validate.subscriptionTracking(body: b) else {
                 throw Exception.Mail.missingSubscriptionTrackingTag
             }
         }
     }
-    
 }

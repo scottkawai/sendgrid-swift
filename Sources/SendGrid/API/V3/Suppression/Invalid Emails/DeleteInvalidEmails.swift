@@ -47,9 +47,7 @@ import Foundation
 /// }
 /// ```
 public class DeleteInvalidEmails: SuppressionListDeleter<InvalidEmail> {
-    
     // MARK: - Properties
-    //======================================================================
     
     /// Returns a request that will delete *all* the entries on your spam
     /// report list.
@@ -57,9 +55,7 @@ public class DeleteInvalidEmails: SuppressionListDeleter<InvalidEmail> {
         return DeleteInvalidEmails(deleteAll: true, emails: nil)
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Private initializer to set all the required properties.
     ///
@@ -68,8 +64,7 @@ public class DeleteInvalidEmails: SuppressionListDeleter<InvalidEmail> {
     ///   - deleteAll:  A `Bool` indicating if all the events on the suppression
     ///                 list should be deleted.
     ///   - emails:     An array of emails to delete from the suppression list.
-    override internal init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
+    internal override init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
         super.init(path: "/v3/suppression/invalid_emails", deleteAll: deleteAll, emails: emails)
     }
-    
 }

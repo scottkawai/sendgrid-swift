@@ -17,9 +17,7 @@ import Foundation
 /// singleton instance.  This will allow you to configure the singleton once,
 /// and continually reuse it later without the need to re-configure it.
 open class Session {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// This property holds the authentication information (credentials, or API
     /// Key) for the API requests via the `Authentication` enum.
@@ -42,26 +40,22 @@ open class Session {
     let urlSession = URLSession.shared
     #endif
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// A shared singleton instance of SGSession.  Using the shared instance
     /// allows you to configure it once with the desired authentication method,
     /// and then continually reuse it without the need for re-configuration.
     public static let shared: Session = Session()
     
-    
     /// Default initializer.
     public init() {}
-    
     
     /// Initiates an instance of SGSession with the given authentication method.
     ///
     /// - Parameters:
     ///   - auth:       The Authentication to use for the API call.
     ///   - subuser:    A username of a subuser to impersonate.
-    public init(auth: Authentication, onBehalfOf subuser: String? = nil) {        
+    public init(auth: Authentication, onBehalfOf subuser: String? = nil) {
         self.authentication = auth
         self.onBehalfOf = subuser
     }
@@ -77,9 +71,7 @@ open class Session {
     // }
     #endif
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// This method is the most generic method to make an API call with. It
     /// allows you to specify the individual properties of an API call and
@@ -101,7 +93,7 @@ open class Session {
     ///   - completionHandler:  A callback containing the response information.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func request<T : Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String : String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
+    open func request<T: Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String: String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         
         var components = URLComponents(string: Constants.ApiHost)
@@ -157,7 +149,7 @@ open class Session {
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func send<ModelType : Decodable, Parameters : Encodable>(request: Request<ModelType, Parameters>, completionHandler: ((Response<ModelType>?) -> Void)? = nil) throws {
+    open func send<ModelType: Decodable, Parameters: Encodable>(request: Request<ModelType, Parameters>, completionHandler: ((Response<ModelType>?) -> Void)? = nil) throws {
         // Check that we have authentication set.
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
@@ -170,7 +162,7 @@ open class Session {
             }
         }
         
-        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { (data, response, error) in
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { data, response, error in
             guard let callback = completionHandler else { return }
             let resp = Response<ModelType>(data: data, response: response, error: error, decodingStrategy: request.decodingStrategy)
             callback(resp)

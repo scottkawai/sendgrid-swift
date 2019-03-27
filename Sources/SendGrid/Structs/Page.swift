@@ -10,9 +10,7 @@ import Foundation
 /// This struct is used to represent a page via the `limit` and `offset`
 /// parameters found in various API calls.
 public struct Page: Equatable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The limit value for each page of results.
     public let limit: Int
@@ -20,9 +18,7 @@ public struct Page: Equatable {
     /// The offset value for the page.
     public let offset: Int
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct with a limit and offset.
     ///
@@ -33,7 +29,6 @@ public struct Page: Equatable {
         self.limit = limit
         self.offset = offset
     }
-    
 }
 
 /// :nodoc:

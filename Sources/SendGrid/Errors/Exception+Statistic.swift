@@ -8,11 +8,9 @@
 import Foundation
 
 public extension Exception {
-    
     /// The `Exception.Statistic` enum represents all the errors that can be thrown
     /// on the statistics calls.
-    public enum Statistic: Error, CustomStringConvertible {
-        
+    enum Statistic: Error, CustomStringConvertible {
         /// Thrown if the end date is before the start date.
         case invalidEndDate
         
@@ -35,7 +33,5 @@ public extension Exception {
                 return "Invalid number of subusers specified. You must specify at least 1 subuser, and no more than 10."
             }
         }
-        
     }
-    
 }

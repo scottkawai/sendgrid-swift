@@ -81,9 +81,8 @@ import Foundation
 /// }
 /// ```
 public class RetrieveSpamReports: SuppressionListReader<SpamReport> {
-    
     /// :nodoc:
-    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/spam_reports",
             email: email,
@@ -92,5 +91,4 @@ public class RetrieveSpamReports: SuppressionListReader<SpamReport> {
             page: page
         )
     }
-    
 }

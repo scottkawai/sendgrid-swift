@@ -7,14 +7,11 @@
 
 import Foundation
 
-
 /// The `Statistic` struct represents the enclosing structure of statistics
 /// returning from the various stat API calls. It contains the
 /// date of the aggregated time period, along with the raw stats.
 public struct Statistic: Codable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The date for this statistic set.
     public let date: Date
@@ -22,9 +19,7 @@ public struct Statistic: Codable {
     /// The individual stat samples that make up this collection.
     public let stats: [Statistic.Sample]
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct.
     ///
@@ -35,5 +30,4 @@ public struct Statistic: Codable {
         self.date = date
         self.stats = stats
     }
-    
 }

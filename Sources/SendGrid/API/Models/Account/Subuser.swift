@@ -9,9 +9,7 @@ import Foundation
 
 /// The `Subuser` struct represents a subuser on a parent account.
 public struct Subuser: Codable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The unique ID of the subuser account.
     public let id: Int
@@ -25,9 +23,7 @@ public struct Subuser: Codable {
     /// A boolean indicating if the subuser is disabled or not.
     public let disabled: Bool
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct with an ID, username, email, and "disabled" flag.
     ///
@@ -42,5 +38,4 @@ public struct Subuser: Codable {
         self.email = email
         self.disabled = disabled
     }
-    
 }

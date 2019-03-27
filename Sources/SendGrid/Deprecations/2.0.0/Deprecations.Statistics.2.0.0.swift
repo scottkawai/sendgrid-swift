@@ -8,17 +8,15 @@
 import Foundation
 
 public extension Statistic {
-    
     /// :nodoc:
     @available(*, deprecated, renamed: "RetrieveGlobalStatistics")
-    public class Global {}
-    
+    class Global {}
+
     /// :nodoc:
     @available(*, deprecated, renamed: "RetrieveCategoryStatistics")
-    public class Category {}
-    
+    class Category {}
+
     /// :nodoc:
     @available(*, deprecated, renamed: "RetrieveSubuserStatistics")
-    public class Subuser {}
-    
+    class Subuser {}
 }

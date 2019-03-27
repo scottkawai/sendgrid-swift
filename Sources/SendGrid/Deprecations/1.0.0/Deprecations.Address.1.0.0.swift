@@ -10,5 +10,5 @@ import Foundation
 public extension Address {
     /// :nodoc:
     @available(*, deprecated, renamed: "init(email:)")
-    public init(_ email: String) { self.init(email: email, name: nil) }
+    init(_ email: String) { self.init(email: email, name: nil) }
 }

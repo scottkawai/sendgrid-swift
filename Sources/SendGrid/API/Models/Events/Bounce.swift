@@ -9,9 +9,7 @@ import Foundation
 
 /// The `Bounce` struct represents a bounce event.
 public struct Bounce: EmailEventRepresentable, Codable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -25,9 +23,7 @@ public struct Bounce: EmailEventRepresentable, Codable {
     /// The status code of the event.
     public let status: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///

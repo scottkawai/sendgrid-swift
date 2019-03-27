@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// The `RetrieveGlobalUnsubscribes` class represents the API call to [retrieve
 /// the global unsubscribe list](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/global_suppressions.html#List-all-globally-unsubscribed-email-addresses-GET).
 /// You can use it to retrieve the entire list, or specific entries on the
@@ -79,9 +78,8 @@ import Foundation
 /// }
 /// ```
 public class RetrieveGlobalUnsubscribes: SuppressionListReader<GlobalUnsubscribe> {
-    
     /// :nodoc:
-    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/unsubscribes",
             email: email,
@@ -90,5 +88,4 @@ public class RetrieveGlobalUnsubscribes: SuppressionListReader<GlobalUnsubscribe
             page: page
         )
     }
-    
 }

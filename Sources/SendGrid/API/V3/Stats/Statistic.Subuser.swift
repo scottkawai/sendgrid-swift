@@ -32,9 +32,7 @@ import Foundation
 /// }
 /// ```
 public class RetrieveSubuserStatistics: RetrieveGlobalStatistics {
-    
     // MARK: - Initialization
-    //======================================================================
     
     /// Initializes the request with a start date and subusers, as well as
     /// an end date and/or aggregation method.
@@ -95,9 +93,7 @@ public class RetrieveSubuserStatistics: RetrieveGlobalStatistics {
         self.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy, subusers: subusers)
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Validates that there are no more than 10 subusers specified.
     public override func validate() throws {
@@ -107,5 +103,4 @@ public class RetrieveSubuserStatistics: RetrieveGlobalStatistics {
             throw Exception.Statistic.invalidNumberOfSubusers
         }
     }
-    
 }

@@ -10,10 +10,8 @@ import Foundation
 /// The `Response` class is a wrapper used after an API call is made. It
 /// includes all the raw data, but also attempts to parse it into the
 /// appropriate models.
-open class Response<ModelType : Decodable> {
-    
+open class Response<ModelType: Decodable> {
     // MARK: - Read Only Properties
-    //=========================================================================
     
     /// The data (if present) returned from the request.
     public let data: Data?
@@ -41,9 +39,7 @@ open class Response<ModelType : Decodable> {
     /// The pagination info from the response, if specified.
     public let pages: Pagination?
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the class with the data returned from an HTTP request. The
     /// class then parses the data to try and create models from the response.
@@ -65,8 +61,7 @@ open class Response<ModelType : Decodable> {
         decoder.dateDecodingStrategy = decodingStrategy.dates
         decoder.dataDecodingStrategy = decodingStrategy.data
         if let d = data,
-            let parsed = try? decoder.decode(ModelType.self, from: d)
-        {
+            let parsed = try? decoder.decode(ModelType.self, from: d) {
             self.model = parsed
             self.count = nil
         } else {
@@ -74,5 +69,4 @@ open class Response<ModelType : Decodable> {
             self.count = nil
         }
     }
-    
 }

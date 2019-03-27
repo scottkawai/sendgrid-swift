@@ -15,14 +15,14 @@ import Foundation
 public struct BypassListManagement: Encodable {
     
     // MARK: - Properties
-    //=========================================================================
+    
     
     /// A bool indicating if the setting should be toggled on or off.
     public let enable: Bool
     
     
     // MARK: - Initialization
-    //=========================================================================
+    
     
     /// Initializes the setting with a flag indicating if its enabled or not.
     ///

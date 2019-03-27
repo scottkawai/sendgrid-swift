@@ -97,7 +97,7 @@ class EmailTests: XCTestCase, EncodingTester {
             subject: "Root Subject"
         )
         max.parameters?.replyTo = "reply_to@example.none"
-        let data = Data(bytes: AttachmentTests.redDotBytes)
+        let data = Data(AttachmentTests.redDotBytes)
         max.parameters?.attachments = [Attachment(filename: "red.png", content: data)]
         max.parameters?.templateID = "1334949C-CE58-4A21-A633-47638EFA358A"
         max.parameters?.sections = [

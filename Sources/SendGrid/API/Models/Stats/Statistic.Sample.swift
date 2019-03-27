@@ -8,13 +8,10 @@
 import Foundation
 
 public extension Statistic {
-    
     /// The `Statistic.Sample` struct represents a single group of statistics,
     /// with the raw stats being made available via the `metrics` property.
-    public struct Sample: Codable {
-        
+    struct Sample: Codable {
         // MARK: - Properties
-        //=========================================================================
         
         /// The raw metrics for each email event type.
         public let metrics: Statistic.Metric
@@ -27,9 +24,7 @@ public extension Statistic {
         /// The dimension type these stats have been grouped by.
         public let type: Statistic.Dimension?
         
-        
         // MARK: - Initialization
-        //=========================================================================
         
         /// Initializes the struct.
         ///
@@ -43,7 +38,5 @@ public extension Statistic {
             self.name = name
             self.type = type
         }
-        
     }
-    
 }

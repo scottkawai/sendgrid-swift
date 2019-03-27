@@ -9,9 +9,7 @@ import Foundation
 
 /// The `Block` struct represents a block event.
 public struct Block: EmailEventRepresentable, Codable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -25,9 +23,7 @@ public struct Block: EmailEventRepresentable, Codable {
     /// The status code of the event.
     public let status: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///
@@ -42,5 +38,4 @@ public struct Block: EmailEventRepresentable, Codable {
         self.reason = reason
         self.status = status
     }
-    
 }

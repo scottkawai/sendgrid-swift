@@ -10,13 +10,13 @@ import Foundation
 public extension Content {
     /// :nodoc:
     @available(*, deprecated, renamed: "plainText(body:)")
-    public static func plainTextContent(_ value: String) -> Content { return .plainText(body: value) }
-    
+    static func plainTextContent(_ value: String) -> Content { return .plainText(body: value) }
+
     /// :nodoc:
     @available(*, deprecated, renamed: "html(body:)")
-    public static func htmlContent(_ value: String) -> Content { return .html(body: value) }
-    
+    static func htmlContent(_ value: String) -> Content { return .html(body: value) }
+
     /// :nodoc:
     @available(*, deprecated, renamed: "emailBody(plain:html:)")
-    public static func emailContent(plain: String, html: String) -> [Content] { return Content.emailBody(plain: plain, html: html) }
+    static func emailContent(plain: String, html: String) -> [Content] { return Content.emailBody(plain: plain, html: html) }
 }

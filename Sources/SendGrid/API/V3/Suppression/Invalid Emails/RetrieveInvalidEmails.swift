@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// The `RetrieveInvalidEmails` class represents the API call to [retrieve the
 /// invalid email list](https://sendgrid.com/docs/API_Reference/Web_API_v3/invalid_emails.html#List-all-invalid-emails-GET).
 /// You can use it to retrieve the entire list, or specific entries from the
@@ -79,9 +78,8 @@ import Foundation
 /// }
 /// ```
 public class RetrieveInvalidEmails: SuppressionListReader<InvalidEmail> {
-    
     /// :nodoc:
-    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/invalid_emails",
             email: email,
@@ -90,5 +88,4 @@ public class RetrieveInvalidEmails: SuppressionListReader<InvalidEmail> {
             page: page
         )
     }
-    
 }

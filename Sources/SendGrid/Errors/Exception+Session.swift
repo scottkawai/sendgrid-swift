@@ -8,13 +8,10 @@
 import Foundation
 
 public extension Exception {
-    
-    /// The `Exception.Session` enum contains all the errors thrown when 
+    /// The `Exception.Session` enum contains all the errors thrown when
     /// attempting to build an HTTP request.
-    public enum Session: Error, CustomStringConvertible {
-        
+    enum Session: Error, CustomStringConvertible {
         // MARK: - Cases
-        //======================================================================
         
         /// Represents an error where no authentication method was provided.
         case authenticationMissing
@@ -31,7 +28,6 @@ public extension Exception {
         case unsupportedAuthetication(String)
         
         // MARK: - Properties
-        //======================================================================
         
         /// A description for the error.
         public var description: String {

@@ -10,10 +10,8 @@ import Foundation
 /// The `SuppressionListDeleter` class is base class inherited by requests that
 /// delete entries from a supression list. You should not use this class
 /// directly.
-public class SuppressionListDeleter<T : EmailEventRepresentable>: Request<EmptyCodable, SuppressionListDeleterParameters> {
-    
+public class SuppressionListDeleter<T: EmailEventRepresentable>: Request<EmptyCodable, SuppressionListDeleterParameters> {
     // MARK: - Initializer
-    //=========================================================================
     
     /// Private initializer to set all the required properties.
     ///
@@ -63,13 +61,11 @@ public class SuppressionListDeleter<T : EmailEventRepresentable>: Request<EmptyC
     public convenience init(events: T...) {
         self.init(events: events)
     }
-    
 }
 
 /// The `SuppressionListDeleterParameters` struct houses all the parameters that
 /// can be made for the suppression delete calls.
 public struct SuppressionListDeleterParameters: Codable {
-    
     /// A `Bool` indicating if all the events on the suppression list should be
     /// deleted.
     public let deleteAll: Bool?
@@ -90,8 +86,7 @@ public struct SuppressionListDeleterParameters: Codable {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
-        case deleteAll  = "delete_all"
+        case deleteAll = "delete_all"
         case emails
     }
-    
 }

@@ -80,9 +80,8 @@ import Foundation
 /// }
 /// ```
 public class RetrieveBlocks: SuppressionListReader<Block> {
-    
     /// :nodoc:
-    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/blocks",
             email: email,
@@ -91,5 +90,4 @@ public class RetrieveBlocks: SuppressionListReader<Block> {
             page: page
         )
     }
-    
 }

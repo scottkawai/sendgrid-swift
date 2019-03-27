@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// The `RetrieveBounces` class represents the API call to [retrieve the bounce
 /// list](https://sendgrid.com/docs/API_Reference/Web_API_v3/bounces.html#List-all-bounces-GET).
 /// You can use it to retrieve the entire list, or specific entries in the
@@ -81,9 +80,8 @@ import Foundation
 /// }
 /// ```
 public class RetrieveBounces: SuppressionListReader<Bounce> {
-    
     /// :nodoc:
-    override internal init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
+    internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
             path: "/v3/suppression/bounces",
             email: email,
@@ -92,5 +90,4 @@ public class RetrieveBounces: SuppressionListReader<Bounce> {
             page: page
         )
     }
-    
 }

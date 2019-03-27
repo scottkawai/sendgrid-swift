@@ -13,7 +13,7 @@ import Foundation
 public struct BCCSetting: Encodable {
     
     // MARK: - Properties
-    //=========================================================================
+    
     
     /// A bool indicating if the setting should be toggled on or off.
     public let enable: Bool
@@ -23,7 +23,7 @@ public struct BCCSetting: Encodable {
 
     
     // MARK: - Initialization
-    //=========================================================================
+    
 
     /// Initializes the setting with an email to use as the BCC address. This
     /// setting can also be used to turn off the BCC app if it is normally on by

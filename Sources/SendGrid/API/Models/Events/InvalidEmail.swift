@@ -10,9 +10,7 @@ import Foundation
 /// The `InvalidEmail` struct represents an entry on the "Invalid Email"
 /// suppression list.
 public struct InvalidEmail: EmailEventRepresentable, Codable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -23,9 +21,7 @@ public struct InvalidEmail: EmailEventRepresentable, Codable {
     /// The description of why the email was classified as invalid.
     public let reason: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///
@@ -39,5 +35,4 @@ public struct InvalidEmail: EmailEventRepresentable, Codable {
         self.created = created
         self.reason = reason
     }
-    
 }

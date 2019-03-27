@@ -10,10 +10,9 @@ import Foundation
 /// The `EmailHeaderRepresentable` protocol provides a method for ensuring
 /// custom headers are valid.
 public protocol EmailHeaderRepresentable {
-    
     /// A dictionary representing the headers that should be added to the email.
-    var headers: [String : String]? { get set }
-    
+    var headers: [String: String]? { get set }
+
     /// Validates the `headers` property to ensure they are not using any
     /// reserved headers. If there is a problem, an error is thrown. If
     /// everything is fine, then this method returns nothing.
@@ -24,7 +23,6 @@ public protocol EmailHeaderRepresentable {
 }
 
 public extension EmailHeaderRepresentable {
-    
     /// The default implementation validates against the following headers:
     ///
     /// - X-SG-ID
@@ -39,7 +37,7 @@ public extension EmailHeaderRepresentable {
     /// - Reply-To
     /// - CC
     /// - BCC
-    public func validateHeaders() throws {
+    func validateHeaders() throws {
         guard let head = self.headers else { return }
         let reserved: [String] = [
             "x-sg-id",
@@ -56,7 +54,7 @@ public extension EmailHeaderRepresentable {
             "bcc"
         ]
         for (key, _) in head {
-            guard reserved.index(of: key.lowercased()) == nil else { throw Exception.Mail.headerNotAllowed(key) }
+            guard reserved.firstIndex(of: key.lowercased()) == nil else { throw Exception.Mail.headerNotAllowed(key) }
             let regex = try NSRegularExpression(pattern: "(\\s)", options: [.caseInsensitive, .anchorsMatchLines])
             guard regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.count)) == 0 else {
                 throw Exception.Mail.malformedHeader(key)

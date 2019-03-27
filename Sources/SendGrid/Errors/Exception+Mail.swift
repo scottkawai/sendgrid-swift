@@ -8,13 +8,10 @@
 import Foundation
 
 public extension Exception {
-    
     /// The `Exception.Mail` enum contains all the errors thrown for the mail
     /// send API.
-    public enum Mail: Error, CustomStringConvertible {
-        
+    enum Mail: Error, CustomStringConvertible {
         // MARK: - Cases
-        //======================================================================
         
         /// The error thrown when an email address was expected, but received a
         /// String that isn't RFC 5322 compliant.
@@ -92,8 +89,8 @@ public extension Exception {
         /// Thrown when a category has been specified more than once.
         case duplicateCategory(String)
         
-        
         // MARK: - Properties
+        
         //=====================================================================
         
         /// A description for the error.

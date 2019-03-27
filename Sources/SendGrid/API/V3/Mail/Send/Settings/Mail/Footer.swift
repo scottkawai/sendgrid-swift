@@ -12,7 +12,7 @@ import Foundation
 public struct Footer: Encodable {
     
     // MARK: - Properties
-    //=========================================================================
+    
     
     /// The plain text content of your footer.
     public let text: String?
@@ -25,7 +25,7 @@ public struct Footer: Encodable {
     
     
     // MARK: - Initialization
-    //=========================================================================
+    
     
     /// Initializes the setting with plain text and HTML to use in the footer.
     /// This will enable the setting for this email and use the provided

@@ -31,9 +31,7 @@ import Foundation
 /// }
 /// ```
 public class RetrieveGlobalStatistics: Request<[Statistic], RetrieveStatisticsParameters> {
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the request with a path and set of parameters.
     ///
@@ -70,9 +68,7 @@ public class RetrieveGlobalStatistics: Request<[Statistic], RetrieveStatisticsPa
         self.init(path: "/v3/stats", parameters: params)
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Validates that the end date (if present) is not earlier than the start
     /// date.
@@ -88,7 +84,6 @@ public class RetrieveGlobalStatistics: Request<[Statistic], RetrieveStatisticsPa
 
 /// The `RetrieveStatisticsParameters` class represents the
 public class RetrieveStatisticsParameters: Codable {
-    
     /// Indicates how the statistics should be grouped.
     public let aggregatedBy: Statistic.Aggregation?
     
@@ -121,13 +116,10 @@ public class RetrieveStatisticsParameters: Codable {
     
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
-        
         case startDate = "start_date"
         case endDate = "end_date"
         case aggregatedBy = "aggregated_by"
         case categories
         case subusers
-        
     }
-    
 }

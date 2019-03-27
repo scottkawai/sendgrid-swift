@@ -47,9 +47,7 @@ import Foundation
 /// }
 /// ```
 public class DeleteSpamReports: SuppressionListDeleter<SpamReport> {
-    
     // MARK: - Properties
-    //======================================================================
     
     /// Returns a request that will delete *all* the entries on your spam
     /// report list.
@@ -57,9 +55,7 @@ public class DeleteSpamReports: SuppressionListDeleter<SpamReport> {
         return DeleteSpamReports(deleteAll: true, emails: nil)
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Private initializer to set all the required properties.
     ///
@@ -68,7 +64,7 @@ public class DeleteSpamReports: SuppressionListDeleter<SpamReport> {
     ///   - deleteAll:  A `Bool` indicating if all the events on the suppression
     ///                 list should be deleted.
     ///   - emails:     An array of emails to delete from the suppression list.
-    override internal init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
+    internal override init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
         super.init(path: "/v3/suppression/spam_reports", deleteAll: deleteAll, emails: emails)
     }
 }

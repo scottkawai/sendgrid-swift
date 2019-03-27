@@ -11,10 +11,8 @@ import Foundation
 ///
 /// This class contains a `ModelType` generic, which is used to map the API
 /// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
-    
+open class Request<ModelType: Decodable, Parameters: Encodable>: Validatable {
     // MARK: - Properties
-    //=========================================================================
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
     open var supportsImpersonation: Bool { return true }
@@ -23,7 +21,7 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     open var method: HTTPMethod
     
     /// The headers to be included in the request.
-    open var headers: [String : String] = [
+    open var headers: [String: String] = [
         "Content-Type": ContentType.json.description,
         "Accept": ContentType.json.description
     ]
@@ -43,9 +41,7 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     /// of the request
     open var parameters: Parameters?
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the request.
     ///
@@ -66,9 +62,7 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
         self.decodingStrategy = decodingStrategy
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
     
     /// Retrieves a the value of a specific header, or `nil` if it doesn't
     /// exist.
@@ -102,12 +96,10 @@ open class Request<ModelType : Decodable, Parameters : Encodable>: Validatable {
     open func supports(auth: Authentication) -> Bool {
         return true
     }
-    
 }
 
 /// CustomStringConvertible conformance
 extension Request: CustomStringConvertible {
-    
     /// The description of the request, represented as an [API
     /// Blueprint](https://apiblueprint.org/)
     public var description: String {
@@ -170,6 +162,4 @@ extension Request: CustomStringConvertible {
         }
         return blueprint
     }
-    
 }
-

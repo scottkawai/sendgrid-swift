@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// The `DeleteGlobalUnsubscribe` class represents the API call to [delete
 /// from the invalid email list](https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/global_suppressions.html#Remove-an-email-address-from-the-Global-Unsubscribes-collection-DELETE).
 ///
@@ -26,9 +25,7 @@ import Foundation
 /// }
 /// ```
 public class DeleteGlobalUnsubscribe: Request<EmptyCodable, EmptyCodable> {
-    
     // MARK: - Initializer
-    //======================================================================
     
     /// Initializes the request with an email address to delete from the
     /// global unsubscribe list.
@@ -49,5 +46,4 @@ public class DeleteGlobalUnsubscribe: Request<EmptyCodable, EmptyCodable> {
     public convenience init(event: GlobalUnsubscribe) {
         self.init(email: event.email)
     }
-    
 }

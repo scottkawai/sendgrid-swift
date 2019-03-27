@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// The `AddGlobalUnsubscribes` class represents the API call to add email
 /// addresses to the global unsubscribe list.
 ///
@@ -25,9 +24,7 @@ import Foundation
 /// }
 /// ```
 public class AddGlobalUnsubscribes: Request<AddGlobalUnsubscribes.Parameters, AddGlobalUnsubscribes.Parameters> {
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the request with a list of email addresses to add to the
     /// global unsubscribe list.
@@ -66,15 +63,12 @@ public class AddGlobalUnsubscribes: Request<AddGlobalUnsubscribes.Parameters, Ad
     public convenience init(addresses: Address...) {
         self.init(addresses: addresses)
     }
-    
 }
 
 public extension AddGlobalUnsubscribes /* Parameters Struct */ {
-    
     /// The `AddGlobalUnsubscribes.Parameters` struct houses the parameters used
     /// to add email addresses to the global unsubscribe list.
-    public struct Parameters: Codable {
-        
+    struct Parameters: Codable {
         /// The email addresses to add to the global unsubscribe list.
         public let emails: [String]
         
@@ -96,7 +90,5 @@ public extension AddGlobalUnsubscribes /* Parameters Struct */ {
         public enum CodingKeys: String, CodingKey {
             case emails = "recipient_emails"
         }
-        
     }
-    
 }

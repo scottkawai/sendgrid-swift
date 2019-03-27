@@ -535,16 +535,12 @@ import Foundation
 /// }
 /// ```
 public class Email: Request<EmptyCodable, Email.Parameters> {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
     public override var supportsImpersonation: Bool { return false }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the email request with a list of personalizations, a from
     /// address, content, and a subject.
@@ -561,7 +557,6 @@ public class Email: Request<EmptyCodable, Email.Parameters> {
     }
     
     // MARK: - Methods
-    //=========================================================================
     
     /// Before a `Session` instance makes an API call, it will call this method
     /// to double check that the auth method it's about to use is supported by
@@ -585,13 +580,10 @@ public class Email: Request<EmptyCodable, Email.Parameters> {
 }
 
 public extension Email /* Parameters Struct */ {
-    
     /// The `Email.Parameters` struct serves as the parameters sent on the email
     /// send API.
-    public struct Parameters: Encodable, EmailHeaderRepresentable, Scheduling, Validatable {
-        
+    struct Parameters: Encodable, EmailHeaderRepresentable, Scheduling, Validatable {
         // MARK: - Properties
-        //=========================================================================
         
         /// An array of personalization instances representing the various
         /// recipients of the email.
@@ -617,7 +609,7 @@ public extension Email /* Parameters Struct */ {
         public var templateID: String?
         
         /// Additional headers that should be added to the email.
-        public var headers: [String:String]?
+        public var headers: [String: String]?
         
         /// Categories to associate with the email.
         public var categories: [String]?
@@ -673,7 +665,7 @@ public extension Email /* Parameters Struct */ {
         ///     ":event2": "Veteran User Appreciation on :event_date"
         /// ]
         /// ```
-        public var sections: [String:String]?
+        public var sections: [String: String]?
         
         /// A set of custom arguments to add to the email. The keys of the
         /// dictionary should be the names of the custom arguments, while the values
@@ -681,14 +673,14 @@ public extension Email /* Parameters Struct */ {
         /// in the email also contain custom arguments, they will be merged with
         /// these custom arguments, taking a preference to the personalization's
         /// custom arguments in the case of a conflict.
-        public var customArguments: [String:String]?
+        public var customArguments: [String: String]?
         
         /// An `ASM` instance representing the unsubscribe group settings to apply
         /// to the email.
         public var asm: ASM?
         
         /// An optional time to send the email at.
-        public var sendAt: Date? = nil
+        public var sendAt: Date?
         
         /// This ID represents a batch of emails (AKA multiple sends of the same
         /// email) to be associated to each other for scheduling. Including a
@@ -696,12 +688,12 @@ public extension Email /* Parameters Struct */ {
         /// batch, and also enables you to cancel or pause the delivery of that
         /// entire batch. For more information, please read about [Cancel Scheduled
         /// Sends](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html).
-        public var batchID: String? = nil
+        public var batchID: String?
         
         /// The IP Pool that you would like to send this email from. See the [docs
         /// page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html#-POST)
         /// for more information about creating IP Pools.
-        public var ipPoolName: String? = nil
+        public var ipPoolName: String?
         
         /// An optional array of mail settings to configure the email with.
         public var mailSettings = MailSettings()
@@ -709,9 +701,7 @@ public extension Email /* Parameters Struct */ {
         /// An optional array of tracking settings to configure the email with.
         public var trackingSettings = TrackingSettings()
         
-        
         // MARK: - Initialization
-        //=========================================================================
         
         /// Initializes the parameters with a list of personalizations, a from
         /// address, content, and a subject.
@@ -729,9 +719,7 @@ public extension Email /* Parameters Struct */ {
             self.subject = subject
         }
         
-        
         // MARK: - Methods
-        //=========================================================================
         
         /// :nodoc:
         public func validate() throws {
@@ -771,7 +759,7 @@ public extension Email /* Parameters Struct */ {
             guard totalRecipients.count <= Constants.RecipientLimit else { throw Exception.Mail.tooManyRecipients }
             
             // Check for subject present
-            if ((self.subject?.count ?? 0) == 0) && self.templateID == nil {
+            if (self.subject?.count ?? 0) == 0, self.templateID == nil {
                 let subjectPresent = self.personalizations.reduce(true) { (hasSubject, person) -> Bool in
                     return hasSubject && ((person.subject?.count ?? 0) > 0)
                 }
@@ -803,7 +791,7 @@ public extension Email /* Parameters Struct */ {
             }
             
             // Validate the custom arguments.
-            try self.personalizations.forEach({ (p) in
+            try self.personalizations.forEach({ p in
                 var merged = self.customArguments ?? [:]
                 if let list = p.customArguments {
                     list.forEach { merged[$0.key] = $0.value }
@@ -859,23 +847,21 @@ public extension Email /* Parameters Struct */ {
         public enum CodingKeys: String, CodingKey {
             case asm
             case attachments
-            case batchID            = "batch_id"
+            case batchID = "batch_id"
             case categories
             case content
-            case customArguments    = "custom_args"
+            case customArguments = "custom_args"
             case from
             case headers
-            case ipPoolName         = "ip_pool_name"
-            case mailSettings       = "mail_settings"
+            case ipPoolName = "ip_pool_name"
+            case mailSettings = "mail_settings"
             case personalizations
-            case replyTo            = "reply_to"
+            case replyTo = "reply_to"
             case sections
-            case sendAt             = "send_at"
+            case sendAt = "send_at"
             case subject
-            case templateID         = "template_id"
-            case trackingSettings   = "tracking_settings"
+            case templateID = "template_id"
+            case trackingSettings = "tracking_settings"
         }
-        
     }
-    
 }

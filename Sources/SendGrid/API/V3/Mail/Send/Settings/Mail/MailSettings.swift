@@ -10,9 +10,7 @@ import Foundation
 /// The `MailSetting` struct houses any mail settings an email should be
 /// configured with.
 public struct MailSettings: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The BCC setting.
     public var bcc: BCCSetting?
@@ -38,36 +36,27 @@ public struct MailSettings: Encodable {
             self.spamCheck != nil
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct with no settings set.
     public init() {}
-    
 }
 
 public extension MailSettings /* Encodable conformance */ {
-    
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
-        
+    enum CodingKeys: String, CodingKey {
         case bcc
-        case bypassListManagement   = "bypass_list_management"
+        case bypassListManagement = "bypass_list_management"
         case footer
-        case sandboxMode            = "sandbox_mode"
-        case spamCheck              = "spam_check"
-        
+        case sandboxMode = "sandbox_mode"
+        case spamCheck = "spam_check"
     }
-    
 }
 
 extension MailSettings: Validatable {
-    
     /// Bubbles up the validations for `bcc` and `spamCheck`.
     public func validate() throws {
         try self.bcc?.validate()
         try self.spamCheck?.validate()
     }
-    
 }
