@@ -1,15 +1,7 @@
-//
-//  ClickTrackingTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class ClickTrackingTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = ClickTracking
     
     func testExample() {
@@ -22,5 +14,4 @@ class ClickTrackingTests: XCTestCase, EncodingTester {
         let offSetting = ClickTracking(section: .off)
         XCTAssertEncodedObject(offSetting, equals: ["enable": false])
     }
-    
 }

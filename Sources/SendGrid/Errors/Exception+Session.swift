@@ -1,10 +1,3 @@
-//
-//  Exception+Session.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/12/17.
-//
-
 import Foundation
 
 public extension Exception {

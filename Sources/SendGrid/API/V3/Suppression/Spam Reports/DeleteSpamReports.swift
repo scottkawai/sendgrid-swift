@@ -1,10 +1,3 @@
-//
-//  DeleteSpamReports.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `DeleteSpamReports` class represents the API call to [delete from

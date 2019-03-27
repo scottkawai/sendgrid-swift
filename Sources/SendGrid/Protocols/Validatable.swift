@@ -1,9 +1,3 @@
-//
-//  Validatable.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
 import Foundation
 
 /// The `Validatable` protocol defines the functions that a class or struct

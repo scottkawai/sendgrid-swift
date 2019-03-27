@@ -1,10 +1,3 @@
-//
-//  GoogleAnalytics.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `GoogleAnalytics` class is used to toggle the Google Analytics setting,

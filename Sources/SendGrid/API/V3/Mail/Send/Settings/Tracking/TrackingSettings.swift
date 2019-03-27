@@ -1,10 +1,3 @@
-//
-//  TrackingSettings.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `TrackingSettings` struct houses any tracking settings an email should be

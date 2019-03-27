@@ -1,10 +1,3 @@
-//
-//  Constants.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/12/17.
-//
-
 import Foundation
 
 /// The `Constants` struct houses all the constant values used throughout the
@@ -16,7 +9,7 @@ public struct Constants {
     public static var ApiHost: String = "https://api.sendgrid.com/"
     
     /// The version number of the library.
-    public static let Version: String = "1.1.0"
+    public static let Version: String = "2.0.0"
     
     /// The upper limit to the number of personalizations allowed in an email.
     public static let PersonalizationLimit: Int = 1000

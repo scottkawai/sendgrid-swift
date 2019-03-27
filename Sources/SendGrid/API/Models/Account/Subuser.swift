@@ -1,10 +1,3 @@
-//
-//  Subuser.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/22/17.
-//
-
 import Foundation
 
 /// The `Subuser` struct represents a subuser on a parent account.

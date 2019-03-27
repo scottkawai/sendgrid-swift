@@ -1,10 +1,3 @@
-//
-//  RetrieveGlobalUnsubscribes.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `RetrieveGlobalUnsubscribes` class represents the API call to [retrieve

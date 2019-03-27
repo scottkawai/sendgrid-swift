@@ -1,10 +1,3 @@
-//
-//  Validate.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
 import Foundation
 
 /// The `Validate` struct provides static methods for validating common
@@ -30,12 +23,12 @@ extension Validate {
     static func email(_ email: String) -> Bool {
         return self.input(email, against: "\\S+@\\S+(\\.\\S+)+")
     }
-    
+
     /// Validates text to be used in the subscription tracking setting.
     static func subscriptionTracking(body: String) -> Bool {
         return self.input(body, against: "<% .*%>")
     }
-    
+
     /// Validates that a string does contain CLRF characters.
     static func noCLRF(in input: String) -> Bool {
         return self.input(input, against: "^([^;,\\s]+)$")

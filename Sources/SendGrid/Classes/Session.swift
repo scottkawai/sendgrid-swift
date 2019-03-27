@@ -1,10 +1,3 @@
-//
-//  Session.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/12/17.
-//
-
 import Foundation
 
 /// The `Session` class is used to faciliate the HTTP request to the SendGrid

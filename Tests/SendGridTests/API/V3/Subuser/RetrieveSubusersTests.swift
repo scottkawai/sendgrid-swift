@@ -1,15 +1,7 @@
-//
-//  RetrieveSubusersTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/23/17.
-//
-
-import XCTest
 import SendGrid
+import XCTest
 
 class RetrieveSubusersTests: XCTestCase {
-    
     func testInitialization() {
         let min = RetrieveSubusers()
         XCTAssertEqual(min.description, """
@@ -23,7 +15,7 @@ class RetrieveSubusersTests: XCTestCase {
                     Content-Type: application/json
 
         """)
-        
+
         let max = RetrieveSubusers(page: Page(limit: 1, offset: 2), username: "foo")
         XCTAssertEqual(max.description, """
         # GET /v3/subusers?limit=1&offset=2&username=foo
@@ -37,14 +29,14 @@ class RetrieveSubusersTests: XCTestCase {
 
         """)
     }
-    
-    func testValidation() {        
+
+    func testValidation() {
         let goodMin = RetrieveSubusers()
         XCTAssertNoThrow(try goodMin.validate())
-        
+
         let goodMax = RetrieveSubusers(page: Page(limit: 500, offset: 0), username: "foo")
         XCTAssertNoThrow(try goodMax.validate())
-        
+
         do {
             let under = RetrieveSubusers(page: Page(limit: 0, offset: 0))
             try under.validate()
@@ -53,7 +45,7 @@ class RetrieveSubusersTests: XCTestCase {
         } catch {
             XCTFailUnknownError(error)
         }
-        
+
         do {
             let over = RetrieveSubusers(page: Page(limit: 501, offset: 0))
             try over.validate()
@@ -63,5 +55,4 @@ class RetrieveSubusersTests: XCTestCase {
             XCTFailUnknownError(error)
         }
     }
-    
 }

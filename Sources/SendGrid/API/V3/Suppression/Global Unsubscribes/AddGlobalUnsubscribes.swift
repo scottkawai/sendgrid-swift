@@ -1,10 +1,3 @@
-//
-//  AddGlobalUnsubscribes.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/20/17.
-//
-
 import Foundation
 
 /// The `AddGlobalUnsubscribes` class represents the API call to add email

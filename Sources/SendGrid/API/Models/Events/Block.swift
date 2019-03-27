@@ -1,10 +1,3 @@
-//
-//  Block.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `Block` struct represents a block event.

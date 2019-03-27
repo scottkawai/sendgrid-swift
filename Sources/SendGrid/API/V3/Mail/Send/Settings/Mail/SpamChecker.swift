@@ -1,10 +1,3 @@
-//
-//  SpamChecker.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `SpamChecker` mail setting allows you to test the content of your email

@@ -1,10 +1,3 @@
-//
-//  Statistic.Dimension.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/20/17.
-//
-
 import Foundation
 
 public extension Statistic {

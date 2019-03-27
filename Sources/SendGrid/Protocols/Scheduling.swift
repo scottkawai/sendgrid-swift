@@ -1,10 +1,3 @@
-//
-//  Scheduling.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
 import Foundation
 
 /// The `Scheduling` protocol contains the properties and methods needed for a

@@ -1,10 +1,3 @@
-//
-//  Deprecations.Suppressions.2.0.0.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 6/22/18.
-//
-
 import Foundation
 
 public extension Block {

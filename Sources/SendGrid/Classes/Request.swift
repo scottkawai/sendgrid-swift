@@ -1,9 +1,3 @@
-//
-//  Request.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
 import Foundation
 
 /// The `Request` class should be inherited by any class that represents an API

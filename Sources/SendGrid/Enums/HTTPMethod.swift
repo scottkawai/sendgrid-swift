@@ -1,9 +1,3 @@
-//
-//  HTTPMethod.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
 import Foundation
 
 /// The `HTTPMethod` enum represents the various verbs used in an HTTP request.

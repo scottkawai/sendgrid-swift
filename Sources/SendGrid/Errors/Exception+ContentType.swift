@@ -1,10 +1,3 @@
-//
-//  Exception+ContentType.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
 import Foundation
 
 public extension Exception {

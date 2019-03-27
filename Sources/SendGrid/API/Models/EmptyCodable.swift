@@ -1,10 +1,3 @@
-//
-//  EmptyResponse.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 6/21/18.
-//
-
 import Foundation
 
 /// The `EmptyCodable` struct is used as the model type for any API call whose

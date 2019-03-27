@@ -1,15 +1,7 @@
-//
-//  SessionTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/18/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class SessionTests: XCTestCase {
-    
     func testSendWithoutAuth() {
         let session = Session()
         let personalization = [Personalization(recipients: "test@example.com")]
@@ -23,5 +15,4 @@ class SessionTests: XCTestCase {
             XCTFailUnknownError(error)
         }
     }
-    
 }

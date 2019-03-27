@@ -1,10 +1,3 @@
-//
-//  Attachment.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/13/17.
-//
-
 import Foundation
 
 /// The `Attachment` class represents a file to attach to an email.

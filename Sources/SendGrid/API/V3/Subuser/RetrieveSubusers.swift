@@ -1,10 +1,3 @@
-//
-//  RetrieveSubusers.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/23/17.
-//
-
 import Foundation
 
 /// This class is used to make the

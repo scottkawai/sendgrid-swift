@@ -1,10 +1,3 @@
-//
-//  SuppressionListReader.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `SuppressionListReader` class is base class inherited by requests that

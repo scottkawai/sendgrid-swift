@@ -1,10 +1,3 @@
-//
-//  Pagination.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `Pagination` struct represents all the pagination info that can be

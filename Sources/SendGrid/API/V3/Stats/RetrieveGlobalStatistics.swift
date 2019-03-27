@@ -1,10 +1,3 @@
-//
-//  RetrieveGlobalStatistics.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/20/17.
-//
-
 import Foundation
 
 /// The `Statistic.Global` class is used to make the

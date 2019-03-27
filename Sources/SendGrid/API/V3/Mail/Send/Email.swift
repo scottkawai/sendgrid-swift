@@ -1,10 +1,3 @@
-//
-//  Email.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/17/17.
-//
-
 import Foundation
 
 /// The `Email` class is used to make the Mail Send API call. The class allows

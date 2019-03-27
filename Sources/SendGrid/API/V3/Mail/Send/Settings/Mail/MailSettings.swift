@@ -1,10 +1,3 @@
-//
-//  MailSettings.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
 import Foundation
 
 /// The `MailSetting` struct houses any mail settings an email should be

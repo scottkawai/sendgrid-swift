@@ -1,15 +1,7 @@
-//
-//  ValidateTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class ValidateTests: XCTestCase {
-    
     func testInput() {
         let pass = Validate.input("Hello World", against: "World")
         let fail = Validate.input("Hello World", against: "Foo")
@@ -54,5 +46,4 @@ class ValidateTests: XCTestCase {
             XCTAssertFalse(Validate.noCLRF(in: input), "'\(input)' fails validation")
         }
     }
-    
 }

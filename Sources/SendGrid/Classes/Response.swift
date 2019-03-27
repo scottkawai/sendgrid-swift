@@ -1,10 +1,3 @@
-//
-//  Response.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/12/17.
-//
-
 import Foundation
 
 /// The `Response` class is a wrapper used after an API call is made. It

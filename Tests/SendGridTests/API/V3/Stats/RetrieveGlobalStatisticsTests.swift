@@ -1,21 +1,13 @@
-//
-//  RetrieveGlobalStatisticsTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/20/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class RetrieveGlobalStatisticsTests: XCTestCase {
-    
     func date(day: Int) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.date(from: "2017-09-\(day)")!
     }
-    
+
     func testMinimalInitialization() {
         let request = RetrieveGlobalStatistics(startDate: date(day: 20))
         XCTAssertEqual(request.description, """
@@ -30,7 +22,7 @@ class RetrieveGlobalStatisticsTests: XCTestCase {
 
         """)
     }
-    
+
     func testMaxInitialization() {
         let request = RetrieveGlobalStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
         XCTAssertEqual(request.description, """
@@ -45,11 +37,11 @@ class RetrieveGlobalStatisticsTests: XCTestCase {
 
         """)
     }
-    
+
     func testValidation() {
         let good = RetrieveGlobalStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week)
         XCTAssertNoThrow(try good.validate())
-        
+
         do {
             let request = RetrieveGlobalStatistics(startDate: date(day: 20), endDate: date(day: 19))
             try request.validate()
@@ -60,5 +52,4 @@ class RetrieveGlobalStatisticsTests: XCTestCase {
             XCTFailUnknownError(error)
         }
     }
-    
 }

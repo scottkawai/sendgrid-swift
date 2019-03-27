@@ -1,10 +1,3 @@
-//
-//  DeleteInvalidEmails.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `DeleteInvalidEmails.Delete` class represents the API call to [delete from

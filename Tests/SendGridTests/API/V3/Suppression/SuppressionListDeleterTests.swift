@@ -1,15 +1,7 @@
-//
-//  SuppressionListDeleterTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/21/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class SuppressionListDeleterTests: XCTestCase {
-    
     func testInitialization() {
         let deleteAllOn = SuppressionListDeleter<Bounce>(deleteAll: true, emails: nil)
         XCTAssertTrue(deleteAllOn.parameters!.deleteAll!)
@@ -23,5 +15,4 @@ class SuppressionListDeleterTests: XCTestCase {
         XCTAssertNil(emails.parameters!.deleteAll)
         XCTAssertEqual(emails.parameters!.emails?.joined(), "foo@bar.com")
     }
-    
 }

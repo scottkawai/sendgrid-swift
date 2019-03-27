@@ -1,10 +1,3 @@
-//
-//  EmailHeaderRepresentable.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
 import Foundation
 
 /// The `EmailHeaderRepresentable` protocol provides a method for ensuring

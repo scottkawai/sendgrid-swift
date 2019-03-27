@@ -1,15 +1,7 @@
-//
-//  SuppressionListReaderTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/21/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class SuppressionListReaderTests: XCTestCase {
-    
     func testInitialization() {
         let email = SuppressionListReader<Bounce>(email: "foo@bar.com")
         XCTAssertNil(email.parameters!.startDate)
@@ -23,5 +15,4 @@ class SuppressionListReaderTests: XCTestCase {
         XCTAssertEqual(all.parameters!.page, Page(limit: 1, offset: 1))
         XCTAssertEqual(all.path, "/")
     }
-    
 }

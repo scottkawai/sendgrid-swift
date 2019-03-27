@@ -1,10 +1,3 @@
-//
-//  Address.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/13/17.
-//
-
 import Foundation
 
 /// The `Address` struct represents an email address and contains the email

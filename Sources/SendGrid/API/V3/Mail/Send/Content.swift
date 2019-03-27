@@ -1,10 +1,3 @@
-//
-//  Content.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/13/17.
-//
-
 import Foundation
 
 /// The `Content` class represents a MIME part of the email message (i.e. the

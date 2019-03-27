@@ -1,10 +1,3 @@
-//
-//  Personalization.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
 import Foundation
 
 /// The `Personalization` struct is used by the `Email` class to add

@@ -1,10 +1,3 @@
-//
-//  ASM.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
 import Foundation
 
 /// The `ASM` class is used to specify an unsubscribe group to associate the

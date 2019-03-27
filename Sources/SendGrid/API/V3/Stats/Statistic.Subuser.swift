@@ -1,10 +1,3 @@
-//
-//  Statistic.Subuser.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/22/17.
-//
-
 import Foundation
 
 /// The `Statistic.Subuser` class is used to make the

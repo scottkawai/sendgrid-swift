@@ -1,10 +1,3 @@
-//
-//  EncodingStrategy.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/14/17.
-//
-
 import Foundation
 
 /// This struct houses both the date and data encoding strategies for a request.

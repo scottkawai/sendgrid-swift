@@ -1,15 +1,7 @@
-//
-//  OpenTrackingTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class OpenTrackingTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = OpenTracking
     
     func testEncoding() {
@@ -22,5 +14,4 @@ class OpenTrackingTests: XCTestCase, EncodingTester {
         let offSetting = OpenTracking(location: .off)
         XCTAssertEncodedObject(offSetting, equals: ["enable": false])
     }
-    
 }

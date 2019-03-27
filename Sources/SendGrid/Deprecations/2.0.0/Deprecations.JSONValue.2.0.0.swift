@@ -1,10 +1,3 @@
-//
-//  JSONValue.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 3/29/18.
-//
-
 import Foundation
 
 /// :nodoc:

@@ -1,10 +1,3 @@
-//
-//  SubscriptionTracking.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `SubscriptionTracking` class is used to modify the subscription tracking

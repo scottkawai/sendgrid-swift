@@ -1,21 +1,13 @@
-//
-//  RetrieveSubuserStatisticsTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/22/17.
-//
-
-import XCTest
 import SendGrid
+import XCTest
 
 class RetrieveSubuserStatisticsTests: XCTestCase {
-    
     func date(day: Int) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.date(from: "2017-09-\(day)")!
     }
-    
+
     func testMinimalInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: "foo")
         XCTAssertEqual(request.description, """
@@ -29,7 +21,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
                     Content-Type: application/json
 
         """)
-        
+
         let testSub = Subuser(id: 1, username: "foo", email: "foobar@example.nonet", disabled: false)
         let subRequest = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: testSub)
         XCTAssertEqual(subRequest.description, """
@@ -44,7 +36,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
 
         """)
     }
-    
+
     func testMaxInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "Foo", "Bar")
         XCTAssertEqual(request.description, """
@@ -59,11 +51,11 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
 
         """)
     }
-    
+
     func testValidation() {
         let good = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
         XCTAssertNoThrow(try good.validate())
-        
+
         do {
             let under = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: [String]())
             try under.validate()
@@ -72,7 +64,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
         } catch {
             XCTFailUnknownError(error)
         }
-        
+
         do {
             let over = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven")
             try over.validate()
@@ -81,7 +73,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
         } catch {
             XCTFailUnknownError(error)
         }
-        
+
         do {
             let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 19), subusers: "one", "two", "three")
             try request.validate()
@@ -92,5 +84,4 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
             XCTFailUnknownError(error)
         }
     }
-    
 }

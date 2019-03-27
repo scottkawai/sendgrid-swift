@@ -1,10 +1,3 @@
-//
-//  RetrieveSpamReports.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `RetrieveSpamReports` class represents the API call to [retrieve the

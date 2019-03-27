@@ -1,10 +1,3 @@
-//
-//  ClickTracking.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `ClickTracking` class is used to adjust the click tracking setting.

@@ -1,10 +1,3 @@
-//
-//  RateLimit.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/17/17.
-//
-
 import Foundation
 
 /// The `RateLimit` struct abstracts any rate-limit information returned from an

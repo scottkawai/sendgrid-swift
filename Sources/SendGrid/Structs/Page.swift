@@ -1,10 +1,3 @@
-//
-//  Page.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// This struct is used to represent a page via the `limit` and `offset`

@@ -1,10 +1,3 @@
-//
-//  ContentType.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
 import Foundation
 
 /// The `ContentType` struct represents the common types of Content Types used

@@ -1,10 +1,3 @@
-//
-//  FormURLEncoder.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 6/20/18.
-//
-
 import Foundation
 
 /// The `FormURLEncoder` class encodes any `Encodable` instance into the

@@ -1,10 +1,3 @@
-//
-//  OpenTracking.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `OpenTracking` class is used to toggle the open tracking setting for an
