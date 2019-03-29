@@ -48,7 +48,7 @@ public extension EmailHeaderRepresentable {
         ]
         for (key, _) in head {
             guard reserved.firstIndex(of: key.lowercased()) == nil else { throw Exception.Mail.headerNotAllowed(key) }
-            let regex = try NSRegularExpression(pattern: "(\\s)", options: [.caseInsensitive, .anchorsMatchLines])
+            let regex = try NSRegularExpression(pattern: #"(\s)"#, options: [.caseInsensitive, .anchorsMatchLines])
             guard regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.count)) == 0 else {
                 throw Exception.Mail.malformedHeader(key)
             }
