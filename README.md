@@ -8,7 +8,7 @@ This library allows you to quickly and easily send emails through SendGrid using
 
 Versions 2.0.0 and higher have been migrated to Swift 5. Some existing classes, properties, and functions have been renamed or removed. Deprecation warnings will populate where appropriate.
 
-Version 2 of this library re-architects how requests are sent. Previously a `Request` instance housed it's API parameters alongside other properties. Now, `Request` instances hold all their API-related parameters in a new `parameters` property. The `parameters` property is an `Encodable` instance, which simplifies how a request transforms its properties into the API parameters.
+Version 2 of this library re-architects how requests are sent. Previously a `Request` instance housed it's API parameters alongside other properties. Now, `Request` instances hold all their API-related parameters in a new `parameters` property. The `parameters` property is an `Encodable` instance, which simplifies how a request transforms its properties into the API parameters. In addition, the `Session` class's callback now utilize's Swift 5's `Result` enum to provide back either the API response or any errors that arose.
 
 **Previous Breaking Changes**
 
