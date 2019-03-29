@@ -96,7 +96,7 @@ open class FormURLEncoder {
 }
 
 /// The `_FormURLEncoder` class is the actual encoder used by `FormURLEncoder`.
-fileprivate class _FormURLEncoder: Encoder {
+private class _FormURLEncoder: Encoder {
     // MARK: - Properties
     
     /// :nodoc:
@@ -311,7 +311,7 @@ extension _FormURLEncoder: SingleValueEncodingContainer {
 /// otherwords, wrapping a value into the shared `_FormURLEncoderValueWrapper`
 /// type. By boxing these values, we can later reliable convert them all to
 /// `URLQueryItem` instances.
-fileprivate extension _FormURLEncoder /* Boxing */ {
+private extension _FormURLEncoder /* Boxing */ {
     /// Wraps an `Encodable` instance in a `_FormURLEncoderValueWrapper`. This
     /// method looks for specific types and handles them as necessary, such as
     /// `Date` and `Data` instances. In the case of a `Date`, the
@@ -366,7 +366,7 @@ fileprivate extension _FormURLEncoder /* Boxing */ {
                 
                 return self.storage._popWrapper()
                 
-            default:
+            @unknown default:
                 fatalError("Encountered an unknown JSON date encoding strategy.")
             }
         } else if let url = value as? URL {
@@ -391,7 +391,7 @@ fileprivate extension _FormURLEncoder /* Boxing */ {
 
 /// The `_FormURLUnkeyedEncodingContainer` struct functions as an unkeyed
 /// encoding container.
-fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
+private struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     // MARK: - Properties
     
     /// :nodoc:
@@ -521,7 +521,7 @@ fileprivate struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
 
 /// The `_FormURLKeyedEncodingContainer` struct functions as a keyed encoding
 /// container.
-fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncodingContainerProtocol {
+private struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncodingContainerProtocol {
     // MARK: - Properties
     
     /// :nodoc:
@@ -693,7 +693,7 @@ fileprivate struct _FormURLKeyedEncodingContainer<Key: CodingKey>: KeyedEncoding
 /// superclass -- the lifetime of the encoder should not escape the scope it's
 /// created in, but it doesn't necessarily know when it's done being used (to
 /// write to the original container).
-fileprivate class _FormURLReferencingEncoder: _FormURLEncoder {
+private class _FormURLReferencingEncoder: _FormURLEncoder {
     // MARK: - Properties
     
     /// The main encoder this encoder is referencing.
@@ -748,7 +748,7 @@ fileprivate class _FormURLReferencingEncoder: _FormURLEncoder {
 }
 
 /// This struct serves as the main CodingKey used when encoding and decoding.
-fileprivate struct _FormURLKey: CodingKey {
+private struct _FormURLKey: CodingKey {
     // MARK: - Properties
     
     /// :nodoc:
@@ -788,7 +788,7 @@ fileprivate struct _FormURLKey: CodingKey {
 /// needs to be encoded. By storing the values in this class, there is a shared
 /// type that can be passed around for encoding purposes. Compare this to
 /// `JSONEncoder` where `NSObject` was used as a shared type.
-fileprivate class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionaryLiteral, ExpressibleByArrayLiteral {
+private class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionaryLiteral, ExpressibleByArrayLiteral {
     /// :nodoc:
     fileprivate typealias RawValue = Encodable
     
@@ -859,7 +859,7 @@ fileprivate class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionar
 
 /// The `_FormURLEncoderStorage` struct serves as a storage mechanism for the
 /// encoder, keeping track of new values that are being encoded.
-fileprivate struct _FormURLEncoderStorage {
+private struct _FormURLEncoderStorage {
     // MARK: - Properties
     
     /// The current stack of value wrappers in the storage.
