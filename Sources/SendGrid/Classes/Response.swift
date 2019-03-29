@@ -41,7 +41,7 @@ open class Response<ModelType: Decodable> {
     public init(data: Data?, response: URLResponse?, decodingStrategy: DecodingStrategy) throws {
         self.data = data
         self.urlResponse = response
-        self.rateLimit = RateLimit.from(response: response)
+        self.rateLimit = RateLimit(response: response)
         self.pages = Pagination(response: response)
         guard let d = data else {
             self.model = nil

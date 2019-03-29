@@ -38,10 +38,6 @@ public struct Pagination {
     /// information out of the "Link" header (if present).
     ///
     /// - Parameter response:   An instance of `URLResponse`.
-    /// - Returns:              An instance of `Pages` using information
-    ///                         from an URLResponse (if pagination
-    ///                         information was returned in the
-    ///                         URLResponse).
     public init?(response: URLResponse?) {
         guard let http = response as? HTTPURLResponse,
             let link = http.allHeaderFields["Link"] as? String

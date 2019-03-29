@@ -35,10 +35,7 @@ public struct RateLimit {
     /// stores their value in a new instance of `RateLimit`.
     ///
     /// - Parameter response:   An instance of `URLResponse`.
-    /// - Returns:              An instance of `RateLimit` using information
-    ///                         from an URLResponse (if rate limit information
-    ///                         was returned in the URLResponse).
-    static func from(response: URLResponse?) -> RateLimit? {
+    public init?(response: URLResponse?) {
         guard let http = response as? HTTPURLResponse,
             let limitStr = http.allHeaderFields["X-RateLimit-Limit"] as? String,
             let li = Int(limitStr),
@@ -47,6 +44,6 @@ public struct RateLimit {
             let dateStr = http.allHeaderFields["X-RateLimit-Reset"] as? String,
             let date = Double(dateStr)
         else { return nil }
-        return RateLimit(limit: li, remaining: re, resetDate: Date(timeIntervalSince1970: date))
+        self.init(limit: li, remaining: re, resetDate: Date(timeIntervalSince1970: date))
     }
 }
