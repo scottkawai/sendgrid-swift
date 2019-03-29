@@ -265,7 +265,7 @@ extension PaginationTests {
     static let __allTests__PaginationTests = [
         ("testBadHeaders", testBadHeaders),
         ("testNoHeader", testNoHeader),
-        ("testStaticInitializer", testStaticInitializer),
+        ("testUrlResponseInit", testUrlResponseInit),
     ]
 }
 
@@ -286,7 +286,7 @@ extension RateLimitTests {
     // to regenerate.
     static let __allTests__RateLimitTests = [
         ("testBadHeaders", testBadHeaders),
-        ("testStaticInitializer", testStaticInitializer),
+        ("testUrlResponseInitializer", testUrlResponseInitializer),
     ]
 }
 

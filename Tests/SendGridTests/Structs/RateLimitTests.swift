@@ -2,7 +2,7 @@
 import XCTest
 
 class RateLimitTests: XCTestCase {
-    func testStaticInitializer() {
+    func testUrlResponseInitializer() {
         let url = URL(fileURLWithPath: "/foo")
         let headers: [String: String] = [
             "X-RateLimit-Limit": "500",
