@@ -142,7 +142,7 @@ open class Session {
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func send<ModelType: Decodable, Parameters: Encodable>(request: Request<ModelType, Parameters>, completionHandler: ((Response<ModelType>?) -> Void)? = nil) throws {
+    open func send<ModelType: Decodable, Parameters: Encodable>(request: Request<ModelType, Parameters>, completionHandler: ((Result<Response<ModelType>, Error>) -> Void)? = nil) throws {
         // Check that we have authentication set.
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
@@ -155,10 +155,18 @@ open class Session {
             }
         }
         
-        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { data, response, error in
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { data, response, err in
             guard let callback = completionHandler else { return }
-            let resp = Response<ModelType>(data: data, response: response, error: error, decodingStrategy: request.decodingStrategy)
-            callback(resp)
+            do {
+                if let e = err {
+                    throw e
+                } else {
+                    let resp = try Response<ModelType>(data: data, response: response, decodingStrategy: request.decodingStrategy)
+                    callback(.success(resp))
+                }
+            } catch {
+                callback(.failure(error))
+            }
         }
     }
 }

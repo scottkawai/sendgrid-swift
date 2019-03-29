@@ -17,14 +17,8 @@ open class Response<ModelType: Decodable> {
         return self.urlResponse as? HTTPURLResponse
     }
     
-    /// The error that arose during the request (if applicable).
-    public let error: Error?
-    
     /// The record(s) returned from the response.
     public let model: ModelType?
-    
-    /// If the response contained the total number of records, you can access it here.
-    public let count: Int?
     
     /// The rate limit information extracted from the response.
     public let rateLimit: RateLimit?
@@ -44,22 +38,18 @@ open class Response<ModelType: Decodable> {
     ///   - error:                  The error that arose during the request (if
     ///                             applicable).
     ///   - decodingStrategy:       The strategy for decoding dates and data.
-    public init(data: Data?, response: URLResponse?, error: Error?, decodingStrategy: DecodingStrategy) {
+    public init(data: Data?, response: URLResponse?, decodingStrategy: DecodingStrategy) throws {
         self.data = data
         self.urlResponse = response
-        self.error = error
         self.rateLimit = RateLimit.from(response: response)
         self.pages = Pagination.from(response: response)
+        guard let d = data else {
+            self.model = nil
+            return
+        }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = decodingStrategy.dates
         decoder.dataDecodingStrategy = decodingStrategy.data
-        if let d = data,
-            let parsed = try? decoder.decode(ModelType.self, from: d) {
-            self.model = parsed
-            self.count = nil
-        } else {
-            self.model = nil
-            self.count = nil
-        }
+        self.model = try decoder.decode(ModelType.self, from: d)
     }
 }
