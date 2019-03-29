@@ -2,7 +2,7 @@
 import XCTest
 
 class PaginationTests: XCTestCase {
-    func testStaticInitializer() {
+    func testUrlResponseInit() {
         let url = URL(fileURLWithPath: "/foo")
         let sample = """
         <https://api.sendgrid.com/v3/suppression/bounces?limit=500&offset=1500>; rel="next"; title="2", <https://api.sendgrid.com/v3/suppression/bounces?limit=500&offset=500>; rel="prev"; title="1", <https://api.sendgrid.com/v3/suppression/bounces?limit=500&offset=58000>; rel="last"; title="117", <https://api.sendgrid.com/v3/suppression/bounces?limit=500&offset=0>; rel="first"; title="1"
@@ -12,7 +12,7 @@ class PaginationTests: XCTestCase {
         ]
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
         
-        guard let pages = Pagination.from(response: response) else {
+        guard let pages = Pagination(response: response) else {
             XCTFail("Received `nil` from Pagination initializer.")
             return
         }
@@ -29,7 +29,7 @@ class PaginationTests: XCTestCase {
             "Foo": "Bar"
         ]
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
-        let pages = Pagination.from(response: response)
+        let pages = Pagination(response: response)
         XCTAssertNil(pages)
     }
     
@@ -42,7 +42,7 @@ class PaginationTests: XCTestCase {
             "Link": sample
         ]
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
-        let pages = Pagination.from(response: response)
+        let pages = Pagination(response: response)
         XCTAssertNil(pages?.first)
         XCTAssertNil(pages?.previous)
         XCTAssertNil(pages?.next)

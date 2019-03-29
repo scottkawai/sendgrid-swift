@@ -34,7 +34,7 @@ public struct Pagination {
         self.last = last
     }
     
-    /// Returns a new struct instance from a URLResponse, extracting the
+    /// Initializes a new instance from a URLResponse, extracting the
     /// information out of the "Link" header (if present).
     ///
     /// - Parameter response:   An instance of `URLResponse`.
@@ -42,11 +42,9 @@ public struct Pagination {
     ///                         from an URLResponse (if pagination
     ///                         information was returned in the
     ///                         URLResponse).
-    static func from(response: URLResponse?) -> Pagination? {
+    public init?(response: URLResponse?) {
         guard let http = response as? HTTPURLResponse,
-            let link = http.allHeaderFields["Link"] as? String,
-            let relRegex = try? NSRegularExpression(pattern: "(?<=rel=\")\\S+(?=\")"),
-            let urlRegex = try? NSRegularExpression(pattern: "(?<=<)\\S+(?=>)")
+            let link = http.allHeaderFields["Link"] as? String
         else { return nil }
         func first(match pattern: String, in str: String) -> String? {
             let range = str.startIndex..<str.endIndex
@@ -58,10 +56,10 @@ public struct Pagination {
         }
         let rawPages = link.split(separator: ",").compactMap { (item) -> (String, Page)? in
             let partial = String(item)
-            guard let name = first(match: "(?<=rel=\")\\S+(?=\")", in: partial),
-                let limitStr = first(match: "(?<=limit=)\\d+", in: partial),
+            guard let name = first(match: #"(?<=rel=\")\S+(?=\")"#, in: partial),
+                let limitStr = first(match: #"(?<=limit=)\d+"#, in: partial),
                 let limit = Int(limitStr),
-                let offsetStr = first(match: "(?<=offset=)\\d+", in: partial),
+                let offsetStr = first(match: #"(?<=offset=)\d+"#, in: partial),
                 let offset = Int(offsetStr)
             else { return nil }
             let info = Page(limit: limit, offset: offset)
@@ -71,7 +69,7 @@ public struct Pagination {
             let filtered = rawPages.filter { $0.0 == rel }
             return filtered.first?.1
         }
-        return Pagination(
+        self.init(
             first: page("first"),
             previous: page("prev"),
             next: page("next"),

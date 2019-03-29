@@ -42,7 +42,7 @@ open class Response<ModelType: Decodable> {
         self.data = data
         self.urlResponse = response
         self.rateLimit = RateLimit.from(response: response)
-        self.pages = Pagination.from(response: response)
+        self.pages = Pagination(response: response)
         guard let d = data else {
             self.model = nil
             return
