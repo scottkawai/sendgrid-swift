@@ -18,17 +18,22 @@ import Foundation
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire invalid email list will be fetched:
 ///     let request = RetrieveInvalidEmails()
-///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `InvalidEmail`
-///         // structs.
-///         response?.model?.forEach { print($0.email) }
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             // The `model` property will be an array of `InvalidEmail`
+///             // structs.
+///             response.model?.forEach { print($0.email) }
 ///
-///         // The response object has a `Pagination` instance on it as
-///         // well. You can use this to get the next page, if you wish.
-///         //
-///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = RetrieveInvalidEmails(page: nextPage)
-///         // }
+///             // The response object has a `Pagination` instance on it as
+///             // well. You can use this to get the next page, if you wish.
+///             //
+///             // if let nextPage = response.pages?.next {
+///             //    let nextRequest = RetrieveInvalidEmails(page: nextPage)
+///             // }
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -47,8 +52,13 @@ import Foundation
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
 ///     let request = RetrieveInvalidEmails(start: start, end: now, page: page)
-///     try Session.shared.send(request: request) { (response) in
-///         response?.model?.forEach { print($0.email) }
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             response.model?.forEach { print($0.email) }
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -63,8 +73,13 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = RetrieveInvalidEmails(email: "foo@example")
-///     try Session.shared.send(request: request) { (response) in
-///         response?.model?.forEach { print($0.email) }
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             response.model?.forEach { print($0.email) }
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)

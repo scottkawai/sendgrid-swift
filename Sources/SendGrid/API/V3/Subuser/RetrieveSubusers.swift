@@ -11,11 +11,15 @@ import Foundation
 /// ```swift
 /// do {
 ///     let search = RetrieveSubusers(username: "foo")
-///     try Session.shared.send(request: search) { (response) in
-///         if let list = response?.model {
-///             // The `model` property on the response will be an array of
-///             // `Subuser` instances.
-///             list.forEach { print($0.username) }
+///     try Session.shared.send(request: search) { (result) in
+///         case .success(let response):
+///             if let list = response.model {
+///                 // The `model` property on the response will be an array of
+///                 // `Subuser` instances.
+///                 list.forEach { print($0.username) }
+///             }
+///         case .failure(let err):
+///             print(err)
 ///         }
 ///     }
 /// } catch {

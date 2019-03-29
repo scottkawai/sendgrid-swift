@@ -98,8 +98,13 @@ import Foundation
 ///     "campaign_id": "12345"
 /// ]
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -141,8 +146,13 @@ import Foundation
 ///         )
 ///         email.parameters?.attachments = [attachment]
 ///     }
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -177,8 +187,13 @@ import Foundation
 ///         )
 ///         email.parameters?.attachments = [attachment]
 ///     }
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -251,8 +266,13 @@ import Foundation
 /// email.parameters?.trackingSettings.clickTracking = ClickTracking(section: .htmlBody)
 /// email.parameters?.trackingSettings.openTracking = OpenTracking(location: .off)
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -281,8 +301,13 @@ import Foundation
 /// /// Assuming your unsubscribe group has an ID of 4815…
 /// email.parameters?.asm = ASM(groupID: 4815)
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -307,8 +332,13 @@ import Foundation
 /// /// Assuming your unsubscribe group has an ID of 4815…
 /// email.parameters?.asm = ASM(groupID: 4815, groupsToDisplay: [16,23,42])
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -337,8 +367,13 @@ import Foundation
 /// /// Assuming you have an IP pool called "transactional" on your account…
 /// email.parameters?.ipPoolName = "transactional"
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -374,8 +409,13 @@ import Foundation
 /// email.parameters?.batchID = "76A8C7A6-B435-47F5-AB13-15F06BA2E3WD"
 ///
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -409,8 +449,13 @@ import Foundation
 ///     subject: nil
 /// )
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -437,8 +482,13 @@ import Foundation
 /// )
 /// email.parameters?.categories = ["Foo", "Bar"]
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -520,8 +570,13 @@ import Foundation
 /// /// Assuming you have a template with ID "52523e14-7e47-45ed-ab32-0db344d8cf9z" on your account…
 /// email.parameters?.templateID = "52523e14-7e47-45ed-ab32-0db344d8cf9z"
 /// do {
-///     try Session.shared.send(request: email) { (response) in
-///         print(response?.httpUrlResponse?.statusCode)
+///     try Session.shared.send(request: email) { (result) in
+///         switch result {
+///         case .success(let response):
+///             print(response.httpUrlResponse?.statusCode)
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)

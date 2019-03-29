@@ -17,16 +17,21 @@ import Foundation
 ///     // If you don't specify any parameters, then the first page of your entire
 ///     // bounce list will be fetched:
 ///     let request = RetrieveBounces()
-///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Bounce` structs.
-///         response?.model?.forEach { print($0.email) }
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             // The `model` property will be an array of `Bounce` structs.
+///             response.model?.forEach { print($0.email) }
 ///
-///         // The response object has a `Pagination` instance on it as well.
-///         // You can use this to get the next page, if you wish.
-///         //
-///         // if let nextPage = response?.pages?.next {
-///         //    let nextRequest = RetrieveBounces(page: nextPage)
-///         // }
+///             // The response object has a `Pagination` instance on it as well.
+///             // You can use this to get the next page, if you wish.
+///             //
+///             // if let nextPage = response.pages?.next {
+///             //    let nextRequest = RetrieveBounces(page: nextPage)
+///             // }
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -45,9 +50,14 @@ import Foundation
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
 ///     let request = RetrieveBounces(start: start, end: now, page: page)
-///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Bounce` structs.
-///         response?.model?.forEach { print($0.email) }
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             // The `model` property will be an array of `Bounce` structs.
+///             response.model?.forEach { print($0.email) }
+///         case .failure(let err):
+///             print(err)
+///         }
 ///     }
 /// } catch {
 ///     print(error)
@@ -62,10 +72,15 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = RetrieveBounces(email: "foo@example.none")
-///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Bounce` structs.
-///         if let match = response?.model?.first {
-///           print("\(match.email) bounced with reason \"\(match.reason)\"")
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             // The `model` property will be an array of `Bounce` structs.
+///             if let match = response.model?.first {
+///                 print("\(match.email) bounced with reason \"\(match.reason)\"")
+///             }
+///         case .failure(let err):
+///             print(err)
 ///         }
 ///     }
 /// } catch {

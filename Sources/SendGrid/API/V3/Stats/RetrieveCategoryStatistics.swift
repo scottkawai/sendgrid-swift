@@ -14,10 +14,15 @@ import Foundation
 ///         aggregatedBy: .week,
 ///         categories: "Foo", "Bar"
 ///     )
-///     try Session.shared.send(request: request) { (response) in
-///         // The `model` property will be an array of `Statistic` structs.
-///         response?.model?.forEach{ (stat) in
-///             // Do something with the stats here...
+///     try Session.shared.send(request: request) { (result) in
+///         switch result {
+///         case .success(let response):
+///             // The `model` property will be an array of `Statistic` structs.
+///             response.model?.forEach{ (stat) in
+///                 // Do something with the stats here...
+///             }
+///         case .failure(let err):
+///             print(err)
 ///         }
 ///     }
 /// } catch {
