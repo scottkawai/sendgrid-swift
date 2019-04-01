@@ -27,11 +27,7 @@ open class Session {
     open var onBehalfOf: String?
     
     /// The `URLSession` to make the HTTPRequests with.
-    #if os(Linux)
-    let urlSession = URLSession(configuration: .default)
-    #else
-    let urlSession = URLSession.shared
-    #endif
+    private let _urlSession = URLSession.shared
     
     // MARK: - Initialization
     
@@ -52,17 +48,6 @@ open class Session {
         self.authentication = auth
         self.onBehalfOf = subuser
     }
-    
-    #if os(Linux)
-    /// Invalidates the `URLSession` on deinit.
-    // deinit {
-    /// FIX-ME: We whould really invalidate the URLSession here, but because
-    /// it hasn't been implemented yet, we can't.
-    /// https://github.com/apple/swift-corelibs-foundation/blob/master/Docs/Status.md
-    
-    // self.urlSession.invalidateAndCancel()
-    // }
-    #endif
     
     // MARK: - Methods
     
@@ -86,7 +71,7 @@ open class Session {
     ///   - completionHandler:  A callback containing the response information.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func request<T: Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String: String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) throws {
+    open func request<T: Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String: String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Result<(response: URLResponse, data: Data?), Error>) -> Void)? = nil) throws {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         
         var components = URLComponents(string: Constants.ApiHost)
@@ -125,9 +110,15 @@ open class Session {
         
         let task: URLSessionDataTask
         if let callback = completionHandler {
-            task = self.urlSession.dataTask(with: payload, completionHandler: callback)
+            task = self._urlSession.dataTask(with: payload, completionHandler: { data, response, error in
+                callback(Result(catching: { () -> (response: URLResponse, data: Data?) in
+                    if let err = error { throw err }
+                    guard let resp = response else { throw Exception.Session.noResponseReceived }
+                    return (response: resp, data: data)
+                }))
+            })
         } else {
-            task = self.urlSession.dataTask(with: payload)
+            task = self._urlSession.dataTask(with: payload)
         }
         task.resume()
     }
@@ -155,18 +146,16 @@ open class Session {
             }
         }
         
-        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { data, response, err in
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { result in
             guard let callback = completionHandler else { return }
-            do {
-                if let e = err {
+            callback(Result(catching: { () -> Response<ModelType> in
+                switch result {
+                case .success(let response, let data):
+                    return try Response<ModelType>(data: data, response: response, decodingStrategy: request.decodingStrategy)
+                case .failure(let e):
                     throw e
-                } else {
-                    let resp = try Response<ModelType>(data: data, response: response, decodingStrategy: request.decodingStrategy)
-                    callback(.success(resp))
                 }
-            } catch {
-                callback(.failure(error))
-            }
+            }))
         }
     }
 }

@@ -10,7 +10,7 @@ open class Response<ModelType: Decodable> {
     public let data: Data?
     
     /// The URLResponse returned from the request.
-    public let urlResponse: URLResponse?
+    public let urlResponse: URLResponse
     
     /// The URL response as an HTTPURLResponse (if applicable).
     public var httpUrlResponse: HTTPURLResponse? {
@@ -38,7 +38,7 @@ open class Response<ModelType: Decodable> {
     ///   - error:                  The error that arose during the request (if
     ///                             applicable).
     ///   - decodingStrategy:       The strategy for decoding dates and data.
-    public init(data: Data?, response: URLResponse?, decodingStrategy: DecodingStrategy) throws {
+    public init(data: Data?, response: URLResponse, decodingStrategy: DecodingStrategy) throws {
         self.data = data
         self.urlResponse = response
         self.rateLimit = RateLimit(response: response)

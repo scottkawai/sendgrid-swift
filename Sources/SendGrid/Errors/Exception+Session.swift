@@ -20,6 +20,9 @@ public extension Exception {
         /// Thrown if an unsupported authentication method was used.
         case unsupportedAuthetication(String)
         
+        /// Thrown when no response comes back from an HTTP request.
+        case noResponseReceived
+        
         // MARK: - Properties
         
         /// A description for the error.
@@ -33,6 +36,8 @@ public extension Exception {
                 return "The specified request does not support impersonation via the 'On-behalf-of' header."
             case .unsupportedAuthetication(let description):
                 return "Authentication with \(description) is not supported on this API call."
+            case .noResponseReceived:
+                return "No response was returned from the API call."
             }
         }
     }
