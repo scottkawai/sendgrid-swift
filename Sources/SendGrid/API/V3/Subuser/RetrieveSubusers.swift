@@ -26,7 +26,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveSubusers: Request<[Subuser], RetrieveSubusers.Parameters> {
+public class RetrieveSubusers: ModeledRequest<[Subuser], RetrieveSubusers.Parameters> {
     // MARK: - Initialization
     
     /// Initializes the request with pagination info and a username search.

@@ -27,7 +27,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveGlobalStatistics: Request<[Statistic], RetrieveStatisticsParameters> {
+public class RetrieveGlobalStatistics: ModeledRequest<[Statistic], RetrieveStatisticsParameters> {
     // MARK: - Initialization
     
     /// Initializes the request with a path and set of parameters.

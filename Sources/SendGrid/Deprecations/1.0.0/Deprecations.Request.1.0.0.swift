@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Request {
+public extension ModeledRequest {
     /// :nodoc:
     @available(*, unavailable, message: "use the `generateUrlRequest` method instead.")
     func request(for session: Session, onBehalfOf: String?) throws -> URLRequest {

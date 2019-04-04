@@ -71,7 +71,7 @@ open class Session {
     ///   - completionHandler:  A callback containing the response information.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func request<T: Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String: String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Result<(response: URLResponse, data: Data?), Error>) -> Void)? = nil) throws {
+    open func request<T: Encodable>(path: String, method: HTTPMethod, parameters: T? = nil, headers: [String: String] = [:], encodingStrategy: EncodingStrategy = EncodingStrategy(), completionHandler: ((Result<(response: HTTPURLResponse, data: Data?), Error>) -> Void)? = nil) throws {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         
         var components = URLComponents(string: Constants.ApiHost)
@@ -111,9 +111,9 @@ open class Session {
         let task: URLSessionDataTask
         if let callback = completionHandler {
             task = self._urlSession.dataTask(with: payload, completionHandler: { data, response, error in
-                callback(Result(catching: { () -> (response: URLResponse, data: Data?) in
+                callback(Result(catching: { () -> (response: HTTPURLResponse, data: Data?) in
                     if let err = error { throw err }
-                    guard let resp = response else { throw Exception.Session.noResponseReceived }
+                    guard let resp = response as? HTTPURLResponse else { throw Exception.Session.noResponseReceived }
                     return (response: resp, data: data)
                 }))
             })
@@ -121,6 +121,35 @@ open class Session {
             task = self._urlSession.dataTask(with: payload)
         }
         task.resume()
+    }
+    
+    private func _presend<Parameters: Encodable>(validate request: Request<Parameters>) throws {
+        guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
+        guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
+        
+        try request.validate()
+        
+        if self.onBehalfOf != nil {
+            guard request.supportsImpersonation else {
+                throw Exception.Session.impersonationNotAllowed
+            }
+        }
+    }
+    
+    open func send<Parameters: Encodable>(request: Request<Parameters>, completionHandler: ((Result<HTTPURLResponse, Error>) -> Void)? = nil) throws {
+        try self._presend(validate: request)
+        
+        try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy, completionHandler: { result in
+            guard let callback = completionHandler else { return }
+            callback(Result(catching: { () -> HTTPURLResponse in
+                switch result {
+                case .success(let response, _):
+                    return response
+                case .failure(let e):
+                    throw e
+                }
+            }))
+        })
     }
     
     /// Makes the HTTP request with the given `Request` object.
@@ -133,25 +162,20 @@ open class Session {
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func send<ModelType: Decodable, Parameters: Encodable>(request: Request<ModelType, Parameters>, completionHandler: ((Result<Response<ModelType>, Error>) -> Void)? = nil) throws {
-        // Check that we have authentication set.
-        guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
-        guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
-        
-        try request.validate()
-        
-        if self.onBehalfOf != nil {
-            guard request.supportsImpersonation else {
-                throw Exception.Session.impersonationNotAllowed
-            }
-        }
+    open func send<ModelType: Decodable, Parameters: Encodable>(request: ModeledRequest<ModelType, Parameters>, completionHandler: ((Result<(HTTPURLResponse, ModelType), Error>) -> Void)? = nil) throws {
+        try self._presend(validate: request)
         
         try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { result in
             guard let callback = completionHandler else { return }
-            callback(Result(catching: { () -> Response<ModelType> in
+            callback(Result(catching: { () -> (HTTPURLResponse, ModelType) in
                 switch result {
                 case .success(let response, let data):
-                    return try Response<ModelType>(data: data, response: response, decodingStrategy: request.decodingStrategy)
+                    guard let d = data else { throw Exception.Session.noResponseReceived }
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = request.decodingStrategy.dates
+                    decoder.dataDecodingStrategy = request.decodingStrategy.data
+                    let model = try decoder.decode(ModelType.self, from: d)
+                    return (response, model)
                 case .failure(let e):
                     throw e
                 }

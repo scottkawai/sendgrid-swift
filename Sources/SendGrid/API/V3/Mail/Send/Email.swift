@@ -582,7 +582,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class Email: Request<EmptyCodable, Email.Parameters> {
+public class Email: Request<Email.Parameters> {
     // MARK: - Properties
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.

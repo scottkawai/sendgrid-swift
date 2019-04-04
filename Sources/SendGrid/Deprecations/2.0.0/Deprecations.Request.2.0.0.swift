@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Request {
+public extension ModeledRequest {
     /// :nodoc:
     @available(*, deprecated, renamed: "endpointPath")
     var endpoint: URLComponents? { return nil }

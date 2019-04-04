@@ -22,7 +22,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class DeleteGlobalUnsubscribe: Request<EmptyCodable, EmptyCodable> {
+public class DeleteGlobalUnsubscribe: Request<[String:String]> {
     // MARK: - Initializer
     
     /// Initializes the request with an email address to delete from the

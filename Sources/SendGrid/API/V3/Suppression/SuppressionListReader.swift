@@ -3,7 +3,7 @@ import Foundation
 /// The `SuppressionListReader` class is base class inherited by requests that
 /// retrieve entries from a supression list. You should not use this class
 /// directly.
-open class SuppressionListReader<T: EmailEventRepresentable & Decodable>: Request<[T], SuppressionListReaderParameters> {
+open class SuppressionListReader<T: EmailEventRepresentable & Decodable>: ModeledRequest<[T], SuppressionListReaderParameters> {
     // MARK: - Initialization
     
     /// Private initializer that sets all the values.

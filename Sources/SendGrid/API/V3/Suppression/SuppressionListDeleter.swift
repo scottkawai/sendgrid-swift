@@ -3,7 +3,7 @@ import Foundation
 /// The `SuppressionListDeleter` class is base class inherited by requests that
 /// delete entries from a supression list. You should not use this class
 /// directly.
-public class SuppressionListDeleter<T: EmailEventRepresentable>: Request<EmptyCodable, SuppressionListDeleterParameters> {
+public class SuppressionListDeleter<T: EmailEventRepresentable>: Request<SuppressionListDeleterParameters> {
     // MARK: - Initializer
     
     /// Private initializer to set all the required properties.

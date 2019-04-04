@@ -3,9 +3,10 @@ import Foundation
 /// The `Request` class should be inherited by any class that represents an API
 /// request and sent through the `send` function in `Session`.
 ///
-/// This class contains a `ModelType` generic, which is used to map the API
-/// response to a specific model that conforms to `Codable`.
-open class Request<ModelType: Decodable, Parameters: Encodable>: Validatable {
+/// Only classes that aren't expecting any data back in the response should
+/// directly inherit this class. If data is expected, then `ModeledRequest`
+/// should be used instead.
+open class Request<Parameters: Encodable>: Validatable {
     // MARK: - Properties
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
@@ -91,6 +92,13 @@ open class Request<ModelType: Decodable, Parameters: Encodable>: Validatable {
         return true
     }
 }
+
+/// The `ModeledRequest` class should be inherited by any class that represents
+/// an API request and sent through the `send` function in `Session`.
+///
+/// This class contains a `ModelType` generic, which is used to map the API
+/// response to a specific model that conforms to `Decodable`.
+open class ModeledRequest<ModelType: Decodable, Parameters: Encodable>: Request<Parameters> {}
 
 /// CustomStringConvertible conformance
 extension Request: CustomStringConvertible {

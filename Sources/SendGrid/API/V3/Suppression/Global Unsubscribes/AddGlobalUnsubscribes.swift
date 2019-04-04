@@ -21,7 +21,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class AddGlobalUnsubscribes: Request<AddGlobalUnsubscribes.Parameters, AddGlobalUnsubscribes.Parameters> {
+public class AddGlobalUnsubscribes: ModeledRequest<AddGlobalUnsubscribes.Parameters, AddGlobalUnsubscribes.Parameters> {
     // MARK: - Initialization
     
     /// Initializes the request with a list of email addresses to add to the

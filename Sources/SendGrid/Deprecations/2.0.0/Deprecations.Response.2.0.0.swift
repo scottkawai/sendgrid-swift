@@ -1,7 +1,5 @@
 import Foundation
 
-public extension Response {
-    /// :nodoc:
-    @available(*, deprecated, message: "Access the `model` property instead to retrieve a total count.")
-    var count: Int? { return nil }
-}
+@available(*, deprecated, message: "HTTPURLResponse is now returned and a model is sent separately.")
+/// :nodoc:
+public struct Response {}
