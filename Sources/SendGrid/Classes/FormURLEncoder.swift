@@ -327,10 +327,6 @@ private extension _FormURLEncoder /* Boxing */ {
     func box<T: Encodable>(_ value: T) throws -> _FormURLEncoderValueWrapper? {
         if let date = value as? Date {
             switch self.dateEncodingStrategy {
-            case .deferredToDate:
-                try date.encode(to: self)
-                return self.storage._popWrapper()
-                
             case .secondsSince1970:
                 return _FormURLEncoderValueWrapper(date.timeIntervalSince1970)
                 
@@ -366,8 +362,9 @@ private extension _FormURLEncoder /* Boxing */ {
                 
                 return self.storage._popWrapper()
                 
-            @unknown default:
-                fatalError("Encountered an unknown JSON date encoding strategy.")
+            default:
+                try date.encode(to: self)
+                return self.storage._popWrapper()
             }
         } else if let url = value as? URL {
             return _FormURLEncoderValueWrapper(url.absoluteString)
