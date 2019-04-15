@@ -56,7 +56,11 @@ public extension EmailHeaderRepresentable {
             "bcc"
         ]
         for (key, _) in head {
+            #if swift(>=5.0)
+            guard reserved.firstIndex(of: key.lowercased()) == nil else { throw Exception.Mail.headerNotAllowed(key) }
+            #else
             guard reserved.index(of: key.lowercased()) == nil else { throw Exception.Mail.headerNotAllowed(key) }
+            #endif
             let regex = try NSRegularExpression(pattern: "(\\s)", options: [.caseInsensitive, .anchorsMatchLines])
             guard regex.numberOfMatches(in: key, options: [], range: NSMakeRange(0, key.count)) == 0 else {
                 throw Exception.Mail.malformedHeader(key)
