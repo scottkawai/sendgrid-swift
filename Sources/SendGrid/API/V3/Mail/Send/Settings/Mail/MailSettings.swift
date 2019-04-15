@@ -51,7 +51,7 @@ public struct MailSettings: Encodable {
 public extension MailSettings {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case bcc
         case bypassListManagement   = "bypass_list_management"

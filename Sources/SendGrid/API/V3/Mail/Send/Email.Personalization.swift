@@ -97,7 +97,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
 public extension Personalization {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case to
         case cc
         case bcc

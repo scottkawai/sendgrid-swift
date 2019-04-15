@@ -10,7 +10,7 @@ import Foundation
 public extension Exception {
     
     /// The `Exception.Global` struct contains global errors that can be thrown.
-    public enum Global: Error, CustomStringConvertible {
+    enum Global: Error, CustomStringConvertible {
         
         // MARK: - Cases
         //=========================================================================

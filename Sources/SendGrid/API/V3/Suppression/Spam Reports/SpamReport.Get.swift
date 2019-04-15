@@ -82,7 +82,7 @@ public extension SpamReport {
     ///     print(error)
     /// }
     /// ```
-    public class Get: SuppressionListReader<SpamReport> {
+    class Get: SuppressionListReader<SpamReport> {
         
         override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
             super.init(

@@ -61,7 +61,7 @@ public struct ClickTracking: Encodable {
 public extension ClickTracking {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case enableText = "enable_text"
     }
@@ -91,7 +91,7 @@ public extension ClickTracking {
     /// - plainTextAndHTMLBodies:   If used, links in the HTML body and URLs in
     ///                             the plain text body will be encoded and
     ///                             tracked.
-    public enum Section {
+    enum Section {
         
         /// If used, the setting will be disabled for this email.
         case off

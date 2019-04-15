@@ -77,7 +77,7 @@ public extension InvalidEmail {
     ///     print(error)
     /// }
     /// ```
-    public class Get: SuppressionListReader<InvalidEmail> {
+    class Get: SuppressionListReader<InvalidEmail> {
         
         override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
             super.init(

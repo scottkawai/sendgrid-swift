@@ -48,7 +48,7 @@ public extension InvalidEmail {
     ///     print(error)
     /// }
     /// ```
-    public class Delete: SuppressionListDeleter<InvalidEmail>, AutoEncodable {
+    class Delete: SuppressionListDeleter<InvalidEmail>, AutoEncodable {
         
         // MARK: - Properties
         //======================================================================
@@ -82,13 +82,13 @@ public extension InvalidEmail {
 public extension InvalidEmail.Delete {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case deleteAll  = "delete_all"
         case emails
     }
     
     /// :nodoc:
-    public func encode(to encoder: Encoder) throws {
+    func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.deleteAll, forKey: .deleteAll)
         try container.encodeIfPresent(self.emails, forKey: .emails)

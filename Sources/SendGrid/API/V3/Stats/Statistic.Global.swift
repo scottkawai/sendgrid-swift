@@ -32,7 +32,7 @@ public extension Statistic {
     ///     print(error)
     /// }
     /// ```
-    public class Global: Request<[Statistic]> {
+    class Global: Request<[Statistic]> {
         
         // MARK: - Properties
         //=========================================================================

@@ -26,7 +26,7 @@ public extension GlobalUnsubscribe {
     ///     print(error)
     /// }
     /// ```
-    public class Delete: Request<JSONValue> {
+    class Delete: Request<JSONValue> {
         
         // MARK: - Initializer
         //======================================================================

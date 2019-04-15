@@ -39,7 +39,7 @@ public extension EmailHeaderRepresentable {
     /// - Reply-To
     /// - CC
     /// - BCC
-    public func validateHeaders() throws {
+    func validateHeaders() throws {
         guard let head = self.headers else { return }
         let reserved: [String] = [
             "x-sg-id",

@@ -11,7 +11,7 @@ public extension Statistic {
     
     /// The `Statistic.Metric` struct represents the raw statistics for a given
     /// time period.
-    public struct Metric: Decodable {
+    struct Metric: Decodable {
         
         // MARK: - Properties
         //======================================================================
@@ -75,7 +75,7 @@ public extension Statistic {
 public extension Statistic.Metric {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case blocks
         case bounceDrops        = "bounce_drops"
         case bounces

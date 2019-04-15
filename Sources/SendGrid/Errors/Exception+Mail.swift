@@ -11,7 +11,7 @@ public extension Exception {
     
     /// The `Exception.Mail` enum contains all the errors thrown for the mail
     /// send API.
-    public enum Mail: Error, CustomStringConvertible {
+    enum Mail: Error, CustomStringConvertible {
         
         // MARK: - Cases
         //======================================================================

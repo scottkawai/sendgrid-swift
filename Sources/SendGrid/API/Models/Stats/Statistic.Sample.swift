@@ -11,7 +11,7 @@ public extension Statistic {
     
     /// The `Statistic.Sample` struct represents a single group of statistics,
     /// with the raw stats being made available via the `metrics` property.
-    public struct Sample: Decodable {
+    struct Sample: Decodable {
         
         /// The raw metrics for each email event type.
         public let metrics: Statistic.Metric

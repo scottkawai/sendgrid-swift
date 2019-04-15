@@ -31,7 +31,7 @@ public extension Subuser {
     ///     print(error)
     /// }
     /// ```
-    public class Get: Request<[Subuser]> {
+    class Get: Request<[Subuser]> {
         
         // MARK: - Properties
         //=========================================================================

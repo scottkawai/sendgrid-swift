@@ -11,7 +11,7 @@ public extension Exception {
     
     /// The `Exception.Session` enum contains all the errors thrown when 
     /// attempting to build an HTTP request.
-    public enum Session: Error, CustomStringConvertible {
+    enum Session: Error, CustomStringConvertible {
         
         // MARK: - Cases
         //======================================================================

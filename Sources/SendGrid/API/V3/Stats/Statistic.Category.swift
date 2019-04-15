@@ -33,7 +33,7 @@ public extension Statistic {
     ///     print(error)
     /// }
     /// ```
-    public class Category: Statistic.Global {
+    class Category: Statistic.Global {
         
         // MARK: - Properties
         //======================================================================

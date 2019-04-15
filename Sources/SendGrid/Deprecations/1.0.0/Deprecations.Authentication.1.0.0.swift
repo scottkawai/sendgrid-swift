@@ -10,13 +10,13 @@ import Foundation
 public extension Authentication {
     /// :nodoc:
     @available(*, unavailable, message: "use the designated initializer or one of the static functions")
-    public init?(info: [AnyHashable: Any]) { return nil }
+    init?(info: [AnyHashable: Any]) { return nil }
     
     /// :nodoc:
     @available(*, unavailable, message: "use the `value` property to extrapolate the desired value")
-    public var user: String? { return nil }
+    var user: String? { return nil }
     
     /// :nodoc:
     @available(*, unavailable, message: "use the `value` property to extrapolate the desired value")
-    public var key: String { return "" }
+    var key: String { return "" }
 }

@@ -81,7 +81,7 @@ public extension Block {
     ///     print(error)
     /// }
     /// ```
-    public class Get: SuppressionListReader<Block> {
+    class Get: SuppressionListReader<Block> {
         
         override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
             super.init(

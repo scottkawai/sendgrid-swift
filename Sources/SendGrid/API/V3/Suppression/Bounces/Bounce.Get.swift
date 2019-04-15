@@ -81,7 +81,7 @@ public extension Bounce {
     ///     print(error)
     /// }
     /// ```
-    public class Get: SuppressionListReader<Bounce> {
+    class Get: SuppressionListReader<Bounce> {
         
         override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
             super.init(

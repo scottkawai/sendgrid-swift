@@ -79,7 +79,7 @@ public extension GlobalUnsubscribe {
     ///     print(error)
     /// }
     /// ```
-    public class Get: SuppressionListReader<GlobalUnsubscribe> {
+    class Get: SuppressionListReader<GlobalUnsubscribe> {
         
         override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
             super.init(

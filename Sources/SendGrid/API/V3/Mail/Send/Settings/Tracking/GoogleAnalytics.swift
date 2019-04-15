@@ -67,7 +67,7 @@ public struct GoogleAnalytics: Encodable {
 public extension GoogleAnalytics {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case source     = "utm_source"
         case medium     = "utm_medium"

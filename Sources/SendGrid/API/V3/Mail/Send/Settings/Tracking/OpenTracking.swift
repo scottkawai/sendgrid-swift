@@ -54,7 +54,7 @@ public struct OpenTracking: Encodable {
 public extension OpenTracking {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case substitutionTag    = "substitution_tag"
     }
@@ -81,7 +81,7 @@ public extension OpenTracking {
     ///             in the body of your email you can place the text
     ///             "%open_tracking%" at the top. The tag will then be replaced
     ///             with the open tracking pixel.
-    public enum Location {
+    enum Location {
         
         /// Disables open tracking for the email.
         case off

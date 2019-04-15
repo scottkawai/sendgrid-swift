@@ -48,7 +48,7 @@ public struct TrackingSettings: Encodable {
 public extension TrackingSettings {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case clickTracking          = "click_tracking"
         case googleAnalytics        = "ganalytics"
@@ -63,7 +63,7 @@ public extension TrackingSettings {
 extension TrackingSettings: Validatable {
     
     /// Bubbles up the `subscriptionTracking` validation.
-    public func validate() throws {
+   public func validate() throws {
         try self.subscriptionTracking?.validate()
     }
     

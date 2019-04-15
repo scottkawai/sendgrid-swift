@@ -25,7 +25,7 @@ public extension GlobalUnsubscribe {
     ///     print(error)
     /// }
     /// ```
-    public class Add: Request<JSONValue>, AutoEncodable {
+    class Add: Request<JSONValue>, AutoEncodable {
         
         // MARK: - Properties
         //=========================================================================
@@ -87,7 +87,7 @@ public extension GlobalUnsubscribe {
 public extension GlobalUnsubscribe.Add {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case emails = "recipient_emails"
     }
     

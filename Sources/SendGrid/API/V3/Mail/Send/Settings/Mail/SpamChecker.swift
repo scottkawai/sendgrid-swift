@@ -68,7 +68,7 @@ public struct SpamChecker: Encodable {
 public extension SpamChecker {
     
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case threshold
         case postURL = "post_to_url"

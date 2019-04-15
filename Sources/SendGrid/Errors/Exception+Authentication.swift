@@ -11,7 +11,7 @@ public extension Exception {
     
     /// The `Exception.Authentication` enum contains all the errors thrown by
     /// `Authentication`.
-    public enum Authentication: Error, CustomStringConvertible {
+    enum Authentication: Error, CustomStringConvertible {
 
         // MARK: - Cases
         //======================================================================
