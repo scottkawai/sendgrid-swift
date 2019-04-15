@@ -1,4 +1,4 @@
-// swift-tools-version:4.1
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -8,15 +8,21 @@ let package = Package(
     products: [
         .library(
             name: "SendGrid",
-            targets: ["SendGrid"]),
+            targets: ["SendGrid"]
+        )
     ],
     dependencies: [],
     targets: [
         .target(
             name: "SendGrid",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "SendGridTests",
-            dependencies: ["SendGrid"]),
+            dependencies: ["SendGrid"]
+        )
+    ],
+    swiftLanguageVersions: [
+        .v5
     ]
 )
