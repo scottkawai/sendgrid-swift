@@ -97,7 +97,11 @@ class EmailTests: XCTestCase, EncodingTester {
             subject: "Root Subject"
         )
         max.replyTo = Address(email: "reply_to@example.none")
+        #if swift(>=5.0)
+        let data = Data(AttachmentTests.redDotBytes)
+        #else
         let data = Data(bytes: AttachmentTests.redDotBytes)
+        #endif
         max.attachments = [Attachment(filename: "red.png", content: data)]
         max.templateID = "1334949C-CE58-4A21-A633-47638EFA358A"
         max.sections = [

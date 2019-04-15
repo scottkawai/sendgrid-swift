@@ -15,7 +15,11 @@ class AttachmentTests: XCTestCase, EncodingTester {
     static let dotBase64: String = "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
     
     func testEncoding() {
+        #if swift(>=5.0)
+        let data = Data(AttachmentTests.redDotBytes)
+        #else
         let data = Data(bytes: AttachmentTests.redDotBytes)
+        #endif
         let minimalAttachment = Attachment(filename: "red.png", content: data)
         XCTAssertEncodedObject(minimalAttachment, equals: [
             "content": AttachmentTests.dotBase64,
@@ -36,7 +40,11 @@ class AttachmentTests: XCTestCase, EncodingTester {
     }
     
     func testInitialization() {
+        #if swift(>=5.0)
+        let data = Data(AttachmentTests.redDotBytes)
+        #else
         let data = Data(bytes: AttachmentTests.redDotBytes)
+        #endif
         let basic = Attachment(filename: "dot.png", content: data)
         XCTAssertEqual(basic.filename, "dot.png")
         XCTAssertEqual(basic.disposition, ContentDisposition.attachment)
@@ -51,7 +59,11 @@ class AttachmentTests: XCTestCase, EncodingTester {
     }
     
     func testValidation() {
+        #if swift(>=5.0)
+        let image = Data(AttachmentTests.redDotBytes)
+        #else
         let image = Data(bytes: AttachmentTests.redDotBytes)
+        #endif
         // Validation should pass with a valid content type.
         let good1 = Attachment(filename: "dot.png", content: image, disposition: .attachment, type: .png, contentID: nil)
         XCTAssertNoThrow(try good1.validate())
