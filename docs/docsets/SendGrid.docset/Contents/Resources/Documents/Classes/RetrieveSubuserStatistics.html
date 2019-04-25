@@ -329,10 +329,11 @@ API call. At minimum you need to specify a start date.</p>
         <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="o">.</span><span class="n">week</span><span class="p">,</span>
         <span class="nv">subusers</span><span class="p">:</span> <span class="s">"Foo"</span><span class="p">,</span> <span class="s">"Bar"</span>
     <span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Statistic` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span><span class="p">{</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="k">in</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
                 <span class="c1">// Do something with the stats here...</span>
             <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>

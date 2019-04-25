@@ -326,13 +326,12 @@ you partial searches are allowed, so for instance if you had a subuser
 with username <code>foobar</code>, searching for <code>foo</code> would return it.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">search</span> <span class="o">=</span> <span class="kt">RetrieveSubusers</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="s">"foo"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">search</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="k">if</span> <span class="k">let</span> <span class="nv">list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">model</span> <span class="p">{</span>
-                <span class="c1">// The `model` property on the response will be an array of</span>
-                <span class="c1">// `Subuser` instances.</span>
-                <span class="n">list</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="p">}</span>
-            <span class="p">}</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">search</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">list</span><span class="p">):</span>
+            <span class="c1">// The `list` variable will be an array of</span>
+            <span class="c1">// `Subuser` instances.</span>
+            <span class="n">list</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>

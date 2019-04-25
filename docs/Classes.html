@@ -493,7 +493,7 @@ instance&rsquo;s value takes priority.</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -538,7 +538,7 @@ it like so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -577,7 +577,7 @@ reference that unique CID in your HTML like so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -657,7 +657,7 @@ basic example:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -689,7 +689,7 @@ so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -718,7 +718,7 @@ subscription management page for this email:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -750,7 +750,7 @@ so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -789,7 +789,7 @@ in the future if needed.</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -827,7 +827,7 @@ to be set to a different time, or only have certain ones scheduled:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -857,7 +857,7 @@ categories per email.</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -939,7 +939,7 @@ you can specify a template to apply to an email like so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -991,11 +991,11 @@ API call. At minimum you need to specify a start date.</p>
         <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="o">.</span><span class="n">week</span><span class="p">,</span>
         <span class="nv">categories</span><span class="p">:</span> <span class="s">"Foo"</span><span class="p">,</span> <span class="s">"Bar"</span>
     <span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="c1">// The `model` property will be an array of `Statistic` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span><span class="p">{</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="k">in</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="c1">// The `model` variable will be an array of `Statistic` structs.</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
                 <span class="c1">// Do something with the stats here...</span>
             <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
@@ -1048,10 +1048,11 @@ API call. At minimum you need to specify a start date.</p>
         <span class="nv">endDate</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span>
         <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="o">.</span><span class="n">week</span>
     <span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Statistic` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span><span class="p">{</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="k">in</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
                 <span class="c1">// Do something with the stats here...</span>
             <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
@@ -1133,10 +1134,11 @@ API call. At minimum you need to specify a start date.</p>
         <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="o">.</span><span class="n">week</span><span class="p">,</span>
         <span class="nv">subusers</span><span class="p">:</span> <span class="s">"Foo"</span><span class="p">,</span> <span class="s">"Bar"</span>
     <span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Statistic` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span><span class="p">{</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="k">in</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
                 <span class="c1">// Do something with the stats here...</span>
             <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
@@ -1187,13 +1189,12 @@ you partial searches are allowed, so for instance if you had a subuser
 with username <code>foobar</code>, searching for <code>foo</code> would return it.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">search</span> <span class="o">=</span> <span class="kt">RetrieveSubusers</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="s">"foo"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">search</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="k">if</span> <span class="k">let</span> <span class="nv">list</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">model</span> <span class="p">{</span>
-                <span class="c1">// The `model` property on the response will be an array of</span>
-                <span class="c1">// `Subuser` instances.</span>
-                <span class="n">list</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="p">}</span>
-            <span class="p">}</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">search</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">list</span><span class="p">):</span>
+            <span class="c1">// The `list` variable will be an array of</span>
+            <span class="c1">// `Subuser` instances.</span>
+            <span class="n">list</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1243,10 +1244,10 @@ list.</p>
 This request will delete all blocks on your block list.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteBlocks</span><span class="o">.</span><span class="n">all</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1263,10 +1264,10 @@ use <code><a href="Structs/Block.html">Block</a></code> instances (useful for if
 <code><a href="Classes.html#/s:8SendGrid14RetrieveBlocksC">RetrieveBlocks</a></code> class).</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteBlocks</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">,</span> <span class="s">"bar@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1320,18 +1321,17 @@ property on the response instance you get back.</p>
     <span class="c1">// If you don't specify any parameters, then the first page of your</span>
     <span class="c1">// entire block list will be fetched:</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveBlocks</span><span class="p">()</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Block` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
 
             <span class="c1">// The response object has a `Pagination` instance on it as well.</span>
             <span class="c1">// You can use this to get the next page, if you wish.</span>
-            <span class="c1">//</span>
-            <span class="c1">// if let nextPage = response.pages?.next {</span>
-            <span class="c1">//    let nextRequest = RetrieveBlocks(page: nextPage)</span>
-            <span class="c1">// }</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">nextPage</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pages</span><span class="p">?</span><span class="o">.</span><span class="n">next</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">nextRequest</span> <span class="o">=</span> <span class="kt">RetrieveBlocks</span><span class="p">(</span><span class="nv">page</span><span class="p">:</span> <span class="n">nextPage</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1351,11 +1351,11 @@ search down:</p>
     <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">)</span> <span class="c1">// 24 hours</span>
 
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveBlocks</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="n">page</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="c1">// The `model` property will be an array of `Block` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="c1">// The `model` variable will be an array of `Block` structs.</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1370,11 +1370,11 @@ search down:</p>
 can use the <code>init(email:)</code> initializer on <code>RetrieveBlocks</code>:</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveBlocks</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Block` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">in</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="n">item</span> <span class="k">in</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">item</span><span class="o">.</span><span class="n">email</span><span class="se">)</span><span class="s"> was blocked with reason </span><span class="se">\"\(</span><span class="n">item</span><span class="o">.</span><span class="n">reason</span><span class="se">)\"</span><span class="s">"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
@@ -1426,10 +1426,10 @@ list.</p>
 bounce list.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteBounces</span><span class="o">.</span><span class="n">all</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1446,10 +1446,10 @@ strings), or you can use <code><a href="Structs/Bounce.html">Bounce</a></code> i
 some from the <code><a href="Classes.html#/s:8SendGrid15RetrieveBouncesC">RetrieveBounces</a></code> class).</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteBounces</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">,</span> <span class="s">"bar@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1503,18 +1503,17 @@ property on the response instance you get back.</p>
     <span class="c1">// If you don't specify any parameters, then the first page of your entire</span>
     <span class="c1">// bounce list will be fetched:</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveBounces</span><span class="p">()</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Bounce` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
 
             <span class="c1">// The response object has a `Pagination` instance on it as well.</span>
             <span class="c1">// You can use this to get the next page, if you wish.</span>
-            <span class="c1">//</span>
-            <span class="c1">// if let nextPage = response.pages?.next {</span>
-            <span class="c1">//    let nextRequest = RetrieveBounces(page: nextPage)</span>
-            <span class="c1">// }</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">nextPage</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pages</span><span class="p">?</span><span class="o">.</span><span class="n">next</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">nextRequest</span> <span class="o">=</span> <span class="kt">RetrieveBounces</span><span class="p">(</span><span class="nv">page</span><span class="p">:</span> <span class="n">nextPage</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1534,11 +1533,11 @@ search down:</p>
     <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">)</span> <span class="c1">// 24 hours</span>
 
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveBounces</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="n">page</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Bounce` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1553,11 +1552,11 @@ search down:</p>
 can use the <code>init(email:)</code> initializer on <code>RetrieveBounces</code>:</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveBounces</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `Bounce` structs.</span>
-            <span class="k">if</span> <span class="k">let</span> <span class="nv">match</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">first</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">match</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">first</span> <span class="p">{</span>
                 <span class="nf">print</span><span class="p">(</span><span class="s">"</span><span class="se">\(</span><span class="n">match</span><span class="o">.</span><span class="n">email</span><span class="se">)</span><span class="s"> bounced with reason </span><span class="se">\"\(</span><span class="n">match</span><span class="o">.</span><span class="n">reason</span><span class="se">)\"</span><span class="s">"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
@@ -1605,10 +1604,10 @@ addresses to the global unsubscribe list.</p>
 instances.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">AddGlobalUnsubscribes</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">,</span> <span class="s">"bar@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1656,10 +1655,10 @@ string), or you can use a <code><a href="Structs/GlobalUnsubscribe.html">GlobalU
 you just retrieved some from the <code><a href="Classes.html#/s:8SendGrid26RetrieveGlobalUnsubscribesC">RetrieveGlobalUnsubscribes</a></code> class).</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteGlobalUnsubscribe</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1714,18 +1713,17 @@ the response instance you get back.</p>
     <span class="c1">// If you don't specify any parameters, then the first page of your</span>
     <span class="c1">// entire global unsubscribe list will be fetched:</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveGlobalUnsubscribes</span><span class="p">()</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `GlobalUnsubscribe` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
 
             <span class="c1">// The response object has a `Pagination` instance on it as well.</span>
             <span class="c1">// You can use this to get the next page, if you wish.</span>
-            <span class="c1">//</span>
-            <span class="c1">// if let nextPage = response.pages?.next {</span>
-            <span class="c1">//    let nextRequest = RetrieveGlobalUnsubscribes(page: nextPage)</span>
-            <span class="c1">// }</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">nextPage</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pages</span><span class="p">?</span><span class="o">.</span><span class="n">next</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">nextRequest</span> <span class="o">=</span> <span class="kt">RetrieveGlobalUnsubscribes</span><span class="p">(</span><span class="nv">page</span><span class="p">:</span> <span class="n">nextPage</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1745,10 +1743,10 @@ search down:</p>
     <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">)</span> <span class="c1">// 24 hours</span>
 
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveGlobalUnsubscribes</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="n">page</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1764,10 +1762,12 @@ list, you can use the <code>init(email:)</code> initializer on
 <code>RetrieveGlobalUnsubscribes</code>:</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveGlobalUnsubscribes</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">unsub</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">first</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">unsub</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1817,10 +1817,10 @@ list.</p>
 your invalid email list.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteInvalidEmails</span><span class="o">.</span><span class="n">all</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1837,10 +1837,10 @@ strings), or you can use <code><a href="Structs/InvalidEmail.html">InvalidEmail<
 just retrieved some from the <code><a href="Classes.html#/s:8SendGrid21RetrieveInvalidEmailsC">RetrieveInvalidEmails</a></code> class).</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteInvalidEmails</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example"</span><span class="p">,</span> <span class="s">"bar@example"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1895,19 +1895,18 @@ back.</p>
     <span class="c1">// If you don't specify any parameters, then the first page of your</span>
     <span class="c1">// entire invalid email list will be fetched:</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveInvalidEmails</span><span class="p">()</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `InvalidEmail`</span>
             <span class="c1">// structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
 
             <span class="c1">// The response object has a `Pagination` instance on it as</span>
             <span class="c1">// well. You can use this to get the next page, if you wish.</span>
-            <span class="c1">//</span>
-            <span class="c1">// if let nextPage = response.pages?.next {</span>
-            <span class="c1">//    let nextRequest = RetrieveInvalidEmails(page: nextPage)</span>
-            <span class="c1">// }</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">nextPage</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pages</span><span class="p">?</span><span class="o">.</span><span class="n">next</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">nextRequest</span> <span class="o">=</span> <span class="kt">RetrieveInvalidEmails</span><span class="p">(</span><span class="nv">page</span><span class="p">:</span> <span class="n">nextPage</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1927,10 +1926,10 @@ down:</p>
     <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">)</span> <span class="c1">// 24 hours</span>
 
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveInvalidEmails</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="n">page</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1945,10 +1944,10 @@ down:</p>
 you can use the <code>init(email:)</code> initializer on <code>RetrieveInvalidEmails</code>:</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveInvalidEmails</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1998,10 +1997,10 @@ list.</p>
 your spam report list.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteSpamReports</span><span class="o">.</span><span class="n">all</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -2018,10 +2017,10 @@ strings), or you can use <code><a href="Structs/SpamReport.html">SpamReport</a><
 retrieved some from the <code><a href="Classes.html#/s:8SendGrid19RetrieveSpamReportsC">RetrieveSpamReports</a></code> class).</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteSpamReports</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">,</span> <span class="s">"bar@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -2076,18 +2075,17 @@ back.</p>
     <span class="c1">// If you don't specify any parameters, then the first page of your</span>
     <span class="c1">// entire spam report list will be fetched:</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveSpamReports</span><span class="p">()</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `SpamReport` structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
 
             <span class="c1">// The response object has a `Pagination` instance on it as well.</span>
             <span class="c1">// You can use this to get the next page, if you wish.</span>
-            <span class="c1">//</span>
-            <span class="c1">// if let nextPage = response.pages?.next {</span>
-            <span class="c1">//    let nextRequest = RetrieveSpamReports(page: nextPage)</span>
-            <span class="c1">// }</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">nextPage</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pages</span><span class="p">?</span><span class="o">.</span><span class="n">next</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">nextRequest</span> <span class="o">=</span> <span class="kt">RetrieveSpamReports</span><span class="p">(</span><span class="nv">page</span><span class="p">:</span> <span class="n">nextPage</span><span class="p">)</span>
+            <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -2107,12 +2105,12 @@ search down:</p>
     <span class="k">let</span> <span class="nv">start</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">)</span> <span class="c1">// 24 hours</span>
 
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveSpamReports</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span> <span class="nv">page</span><span class="p">:</span> <span class="n">page</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
             <span class="c1">// The `model` property will be an array of `SpamReport`</span>
             <span class="c1">// structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -2127,12 +2125,12 @@ search down:</p>
 you can use the <code>init(email:)</code> initializer on <code>RetrieveSpamReports</code>:</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveSpamReports</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">modeledRequest</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="c1">// The `model` property will be an array of `SpamReport`</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="k">let</span> <span class="nv">model</span><span class="p">):</span>
+            <span class="c1">// The `model` value will be an array of `SpamReport`</span>
             <span class="c1">// structs.</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>

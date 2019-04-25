@@ -414,7 +414,7 @@ instance&rsquo;s value takes priority.</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -459,7 +459,7 @@ it like so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -498,7 +498,7 @@ reference that unique CID in your HTML like so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -578,7 +578,7 @@ basic example:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -610,7 +610,7 @@ so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -639,7 +639,7 @@ subscription management page for this email:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -671,7 +671,7 @@ so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -710,7 +710,7 @@ in the future if needed.</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -748,7 +748,7 @@ to be set to a different time, or only have certain ones scheduled:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -778,7 +778,7 @@ categories per email.</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -860,7 +860,7 @@ you can specify a template to apply to an email like so:</p>
     <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">email</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>

@@ -328,10 +328,10 @@ list.</p>
 bounce list.</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteBounces</span><span class="o">.</span><span class="n">all</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
@@ -348,10 +348,10 @@ strings), or you can use <code><a href="../Structs/Bounce.html">Bounce</a></code
 some from the <code><a href="../Classes.html#/s:8SendGrid15RetrieveBouncesC">RetrieveBounces</a></code> class).</p>
 <pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">DeleteBounces</span><span class="p">(</span><span class="nv">emails</span><span class="p">:</span> <span class="s">"foo@example.none"</span><span class="p">,</span> <span class="s">"bar@example.none"</span><span class="p">)</span>
-    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
         <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">httpUrlResponse</span><span class="p">?</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">statusCode</span><span class="p">)</span>
         <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
             <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="p">}</span>
