@@ -14,10 +14,10 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = DeleteInvalidEmails.all
-///     try Session.shared.send(request: request) { (result) in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -37,10 +37,10 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = DeleteInvalidEmails(emails: "foo@example", "bar@example")
-///     try Session.shared.send(request: request) { (result) in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
