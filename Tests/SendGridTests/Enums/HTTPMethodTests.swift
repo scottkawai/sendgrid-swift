@@ -1,24 +1,16 @@
-//
-//  HTTPMethodTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/21/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class HTTPMethodTests: XCTestCase {
-    
     func testDescription() {
-        let map: [String : HTTPMethod] = [
+        let map: [String: HTTPMethod] = [
             "GET": .GET,
             "POST": .POST,
             "PUT": .PUT,
             "PATCH": .PATCH,
             "DELETE": .DELETE
         ]
-        map.forEach { (method) in
+        map.forEach { method in
             XCTAssertEqual(method.key, method.value.description)
         }
     }
@@ -31,5 +23,4 @@ class HTTPMethodTests: XCTestCase {
         XCTAssertTrue(HTTPMethod.PATCH.hasBody)
         XCTAssertTrue(HTTPMethod.DELETE.hasBody)
     }
-    
 }

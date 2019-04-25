@@ -1,24 +1,15 @@
-//
-//  Constants.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/12/17.
-//
-
 import Foundation
 
 /// The `Constants` struct houses all the constant values used throughout the
 /// library.
 public struct Constants {
-    
     // MARK: - Global Constants
-    //=========================================================================
     
     /// The host to use for the API calls.
     public static var ApiHost: String = "https://api.sendgrid.com/"
     
     /// The version number of the library.
-    public static let Version: String = "1.1.0"
+    public static let Version: String = "2.0.0"
     
     /// The upper limit to the number of personalizations allowed in an email.
     public static let PersonalizationLimit: Int = 1000
@@ -35,7 +26,6 @@ public struct Constants {
     
     /// Constants for categories
     public struct Categories {
-        
         /// The max number of categories allowed in an email.
         public static let TotalLimit: Int = 10
         
@@ -45,28 +35,23 @@ public struct Constants {
     
     /// Constants for the subscription tracking setting.
     public struct SubscriptionTracking {
-        
         /// The default verbiage for the plain text unsubscribe footer.
         public static let DefaultPlainText = "If you would like to unsubscribe and stop receiving these emails click here: <% %>."
         
         /// The default verbiage for the HTML text unsubscribe footer.
         public static let DefaultHTMLText = "<p>If you would like to unsubscribe and stop receiving these emails <% click here %>.</p>"
-        
     }
     
     /// Constants for custom arguments.
     public struct CustomArguments {
-        
         /// The maximum number of bytes allowed for custom arguments in an email.
         public static let MaximumBytes: Int = 10000
     }
     
     /// Constants for ASM.
     public struct UnsubscribeGroups {
-        
         /// The maximum number of unsubscribe groups you can specify in the
         /// `groupsToDisplay` property.
         public static let MaximumNumberOfDisplayGroups: Int = 25
     }
-    
 }

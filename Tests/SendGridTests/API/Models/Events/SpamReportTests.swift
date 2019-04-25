@@ -1,15 +1,7 @@
-//
-//  SpamReportTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/21/17.
-//
-
-import XCTest
 import SendGrid
+import XCTest
 
 class SpamReportTests: XCTestCase {
-    
     func testInitialization() {
         let now = Date()
         let event = SpamReport(email: "foo@bar.com", created: now, ip: "123.45.67.89")
@@ -17,5 +9,4 @@ class SpamReportTests: XCTestCase {
         XCTAssertEqual(event.created, now)
         XCTAssertEqual(event.ip, "123.45.67.89")
     }
-    
 }

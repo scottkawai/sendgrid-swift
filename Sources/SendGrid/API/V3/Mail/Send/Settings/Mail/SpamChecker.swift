@@ -1,18 +1,9 @@
-//
-//  SpamChecker.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `SpamChecker` mail setting allows you to test the content of your email
 /// for spam.
 public struct SpamChecker: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The threshold used to determine if your content qualifies as spam on a
     /// scale from 1 to 10, with 10 being most strict, or most likely to be
@@ -26,9 +17,7 @@ public struct SpamChecker: Encodable {
     /// A `Bool` indicating if the setting is enabled or not.
     public let enable: Bool
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the setting with a threshold and optional URL to POST spam
     /// reports to. This will enable the setting for this specific email even if
@@ -61,29 +50,22 @@ public struct SpamChecker: Encodable {
         self.postURL = nil
         self.enable = false
     }
-    
 }
 
-/// Encodable conformance.
-public extension SpamChecker {
-    
+public extension SpamChecker /* Encodable conformance */ {
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case threshold
         case postURL = "post_to_url"
     }
-    
 }
 
-/// Validatble conformance.
 extension SpamChecker: Validatable {
-    
     /// Validates that the threshold is within the correct range.
     public func validate() throws {
         if let level = self.threshold {
             guard 1...10 ~= level else { throw Exception.Mail.thresholdOutOfRange(level) }
         }
     }
-    
 }

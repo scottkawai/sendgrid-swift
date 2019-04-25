@@ -1,18 +1,9 @@
-//
-//  OpenTracking.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `OpenTracking` class is used to toggle the open tracking setting for an
 /// email.
 public struct OpenTracking: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// A bool indicating if the setting should be toggled on or off.
     public let enable: Bool
@@ -20,9 +11,7 @@ public struct OpenTracking: Encodable {
     /// An optional tag to specify where to place the open tracking pixel.
     public let substitutionTag: String?
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the setting with a location to put the open tracking pixel
     /// at.
@@ -47,23 +36,17 @@ public struct OpenTracking: Encodable {
             self.substitutionTag = tag
         }
     }
-    
 }
 
-/// Encodable conformance
-public extension OpenTracking {
-    
+public extension OpenTracking /* Encodable conformance */ {
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
-        case substitutionTag    = "substitution_tag"
+        case substitutionTag = "substitution_tag"
     }
-    
 }
 
-/// Location enum
-public extension OpenTracking {
-    
+public extension OpenTracking /* Location enum */ {
     /// The `OpenTracking.Location` enum represents where the open tracking
     /// pixel should be placed in the email.
     ///
@@ -81,8 +64,7 @@ public extension OpenTracking {
     ///             in the body of your email you can place the text
     ///             "%open_tracking%" at the top. The tag will then be replaced
     ///             with the open tracking pixel.
-    public enum Location {
-        
+    enum Location {
         /// Disables open tracking for the email.
         case off
         
@@ -97,5 +79,4 @@ public extension OpenTracking {
         /// then be replaced with the open tracking pixel.
         case at(tag: String)
     }
-    
 }

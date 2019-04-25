@@ -1,15 +1,7 @@
-//
-//  SpamCheckerTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class SpamCheckerTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = SpamChecker
     
     func testEncoding() {
@@ -17,7 +9,7 @@ class SpamCheckerTests: XCTestCase, EncodingTester {
         XCTAssertEncodedObject(onSettingMin, equals: ["enable": true, "threshold": 4])
         
         let onSettingMax = SpamChecker(threshold: 8, url: URL(string: "http://example.none"))
-        let onSettingMaxExpectations: [String : Any] = [
+        let onSettingMaxExpectations: [String: Any] = [
             "enable": true,
             "threshold": 8,
             "post_to_url": "http://example.none"
@@ -54,7 +46,7 @@ class SpamCheckerTests: XCTestCase, EncodingTester {
             let over = SpamChecker(threshold: 42)
             try over.validate()
             XCTFail("Expected an error to be thrown with a threshold over 10, but no errors were raised.")
-        } catch SendGrid.Exception.Mail.thresholdOutOfRange(let i) {
+        } catch let SendGrid.Exception.Mail.thresholdOutOfRange(i) {
             XCTAssertEqual(i, 42)
         } catch {
             XCTFailUnknownError(error)
@@ -64,11 +56,10 @@ class SpamCheckerTests: XCTestCase, EncodingTester {
             let under = SpamChecker(threshold: 0)
             try under.validate()
             XCTFail("Expected an error to be thrown with a threshold under 1, but no errors were raised.")
-        } catch SendGrid.Exception.Mail.thresholdOutOfRange(let i) {
+        } catch let SendGrid.Exception.Mail.thresholdOutOfRange(i) {
             XCTAssertEqual(i, 0)
         } catch {
             XCTFailUnknownError(error)
         }
     }
-    
 }

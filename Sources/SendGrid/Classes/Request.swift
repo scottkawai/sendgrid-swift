@@ -1,20 +1,13 @@
-//
-//  Request.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
 import Foundation
 
 /// The `Request` class should be inherited by any class that represents an API
 /// request and sent through the `send` function in `Session`.
 ///
-/// This class contains a `ModelType` generic, which is used to map the API
-/// response to a specific model that conforms to `Codable`.
-open class Request<ModelType : Decodable>: Validatable {
-    
+/// Only classes that aren't expecting any data back in the response should
+/// directly inherit this class. If data is expected, then `ModeledRequest`
+/// should be used instead.
+open class Request<Parameters: Encodable>: Validatable {
     // MARK: - Properties
-    //=========================================================================
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
     open var supportsImpersonation: Bool { return true }
@@ -22,11 +15,11 @@ open class Request<ModelType : Decodable>: Validatable {
     /// The HTTP verb to use in the call.
     open var method: HTTPMethod
     
-    /// The Content-Type of the call.
-    open var contentType: ContentType
-    
-    /// The Accept header value.
-    open var acceptType: ContentType = .json
+    /// The headers to be included in the request.
+    open var headers: [String: String] = [
+        "Content-Type": ContentType.json.description,
+        "Accept": ContentType.json.description
+    ]
     
     /// The decoding strategy.
     open var decodingStrategy: DecodingStrategy
@@ -34,12 +27,16 @@ open class Request<ModelType : Decodable>: Validatable {
     /// The encoding strategy.
     open var encodingStrategy: EncodingStrategy
     
-    /// The full URL endpoint for the API call.
-    open var endpoint: URLComponents?
+    /// The path component of the API endpoint. This should start with a `/`,
+    /// for example "/v3/mail/send".
+    open var path: String
     
+    /// The parameters that should be sent with the API call. These parameters
+    /// will either be encoded into the body of the request or the query items
+    /// of the request
+    open var parameters: Parameters?
     
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the request.
     ///
@@ -49,42 +46,37 @@ open class Request<ModelType : Decodable>: Validatable {
     ///   - path:       The path portion of the API endpoint, such as
     ///                 "/v3/mail/send". The path *must* start with a forward
     ///                 slash (`/`).
-    public init(method: HTTPMethod, contentType: ContentType, path: String?, encoding: EncodingStrategy = EncodingStrategy(), decoding: DecodingStrategy = DecodingStrategy()) {
+    ///   - parameters: Optional parameters to include in the API call.
+    ///   - encoding:   The encoding strategy for the parameters.
+    ///   - decoding:   The decoding strategy for the response.
+    public init(method: HTTPMethod, path: String, parameters: Parameters? = nil, encodingStrategy: EncodingStrategy = EncodingStrategy(), decodingStrategy: DecodingStrategy = DecodingStrategy()) {
         self.method = method
-        self.contentType = contentType
-        var components = URLComponents(string: Constants.ApiHost)
-        if let p = path { components?.path = p }
-        self.endpoint = components
-        self.encodingStrategy = encoding
-        self.decodingStrategy = decoding
+        self.path = path
+        self.parameters = parameters
+        self.encodingStrategy = encodingStrategy
+        self.decodingStrategy = decodingStrategy
     }
     
-    
     // MARK: - Methods
-    //=========================================================================
-    /// Generates a `URLRequest` representation of the request.
+    
+    /// Retrieves a the value of a specific header, or `nil` if it doesn't
+    /// exist.
     ///
-    /// - Returns:  A `URLRequest` instance.
-    /// - Throws:   Errors can be thrown if there was a problem encoding the
-    ///             parameters or constructing the API URL endpoint.
-    open func generateUrlRequest() throws -> URLRequest {
-        guard let url = self.endpoint?.url else {
-            throw Exception.Request.couldNotConstructUrlRequest
+    /// - Parameter name:   The name of the header to look for.
+    /// - Returns:          The value, or `nil` if it doesn't exist.
+    open func headerValue(named name: String) -> String? {
+        var value: String?
+        for entry in self.headers {
+            if entry.key == name { value = entry.value }
         }
-        var req = URLRequest(url: url)
-        req.httpMethod = self.method.rawValue
-        req.addValue(self.contentType.description, forHTTPHeaderField: "Content-Type")
-        req.addValue(self.acceptType.description, forHTTPHeaderField: "Accept")
-        if self.method.hasBody, let enc = self as? AutoEncodable {
-            req.httpBody = enc.encode()
-        }
-        return req
+        return value
     }
     
     /// Validates that the content and accept types are valid.
-    public func validate() throws {
-        try self.contentType.validate()
-        try self.acceptType.validate()
+    open func validate() throws {
+        if let paramValidate = self.parameters as? Validatable {
+            try paramValidate.validate()
+        }
     }
     
     /// Before a `Session` instance makes an API call, it will call this method
@@ -96,48 +88,80 @@ open class Request<ModelType : Decodable>: Validatable {
     ///                     used.
     /// - Returns:          A `Bool` indicating if the authentication method is
     ///                     supported.
-    public func supports(auth: Authentication) -> Bool {
+    open func supports(auth: Authentication) -> Bool {
         return true
     }
-    
 }
+
+/// The `ModeledRequest` class should be inherited by any class that represents
+/// an API request and sent through the `send` function in `Session`.
+///
+/// This class contains a `ModelType` generic, which is used to map the API
+/// response to a specific model that conforms to `Decodable`.
+open class ModeledRequest<ModelType: Decodable, Parameters: Encodable>: Request<Parameters> {}
 
 /// CustomStringConvertible conformance
 extension Request: CustomStringConvertible {
-    
     /// The description of the request, represented as an [API
     /// Blueprint](https://apiblueprint.org/)
     public var description: String {
-        let path = self.endpoint?.path ?? ""
+        let path = self.path
+        let parameterString: String?
+        paramEncoding: do {
+            guard let params = self.parameters else {
+                parameterString = nil
+                break paramEncoding
+            }
+            if self.method.hasBody {
+                let encoder = JSONEncoder()
+                encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                encoder.dataEncodingStrategy = self.encodingStrategy.data
+                guard let data = try? encoder.encode(params) else {
+                    parameterString = nil
+                    break paramEncoding
+                }
+                parameterString = String(data: data, encoding: .utf8)
+            } else {
+                let encoder = FormURLEncoder()
+                encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                parameterString = try? encoder.stringEncode(params, percentEncoded: true)
+            }
+        }
         var query: String {
-            guard let q = self.endpoint?.query else { return "" }
+            guard !self.method.hasBody, let q = parameterString, q.count > 0 else { return "" }
             return "?\(q)"
+        }
+        var requestTitle: String {
+            let content = "+ Request"
+            guard let contentType = self.headerValue(named: "Content-Type") else { return content }
+            return content + " (\(contentType))"
         }
         var blueprint = """
         # \(self.method) \(path + query)
         
-        + Request (\(self.contentType))
+        \(requestTitle)
         
-            + Headers
-        
-                    Accept: \(self.acceptType)
         
         """
-        if self.method.hasBody,
-            let encodable = self as? AutoEncodable,
-            let bodyData = encodable.encode(formatting: [.prettyPrinted]),
-            let bodyString = String(data: bodyData, encoding: .utf8)
-        {
+        let formattedHeaders = self.headers.map { "            \($0.key): \($0.value)" }.sorted { $0 < $1 }
+        if formattedHeaders.count > 0 {
+            blueprint += """
+                + Headers
+            
+            \(formattedHeaders.joined(separator: "\n"))
+            
+            """
+        }
+        if self.method.hasBody, let bodyString = parameterString {
             let indented = bodyString.split(separator: "\n").map { "            \($0)" }
             blueprint += """
             
                 + Body
             
             \(indented.joined(separator: "\n"))
+            
             """
         }
         return blueprint
     }
-    
 }
-

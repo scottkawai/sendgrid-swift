@@ -1,18 +1,9 @@
-//
-//  Footer.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `Footer` mail setting allows you to specify a footer that will be
 /// appended to the bottom of every email.
 public struct Footer: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The plain text content of your footer.
     public let text: String?
@@ -23,9 +14,7 @@ public struct Footer: Encodable {
     /// A `Bool` indicating if the setting is enabled or not.
     public let enable: Bool
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the setting with plain text and HTML to use in the footer.
     /// This will enable the setting for this email and use the provided
@@ -55,5 +44,4 @@ public struct Footer: Encodable {
         self.html = nil
         self.enable = false
     }
-    
 }

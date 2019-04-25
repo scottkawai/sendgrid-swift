@@ -1,15 +1,7 @@
-//
-//  ASMTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class ASMTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = ASM
     
     func testEncoding() {
@@ -42,5 +34,4 @@ class ASMTests: XCTestCase, EncodingTester {
             XCTAssertEqual("\(error)", SendGrid.Exception.Mail.tooManyUnsubscribeGroups.description)
         }
     }
-    
 }

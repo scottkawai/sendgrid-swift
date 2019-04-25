@@ -1,20 +1,12 @@
-//
-//  SubscriptionTrackingTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/17/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class SubscriptionTrackingTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = SubscriptionTracking
     
     func testEncoding() {
         let templateSetting = SubscriptionTracking(plainText: "Unsubscribe: <% %>", html: "<% Unsubscribe %>")
-        let templateExpectations: [String : Any] = [
+        let templateExpectations: [String: Any] = [
             "enable": true,
             "text": "Unsubscribe: <% %>",
             "html": "<% Unsubscribe %>"
@@ -62,5 +54,4 @@ class SubscriptionTrackingTests: XCTestCase, EncodingTester {
             XCTFailUnknownError(error)
         }
     }
-    
 }

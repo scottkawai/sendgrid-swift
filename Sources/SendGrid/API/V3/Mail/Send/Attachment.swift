@@ -1,17 +1,8 @@
-//
-//  Attachment.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/13/17.
-//
-
 import Foundation
 
 /// The `Attachment` class represents a file to attach to an email.
 open class Attachment: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The content, or data, of the attachment.
     public let content: Data
@@ -35,9 +26,7 @@ open class Attachment: Encodable {
     /// `<img src="cid:ii_139db99fdb5c3704"></img>`
     public let contentID: String?
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the attachment.
     ///
@@ -56,12 +45,9 @@ open class Attachment: Encodable {
         self.type = type
         self.contentID = contentID
     }
-    
 }
 
-/// Encodable conformance.
-extension Attachment {
-    
+extension Attachment /* Encodable Conformance */ {
     /// :nodoc:
     public enum CodingKeys: String, CodingKey {
         case content
@@ -70,12 +56,9 @@ extension Attachment {
         case disposition
         case contentID = "content_id"
     }
-    
 }
 
-/// Validatable conformance.
 extension Attachment: Validatable {
-    
     /// Validates that the content type of the attachment is correct.
     open func validate() throws {
         try self.type?.validate()
@@ -88,5 +71,4 @@ extension Attachment: Validatable {
             throw Exception.Mail.invalidFilename(self.filename)
         }
     }
-    
 }

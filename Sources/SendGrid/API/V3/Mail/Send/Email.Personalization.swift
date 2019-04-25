@@ -1,19 +1,10 @@
-//
-//  Personalization.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
 import Foundation
 
 /// The `Personalization` struct is used by the `Email` class to add
 /// personalization settings to an email. The only required property is the `to`
 /// property, and each email must have at least one personalization.
 open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// An array of recipients to send the email to.
     public var to: [Address]
@@ -31,24 +22,22 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     /// Each key in the dictionary should represent the name of the header, and
     /// the values of the dictionary should be equal to the values of the
     /// headers.
-    open var headers: [String:String]?
+    open var headers: [String: String]?
     
     /// An optional set of substitutions to replace in this personalization. The
     /// keys in the dictionary should represent the substitution tags that
     /// should be replaced, and the values should be the replacement values.
-    open var substitutions: [String:String]?
+    open var substitutions: [String: String]?
     
     /// A set of custom arguments to add to the email. The keys of the
     /// dictionary should be the names of the custom arguments, while the values
     /// should represent the value of each custom argument.
-    open var customArguments: [String:String]?
+    open var customArguments: [String: String]?
     
     /// An optional time to send the email at.
-    open var sendAt: Date? = nil
-    
+    open var sendAt: Date?
     
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the email with all the available properties.
     ///
@@ -70,7 +59,7 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
     ///                         dictionary should represent the argument names
     ///                         and values, respectively.
     ///   - sendAt:             A time to send the email at.
-    public init(to: [Address], cc: [Address]? = nil, bcc: [Address]? = nil, subject: String? = nil, headers: [String:String]? = nil, substitutions: [String:String]? = nil, customArguments: [String:String]? = nil, sendAt: Date? = nil) {
+    public init(to: [Address], cc: [Address]? = nil, bcc: [Address]? = nil, subject: String? = nil, headers: [String: String]? = nil, substitutions: [String: String]? = nil, customArguments: [String: String]? = nil, sendAt: Date? = nil) {
         self.to = to
         self.cc = cc
         self.bcc = bcc
@@ -81,7 +70,6 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
         self.sendAt = sendAt
     }
     
-    
     /// Initializes the personalization with a set of email addresses.
     ///
     /// - Parameter recipients: A list of email addresses to use as the "to"
@@ -90,14 +78,11 @@ open class Personalization: Encodable, EmailHeaderRepresentable, Scheduling {
         let list: [Address] = recipients.map { Address(email: $0) }
         self.init(to: list)
     }
-    
 }
 
-/// Encodable conformance.
-public extension Personalization {
-    
+public extension Personalization /* Encodable Conformance */ {
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case to
         case cc
         case bcc
@@ -107,12 +92,9 @@ public extension Personalization {
         case customArguments = "custom_args"
         case sendAt = "send_at"
     }
-    
 }
 
-/// Validatable conformance.
 extension Personalization: Validatable {
-    
     /// Validates that the personalization has recipients and that they are
     /// proper email addresses as well as making sure the sendAt date is valid.
     open func validate() throws {
@@ -131,5 +113,4 @@ extension Personalization: Validatable {
             guard sub.count <= Constants.SubstitutionLimit else { throw Exception.Mail.tooManySubstitutions }
         }
     }
-    
 }

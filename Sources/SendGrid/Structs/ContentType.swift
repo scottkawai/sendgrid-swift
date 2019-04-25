@@ -1,18 +1,9 @@
-//
-//  ContentType.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
 import Foundation
 
 /// The `ContentType` struct represents the common types of Content Types used
 /// when sending through the SendGrid API.
 public struct ContentType: CustomStringConvertible, Equatable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The first part of the content type, for example `text` in `text/html`.
     public let type: String
@@ -34,14 +25,12 @@ public struct ContentType: CustomStringConvertible, Equatable {
     internal var index: Int {
         switch (self.type, self.subtype) {
         case ("text", "plain"): return 0
-        case ("text", "html"):  return 1
-        default:                return 2
+        case ("text", "html"): return 1
+        default: return 2
         }
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct with a type and subtype. These two parameters
     /// will be combined with a `/` between to create the value of the
@@ -67,7 +56,7 @@ public struct ContentType: CustomStringConvertible, Equatable {
         guard split.count == 2,
             let type = split.first?.lowercased(),
             let subtype = split.last?.lowercased()
-            else { return nil }
+        else { return nil }
         self.init(type: type, subtype: subtype)
     }
 }
@@ -80,30 +69,25 @@ public func ==(lhs: ContentType, rhs: ContentType) -> Bool {
 
 /// Validatable conformance.
 extension ContentType: Validatable {
-    
     /// Validates that the content-type has no CLRF characters.
     public func validate() throws {
         guard self.description.count > 2, Validate.noCLRF(in: self.description) else {
             throw Exception.ContentType.invalidContentType(self.description)
         }
     }
-    
 }
 
 /// Encodable conformance.
 extension ContentType: Encodable {
-    
     /// :nodoc:
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.description)
     }
-    
 }
 
 /// Predefined content types.
 public extension ContentType {
-    
     /// Represents "application/x-www-form-urlencoded" encodings.
     static let formUrlEncoded = ContentType(type: "application", subtype: "x-www-form-urlencoded")
     
@@ -131,4 +115,6 @@ public extension ContentType {
     /// The "image/jpeg" content type, used for JPEG images.
     static let jpeg = ContentType(type: "image", subtype: "jpeg")
     
+    /// The "text/x-amp-html" content type, used for Google AMP support.
+    static let amp = ContentType(type: "text", subtype: "x-amp-html")
 }

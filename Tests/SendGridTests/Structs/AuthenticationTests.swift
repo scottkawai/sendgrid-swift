@@ -1,12 +1,5 @@
-//
-//  AuthenticationTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class AuthenticationTests: XCTestCase {
     func testInitializer() {
