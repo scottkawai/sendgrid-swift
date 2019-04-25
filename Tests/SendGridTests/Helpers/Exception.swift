@@ -1,10 +1,3 @@
-//
-//  Exception.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/14/17.
-//
-
 import Foundation
 
 enum Exception: Error, CustomStringConvertible {

@@ -1,29 +1,17 @@
-//
-//  BCCSetting.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
-
 
 /// This allows you to have a blind carbon copy automatically sent to the
 /// specified email address for every email that is sent.
 public struct BCCSetting: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
-    
+
     /// A bool indicating if the setting should be toggled on or off.
     public let enable: Bool
-    
+
     /// The email address that you would like to receive the BCC.
     public let email: String?
 
-    
     // MARK: - Initialization
-    //=========================================================================
 
     /// Initializes the setting with an email to use as the BCC address. This
     /// setting can also be used to turn off the BCC app if it is normally on by
@@ -46,13 +34,9 @@ public struct BCCSetting: Encodable {
     public init(address: Address) {
         self.init(email: address.email)
     }
-    
 }
 
-
-/// Validatable conformance
 extension BCCSetting: Validatable {
-    
     /// Validates that the BCC email is a valid email address.
     public func validate() throws {
         if let em = self.email {
@@ -61,5 +45,4 @@ extension BCCSetting: Validatable {
             }
         }
     }
-
 }

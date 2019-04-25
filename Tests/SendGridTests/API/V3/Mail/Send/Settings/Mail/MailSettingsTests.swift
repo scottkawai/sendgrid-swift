@@ -1,15 +1,7 @@
-//
-//  MailSettingsTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class MailSettingsTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = MailSettings
     
     func testEncoding() {
@@ -19,7 +11,7 @@ class MailSettingsTests: XCTestCase, EncodingTester {
         settings.footer = Footer(text: "Hello World", html: "<p>Hello World</p>")
         settings.sandboxMode = SandboxMode()
         settings.spamCheck = SpamChecker(threshold: 8)
-        let expected: [String : Any] = [
+        let expected: [String: Any] = [
             "bcc": [
                 "enable": true,
                 "email": "foo@example.none"
@@ -53,7 +45,7 @@ class MailSettingsTests: XCTestCase, EncodingTester {
             var bccTest = MailSettings()
             bccTest.bcc = BCCSetting(email: "foo")
             try bccTest.validate()
-        } catch SendGrid.Exception.Mail.malformedEmailAddress(let em) {
+        } catch let SendGrid.Exception.Mail.malformedEmailAddress(em) {
             XCTAssertEqual(em, "foo")
         } catch {
             XCTFailUnknownError(error)
@@ -63,11 +55,10 @@ class MailSettingsTests: XCTestCase, EncodingTester {
             var spamTest = MailSettings()
             spamTest.spamCheck = SpamChecker(threshold: 815)
             try spamTest.validate()
-        } catch SendGrid.Exception.Mail.thresholdOutOfRange(let i) {
+        } catch let SendGrid.Exception.Mail.thresholdOutOfRange(i) {
             XCTAssertEqual(i, 815)
         } catch {
             XCTFailUnknownError(error)
         }
     }
-    
 }

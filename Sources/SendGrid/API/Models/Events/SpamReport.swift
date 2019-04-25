@@ -1,18 +1,8 @@
-//
-//  SpamReport.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
-
 /// The `SpamReport` struct represents a spam report event.
-public struct SpamReport: EmailEventRepresentable, Decodable {
-    
+public struct SpamReport: EmailEventRepresentable, Codable {
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -23,9 +13,7 @@ public struct SpamReport: EmailEventRepresentable, Decodable {
     /// The IP address of the user when they marked the email as spam.
     public let ip: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///

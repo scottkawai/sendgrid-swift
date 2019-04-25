@@ -1,22 +1,16 @@
-//
-//  PersonalizationTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/15/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class PersonalizationTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = Personalization
     
     func generateRecipients(_ amount: Int = 1, prefix: String = "person") -> [Address] {
-        return Array(1...amount).map({ (i) -> Address in
-            let email = "\(prefix.lowercased())\(i)@example.none"
-            return Address(email: email)
-        })
+        return Array(1...amount).map(
+            { (i) -> Address in
+                let email = "\(prefix.lowercased())\(i)@example.none"
+                return Address(email: email)
+            }
+        )
     }
     
     func generateExample(_ isSimple: Bool = true) -> Personalization {
@@ -31,16 +25,16 @@ class PersonalizationTests: XCTestCase, EncodingTester {
                 cc: ccs,
                 bcc: bccs,
                 subject: "This is a test",
-                headers: ["X-Test":"Pass"],
-                substitutions: ["%foo%":"%bar%"],
-                customArguments: ["uid":"12345"]
+                headers: ["X-Test": "Pass"],
+                substitutions: ["%foo%": "%bar%"],
+                customArguments: ["uid": "12345"]
             )
         }
     }
     
     func testEncoding() {
         let basic = Personalization(recipients: "foo@example.none", "bar@example.none")
-        XCTAssertEncodedObject(basic, equals: ["to": [["email": "foo@example.none"], ["email":"bar@example.none"]]])
+        XCTAssertEncodedObject(basic, equals: ["to": [["email": "foo@example.none"], ["email": "bar@example.none"]]])
         
         let complete = Personalization(
             to: [Address(email: "to@example.none", name: "To")],
@@ -52,7 +46,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
             customArguments: ["foo": "bar"],
             sendAt: Date(timeIntervalSince1970: 1505510705)
         )
-        let expected: [String : Any] = [
+        let expected: [String: Any] = [
             "to": [
                 [
                     "email": "to@example.none",
@@ -73,7 +67,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
                 "X-Foo": "Bar"
             ],
             "substitutions": ["%foo%": "bar"],
-            "custom_args": ["foo":"bar"],
+            "custom_args": ["foo": "bar"],
             "send_at": 1505510705
         ]
         XCTAssertEncodedObject(complete, equals: expected)
@@ -207,7 +201,7 @@ class PersonalizationTests: XCTestCase, EncodingTester {
         
         do {
             let tooManySubs = self.generateExample()
-            var subs: [String:String] = [:]
+            var subs: [String: String] = [:]
             for i in 0...Constants.SubstitutionLimit {
                 subs["key\(i)"] = "value\(i)"
             }
@@ -220,5 +214,4 @@ class PersonalizationTests: XCTestCase, EncodingTester {
             XCTFailUnknownError(error)
         }
     }
-    
 }

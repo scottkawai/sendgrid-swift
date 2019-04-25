@@ -1,15 +1,7 @@
-//
-//  AddressTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/13/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class AddressTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = Address
     
     func testEncoding() {
@@ -35,5 +27,4 @@ class AddressTests: XCTestCase, EncodingTester {
             XCTAssertEqual("\(error)", SendGrid.Exception.Mail.malformedEmailAddress("testexample").description)
         }
     }
-    
 }

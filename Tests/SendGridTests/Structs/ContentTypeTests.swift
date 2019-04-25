@@ -1,15 +1,7 @@
-//
-//  ContentTypeTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class ContentTypeTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = TestObject
     struct TestObject: Encodable {
         let type: ContentType
@@ -51,5 +43,4 @@ class ContentTypeTests: XCTestCase, EncodingTester {
         XCTAssertEqual(html.index, 1)
         XCTAssertEqual(other.index, 2)
     }
-    
 }

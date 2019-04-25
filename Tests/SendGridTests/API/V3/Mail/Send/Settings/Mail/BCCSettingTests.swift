@@ -1,15 +1,7 @@
-//
-//  BCCSettingTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class BCCSettingTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = BCCSetting
     
     func testEncoding() {
@@ -32,11 +24,10 @@ class BCCSettingTests: XCTestCase, EncodingTester {
             let bad = BCCSetting(email: "test")
             try bad.validate()
             XCTFail("Expected a failure when initializing the BCC setting with a malformed email, but no error was thrown.")
-        } catch SendGrid.Exception.Mail.malformedEmailAddress(let em) {
+        } catch let SendGrid.Exception.Mail.malformedEmailAddress(em) {
             XCTAssertEqual(em, "test")
         } catch {
             XCTFailUnknownError(error)
         }
     }
-    
 }
