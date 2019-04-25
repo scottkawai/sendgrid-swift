@@ -14,10 +14,11 @@ import Foundation
 ///         aggregatedBy: .week,
 ///         subusers: "Foo", "Bar"
 ///     )
-///     try Session.shared.send(request: request) { (result) in
-///         case .success(let response):
+///     try Session.shared.send(modeledRequest: request) { result in
+///         switch result {
+///         case .success(_, let model):
 ///             // The `model` property will be an array of `Statistic` structs.
-///             response.model?.forEach{ (stat) in
+///             model.forEach { _ in
 ///                 // Do something with the stats here...
 ///             }
 ///         case .failure(let err):

@@ -101,7 +101,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -149,7 +149,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -190,7 +190,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -269,7 +269,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -304,7 +304,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -335,7 +335,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -370,7 +370,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -412,7 +412,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -452,7 +452,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -485,7 +485,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }
@@ -573,7 +573,7 @@ import Foundation
 ///     try Session.shared.send(request: email) { (result) in
 ///         switch result {
 ///         case .success(let response):
-///             print(response.httpUrlResponse?.statusCode)
+///             print(response.statusCode)
 ///         case .failure(let err):
 ///             print(err)
 ///         }

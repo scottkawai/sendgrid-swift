@@ -175,7 +175,7 @@ open class Session {
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func send<ModelType: Decodable, Parameters: Encodable>(request: ModeledRequest<ModelType, Parameters>, completionHandler: ((Result<(HTTPURLResponse, ModelType), Error>) -> Void)? = nil) throws {
+    open func send<ModelType: Decodable, Parameters: Encodable>(modeledRequest request: ModeledRequest<ModelType, Parameters>, completionHandler: ((Result<(HTTPURLResponse, ModelType), Error>) -> Void)? = nil) throws {
         try self._presend(validate: request)
         
         try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { result in
