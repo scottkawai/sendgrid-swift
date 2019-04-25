@@ -15,8 +15,4 @@ class SuppressionListReaderTests: XCTestCase {
         XCTAssertEqual(all.parameters!.page, Page(limit: 1, offset: 1))
         XCTAssertEqual(all.path, "/")
     }
-
-    func foo() {
-        
-    }
 }
