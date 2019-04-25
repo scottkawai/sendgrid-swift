@@ -114,4 +114,7 @@ public extension ContentType {
     
     /// The "image/jpeg" content type, used for JPEG images.
     static let jpeg = ContentType(type: "image", subtype: "jpeg")
+    
+    /// The "text/x-amp-html" content type, used for Google AMP support.
+    static let amp = ContentType(type: "text", subtype: "x-amp-html")
 }
