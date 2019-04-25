@@ -1,18 +1,9 @@
-//
-//  GlobalUnsubscribe.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/20/17.
-//
-
 import Foundation
 
 /// The `GlobalUnsubscribe` struct represents an entry on the "Global
 /// Unsubscribe" suppression list.
-public struct GlobalUnsubscribe: EmailEventRepresentable, Decodable {
-    
+public struct GlobalUnsubscribe: EmailEventRepresentable, Codable {
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -20,9 +11,7 @@ public struct GlobalUnsubscribe: EmailEventRepresentable, Decodable {
     /// The date and time the event occurred on.
     public let created: Date
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///
@@ -33,5 +22,4 @@ public struct GlobalUnsubscribe: EmailEventRepresentable, Decodable {
         self.email = email
         self.created = created
     }
-    
 }

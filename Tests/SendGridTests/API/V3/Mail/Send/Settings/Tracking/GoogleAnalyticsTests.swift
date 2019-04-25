@@ -1,15 +1,7 @@
-//
-//  GoogleAnalyticsTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class GoogleAnalyticsTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = GoogleAnalytics
     
     func testEncoding() {
@@ -23,7 +15,7 @@ class GoogleAnalyticsTests: XCTestCase, EncodingTester {
             content: "test_content",
             campaign: "test_campaign"
         )
-        let expectation: [String : Any] = [
+        let expectation: [String: Any] = [
             "enable": true,
             "utm_source": "test_source",
             "utm_medium": "test_medium",
@@ -36,5 +28,4 @@ class GoogleAnalyticsTests: XCTestCase, EncodingTester {
         let offSetting = GoogleAnalytics()
         XCTAssertEncodedObject(offSetting, equals: ["enable": false])
     }
-    
 }

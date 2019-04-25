@@ -1,18 +1,9 @@
-//
-//  Authentication.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
 import Foundation
 
 /// The `Authentication` struct is used to authenticate all the requests made by
 /// `Session`.
 public struct Authentication: CustomStringConvertible {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// The prefix used in the authorization header.
     public let prefix: String
@@ -29,9 +20,7 @@ public struct Authentication: CustomStringConvertible {
         return "\(self.prefix) \(self.value)"
     }
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the struct.
     ///
@@ -43,11 +32,9 @@ public struct Authentication: CustomStringConvertible {
         self.value = value
         self.description = description
     }
-    
 }
 
 public extension Authentication {
-    
     ///  Creates an `Authentication` instance representing an API key.
     ///
     /// - parameter key:   The SendGrid API key to use.
@@ -71,5 +58,4 @@ public extension Authentication {
         }
         return Authentication(prefix: "Basic", value: data.base64EncodedString(), description: "credential")
     }
-    
 }

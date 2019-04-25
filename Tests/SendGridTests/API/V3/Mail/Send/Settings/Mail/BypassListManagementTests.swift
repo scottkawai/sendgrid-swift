@@ -1,15 +1,7 @@
-//
-//  BypassListManagementTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class BypassListManagementTests: XCTestCase, EncodingTester {
-    
     typealias EncodableObject = BypassListManagement
     
     func testEncoding() {
@@ -22,5 +14,4 @@ class BypassListManagementTests: XCTestCase, EncodingTester {
         let unspecified = BypassListManagement()
         XCTAssertEncodedObject(unspecified, equals: ["enable": true])
     }
-    
 }

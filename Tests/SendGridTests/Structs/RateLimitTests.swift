@@ -1,26 +1,17 @@
-//
-//  RateLimitTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/17/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class RateLimitTests: XCTestCase {
-    
-    func testStaticInitializer() {
+    func testUrlResponseInitializer() {
         let url = URL(fileURLWithPath: "/foo")
-        let headers: [String:String] = [
+        let headers: [String: String] = [
             "X-RateLimit-Limit": "500",
             "X-RateLimit-Remaining": "499",
             "X-RateLimit-Reset": "1466435354"
         ]
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
         
-        guard let info = RateLimit.from(response: response) else
-        {
+        guard let info = RateLimit(response: response) else {
             XCTFail("Received `nil` from Rate limit initializer.")
             return
         }
@@ -32,15 +23,14 @@ class RateLimitTests: XCTestCase {
     
     func testBadHeaders() {
         let url = URL(fileURLWithPath: "/foo")
-        let headers: [String:String] = [
+        let headers: [String: String] = [
             "X-RateLimit-Limit": "foo",
             "X-RateLimit-Remaining": "bar",
             "X-RateLimit-Reset": "baz"
         ]
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: headers)
         
-        let info = RateLimit.from(response: response)
+        let info = RateLimit(response: response)
         XCTAssertNil(info)
     }
-    
 }

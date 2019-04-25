@@ -1,12 +1,5 @@
-//
-//  ContentTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/13/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class ContentTests: XCTestCase, EncodingTester {
     typealias EncodableObject = Content
@@ -52,7 +45,7 @@ class ContentTests: XCTestCase, EncodingTester {
             let semicolon = Content(contentType: ContentType(type: "application;", subtype: "json"), value: "{}")
             try semicolon.validate()
             XCTFail("Expected error to be thrown when a content type has a semicolon, but nothing was thrown.")
-        } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
+        } catch let SendGrid.Exception.ContentType.invalidContentType(errorType) {
             XCTAssertEqual(errorType, "application;/json")
         } catch {
             XCTFailUnknownError(error)
@@ -62,7 +55,7 @@ class ContentTests: XCTestCase, EncodingTester {
             let nl = Content(contentType: ContentType(type: "application\n\r", subtype: "json"), value: "{}")
             try nl.validate()
             XCTFail("Expected error to be thrown when a content type has a newline, but nothing was thrown.")
-        } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
+        } catch let SendGrid.Exception.ContentType.invalidContentType(errorType) {
             XCTAssertEqual(errorType, "application\n\r/json")
         } catch {
             XCTFailUnknownError(error)
@@ -72,7 +65,7 @@ class ContentTests: XCTestCase, EncodingTester {
             let nl = Content(contentType: ContentType(type: "", subtype: ""), value: "{}")
             try nl.validate()
             XCTFail("Expected error to be thrown when a content type is an empty string, but nothing was thrown.")
-        } catch SendGrid.Exception.ContentType.invalidContentType(let errorType) {
+        } catch let SendGrid.Exception.ContentType.invalidContentType(errorType) {
             XCTAssertEqual(errorType, "/")
         } catch {
             XCTFailUnknownError(error)
@@ -88,5 +81,4 @@ class ContentTests: XCTestCase, EncodingTester {
             XCTFailUnknownError(error)
         }
     }
-    
 }

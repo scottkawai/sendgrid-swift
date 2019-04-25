@@ -1,15 +1,7 @@
-//
-//  ValidateTests.swift
-//  SendGridTests
-//
-//  Created by Scott Kawai on 9/8/17.
-//
-
-import XCTest
 @testable import SendGrid
+import XCTest
 
 class ValidateTests: XCTestCase {
-    
     func testInput() {
         let pass = Validate.input("Hello World", against: "World")
         let fail = Validate.input("Hello World", against: "Foo")
@@ -21,7 +13,7 @@ class ValidateTests: XCTestCase {
     }
     
     func testEmail() {
-        for goodEmail in ["foo@example.none", "foo@example.co.none"] {
+        for goodEmail in ["foo@example.none", "foo@example.co.none", "अजय@डाटा.भारत", "用户@例子.广告"] {
             XCTAssertTrue(Validate.email(goodEmail), "'\(goodEmail)' validates successfully")
         }
         for badEmail in ["example.none", "foo@example"] {
@@ -54,5 +46,4 @@ class ValidateTests: XCTestCase {
             XCTAssertFalse(Validate.noCLRF(in: input), "'\(input)' fails validation")
         }
     }
-    
 }

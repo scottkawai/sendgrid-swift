@@ -1,16 +1,9 @@
-//
-//  HTTPMethod.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/8/17.
-//
 import Foundation
 
 /// The `HTTPMethod` enum represents the various verbs used in an HTTP request.
 public enum HTTPMethod: String, CustomStringConvertible {
-    
     // MARK: - Cases
-    //=========================================================================
+    
     /// Represents a "GET" call.
     case GET
     
@@ -27,7 +20,7 @@ public enum HTTPMethod: String, CustomStringConvertible {
     case DELETE
     
     // MARK: - Properties
-    //=========================================================================
+    
     /// The String representation of the HTTP method.
     public var description: String { return self.rawValue }
     
@@ -35,8 +28,8 @@ public enum HTTPMethod: String, CustomStringConvertible {
     /// request.
     public var hasBody: Bool {
         switch self {
-        case .GET:  return false
-        default:    return true
+        case .GET: return false
+        default: return true
         }
     }
 }

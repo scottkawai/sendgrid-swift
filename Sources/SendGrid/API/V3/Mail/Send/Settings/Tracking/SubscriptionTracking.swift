@@ -1,18 +1,9 @@
-//
-//  SubscriptionTracking.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
 
 /// The `SubscriptionTracking` class is used to modify the subscription tracking
 /// setting on an email.
 public struct SubscriptionTracking: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// Text to be appended to the email, with the subscription tracking link.
     /// You may control where the link is by using the tag `<% %>`. For example:
@@ -27,7 +18,7 @@ public struct SubscriptionTracking: Encodable {
     public let html: String?
     
     /// A tag that will be replaced with the unsubscribe URL. For example:
-    /// `[unsubscribe_url`. If this parameter is used, it will override both
+    /// `[unsubscribe_url]`. If this parameter is used, it will override both
     /// the `text` and `html` parameters. The URL of the link will be placed at
     /// the substitution tag's location, with no additional formatting.
     public let substitutionTag: String?
@@ -35,9 +26,7 @@ public struct SubscriptionTracking: Encodable {
     /// A `Bool` indicating if the setting is enabled or not.
     public let enable: Bool
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Private initializer that sets all of the setting's properties.
     ///
@@ -122,34 +111,27 @@ public struct SubscriptionTracking: Encodable {
     public init(substitutionTag: String) {
         self.init(plainText: nil, html: nil, substitutionTag: substitutionTag)
     }
-    
 }
 
-/// Encodable configuration
-public extension SubscriptionTracking {
-    
+public extension SubscriptionTracking /* Encodable configuration */ {
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case text
         case html
-        case substitutionTag    = "substitution_tag"
+        case substitutionTag = "substitution_tag"
     }
-    
 }
 
-/// Validatable conformance
 extension SubscriptionTracking: Validatable {
-    
     /// Validates that the plain text and HTML text contain the proper tag.
     public func validate() throws {
         let bodies: [String?] = [self.text, self.html]
-        try bodies.forEach { (body) in
+        try bodies.forEach { body in
             guard let b = body else { return }
             guard Validate.subscriptionTracking(body: b) else {
                 throw Exception.Mail.missingSubscriptionTrackingTag
             }
         }
     }
-    
 }

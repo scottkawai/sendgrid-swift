@@ -1,18 +1,8 @@
-//
-//  ClickTracking.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/16/17.
-//
-
 import Foundation
-
 
 /// The `ClickTracking` class is used to adjust the click tracking setting.
 public struct ClickTracking: Encodable {
-    
     // MARK: - Properties
-    //=========================================================================
     
     /// A bool indicating if the setting should be toggled on or off.
     public let enable: Bool
@@ -21,9 +11,7 @@ public struct ClickTracking: Encodable {
     /// inside a plain text email.
     public let enableText: Bool?
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the setting encoding a specified section of the email.
     ///
@@ -54,23 +42,17 @@ public struct ClickTracking: Encodable {
             self.enableText = true
         }
     }
-    
 }
 
-/// Encodable conformance.
-public extension ClickTracking {
-    
+public extension ClickTracking /* Encodable conformance */ {
     /// :nodoc:
-    public enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case enable
         case enableText = "enable_text"
     }
-    
 }
 
-/// Tracking sections
-public extension ClickTracking {
-    
+public extension ClickTracking /* Tracking sections */ {
     /// This enum represents the sections of an email that click tracking should
     /// be applied to. In general, you should use the `.htmlBody` case, as only
     /// the HTML body of an email can have clickable links.
@@ -91,8 +73,7 @@ public extension ClickTracking {
     /// - plainTextAndHTMLBodies:   If used, links in the HTML body and URLs in
     ///                             the plain text body will be encoded and
     ///                             tracked.
-    public enum Section {
-        
+    enum Section {
         /// If used, the setting will be disabled for this email.
         case off
         
@@ -104,5 +85,4 @@ public extension ClickTracking {
         /// be encoded and tracked.
         case plainTextAndHTMLBodies
     }
-    
 }

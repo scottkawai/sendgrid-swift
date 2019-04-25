@@ -1,17 +1,8 @@
-//
-//  Bounce.swift
-//  SendGrid
-//
-//  Created by Scott Kawai on 9/19/17.
-//
-
 import Foundation
 
 /// The `Bounce` struct represents a bounce event.
-public struct Bounce: EmailEventRepresentable, Decodable {
-    
+public struct Bounce: EmailEventRepresentable, Codable {
     // MARK: - Properties
-    //=========================================================================
     
     /// The email address on the event.
     public let email: String
@@ -25,9 +16,7 @@ public struct Bounce: EmailEventRepresentable, Decodable {
     /// The status code of the event.
     public let status: String
     
-    
     // MARK: - Initialization
-    //=========================================================================
     
     /// Initializes the event with all the required properties.
     ///
