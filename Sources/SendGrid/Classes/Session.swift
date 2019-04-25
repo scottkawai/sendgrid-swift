@@ -123,6 +123,11 @@ open class Session {
         task.resume()
     }
     
+    /// This method can be called to quickly validate the request. If the
+    /// request has an issue, the appropriate error will be thrown.
+    ///
+    /// - Parameter request:    The request to validate.
+    /// - Throws:               Any issues found with the request.
     private func _presend<Parameters: Encodable>(validate request: Request<Parameters>) throws {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
@@ -136,6 +141,14 @@ open class Session {
         }
     }
     
+    /// Makes the HTTP request with the given `Request` object.
+    ///
+    /// - Parameters:
+    ///   - request:            The `Request` instance to send.
+    ///   - completionHandler:  A completion block that will be called after the
+    ///                         API call completes.
+    /// - Throws:               If there was a problem constructing or making
+    ///                         the API call, an error will be thrown.
     open func send<Parameters: Encodable>(request: Request<Parameters>, completionHandler: ((Result<HTTPURLResponse, Error>) -> Void)? = nil) throws {
         try self._presend(validate: request)
         
@@ -152,12 +165,12 @@ open class Session {
         })
     }
     
-    /// Makes the HTTP request with the given `Request` object.
+    /// Makes the HTTP request with the given `ModeledRequest` object. The
+    /// success case in the response will contain the marshalled model object
+    /// specified in the generic declaration of the `ModeledRequest`.
     ///
     /// - Parameters:
-    ///   - request:            The `Request` instance to send.
-    ///   - subuser:            Optional. The username of a subuser to make the
-    ///                         request on behalf of.
+    ///   - request:            The `ModeledRequest` instance to send.
     ///   - completionHandler:  A completion block that will be called after the
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
