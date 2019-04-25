@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RetrieveCategoryStatistics Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/RetrieveCategoryStatistics" class="dashAnchor"></a>
+    <a title="RetrieveCategoryStatistics Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SendGrid Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/scottkawai/sendgrid-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SendGrid Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RetrieveCategoryStatistics Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AddGlobalUnsubscribes.html">AddGlobalUnsubscribes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AddGlobalUnsubscribes/Parameters.html">– Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Attachment.html">Attachment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteBlocks.html">DeleteBlocks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteBounces.html">DeleteBounces</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteGlobalUnsubscribe.html">DeleteGlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteInvalidEmails.html">DeleteInvalidEmails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteSpamReports.html">DeleteSpamReports</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Email.html">Email</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Email/Parameters.html">– Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FormURLEncoder.html">FormURLEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid14ModeledRequestC">ModeledRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Personalization.html">Personalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid14RetrieveBlocksC">RetrieveBlocks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid15RetrieveBouncesC">RetrieveBounces</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveCategoryStatistics.html">RetrieveCategoryStatistics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveGlobalStatistics.html">RetrieveGlobalStatistics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid26RetrieveGlobalUnsubscribesC">RetrieveGlobalUnsubscribes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid21RetrieveInvalidEmailsC">RetrieveInvalidEmails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid19RetrieveSpamReportsC">RetrieveSpamReports</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveStatisticsParameters.html">RetrieveStatisticsParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveSubuserStatistics.html">RetrieveSubuserStatistics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveSubusers.html">RetrieveSubusers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveSubusers/Parameters.html">– Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListDeleter.html">SuppressionListDeleter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListReader.html">SuppressionListReader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ContentDisposition.html">ContentDisposition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/HTTPURLResponse.html">HTTPURLResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailEventRepresentable.html">EmailEventRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailHeaderRepresentable.html">EmailHeaderRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Scheduling.html">Scheduling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Validatable.html">Validatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ASM.html">ASM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BCCSetting.html">BCCSetting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block.html">Block</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce.html">Bounce</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BypassListManagement.html">BypassListManagement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking.html">ClickTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking/Section.html">– Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants.html">Constants</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/Categories.html">– Categories</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/SubscriptionTracking.html">– SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/CustomArguments.html">– CustomArguments</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/UnsubscribeGroups.html">– UnsubscribeGroups</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContentType.html">ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DecodingStrategy.html">DecodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EncodingStrategy.html">EncodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Authentication.html">– Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/ContentType.html">– ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Session.html">– Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Statistic.html">– Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Footer.html">Footer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe.html">GlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GoogleAnalytics.html">GoogleAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail.html">InvalidEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MailSettings.html">MailSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking.html">OpenTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Page.html">Page</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RateLimit.html">RateLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SandboxMode.html">SandboxMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamChecker.html">SpamChecker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport.html">SpamReport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic.html">Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Metric.html">– Metric</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Sample.html">– Sample</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Aggregation.html">– Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SubscriptionTracking.html">SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subuser.html">Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SuppressionListDeleterParameters.html">SuppressionListDeleterParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SuppressionListReaderParameters.html">SuppressionListReaderParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TrackingSettings.html">TrackingSettings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RetrieveCategoryStatistics</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RetrieveCategoryStatistics</span> <span class="p">:</span> <span class="kt"><a href="../Classes/RetrieveGlobalStatistics.html">RetrieveGlobalStatistics</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>Statistic.Category</code> class is used to make the
+<a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/categories.html">Get Category Stats</a>
+API call. At minimum you need to specify a start date.</p>
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">now</span> <span class="o">=</span> <span class="kt">Date</span><span class="p">()</span>
+    <span class="k">let</span> <span class="nv">lastMonth</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="nf">addingTimeInterval</span><span class="p">(</span><span class="o">-</span><span class="mi">2592000</span><span class="p">)</span> <span class="c1">// 30 days</span>
+    <span class="k">let</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">RetrieveCategoryStatistics</span><span class="p">(</span>
+        <span class="nv">startDate</span><span class="p">:</span> <span class="n">lastMonth</span><span class="p">,</span>
+        <span class="nv">endDate</span><span class="p">:</span> <span class="n">now</span><span class="p">,</span>
+        <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="o">.</span><span class="n">week</span><span class="p">,</span>
+        <span class="nv">categories</span><span class="p">:</span> <span class="s">"Foo"</span><span class="p">,</span> <span class="s">"Bar"</span>
+    <span class="p">)</span>
+    <span class="k">try</span> <span class="kt">Session</span><span class="o">.</span><span class="n">shared</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">response</span><span class="p">):</span>
+            <span class="c1">// The `model` property will be an array of `Statistic` structs.</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">?</span><span class="o">.</span><span class="n">forEach</span><span class="p">{</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="k">in</span>
+                <span class="c1">// Do something with the stats here...</span>
+            <span class="p">}</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">err</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid26RetrieveCategoryStatisticsC9startDate03endG012aggregatedBy10categoriesAC10Foundation0G0V_AJSgAA9StatisticV11AggregationOSgSaySSGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startDate:endDate:aggregatedBy:categories:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid26RetrieveCategoryStatisticsC9startDate03endG012aggregatedBy10categoriesAC10Foundation0G0V_AJSgAA9StatisticV11AggregationOSgSaySSGtcfc">init(startDate:endDate:aggregatedBy:categories:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the request with a start date and categories, as well as
+an end date and/or aggregation method.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">startDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">endDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="kt"><a href="../Structs/Statistic.html">Statistic</a></span><span class="o">.</span><span class="kt">Aggregation</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting date of the statistics to retrieve.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>endDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The end date of the statistics to retrieve.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>aggregatedBy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Indicates how the statistics should be grouped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>categories</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of categories to retrieve stats for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid26RetrieveCategoryStatisticsC9startDate03endG012aggregatedBy10categoriesAC10Foundation0G0V_AJSgAA9StatisticV11AggregationOSgSSdtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startDate:endDate:aggregatedBy:categories:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid26RetrieveCategoryStatisticsC9startDate03endG012aggregatedBy10categoriesAC10Foundation0G0V_AJSgAA9StatisticV11AggregationOSgSSdtcfc">init(startDate:endDate:aggregatedBy:categories:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes the request with a start date and categories, as well as
+an end date and/or aggregation method.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">startDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">endDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">aggregatedBy</span><span class="p">:</span> <span class="kt"><a href="../Structs/Statistic.html">Statistic</a></span><span class="o">.</span><span class="kt">Aggregation</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kt">String</span><span class="o">...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting date of the statistics to retrieve.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>endDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The end date of the statistics to retrieve.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>aggregatedBy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Indicates how the statistics should be grouped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>categories</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of categories to retrieve stats for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid26RetrieveCategoryStatisticsC8validateyyKF"></a>
+                    <a name="//apple_ref/swift/Method/validate()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid26RetrieveCategoryStatisticsC8validateyyKF">validate()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validates that there are no more than 10 categories specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2019-04-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

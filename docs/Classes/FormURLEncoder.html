@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FormURLEncoder Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/FormURLEncoder" class="dashAnchor"></a>
+    <a title="FormURLEncoder Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SendGrid Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/scottkawai/sendgrid-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SendGrid Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FormURLEncoder Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AddGlobalUnsubscribes.html">AddGlobalUnsubscribes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AddGlobalUnsubscribes/Parameters.html">– Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Attachment.html">Attachment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteBlocks.html">DeleteBlocks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteBounces.html">DeleteBounces</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteGlobalUnsubscribe.html">DeleteGlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteInvalidEmails.html">DeleteInvalidEmails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeleteSpamReports.html">DeleteSpamReports</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Email.html">Email</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Email/Parameters.html">– Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FormURLEncoder.html">FormURLEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid14ModeledRequestC">ModeledRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Personalization.html">Personalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid14RetrieveBlocksC">RetrieveBlocks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid15RetrieveBouncesC">RetrieveBounces</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveCategoryStatistics.html">RetrieveCategoryStatistics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveGlobalStatistics.html">RetrieveGlobalStatistics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid26RetrieveGlobalUnsubscribesC">RetrieveGlobalUnsubscribes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid21RetrieveInvalidEmailsC">RetrieveInvalidEmails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8SendGrid19RetrieveSpamReportsC">RetrieveSpamReports</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveStatisticsParameters.html">RetrieveStatisticsParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveSubuserStatistics.html">RetrieveSubuserStatistics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveSubusers.html">RetrieveSubusers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RetrieveSubusers/Parameters.html">– Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Session.html">Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListDeleter.html">SuppressionListDeleter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SuppressionListReader.html">SuppressionListReader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ContentDisposition.html">ContentDisposition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/HTTPURLResponse.html">HTTPURLResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailEventRepresentable.html">EmailEventRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmailHeaderRepresentable.html">EmailHeaderRepresentable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Scheduling.html">Scheduling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Validatable.html">Validatable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ASM.html">ASM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Address.html">Address</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Authentication.html">Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BCCSetting.html">BCCSetting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Block.html">Block</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bounce.html">Bounce</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BypassListManagement.html">BypassListManagement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking.html">ClickTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ClickTracking/Section.html">– Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants.html">Constants</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/Categories.html">– Categories</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/SubscriptionTracking.html">– SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/CustomArguments.html">– CustomArguments</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Constants/UnsubscribeGroups.html">– UnsubscribeGroups</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Content.html">Content</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContentType.html">ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DecodingStrategy.html">DecodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EncodingStrategy.html">EncodingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Authentication.html">– Authentication</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/ContentType.html">– ContentType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Global.html">– Global</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Mail.html">– Mail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Request.html">– Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Session.html">– Session</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Exception/Statistic.html">– Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Footer.html">Footer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GlobalUnsubscribe.html">GlobalUnsubscribe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GoogleAnalytics.html">GoogleAnalytics</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/InvalidEmail.html">InvalidEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MailSettings.html">MailSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking.html">OpenTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OpenTracking/Location.html">– Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Page.html">Page</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RateLimit.html">RateLimit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SandboxMode.html">SandboxMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamChecker.html">SpamChecker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SpamReport.html">SpamReport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic.html">Statistic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Metric.html">– Metric</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Sample.html">– Sample</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Aggregation.html">– Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Statistic/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SubscriptionTracking.html">SubscriptionTracking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Subuser.html">Subuser</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SuppressionListDeleterParameters.html">SuppressionListDeleterParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SuppressionListReaderParameters.html">SuppressionListReaderParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TrackingSettings.html">TrackingSettings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FormURLEncoder</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">FormURLEncoder</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>FormURLEncoder</code> class encodes any <code>Encodable</code> instance into the
+<code>application/x-www-form-urlencoded</code> Content-Type.</p>
+
+<p>The example below shows how to encode an instance of a simple
+<code>GroceryProduct</code> type to a form URL encoded string. The type adopts
+<code>Codable</code> so that it&rsquo;s encodable as JSON using a JSONEncoder instance.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">GroceryProduct</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">var</span> <span class="nv">points</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">pear</span> <span class="o">=</span> <span class="kt">GroceryProduct</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Pear"</span><span class="p">,</span> <span class="nv">points</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span> <span class="nv">description</span><span class="p">:</span> <span class="s">"A ripe pear."</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">encoder</span> <span class="o">=</span> <span class="kt">FormURLEncoder</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">results</span> <span class="o">=</span> <span class="k">try</span> <span class="n">encoder</span><span class="o">.</span><span class="nf">stringEncode</span><span class="p">(</span><span class="n">pear</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+<span class="cm">/* Prints:
+ description=A%20ripe%20pear.&amp;name=Pear&amp;points=250
+*/</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid14FormURLEncoderC20dateEncodingStrategy10Foundation11JSONEncoderC04DatefG0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/dateEncodingStrategy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid14FormURLEncoderC20dateEncodingStrategy10Foundation11JSONEncoderC04DatefG0Ovp">dateEncodingStrategy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The strategy used when encoding dates.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">dateEncodingStrategy</span><span class="p">:</span> <span class="kt">JSONEncoder</span><span class="o">.</span><span class="kt">DateEncodingStrategy</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid14FormURLEncoderCACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid14FormURLEncoderCACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new, reusable Form URL encoder with the default date encoding
+strategy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid14FormURLEncoderC6encode_14percentEncoded10Foundation4DataVx_SbtKSERzlF"></a>
+                    <a name="//apple_ref/swift/Method/encode(_:percentEncoded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid14FormURLEncoderC6encode_14percentEncoded10Foundation4DataVx_SbtKSERzlF">encode(_:percentEncoded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encodes an <code>Encodable</code> type to the form URL format represented as
+<code>Data</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    An <code>EncodingError</code> can be thrown.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">encode</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">percentEncoded</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Encodable</code> instance to encode.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>percentEncoded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A boolean indicating if the resulting encoding
+            should contain percent encoding.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>Data</code> instance of the formatted data.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid14FormURLEncoderC12stringEncode_14percentEncodedSSx_SbtKSERzlF"></a>
+                    <a name="//apple_ref/swift/Method/stringEncode(_:percentEncoded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid14FormURLEncoderC12stringEncode_14percentEncodedSSx_SbtKSERzlF">stringEncode(_:percentEncoded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encodes an <code>Encodable</code> type to the form URL format represented as a
+<code>String</code>.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    An <code>EncodingError</code> can be thrown.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">stringEncode</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">percentEncoded</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Encodable</code> instance to encode.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>percentEncoded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A boolean indicating if the resulting encoding
+            should contain percent encoding.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>String</code> instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8SendGrid14FormURLEncoderC15queryItemEncodeySay10Foundation08URLQueryF0VGxKSERzlF"></a>
+                    <a name="//apple_ref/swift/Method/queryItemEncode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid14FormURLEncoderC15queryItemEncodeySay10Foundation08URLQueryF0VGxKSERzlF">queryItemEncode(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encodes an <code>Encodable</code> type to the form URL format represented as an
+array of <code>URLQueryItem</code> instances.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    An <code>EncodingError</code> can be thrown.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">queryItemEncode</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">URLQueryItem</span><span class="p">]</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>Encodable</code> instance to encode.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of <code>URLQueryItem</code> instances.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2019-04-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
