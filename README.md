@@ -152,7 +152,7 @@ cd /path/to/sendgrid-swift
 swift package generate-xcodeproj
 ```
 
-This project also contains a Dockerfile and a docker-compose.yml file which runs Ubuntu 16.04 with Swift 4 installed. Running `docker-compose up` will execute the `swift build` command in the Linux container. If you want to run other commands, you can run `docker-compose run --rm app <command>`.
+This project also contains a Dockerfile and a docker-compose.yml file which runs Swift 5. Running `docker-compose up` will execute the `swift build` command in the Linux container. If you want to run other commands, you can run `docker-compose run --rm app <command>`.
 
 ## Contributing
 
@@ -160,6 +160,6 @@ This project also contains a Dockerfile and a docker-compose.yml file which runs
 2. Create your feature branch (`git checkout -b my-fancy-new-feature`)
 3. Commit your changes (`git commit -am 'Added fancy new feature'`)
 4. Write tests for any changes and ensure existing tests pass
-    - **Note!** Be sure that your changes also work on Linux. You can use the Docker container to quickly test this by running `docker-compose run --rm app swift test`
+    - **Note!** Be sure that your changes also work on Linux. You can use the Docker container to quickly test this by running `swift test --generate-linuxmain && docker-compose run --rm app swift test`
 5. Push to the branch (`git push origin my-fancy-new-feature`)
 6. Create a new Pull Request
