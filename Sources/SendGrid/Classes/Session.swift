@@ -187,8 +187,17 @@ open class Session {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = request.decodingStrategy.dates
                     decoder.dataDecodingStrategy = request.decodingStrategy.data
-                    let model = try decoder.decode(ModelType.self, from: d)
-                    return (response, model)
+                    switch response.statusCode {
+                    case 200..<300:
+                        let model = try decoder.decode(ModelType.self, from: d)
+                        return (response, model)
+                    case 400..<500:
+                        var errorResponse = try decoder.decode(Exception.APIResponse.self, from: d)
+                        errorResponse._httpResponse = response
+                        throw errorResponse
+                    default:
+                        throw Exception.Session.unableToParseResponse(response)
+                    }
                 case .failure(let e):
                     throw e
                 }
