@@ -11,7 +11,7 @@ public extension Email {
     /// :nodoc:
     @available(*, deprecated, renamed: "parameters.content")
     var content: [Content] {
-        get { return self.parameters!.content }
+        get { return self.parameters!.content! }
         set { self.parameters?.content = newValue }
     }
     

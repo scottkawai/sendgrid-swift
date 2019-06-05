@@ -604,6 +604,19 @@ public class Email: Request<Email.Parameters> {
         super.init(method: .POST, path: "/v3/mail/send", parameters: params)
     }
     
+    /// Initializes the email request with a list of personalizations, a from
+    /// address, template ID, and a subject.
+    ///
+    /// - Parameters:
+    ///   - personalizations:   An array of personalization instances.
+    ///   - from:               A from address to use in the email.
+    ///   - templateID:         The ID of a template to use.
+    ///   - subject:            An optional global subject line.
+    public init(personalizations: [Personalization], from: Address, templateID: String, subject: String? = nil) {
+        let params = Email.Parameters(personalizations: personalizations, from: from, templateID: templateID, subject: subject)
+        super.init(method: .POST, path: "/v3/mail/send", parameters: params)
+    }
+    
     // MARK: - Methods
     
     /// Before a `Session` instance makes an API call, it will call this method
@@ -638,7 +651,7 @@ public extension Email /* Parameters Struct */ {
         public var personalizations: [Personalization]
         
         /// The content sections of the email.
-        public var content: [Content]
+        public var content: [Content]?
         
         /// The subject of the email. If the personalizations in the email contain
         /// subjects, those will override this subject.
@@ -760,11 +773,12 @@ public extension Email /* Parameters Struct */ {
         ///   - content:            An array of content instances to use in the
         ///                         body.
         ///   - subject:            An optional global subject line.
-        public init(personalizations: [Personalization], from: Address, content: [Content], subject: String? = nil) {
+        public init(personalizations: [Personalization], from: Address, content: [Content]? = nil, templateID: String? = nil, subject: String? = nil) {
             self.personalizations = personalizations
             self.from = from
             self.content = content
             self.subject = subject
+            self.templateID = templateID
         }
         
         // MARK: - Methods
@@ -777,15 +791,17 @@ public extension Email /* Parameters Struct */ {
             }
             
             // Check for content
-            guard self.content.count > 0 else { throw Exception.Mail.missingContent }
-            
-            // Check for content order
-            let (isOrdered, _) = try self.content.reduce((true, 0)) { (running, item) -> (Bool, Int) in
-                try item.validate()
-                let thisIsOrdered = running.0 && (item.type.index >= running.1)
-                return (thisIsOrdered, item.type.index)
+            if self.templateID == nil {
+                guard let bodies = self.content, bodies.count > 0 else { throw Exception.Mail.missingContent }
+                
+                // Check for content order
+                let (isOrdered, _) = try bodies.reduce((true, 0)) { (running, item) -> (Bool, Int) in
+                    try item.validate()
+                    let thisIsOrdered = running.0 && (item.type.index >= running.1)
+                    return (thisIsOrdered, item.type.index)
+                }
+                guard isOrdered else { throw Exception.Mail.invalidContentOrder }
             }
-            guard isOrdered else { throw Exception.Mail.invalidContentOrder }
             
             // Check for total number of recipients
             let totalRecipients: [String] = try self.personalizations.reduce([String]()) { (list, per) -> [String] in
@@ -809,7 +825,7 @@ public extension Email /* Parameters Struct */ {
             // Check for subject present
             if (self.subject?.count ?? 0) == 0, self.templateID == nil {
                 let subjectPresent = self.personalizations.reduce(true) { (hasSubject, person) -> Bool in
-                    return hasSubject && ((person.subject?.count ?? 0) > 0)
+                    hasSubject && ((person.subject?.count ?? 0) > 0)
                 }
                 guard subjectPresent else { throw Exception.Mail.missingSubject }
             }

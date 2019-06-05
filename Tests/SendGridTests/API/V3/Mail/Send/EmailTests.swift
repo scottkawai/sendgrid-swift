@@ -191,9 +191,9 @@ class EmailTests: XCTestCase, EncodingTester {
         XCTAssertEqual(good.parameters!.personalizations.count, Constants.PersonalizationLimit)
         XCTAssertEqual(good.parameters!.personalizations[0].to[0].email, "test0@example.none")
         XCTAssertEqual(good.parameters!.from.email, "from@example.none")
-        XCTAssertEqual(good.parameters!.content.count, 2)
-        XCTAssertEqual(good.parameters!.content[0].value, "plain")
-        XCTAssertEqual(good.parameters!.content[1].value, "html")
+        XCTAssertEqual(good.parameters!.content?.count, 2)
+        XCTAssertEqual(good.parameters!.content?[0].value, "plain")
+        XCTAssertEqual(good.parameters!.content?[1].value, "html")
         XCTAssertNil(good.parameters!.subject)
     }
     
@@ -319,6 +319,52 @@ class EmailTests: XCTestCase, EncodingTester {
             XCTAssertTrue(true)
         } catch {
             XCTFailUnknownError(error)
+        }
+        
+        /// No content with no template ID should throw an error.
+        do {
+            let personalization = Personalization(recipients: "test@example.none")
+            let noContentEmail = Email(personalizations: [personalization], from: self.goodFrom, content: [], subject: "Hello world")
+            noContentEmail.parameters?.content = nil
+            try noContentEmail.validate()
+        } catch SendGrid.Exception.Mail.missingContent {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+        
+        /// Empty array content with no template ID should throw an error.
+        do {
+            let personalization = Personalization(recipients: "test@example.none")
+            let emptyContentEmail = Email(personalizations: [personalization], from: self.goodFrom, content: [], subject: "Hello world")
+            try emptyContentEmail.validate()
+        } catch SendGrid.Exception.Mail.missingContent {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFailUnknownError(error)
+        }
+        
+        /// No content with a template ID throws no error.
+        do {
+            let personalization = Personalization(recipients: "test@example.none")
+            let emptyTemplatedEmail = Email(personalizations: [personalization], from: self.goodFrom, templateID: "ABCDEFG", subject: "Hello world")
+            XCTAssertNoThrow(try emptyTemplatedEmail.validate())
+        }
+        
+        /// Empty array content with a template ID throws no error.
+        do {
+            let personalization = Personalization(recipients: "test@example.none")
+            let emptyTemplatedEmail = Email(personalizations: [personalization], from: self.goodFrom, templateID: "ABCDEFG", subject: "Hello world")
+            emptyTemplatedEmail.parameters?.content = []
+            XCTAssertNoThrow(try emptyTemplatedEmail.validate())
+        }
+        
+        /// Content with a template ID throws no error.
+        do {
+            let personalization = Personalization(recipients: "test@example.none")
+            let templatedEmail = Email(personalizations: [personalization], from: self.goodFrom, templateID: "ABCDEFG", subject: "Hello world")
+            templatedEmail.parameters?.content = Content.emailBody(plain: "foobar", html: "<p>foobar</p>")
+            XCTAssertNoThrow(try templatedEmail.validate())
         }
     }
     
