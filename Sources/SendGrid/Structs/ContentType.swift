@@ -24,9 +24,13 @@ public struct ContentType: CustomStringConvertible, Equatable {
     /// that the HTML content is given preference over the plain content.
     internal var index: Int {
         switch (self.type, self.subtype) {
-        case ("text", "plain"): return 0
-        case ("text", "html"): return 1
-        default: return 2
+        case ("text", "plain"):
+            return 0
+        case ("text", "x-amp-html"),
+             ("text", "html"):
+            return 1
+        default:
+            return 2
         }
     }
     
