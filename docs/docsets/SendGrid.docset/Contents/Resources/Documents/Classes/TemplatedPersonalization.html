@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Personalization Class Reference</title>
+    <title>TemplatedPersonalization Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/Personalization" class="dashAnchor"></a>
-    <a title="Personalization Class Reference"></a>
+    <a name="//apple_ref/swift/Class/TemplatedPersonalization" class="dashAnchor"></a>
+    <a title="TemplatedPersonalization Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">SendGrid Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">SendGrid Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Personalization Class Reference
+        TemplatedPersonalization Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -319,16 +319,33 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Personalization</h1>
+            <h1>TemplatedPersonalization</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Personalization</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt"><a href="../Protocols/EmailHeaderRepresentable.html">EmailHeaderRepresentable</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/Scheduling.html">Scheduling</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">TemplatedPersonalization</span><span class="o">&lt;</span><span class="kt">TemplateData</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Personalization.html">Personalization</a></span> <span class="k">where</span> <span class="kt">TemplateData</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
 
                 </div>
               </div>
-            <p>The <code>Personalization</code> struct is used by the <code><a href="../Classes/Email.html">Email</a></code> class to add
-personalization settings to an email. The only required property is the <code>to</code>
-property, and each email must have at least one personalization.</p>
+            <p>The <code>TemplatedPersonalization</code> class is a subclass of <code><a href="../Classes/Personalization.html">Personalization</a></code>, and
+is used if you are using the Dynamic Templates feature.</p>
+
+<p>There is a generic
+<code>TemplateData</code> type that you can specify which represents the substitution
+data. An example of using this class might look something like this:</p>
+<pre class="highlight swift"><code><span class="c1">// First let's define our dynamic data types:</span>
+<span class="kd">struct</span> <span class="kt">CheckoutData</span><span class="p">:</span> <span class="kt">Encodable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">total</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span>
+    <span class="k">let</span> <span class="nv">receipt</span><span class="p">:</span> <span class="kt">Bool</span>
+<span class="p">}</span>
+
+<span class="c1">// Next let's create the personalization.</span>
+<span class="k">let</span> <span class="nv">thisData</span> <span class="o">=</span> <span class="kt">CheckoutData</span><span class="p">(</span><span class="nv">total</span><span class="p">:</span> <span class="s">"$239.85"</span><span class="p">,</span>
+                            <span class="nv">items</span><span class="p">:</span> <span class="p">[</span><span class="s">"Shoes"</span><span class="p">,</span> <span class="s">"Shirt"</span><span class="p">],</span>
+                            <span class="nv">receipt</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">personalization</span> <span class="o">=</span> <span class="kt">TemplatedPersonalization</span><span class="p">(</span><span class="nv">dynamicTemplateData</span><span class="p">:</span> <span class="n">thisData</span><span class="p">,</span>
+                                               <span class="nv">recipients</span><span class="p">:</span> <span class="s">"foo@bar.example"</span><span class="p">)</span>
+</code></pre>
 
           </section>
           <section class="section task-group-section">
@@ -344,9 +361,9 @@ property, and each email must have at least one personalization.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8SendGrid15PersonalizationC2toSayAA7AddressVGvp"></a>
-                    <a name="//apple_ref/swift/Property/to" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC2toSayAA7AddressVGvp">to</a>
+                    <a name="/s:8SendGrid24TemplatedPersonalizationC19dynamicTemplateDataxvp"></a>
+                    <a name="//apple_ref/swift/Property/dynamicTemplateData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid24TemplatedPersonalizationC19dynamicTemplateDataxvp">dynamicTemplateData</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -354,210 +371,15 @@ property, and each email must have at least one personalization.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An array of recipients to send the email to.</p>
+                        <p>The handlebar substitutions that will be applied to the dynamic template
+specified in the <code>templateID</code> on the <code><a href="../Classes/Email.html">Email</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC2ccSayAA7AddressVGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/cc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC2ccSayAA7AddressVGSgvp">cc</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An array of recipients to add as a CC on the email.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">cc</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC3bccSayAA7AddressVGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/bcc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC3bccSayAA7AddressVGSgvp">bcc</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An array of recipients to add as a BCC on the email.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">bcc</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC7subjectSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/subject" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC7subjectSSSgvp">subject</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A personalized subject for the email.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC7headersSDyS2SGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/headers" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC7headersSDyS2SGSgvp">headers</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An optional set of headers to add to the email in this personalization.
-Each key in the dictionary should represent the name of the header, and
-the values of the dictionary should be equal to the values of the
-headers.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC13substitutionsSDyS2SGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/substitutions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC13substitutionsSDyS2SGSgvp">substitutions</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An optional set of substitutions to replace in this personalization. The
-keys in the dictionary should represent the substitution tags that
-should be replaced, and the values should be the replacement values.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">substitutions</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC15customArgumentsSDyS2SGSgvp"></a>
-                    <a name="//apple_ref/swift/Property/customArguments" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC15customArgumentsSDyS2SGSgvp">customArguments</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A set of custom arguments to add to the email. The keys of the
-dictionary should be the names of the custom arguments, while the values
-should represent the value of each custom argument.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">customArguments</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC6sendAt10Foundation4DateVSgvp"></a>
-                    <a name="//apple_ref/swift/Property/sendAt" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC6sendAt10Foundation4DateVSgvp">sendAt</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An optional time to send the email at.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">sendAt</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">dynamicTemplateData</span><span class="p">:</span> <span class="kt">TemplateData</span></code></pre>
 
                         </div>
                       </div>
@@ -578,9 +400,9 @@ should represent the value of each custom argument.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8SendGrid15PersonalizationC2to2cc3bcc7subject7headers13substitutions15customArguments6sendAtACSayAA7AddressVG_ANSgAOSSSgSDyS2SGSgA2R10Foundation4DateVSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(to:cc:bcc:subject:headers:substitutions:customArguments:sendAt:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC2to2cc3bcc7subject7headers13substitutions15customArguments6sendAtACSayAA7AddressVG_ANSgAOSSSgSDyS2SGSgA2R10Foundation4DateVSgtcfc">init(to:cc:bcc:subject:headers:substitutions:customArguments:sendAt:)</a>
+                    <a name="/s:8SendGrid24TemplatedPersonalizationC19dynamicTemplateData2to2cc3bcc7subject7headers13substitutions15customArguments6sendAtACyxGx_SayAA7AddressVGAPSgAQSSSgSDyS2SGSgA2T10Foundation4DateVSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dynamicTemplateData:to:cc:bcc:subject:headers:substitutions:customArguments:sendAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid24TemplatedPersonalizationC19dynamicTemplateData2to2cc3bcc7subject7headers13substitutions15customArguments6sendAtACyxGx_SayAA7AddressVGAPSgAQSSSgSDyS2SGSgA2T10Foundation4DateVSgtcfc">init(dynamicTemplateData:to:cc:bcc:subject:headers:substitutions:customArguments:sendAt:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -595,7 +417,7 @@ should represent the value of each custom argument.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">],</span> <span class="nv">cc</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bcc</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">substitutions</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customArguments</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sendAt</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dynamicTemplateData</span><span class="p">:</span> <span class="kt">TemplateData</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">],</span> <span class="nv">cc</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bcc</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Address.html">Address</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">substitutions</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customArguments</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sendAt</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -603,6 +425,19 @@ should represent the value of each custom argument.</p>
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dynamicTemplateData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The handlebar substitution data that will be
+                    applied to the dynamic template.</p>
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>
@@ -660,9 +495,9 @@ should represent the value of each custom argument.</p>
                               <td>
                                 <div>
                                   <p>A set of additional headers to add for this
-                personalization. The keys and values in the
-                dictionary should represent the name of the
-                headers and their values, respectively.</p>
+                    personalization. The keys and values in the
+                    dictionary should represent the name of the
+                    headers and their values, respectively.</p>
                                 </div>
                               </td>
                             </tr>
@@ -675,9 +510,10 @@ should represent the value of each custom argument.</p>
                               <td>
                                 <div>
                                   <p>A set of substitutions to make in this
-                personalization. The keys and values in the
-                dictionary should represent the substitution
-                tags and their replacement values, respectively.</p>
+                    personalization. The keys and values in the
+                    dictionary should represent the substitution
+                    tags and their replacement values,
+                    respectively.</p>
                                 </div>
                               </td>
                             </tr>
@@ -690,9 +526,9 @@ should represent the value of each custom argument.</p>
                               <td>
                                 <div>
                                   <p>A set of custom arguments to add to the
-                personalization. The keys and values in the
-                dictionary should represent the argument names
-                and values, respectively.</p>
+                    personalization. The keys and values in the
+                    dictionary should represent the argument
+                    names and values, respectively.</p>
                                 </div>
                               </td>
                             </tr>
@@ -717,9 +553,9 @@ should represent the value of each custom argument.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8SendGrid15PersonalizationC10recipientsACSSd_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(recipients:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC10recipientsACSSd_tcfc">init(recipients:)</a>
+                    <a name="/s:8SendGrid24TemplatedPersonalizationC19dynamicTemplateData10recipientsACyxGx_SSdtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dynamicTemplateData:recipients:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid24TemplatedPersonalizationC19dynamicTemplateData10recipientsACyxGx_SSdtcfc">init(dynamicTemplateData:recipients:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -734,59 +570,7 @@ should represent the value of each custom argument.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">recipients</span><span class="p">:</span> <span class="kt">String</span><span class="o">...</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>recipients</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A list of email addresses to use as the <q>to</q>
-                    addresses.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:8SendGrid15PersonalizationC8validateyyKF"></a>
-                    <a name="//apple_ref/swift/Method/validate()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid15PersonalizationC8validateyyKF">validate()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Validates that the personalization has recipients and that they are
-proper email addresses as well as making sure the sendAt date is valid.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dynamicTemplateData</span><span class="p">:</span> <span class="kt">TemplateData</span><span class="p">,</span> <span class="nv">recipients</span><span class="p">:</span> <span class="kt">String</span><span class="o">...</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

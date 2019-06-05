@@ -115,6 +115,9 @@
               <li class="nav-group-task">
                 <a href="../../Classes/SuppressionListReader.html">SuppressionListReader</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/TemplatedPersonalization.html">TemplatedPersonalization</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -212,6 +215,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception.html#/s:8SendGrid9ExceptionV11APIResponseV">– APIResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Exception.html#/s:8SendGrid9ExceptionV10APIMessageV">– APIMessage</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Exception/Authentication.html">– Authentication</a>
@@ -362,9 +371,9 @@ recipients of the email.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8SendGrid5EmailC10ParametersV7contentSayAA7ContentVGvp"></a>
+                    <a name="/s:8SendGrid5EmailC10ParametersV7contentSayAA7ContentVGSgvp"></a>
                     <a name="//apple_ref/swift/Property/content" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid5EmailC10ParametersV7contentSayAA7ContentVGvp">content</a>
+                    <a class="token" href="#/s:8SendGrid5EmailC10ParametersV7contentSayAA7ContentVGSgvp">content</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -379,7 +388,7 @@ recipients of the email.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Structs/Content.html">Content</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Structs/Content.html">Content</a></span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -867,9 +876,9 @@ for more information about creating IP Pools.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8SendGrid5EmailC10ParametersV16personalizations4from7content7subjectAESayAA15PersonalizationCG_AA7AddressVSayAA7ContentVGSSSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(personalizations:from:content:subject:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8SendGrid5EmailC10ParametersV16personalizations4from7content7subjectAESayAA15PersonalizationCG_AA7AddressVSayAA7ContentVGSSSgtcfc">init(personalizations:from:content:subject:)</a>
+                    <a name="/s:8SendGrid5EmailC10ParametersV16personalizations4from7content10templateID7subjectAESayAA15PersonalizationCG_AA7AddressVSayAA7ContentVGSgSSSgATtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(personalizations:from:content:templateID:subject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8SendGrid5EmailC10ParametersV16personalizations4from7content10templateID7subjectAESayAA15PersonalizationCG_AA7AddressVSayAA7ContentVGSgSSSgATtcfc">init(personalizations:from:content:templateID:subject:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -885,7 +894,7 @@ address, content, and a subject.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Classes/Personalization.html">Personalization</a></span><span class="p">],</span> <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Address.html">Address</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Structs/Content.html">Content</a></span><span class="p">],</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">personalizations</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Classes/Personalization.html">Personalization</a></span><span class="p">],</span> <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Address.html">Address</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../../Structs/Content.html">Content</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">templateID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -953,7 +962,7 @@ address, content, and a subject.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2019-05-03)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/scottkawai/sendgrid-swift" target="_blank" rel="external">Scott Kawai</a>. All rights reserved. (Last updated: 2019-06-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
