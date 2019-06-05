@@ -156,8 +156,21 @@ open class Session {
             guard let callback = completionHandler else { return }
             callback(Result(catching: { () -> HTTPURLResponse in
                 switch result {
-                case .success(let response, _):
-                    return response
+                case .success(let response, let data):
+                    switch response.statusCode {
+                    case 200..<300:
+                        return response
+                    case 400..<500:
+                        guard let d = data else { throw Exception.Session.unableToParseResponse(response) }
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = request.decodingStrategy.dates
+                        decoder.dataDecodingStrategy = request.decodingStrategy.data
+                        var errorResponse = try decoder.decode(Exception.APIResponse.self, from: d)
+                        errorResponse._httpResponse = response
+                        throw errorResponse
+                    default:
+                        throw Exception.Session.unableToParseResponse(response)
+                    }
                 case .failure(let e):
                     throw e
                 }
@@ -187,8 +200,17 @@ open class Session {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = request.decodingStrategy.dates
                     decoder.dataDecodingStrategy = request.decodingStrategy.data
-                    let model = try decoder.decode(ModelType.self, from: d)
-                    return (response, model)
+                    switch response.statusCode {
+                    case 200..<300:
+                        let model = try decoder.decode(ModelType.self, from: d)
+                        return (response, model)
+                    case 400..<500:
+                        var errorResponse = try decoder.decode(Exception.APIResponse.self, from: d)
+                        errorResponse._httpResponse = response
+                        throw errorResponse
+                    default:
+                        throw Exception.Session.unableToParseResponse(response)
+                    }
                 case .failure(let e):
                     throw e
                 }

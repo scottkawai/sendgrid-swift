@@ -108,7 +108,7 @@ public extension Exception {
             case .contentHasEmptyString:
                 return "The `value` property on `Content` must be a string at least one character in length."
             case .invalidContentOrder:
-                return "When specifying the content of an email, the plain text version must be first (if present), followed by the HTML version (if present), and then any other content."
+                return "When specifying the content of an email, the plain text version must be first (if present), followed by the HTML version (if present), and then any other content. If you are adding Google AMP content, the order should be plain text, Google AMP, then HTML to accommodate a known issue with Apple Mail."
             case .tooManyRecipients:
                 return "Your `Email` instance contains too many recipients. The total number of recipients cannot exceed \(Constants.RecipientLimit) addresses. This includes all recipients defined within the `to`, `cc`, and `bcc` parameters, across each `Personalization` instance that you include in the personalizations array."
             case .missingSubject:

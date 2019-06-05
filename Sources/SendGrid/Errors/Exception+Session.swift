@@ -23,6 +23,10 @@ public extension Exception {
         /// Thrown when no response comes back from an HTTP request.
         case noResponseReceived
         
+        /// Thrown when the API response couldn't be parsed into an expected
+        /// model.
+        case unableToParseResponse(HTTPURLResponse)
+        
         // MARK: - Properties
         
         /// A description for the error.
@@ -38,6 +42,8 @@ public extension Exception {
                 return "Authentication with \(description) is not supported on this API call."
             case .noResponseReceived:
                 return "No response was returned from the API call."
+            case .unableToParseResponse:
+                return "The received response couldn't be parsed into the expected model type. Inspect the associated `HTTPURLResponse` for more information."
             }
         }
     }
