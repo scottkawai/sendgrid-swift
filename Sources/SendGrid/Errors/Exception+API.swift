@@ -8,9 +8,7 @@ public extension Exception {
         let errors: [APIMessage]
         
         /// The original `HTTPURLResponse` from the HTTP request.
-        var httpResponse: HTTPURLResponse! {
-            return _httpResponse
-        }
+        var httpResponse: HTTPURLResponse! { self._httpResponse }
         
         /// :nodoc:
         internal var _httpResponse: HTTPURLResponse!

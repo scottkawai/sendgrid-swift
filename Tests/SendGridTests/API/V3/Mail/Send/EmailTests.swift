@@ -7,12 +7,10 @@ class EmailTests: XCTestCase, EncodingTester {
     let goodFrom = Address(email: "from@example.none")
     
     func generatePersonalizations(_ amount: Int) -> [Personalization] {
-        return Array(0..<amount).map(
-            { (i) -> Personalization in
-                let recipient = Address(email: "test\(i)@example.none")
-                return Personalization(to: [recipient])
-            }
-        )
+        Array(0..<amount).map { (i) -> Personalization in
+            let recipient = Address(email: "test\(i)@example.none")
+            return Personalization(to: [recipient])
+        }
     }
     
     func generateBaseEmail(_ subject: String? = "Hello World") -> Email {

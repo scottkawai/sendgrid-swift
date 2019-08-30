@@ -41,7 +41,7 @@ extension Content /* Convenience class initializers */ {
     /// - Returns:          A `Content` instance with the "text/plain" content
     ///                     type.
     public static func plainText(body value: String) -> Content {
-        return Content(contentType: .plainText, value: value)
+        Content(contentType: .plainText, value: value)
     }
     
     /// Creates a new `Content` instance used to represent an HTML body.
@@ -50,7 +50,7 @@ extension Content /* Convenience class initializers */ {
     /// - Returns:          A `Content` instance with the "text/html" content
     ///                     type.
     public static func html(body value: String) -> Content {
-        return Content(contentType: .htmlText, value: value)
+        Content(contentType: .htmlText, value: value)
     }
     
     /// Return an array containing a plain text and html body.
@@ -60,7 +60,7 @@ extension Content /* Convenience class initializers */ {
     ///   - html:   The HTML text value for the HTML body.
     /// - Returns:  An array of `Content` instances.
     public static func emailBody(plain: String, html: String) -> [Content] {
-        return [
+        [
             Content.plainText(body: plain),
             Content.html(body: html)
         ]

@@ -10,7 +10,7 @@ open class Request<Parameters: Encodable>: Validatable {
     // MARK: - Properties
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
-    open var supportsImpersonation: Bool { return true }
+    open var supportsImpersonation: Bool { true }
     
     /// The HTTP verb to use in the call.
     open var method: HTTPMethod
@@ -88,9 +88,7 @@ open class Request<Parameters: Encodable>: Validatable {
     ///                     used.
     /// - Returns:          A `Bool` indicating if the authentication method is
     ///                     supported.
-    open func supports(auth: Authentication) -> Bool {
-        return true
-    }
+    open func supports(auth: Authentication) -> Bool { true }
 }
 
 /// The `ModeledRequest` class should be inherited by any class that represents

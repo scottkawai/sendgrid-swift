@@ -12,12 +12,10 @@ class TemplatedPersonalizationTests: XCTestCase, EncodingTester {
     let dummyTemplateData = DynamicData(foo: "foobar", bar: [1, 2, 3])
     
     func generateRecipients(_ amount: Int = 1, prefix: String = "person") -> [Address] {
-        return Array(1...amount).map(
-            { (i) -> Address in
-                let email = "\(prefix.lowercased())\(i)@example.none"
-                return Address(email: email)
-            }
-        )
+        Array(1...amount).map { (i) -> Address in
+            let email = "\(prefix.lowercased())\(i)@example.none"
+            return Address(email: email)
+        }
     }
     
     func generateExample(_ isSimple: Bool = true) -> TemplatedPersonalization<DynamicData> {

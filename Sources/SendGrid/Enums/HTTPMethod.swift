@@ -22,7 +22,7 @@ public enum HTTPMethod: String, CustomStringConvertible {
     // MARK: - Properties
     
     /// The String representation of the HTTP method.
-    public var description: String { return self.rawValue }
+    public var description: String { self.rawValue }
     
     /// A bool indicating if the HTTP method contains an HTTP body in its
     /// request.

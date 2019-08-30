@@ -55,7 +55,7 @@ public class DeleteInvalidEmails: SuppressionListDeleter<InvalidEmail> {
     /// Returns a request that will delete *all* the entries on your spam
     /// report list.
     public static var all: DeleteInvalidEmails {
-        return DeleteInvalidEmails(deleteAll: true, emails: nil)
+        DeleteInvalidEmails(deleteAll: true, emails: nil)
     }
     
     // MARK: - Initialization

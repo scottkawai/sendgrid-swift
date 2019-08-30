@@ -16,9 +16,7 @@ public struct Authentication: CustomStringConvertible {
     
     /// Returns that `Authorization` header value for the authentication type.
     /// This can be used on any web API V3 call.
-    public var authorizationHeader: String {
-        return "\(self.prefix) \(self.value)"
-    }
+    public var authorizationHeader: String { "\(self.prefix) \(self.value)" }
     
     // MARK: - Initialization
     
@@ -41,7 +39,7 @@ public extension Authentication {
     ///
     /// - returns: An `Authentication` instance.
     static func apiKey(_ key: String) -> Authentication {
-        return Authentication(prefix: "Bearer", value: key, description: "API Key")
+        Authentication(prefix: "Bearer", value: key, description: "API Key")
     }
     
     /// Creates an `Authentication` instance representing a username and

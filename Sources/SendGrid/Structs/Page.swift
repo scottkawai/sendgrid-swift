@@ -2,7 +2,7 @@ import Foundation
 
 /// This struct is used to represent a page via the `limit` and `offset`
 /// parameters found in various API calls.
-public struct Page: Equatable {
+public struct Page {
     // MARK: - Properties
     
     /// The limit value for each page of results.
@@ -24,8 +24,10 @@ public struct Page: Equatable {
     }
 }
 
-/// :nodoc:
-/// Equatable conformance.
-public func ==(lhs: Page, rhs: Page) -> Bool {
-    return lhs.limit == rhs.limit && lhs.offset == rhs.offset
+extension Page: Equatable {
+    /// :nodoc:
+    /// Equatable conformance.
+    public static func ==(lhs: Page, rhs: Page) -> Bool {
+        lhs.limit == rhs.limit && lhs.offset == rhs.offset
+    }
 }

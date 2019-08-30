@@ -586,7 +586,7 @@ public class Email: Request<Email.Parameters> {
     // MARK: - Properties
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
-    public override var supportsImpersonation: Bool { return false }
+    public override var supportsImpersonation: Bool { false }
     
     // MARK: - Initialization
     
@@ -630,7 +630,7 @@ public class Email: Request<Email.Parameters> {
     ///                     supported.
     public override func supports(auth: Authentication) -> Bool {
         // The mail send endpoint only supports API Keys.
-        return auth.prefix == "Bearer"
+        auth.prefix == "Bearer"
     }
     
     /// :nodoc:

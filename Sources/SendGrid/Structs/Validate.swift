@@ -22,16 +22,16 @@ struct Validate {
 extension Validate {
     /// Validates if a provided `String` is an email address.
     static func email(_ email: String) -> Bool {
-        return self.input(email, against: #"\S+@\S+(\.\S+)+"#)
+        self.input(email, against: #"\S+@\S+(\.\S+)+"#)
     }
 
     /// Validates text to be used in the subscription tracking setting.
     static func subscriptionTracking(body: String) -> Bool {
-        return self.input(body, against: "<% .*%>")
+        self.input(body, against: "<% .*%>")
     }
 
     /// Validates that a string does contain CLRF characters.
     static func noCLRF(in input: String) -> Bool {
-        return self.input(input, against: #"^([^;,\s]+)$"#)
+        self.input(input, against: #"^([^;,\s]+)$"#)
     }
 }

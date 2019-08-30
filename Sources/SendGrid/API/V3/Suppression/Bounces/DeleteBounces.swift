@@ -55,7 +55,7 @@ public class DeleteBounces: SuppressionListDeleter<Bounce> {
     /// Returns a request that will delete *all* the entries on your bounce
     /// list.
     public static var all: DeleteBounces {
-        return DeleteBounces(deleteAll: true, emails: nil)
+        DeleteBounces(deleteAll: true, emails: nil)
     }
     
     // MARK: - Initialization

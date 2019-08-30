@@ -2,7 +2,7 @@ import Foundation
 
 /// The `ContentType` struct represents the common types of Content Types used
 /// when sending through the SendGrid API.
-public struct ContentType: CustomStringConvertible, Equatable {
+public struct ContentType: CustomStringConvertible {
     // MARK: - Properties
     
     /// The first part of the content type, for example `text` in `text/html`.
@@ -12,9 +12,7 @@ public struct ContentType: CustomStringConvertible, Equatable {
     public let subtype: String
     
     /// The full value of the content type.
-    public var description: String {
-        return "\(self.type)/\(self.subtype)"
-    }
+    public var description: String { "\(self.type)/\(self.subtype)" }
     
     /// The `index` property is an internal property used to sort in priority
     /// the content type. The main use for this is to ensure conformance with
@@ -65,10 +63,12 @@ public struct ContentType: CustomStringConvertible, Equatable {
     }
 }
 
-/// :nodoc:
-/// Equatable conformance.
-public func ==(lhs: ContentType, rhs: ContentType) -> Bool {
-    return lhs.type == rhs.type && lhs.subtype == rhs.subtype
+extension ContentType: Equatable {
+    /// :nodoc:
+    /// Equatable conformance.
+    public static func ==(lhs: ContentType, rhs: ContentType) -> Bool {
+        lhs.type == rhs.type && lhs.subtype == rhs.subtype
+    }
 }
 
 /// Validatable conformance.

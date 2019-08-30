@@ -54,7 +54,7 @@ public class DeleteBlocks: SuppressionListDeleter<Block> {
     /// Returns a request that will delete *all* the entries on your block
     /// list.
     public static var all: DeleteBlocks {
-        return DeleteBlocks(deleteAll: true, emails: nil)
+        DeleteBlocks(deleteAll: true, emails: nil)
     }
     
     // MARK: - Initialization

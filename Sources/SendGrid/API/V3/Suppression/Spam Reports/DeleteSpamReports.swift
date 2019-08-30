@@ -55,7 +55,7 @@ public class DeleteSpamReports: SuppressionListDeleter<SpamReport> {
     /// Returns a request that will delete *all* the entries on your spam
     /// report list.
     public static var all: DeleteSpamReports {
-        return DeleteSpamReports(deleteAll: true, emails: nil)
+        DeleteSpamReports(deleteAll: true, emails: nil)
     }
     
     // MARK: - Initialization

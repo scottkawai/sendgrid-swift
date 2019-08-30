@@ -113,7 +113,7 @@ private class _FormURLEncoder: Encoder {
     
     /// This bool indicates if the encoder can currently encode a new value.
     fileprivate var _canEncodeNewValue: Bool {
-        return self.storage._count == self.codingPath.count
+        self.storage._count == self.codingPath.count
     }
     
     // MARK: - Initialization
@@ -232,9 +232,7 @@ private class _FormURLEncoder: Encoder {
     }
     
     /// :nodoc:
-    fileprivate func singleValueContainer() -> SingleValueEncodingContainer {
-        return self
-    }
+    fileprivate func singleValueContainer() -> SingleValueEncodingContainer { self }
 }
 
 /// This extension on `_FormURLEncoder` adds `SingleValueEncodingContainer`
@@ -395,9 +393,7 @@ private struct _FormURLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     public private(set) var codingPath: [CodingKey]
     
     /// The number of values in the container.
-    public var count: Int {
-        return self.container.rawArray?.count ?? 0
-    }
+    public var count: Int { self.container.rawArray?.count ?? 0 }
     
     /// The main encoder of the container.
     fileprivate let encoder: _FormURLEncoder
@@ -704,7 +700,7 @@ private class _FormURLReferencingEncoder: _FormURLEncoder {
     
     /// :nodoc:
     fileprivate override var _canEncodeNewValue: Bool {
-        return self.storage._count == self.codingPath.count - self.encoder.codingPath.count - 1
+        self.storage._count == self.codingPath.count - self.encoder.codingPath.count - 1
     }
     
     // MARK: - Initialization
@@ -801,7 +797,7 @@ private class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionaryLit
             self.rawValue = newValue
         }
         get {
-            return self.rawValue as? [_FormURLEncoderValueWrapper]
+            self.rawValue as? [_FormURLEncoderValueWrapper]
         }
     }
     
@@ -813,7 +809,7 @@ private class _FormURLEncoderValueWrapper: Encodable, ExpressibleByDictionaryLit
             self.rawValue = newValue
         }
         get {
-            return self.rawValue as? [String: _FormURLEncoderValueWrapper]
+            self.rawValue as? [String: _FormURLEncoderValueWrapper]
         }
     }
     
@@ -864,7 +860,7 @@ private struct _FormURLEncoderStorage {
     
     /// The current number of items stored.
     fileprivate var _count: Int {
-        return self._wrappers.count
+        self._wrappers.count
     }
     
     // MARK: - Initialization
