@@ -1,4 +1,7 @@
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 public extension Exception {
     /// The `Exception.Session` enum contains all the errors thrown when

@@ -1,4 +1,7 @@
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 public extension HTTPURLResponse /* Rate Limit Info */ {
     /// The rate limit information extracted from the response.

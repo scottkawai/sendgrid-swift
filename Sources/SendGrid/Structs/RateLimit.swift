@@ -1,4 +1,7 @@
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 /// The `RateLimit` struct abstracts any rate-limit information returned from an
 /// `Response`.

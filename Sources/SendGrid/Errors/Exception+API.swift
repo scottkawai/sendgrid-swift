@@ -1,4 +1,7 @@
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 public extension Exception {
     /// The `Exception.APIResponse` struct represents the body returned from an

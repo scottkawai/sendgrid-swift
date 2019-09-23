@@ -1,5 +1,8 @@
 @testable import SendGrid
 import XCTest
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 class RateLimitTests: XCTestCase {
     func testUrlResponseInitializer() {

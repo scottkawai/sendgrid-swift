@@ -1,4 +1,7 @@
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 /// The `Session` class is used to faciliate the HTTP request to the SendGrid
 /// API endpoints.  When starting out, you'll want to configure `Session` with

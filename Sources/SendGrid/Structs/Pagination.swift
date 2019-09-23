@@ -1,4 +1,7 @@
 import Foundation
+#if os(Linux)
+import FoundationNetworking
+#endif
 
 /// The `Pagination` struct represents all the pagination info that can be
 /// returned via an API call, often containing a `first`, `previous`, `next`,
