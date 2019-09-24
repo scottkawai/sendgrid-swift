@@ -1,5 +1,4 @@
-# FROM swift:5.0
-FROM norionomura/swift:swift-5.1-branch
+FROM swift:5.1
 
 # Copy over source
 RUN mkdir -p /app
