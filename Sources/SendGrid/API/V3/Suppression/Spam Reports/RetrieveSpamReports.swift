@@ -87,7 +87,10 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveSpamReports: SuppressionListReader<SpamReport> {
+public class RetrieveSpamReports: SuppressionListReader, Request {
+    /// :nodoc:
+    public typealias ResponseType = SpamReport
+    
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(

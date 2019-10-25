@@ -86,7 +86,10 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveBounces: SuppressionListReader<Bounce> {
+public class RetrieveBounces: SuppressionListReader, Request {
+    /// :nodoc:
+    public typealias ResponseType = Bounce
+    
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(

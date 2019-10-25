@@ -86,7 +86,10 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveGlobalUnsubscribes: SuppressionListReader<GlobalUnsubscribe> {
+public class RetrieveGlobalUnsubscribes: SuppressionListReader, Request {
+    /// :nodoc:
+    public typealias ResponseType = GlobalUnsubscribe
+    
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(

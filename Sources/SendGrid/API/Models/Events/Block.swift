@@ -1,7 +1,7 @@
 import Foundation
 
 /// The `Block` struct represents a block event.
-public struct Block: EmailEventRepresentable, Codable {
+public struct Block: EmailEventRepresentable, ResponseRepresentable {
     // MARK: - Properties
     
     /// The email address on the event.

@@ -1,83 +1,41 @@
 import Foundation
 
-/// The `Request` class should be inherited by any class that represents an API
+/// The `Request` protocol should be used by any class that represents an API
 /// request and sent through the `send` function in `Session`.
-///
-/// Only classes that aren't expecting any data back in the response should
-/// directly inherit this class. If data is expected, then `ModeledRequest`
-/// should be used instead.
-open class Request<Parameters: Encodable>: Validatable {
-    // MARK: - Properties
+public protocol Request: CustomStringConvertible, Validatable {
+    /// The type used for the request's parameters.
+    associatedtype Parameters: Encodable
+    
+    /// The type returned from the API response.
+    ///
+    /// This is used to automatically convert the JSON response into the 
+    /// specified type. If the API call doesn't return a response, then the 
+    /// request should specify `Never` as it's `ResponseType`.
+    associatedtype ResponseType: Decodable
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
-    open var supportsImpersonation: Bool { true }
+    var supportsImpersonation: Bool { get }
     
     /// The HTTP verb to use in the call.
-    open var method: HTTPMethod
+    var method: HTTPMethod { get }
     
     /// The headers to be included in the request.
-    open var headers: [String: String] = [
-        "Content-Type": ContentType.json.description,
-        "Accept": ContentType.json.description
-    ]
+    var headers: [String: String] { get }
     
     /// The decoding strategy.
-    open var decodingStrategy: DecodingStrategy
+    var decodingStrategy: DecodingStrategy { get }
     
     /// The encoding strategy.
-    open var encodingStrategy: EncodingStrategy
+    var encodingStrategy: EncodingStrategy { get }
     
     /// The path component of the API endpoint. This should start with a `/`,
     /// for example "/v3/mail/send".
-    open var path: String
+    var path: String { get }
     
     /// The parameters that should be sent with the API call. These parameters
     /// will either be encoded into the body of the request or the query items
     /// of the request
-    open var parameters: Parameters?
-    
-    // MARK: - Initialization
-    
-    /// Initializes the request.
-    ///
-    /// - Parameters:
-    ///   - method:     The HTTP verb to use in the API call.
-    ///   - parameters: Any parameters to send with the API call.
-    ///   - path:       The path portion of the API endpoint, such as
-    ///                 "/v3/mail/send". The path *must* start with a forward
-    ///                 slash (`/`).
-    ///   - parameters: Optional parameters to include in the API call.
-    ///   - encoding:   The encoding strategy for the parameters.
-    ///   - decoding:   The decoding strategy for the response.
-    public init(method: HTTPMethod, path: String, parameters: Parameters? = nil, encodingStrategy: EncodingStrategy = EncodingStrategy(), decodingStrategy: DecodingStrategy = DecodingStrategy()) {
-        self.method = method
-        self.path = path
-        self.parameters = parameters
-        self.encodingStrategy = encodingStrategy
-        self.decodingStrategy = decodingStrategy
-    }
-    
-    // MARK: - Methods
-    
-    /// Retrieves a the value of a specific header, or `nil` if it doesn't
-    /// exist.
-    ///
-    /// - Parameter name:   The name of the header to look for.
-    /// - Returns:          The value, or `nil` if it doesn't exist.
-    open func headerValue(named name: String) -> String? {
-        var value: String?
-        for entry in self.headers {
-            if entry.key == name { value = entry.value }
-        }
-        return value
-    }
-    
-    /// Validates that the content and accept types are valid.
-    open func validate() throws {
-        if let paramValidate = self.parameters as? Validatable {
-            try paramValidate.validate()
-        }
-    }
+    var parameters: Parameters? { get }
     
     /// Before a `Session` instance makes an API call, it will call this method
     /// to double check that the auth method it's about to use is supported by
@@ -88,41 +46,64 @@ open class Request<Parameters: Encodable>: Validatable {
     ///                     used.
     /// - Returns:          A `Bool` indicating if the authentication method is
     ///                     supported.
-    open func supports(auth: Authentication) -> Bool { true }
+    func supports(auth: Authentication) -> Bool
 }
 
-/// The `ModeledRequest` class should be inherited by any class that represents
-/// an API request and sent through the `send` function in `Session`.
-///
-/// This class contains a `ModelType` generic, which is used to map the API
-/// response to a specific model that conforms to `Decodable`.
-open class ModeledRequest<ModelType: Decodable, Parameters: Encodable>: Request<Parameters> {}
-
-/// CustomStringConvertible conformance
-extension Request: CustomStringConvertible {
-    /// The description of the request, represented as an [API
-    /// Blueprint](https://apiblueprint.org/)
-    public var description: String {
+public extension Request {
+    /// The default implementation returns `true`.
+    var supportsImpersonation: Bool { true }
+    
+    /// The default implementation includes `Content-Type` and `Accept` headers 
+    /// specifying JSON.
+    var headers: [String: String] {
+        [
+            "Content-Type": ContentType.json.description,
+            "Accept": ContentType.json.description
+        ]
+    }
+    
+    /// The default strategy uses unix time and base 64 encoded data.
+    var decodingStrategy: DecodingStrategy { DecodingStrategy() }
+    
+    /// The default strategy uses unix time and base 64 encoded data.
+    var encodingStrategy: EncodingStrategy { EncodingStrategy() }
+    
+    /// The default implementation returns `true`.
+    func supports(auth: Authentication) -> Bool { true }
+    
+    /// The default implementation validates the parameters, if validatable.
+    func validate() throws {
+        try (self.parameters as? Validatable)?.validate()
+    }
+    
+    /// The default description returns an 
+    /// [API Blueprint](https://apiblueprint.org/) of the request.
+    var description: String {
         let path = self.path
         let parameterString: String?
         paramEncoding: do {
-            guard let params = self.parameters else {
+            if Parameters.self == Never.self {
                 parameterString = nil
                 break paramEncoding
-            }
-            if self.method.hasBody {
-                let encoder = JSONEncoder()
-                encoder.dateEncodingStrategy = self.encodingStrategy.dates
-                encoder.dataEncodingStrategy = self.encodingStrategy.data
-                guard let data = try? encoder.encode(params) else {
+            } else {
+                guard let params = self.parameters else {
                     parameterString = nil
                     break paramEncoding
                 }
-                parameterString = String(data: data, encoding: .utf8)
-            } else {
-                let encoder = FormURLEncoder()
-                encoder.dateEncodingStrategy = self.encodingStrategy.dates
-                parameterString = try? encoder.stringEncode(params, percentEncoded: true)
+                if self.method.hasBody {
+                    let encoder = JSONEncoder()
+                    encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                    encoder.dataEncodingStrategy = self.encodingStrategy.data
+                    guard let data = try? encoder.encode(params) else {
+                        parameterString = nil
+                        break paramEncoding
+                    }
+                    parameterString = String(data: data, encoding: .utf8)
+                } else {
+                    let encoder = FormURLEncoder()
+                    encoder.dateEncodingStrategy = self.encodingStrategy.dates
+                    parameterString = try? encoder.stringEncode(params, percentEncoded: true)
+                }
             }
         }
         var query: String {
@@ -131,7 +112,7 @@ extension Request: CustomStringConvertible {
         }
         var requestTitle: String {
             let content = "+ Request"
-            guard let contentType = self.headerValue(named: "Content-Type") else { return content }
+            guard let contentType = self.headers["Content-Type"] else { return content }
             return content + " (\(contentType))"
         }
         var blueprint = """
@@ -161,5 +142,17 @@ extension Request: CustomStringConvertible {
             """
         }
         return blueprint
+    }
+}
+
+extension Never: Codable {
+    /// :nodoc:
+    public init(from decoder: Decoder) throws {
+        fatalError("Attempted to decode to `Never`. There should have been an explicit check for this type to take a different action other than decoding.")
+    }
+    
+    /// :nodoc:
+    public func encode(to encoder: Encoder) throws {
+        fatalError("Attempted to encode `Never`. There should have been an explicit check for this type to take a different action other than encoding.")
     }
 }

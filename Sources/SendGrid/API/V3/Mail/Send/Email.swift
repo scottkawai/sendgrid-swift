@@ -582,13 +582,33 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class Email: Request<Email.Parameters> {
+public class Email: Request {
+    /// :nodoc:
+    public typealias ResponseType = Never
+    
+    /// :nodoc:
+    public let method: HTTPMethod = .POST
+    
+    /// :nodoc:
+    public let path: String = "/v3/mail/send"
+    
+    /// The parameters sent in the API call.
+    public var parameters: Email.Parameters?
+    
     // MARK: - Properties
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
-    public override var supportsImpersonation: Bool { false }
+    public var supportsImpersonation: Bool { false }
     
     // MARK: - Initialization
+    
+    /// Initializes the email request with a set of parameters.
+    ///
+    /// - Parameters:
+    ///   - parameters: The parameters for the email request.
+    public init(parameters: Email.Parameters) {
+        self.parameters = parameters
+    }
     
     /// Initializes the email request with a list of personalizations, a from
     /// address, content, and a subject.
@@ -599,9 +619,8 @@ public class Email: Request<Email.Parameters> {
     ///   - content:            An array of content instances to use in the
     ///                         body.
     ///   - subject:            An optional global subject line.
-    public init(personalizations: [Personalization], from: Address, content: [Content], subject: String? = nil) {
-        let params = Email.Parameters(personalizations: personalizations, from: from, content: content, subject: subject)
-        super.init(method: .POST, path: "/v3/mail/send", parameters: params)
+    public convenience init(personalizations: [Personalization], from: Address, content: [Content], subject: String? = nil) {
+        self.init(parameters: Email.Parameters(personalizations: personalizations, from: from, content: content, subject: subject))
     }
     
     /// Initializes the email request with a list of personalizations, a from
@@ -612,9 +631,8 @@ public class Email: Request<Email.Parameters> {
     ///   - from:               A from address to use in the email.
     ///   - templateID:         The ID of a template to use.
     ///   - subject:            An optional global subject line.
-    public init(personalizations: [Personalization], from: Address, templateID: String, subject: String? = nil) {
-        let params = Email.Parameters(personalizations: personalizations, from: from, templateID: templateID, subject: subject)
-        super.init(method: .POST, path: "/v3/mail/send", parameters: params)
+    public convenience init(personalizations: [Personalization], from: Address, templateID: String, subject: String? = nil) {
+        self.init(parameters: Email.Parameters(personalizations: personalizations, from: from, templateID: templateID, subject: subject))
     }
     
     // MARK: - Methods
@@ -628,15 +646,9 @@ public class Email: Request<Email.Parameters> {
     ///                     used.
     /// - Returns:          A `Bool` indicating if the authentication method is
     ///                     supported.
-    public override func supports(auth: Authentication) -> Bool {
+    public func supports(auth: Authentication) -> Bool {
         // The mail send endpoint only supports API Keys.
         auth.prefix == "Bearer"
-    }
-    
-    /// :nodoc:
-    public override func validate() throws {
-        try super.validate()
-        try self.parameters?.validate()
     }
 }
 
@@ -653,8 +665,8 @@ public extension Email /* Parameters Struct */ {
         /// The content sections of the email.
         public var content: [Content]?
         
-        /// The subject of the email. If the personalizations in the email contain
-        /// subjects, those will override this subject.
+        /// The subject of the email. If the personalizations in the email 
+        /// contain subjects, those will override this subject.
         public var subject: String?
         
         /// The sending address on the email.
@@ -675,9 +687,9 @@ public extension Email /* Parameters Struct */ {
         /// Categories to associate with the email.
         public var categories: [String]?
         
-        /// A dictionary of key/value pairs that define large blocks of content that
-        /// can be inserted into your emails using substitution tags. An example of
-        /// this might look like the following:
+        /// A dictionary of key/value pairs that define large blocks of content 
+        /// that can be inserted into your emails using substitution tags. An 
+        /// example of this might look like the following:
         ///
         /// ```swift
         /// let bob = Personalization(recipients: "bob@example.com")
@@ -729,15 +741,15 @@ public extension Email /* Parameters Struct */ {
         public var sections: [String: String]?
         
         /// A set of custom arguments to add to the email. The keys of the
-        /// dictionary should be the names of the custom arguments, while the values
-        /// should represent the value of each custom argument. If personalizations
-        /// in the email also contain custom arguments, they will be merged with
-        /// these custom arguments, taking a preference to the personalization's
-        /// custom arguments in the case of a conflict.
+        /// dictionary should be the names of the custom arguments, while the 
+        /// values should represent the value of each custom argument. If 
+        /// personalizations in the email also contain custom arguments, they
+        /// will be merged with these custom arguments, taking a preference to 
+        /// the personalization's custom arguments in the case of a conflict.
         public var customArguments: [String: String]?
         
-        /// An `ASM` instance representing the unsubscribe group settings to apply
-        /// to the email.
+        /// An `ASM` instance representing the unsubscribe group settings to 
+        /// apply to the email.
         public var asm: ASM?
         
         /// An optional time to send the email at.
@@ -747,12 +759,12 @@ public extension Email /* Parameters Struct */ {
         /// email) to be associated to each other for scheduling. Including a
         /// `batch_id` in your request allows you to include this email in that
         /// batch, and also enables you to cancel or pause the delivery of that
-        /// entire batch. For more information, please read about [Cancel Scheduled
-        /// Sends](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html).
+        /// entire batch. For more information, please read about [Cancel 
+        /// Scheduled Sends](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html).
         public var batchID: String?
         
-        /// The IP Pool that you would like to send this email from. See the [docs
-        /// page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html#-POST)
+        /// The IP Pool that you would like to send this email from. See the 
+        /// [docs page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html#-POST)
         /// for more information about creating IP Pools.
         public var ipPoolName: String?
         

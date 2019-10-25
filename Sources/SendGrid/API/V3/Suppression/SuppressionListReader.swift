@@ -3,7 +3,19 @@ import Foundation
 /// The `SuppressionListReader` class is base class inherited by requests that
 /// retrieve entries from a supression list. You should not use this class
 /// directly.
-open class SuppressionListReader<T: EmailEventRepresentable & Decodable>: ModeledRequest<[T], SuppressionListReaderParameters> {
+open class SuppressionListReader {
+    /// :nodoc:
+    public let path: String
+    
+    /// :nodoc:
+    public let method: HTTPMethod = .GET
+    
+    /// :nodoc:
+    public var parameters: SuppressionListReaderParameters?
+    
+    /// :nodoc:
+    public let encodingStrategy: EncodingStrategy
+    
     // MARK: - Initialization
     
     /// Private initializer that sets all the values.
@@ -28,12 +40,9 @@ open class SuppressionListReader<T: EmailEventRepresentable & Decodable>: Modele
             var container = encoder.singleValueContainer()
             try container.encode(Int(date.timeIntervalSince1970))
         }
-        super.init(
-            method: .GET,
-            path: realPath,
-            parameters: parameters,
-            encodingStrategy: EncodingStrategy(dates: dateEncoder)
-        )
+        self.path = realPath
+        self.parameters = parameters
+        self.encodingStrategy = EncodingStrategy(dates: dateEncoder)
     }
     
     /// Initializes the request with a specific email to look for in the
@@ -58,22 +67,11 @@ open class SuppressionListReader<T: EmailEventRepresentable & Decodable>: Modele
     public convenience init(start: Date? = nil, end: Date? = nil, page: Page? = nil) {
         self.init(email: nil, start: start, end: end, page: page)
     }
-    
-    // MARK: - Methods
-    
-    /// Validates that the `limit` value isn't over 500.
-    open override func validate() throws {
-        try super.validate()
-        if let limit = self.parameters?.page?.limit {
-            let range = 1...500
-            guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
-        }
-    }
 }
 
 /// The `SuppressionListReaderParameters` serves as the parameters used by the
 /// "get suppressions" API calls.
-public struct SuppressionListReaderParameters: Codable {
+public struct SuppressionListReaderParameters: Codable, Validatable {
     /// The date to start looking for events.
     public let startDate: Date?
     
@@ -120,6 +118,14 @@ public struct SuppressionListReaderParameters: Codable {
         try container.encodeIfPresent(self.endDate, forKey: .endDate)
         try container.encodeIfPresent(self.page?.limit, forKey: .limit)
         try container.encodeIfPresent(self.page?.offset, forKey: .offset)
+    }
+    
+    /// Validates that the `limit` value isn't over 500.
+    public func validate() throws {
+        if let limit = self.page?.limit {
+            let range = 1...500
+            guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
+        }
     }
     
     /// :nodoc:

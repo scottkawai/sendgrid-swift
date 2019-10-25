@@ -131,7 +131,7 @@ open class Session {
     ///
     /// - Parameter request:    The request to validate.
     /// - Throws:               Any issues found with the request.
-    private func _presend<Parameters: Encodable>(validate request: Request<Parameters>) throws {
+    private func _presend<Payload>(validate request: Payload) throws where Payload: Request {
         guard let auth = self.authentication else { throw Exception.Session.authenticationMissing }
         guard request.supports(auth: auth) else { throw Exception.Session.unsupportedAuthetication(auth.description) }
         
@@ -152,7 +152,7 @@ open class Session {
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func send<Parameters: Encodable>(request: Request<Parameters>, completionHandler: ((Result<HTTPURLResponse, Error>) -> Void)? = nil) throws {
+    open func send<Payload>(request: Payload, completionHandler: ((Result<HTTPURLResponse, Error>) -> Void)? = nil) throws where Payload: Request, Payload.ResponseType == Never {
         try self._presend(validate: request)
         
         try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy, completionHandler: { result in
@@ -181,22 +181,22 @@ open class Session {
         })
     }
     
-    /// Makes the HTTP request with the given `ModeledRequest` object. The
+    /// Makes the HTTP request with the given `Request` object. The
     /// success case in the response will contain the marshalled model object
-    /// specified in the generic declaration of the `ModeledRequest`.
+    /// specified in the `ResponseType` of the `Request`.
     ///
     /// - Parameters:
-    ///   - request:            The `ModeledRequest` instance to send.
+    ///   - request:            The `Request` instance to send.
     ///   - completionHandler:  A completion block that will be called after the
     ///                         API call completes.
     /// - Throws:               If there was a problem constructing or making
     ///                         the API call, an error will be thrown.
-    open func send<ModelType: Decodable, Parameters: Encodable>(modeledRequest request: ModeledRequest<ModelType, Parameters>, completionHandler: ((Result<(HTTPURLResponse, ModelType), Error>) -> Void)? = nil) throws {
+    open func send<Payload>(request: Payload, completionHandler: ((Result<(HTTPURLResponse, Payload.ResponseType), Error>) -> Void)? = nil) throws where Payload: Request, Payload.ResponseType: ResponseRepresentable {
         try self._presend(validate: request)
         
         try self.request(path: request.path, method: request.method, parameters: request.parameters, headers: request.headers, encodingStrategy: request.encodingStrategy) { result in
             guard let callback = completionHandler else { return }
-            callback(Result(catching: { () -> (HTTPURLResponse, ModelType) in
+            callback(Result(catching: { () -> (HTTPURLResponse, Payload.ResponseType) in
                 switch result {
                 case .success(let response, let data):
                     guard let d = data else { throw Exception.Session.noResponseReceived }
@@ -205,7 +205,7 @@ open class Session {
                     decoder.dataDecodingStrategy = request.decodingStrategy.data
                     switch response.statusCode {
                     case 200..<300:
-                        let model = try decoder.decode(ModelType.self, from: d)
+                        let model = try decoder.decode(Payload.ResponseType.self, from: d)
                         return (response, model)
                     case 400..<500:
                         var errorResponse = try decoder.decode(Exception.APIResponse.self, from: d)

@@ -21,7 +21,19 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class AddGlobalUnsubscribes: ModeledRequest<AddGlobalUnsubscribes.Parameters, AddGlobalUnsubscribes.Parameters> {
+public class AddGlobalUnsubscribes: Request {
+    /// :nodoc:
+    public typealias ResponseType = AddGlobalUnsubscribes.Parameters
+    
+    /// :nodoc:
+    public let path: String = "/v3/asm/suppressions/global"
+    
+    /// :nodoc:
+    public let method: HTTPMethod = .POST
+    
+    /// :nodoc:
+    public var parameters: AddGlobalUnsubscribes.Parameters?
+    
     // MARK: - Initialization
     
     /// Initializes the request with a list of email addresses to add to the
@@ -30,8 +42,7 @@ public class AddGlobalUnsubscribes: ModeledRequest<AddGlobalUnsubscribes.Paramet
     /// - Parameter emails: An array of email addresses to add to the global
     ///                     unsubscribe list.
     public init(emails: [String]) {
-        let params = AddGlobalUnsubscribes.Parameters(emails: emails)
-        super.init(method: .POST, path: "/v3/asm/suppressions/global", parameters: params)
+        self.parameters = AddGlobalUnsubscribes.Parameters(emails: emails)
     }
     
     /// Initializes the request with a list of email addresses to add to the
@@ -66,7 +77,7 @@ public class AddGlobalUnsubscribes: ModeledRequest<AddGlobalUnsubscribes.Paramet
 public extension AddGlobalUnsubscribes /* Parameters Struct */ {
     /// The `AddGlobalUnsubscribes.Parameters` struct houses the parameters used
     /// to add email addresses to the global unsubscribe list.
-    struct Parameters: Codable {
+    struct Parameters: ResponseRepresentable, Encodable {
         /// The email addresses to add to the global unsubscribe list.
         public let emails: [String]
         

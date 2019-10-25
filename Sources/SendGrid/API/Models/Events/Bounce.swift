@@ -1,7 +1,7 @@
 import Foundation
 
 /// The `Bounce` struct represents a bounce event.
-public struct Bounce: EmailEventRepresentable, Codable {
+public struct Bounce: EmailEventRepresentable, ResponseRepresentable {
     // MARK: - Properties
     
     /// The email address on the event.

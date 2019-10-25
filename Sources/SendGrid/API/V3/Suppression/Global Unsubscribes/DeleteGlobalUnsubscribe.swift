@@ -22,7 +22,19 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class DeleteGlobalUnsubscribe: Request<[String:String]> {
+public class DeleteGlobalUnsubscribe: Request {
+    /// :nodoc:
+    public typealias ResponseType = Never
+    
+    /// :nodoc:
+    public let method: HTTPMethod = .DELETE
+    
+    /// :nodoc:
+    public let path: String
+    
+    /// :nodoc:
+    public let parameters: Never? = nil
+        
     // MARK: - Initializer
     
     /// Initializes the request with an email address to delete from the
@@ -32,7 +44,7 @@ public class DeleteGlobalUnsubscribe: Request<[String:String]> {
     ///   - email:  An email address to delete from the global unsubscribe
     ///             list.
     public init(email: String) {
-        super.init(method: .DELETE, path: "/v3/asm/suppressions/global/\(email)", parameters: nil)
+        self.path = "/v3/asm/suppressions/global/\(email)"
     }
     
     /// Initializes the request with a global unsubscribe event that should

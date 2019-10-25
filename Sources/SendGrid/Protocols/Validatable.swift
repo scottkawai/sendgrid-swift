@@ -11,3 +11,7 @@ public protocol Validatable {
     /// thrown.
     func validate() throws
 }
+
+public protocol ResponseRepresentable: Decodable {}
+
+extension Array: ResponseRepresentable where Element: ResponseRepresentable {}

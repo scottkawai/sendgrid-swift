@@ -1,6 +1,6 @@
 import Foundation
 
-/// The `Statistic.Subuser` class is used to make the
+/// The `RetrieveSubuserStatistics` class is used to make the
 /// [Get Subuser Stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/subusers.html)
 /// API call. At minimum you need to specify a start date.
 ///
@@ -89,16 +89,5 @@ public class RetrieveSubuserStatistics: RetrieveGlobalStatistics {
     ///                     stats for (max 10).
     public convenience init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil, subusers: SendGrid.Subuser...) {
         self.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy, subusers: subusers)
-    }
-    
-    // MARK: - Methods
-    
-    /// Validates that there are no more than 10 subusers specified.
-    public override func validate() throws {
-        try super.validate()
-        let count = self.parameters?.subusers?.count ?? 0
-        guard 1...10 ~= count else {
-            throw Exception.Statistic.invalidNumberOfSubusers
-        }
     }
 }

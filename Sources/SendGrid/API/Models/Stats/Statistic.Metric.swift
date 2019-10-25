@@ -3,7 +3,7 @@ import Foundation
 public extension Statistic {
     /// The `Statistic.Metric` struct represents the raw statistics for a given
     /// time period.
-    struct Metric: Codable {
+    struct Metric: Decodable {
         // MARK: - Properties
         
         /// The number of block events for the given period.

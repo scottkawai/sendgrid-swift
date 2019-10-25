@@ -1,7 +1,7 @@
 import Foundation
 
 /// The `Subuser` struct represents a subuser on a parent account.
-public struct Subuser: Codable {
+public struct Subuser: ResponseRepresentable {
     // MARK: - Properties
     
     /// The unique ID of the subuser account.

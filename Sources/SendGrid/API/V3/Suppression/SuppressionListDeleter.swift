@@ -3,7 +3,19 @@ import Foundation
 /// The `SuppressionListDeleter` class is base class inherited by requests that
 /// delete entries from a supression list. You should not use this class
 /// directly.
-public class SuppressionListDeleter<T: EmailEventRepresentable>: Request<SuppressionListDeleterParameters> {
+public class SuppressionListDeleter<T: EmailEventRepresentable>: Request {
+    /// :nodoc:
+    public typealias ResponseType = Never
+    
+    /// :nodoc:
+    public let method: HTTPMethod = .DELETE
+    
+    /// :nodoc:
+    public let path: String
+    
+    /// :nodoc:
+    public var parameters: SuppressionListDeleterParameters?
+    
     // MARK: - Initializer
     
     /// Private initializer to set all the required properties.
@@ -14,8 +26,8 @@ public class SuppressionListDeleter<T: EmailEventRepresentable>: Request<Suppres
     ///                 list should be deleted.
     ///   - emails:     An array of emails to delete from the suppression list.
     internal init(path: String? = nil, deleteAll: Bool?, emails: [String]?) {
-        let params = SuppressionListDeleterParameters(deleteAll: deleteAll, emails: emails)
-        super.init(method: .DELETE, path: path ?? "/", parameters: params)
+        self.parameters = SuppressionListDeleterParameters(deleteAll: deleteAll, emails: emails)
+        self.path = path ?? "/"
     }
     
     /// Initializes the request with an array of email addresses to delete

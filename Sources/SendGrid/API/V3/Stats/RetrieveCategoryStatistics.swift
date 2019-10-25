@@ -1,6 +1,6 @@
 import Foundation
 
-/// The `Statistic.Category` class is used to make the
+/// The `RetrieveCategoryStatistics` class is used to make the
 /// [Get Category Stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/categories.html)
 /// API call. At minimum you need to specify a start date.
 ///
@@ -60,16 +60,5 @@ public class RetrieveCategoryStatistics: RetrieveGlobalStatistics {
     ///   - categories:     An array of categories to retrieve stats for.
     public convenience init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil, categories: String...) {
         self.init(startDate: startDate, endDate: endDate, aggregatedBy: aggregatedBy, categories: categories)
-    }
-    
-    // MARK: - Methods
-    
-    /// Validates that there are no more than 10 categories specified.
-    public override func validate() throws {
-        try super.validate()
-        let count = self.parameters?.categories?.count ?? 0
-        guard 1...10 ~= count else {
-            throw Exception.Statistic.invalidNumberOfCategories
-        }
     }
 }

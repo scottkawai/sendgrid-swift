@@ -3,7 +3,7 @@ import Foundation
 /// The `Statistic` struct represents the enclosing structure of statistics
 /// returning from the various stat API calls. It contains the
 /// date of the aggregated time period, along with the raw stats.
-public struct Statistic: Codable {
+public struct Statistic: ResponseRepresentable {
     // MARK: - Properties
     
     /// The date for this statistic set.

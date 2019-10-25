@@ -1,6 +1,6 @@
 import Foundation
 
-/// The `Statistic.Global` class is used to make the
+/// The `RetrieveGlobalStatistics` class is used to make the
 /// [Get Global Stats](https://sendgrid.com/docs/API_Reference/Web_API_v3/Stats/global.html)
 /// API call. At minimum you need to specify a start date.
 ///
@@ -28,7 +28,25 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveGlobalStatistics: ModeledRequest<[Statistic], RetrieveStatisticsParameters> {
+public class RetrieveGlobalStatistics: Request {
+    /// :nodoc:
+    public typealias ResponseType = [Statistic]
+    
+    /// :nodoc:
+    public let path: String
+    
+    /// :nodoc:
+    public let method: HTTPMethod = .GET
+    
+    /// :nodoc:
+    public var parameters: RetrieveStatisticsParameters?
+    
+    /// :nodoc:
+    public let encodingStrategy: EncodingStrategy
+    
+    /// :nodoc:
+    public let decodingStrategy: DecodingStrategy
+    
     // MARK: - Initialization
     
     /// Initializes the request with a path and set of parameters.
@@ -41,13 +59,10 @@ public class RetrieveGlobalStatistics: ModeledRequest<[Statistic], RetrieveStati
         let formatter = DateFormatter()
         formatter.dateFormat = format
         
-        super.init(
-            method: .GET,
-            path: path,
-            parameters: parameters,
-            encodingStrategy: EncodingStrategy(dates: .formatted(formatter), data: .base64),
-            decodingStrategy: DecodingStrategy(dates: .formatted(formatter), data: .base64)
-        )
+        self.path = path
+        self.parameters = parameters
+        self.encodingStrategy = EncodingStrategy(dates: .formatted(formatter), data: .base64)
+        self.decodingStrategy = DecodingStrategy(dates: .formatted(formatter), data: .base64)
     }
     
     /// Initializes the request with a start date, as well as an end date and/or
@@ -65,23 +80,10 @@ public class RetrieveGlobalStatistics: ModeledRequest<[Statistic], RetrieveStati
         )
         self.init(path: "/v3/stats", parameters: params)
     }
-    
-    // MARK: - Methods
-    
-    /// Validates that the end date (if present) is not earlier than the start
-    /// date.
-    public override func validate() throws {
-        try super.validate()
-        if let e = self.parameters?.endDate, let s = self.parameters?.startDate {
-            guard s.timeIntervalSince(e) < 0 else {
-                throw Exception.Statistic.invalidEndDate
-            }
-        }
-    }
 }
 
 /// The `RetrieveStatisticsParameters` class represents the
-public class RetrieveStatisticsParameters: Codable {
+public class RetrieveStatisticsParameters: Codable, Validatable {
     /// Indicates how the statistics should be grouped.
     public let aggregatedBy: Statistic.Aggregation?
     
@@ -110,6 +112,29 @@ public class RetrieveStatisticsParameters: Codable {
         self.aggregatedBy = aggregatedBy
         self.categories = categories
         self.subusers = subusers
+    }
+    
+    /// Validates that the end date (if present) is not earlier than the start
+    /// date, that there are no more than 10 categories specified, and that 
+    /// there are no more than 10 subusers specified.
+    public func validate() throws {
+        if let e = self.endDate {
+            guard self.startDate.timeIntervalSince(e) < 0 else {
+                throw Exception.Statistic.invalidEndDate
+            }
+        }
+        
+        if let categoryCount = self.categories?.count {
+            guard 1...10 ~= categoryCount else {
+                throw Exception.Statistic.invalidNumberOfCategories
+            }
+        }
+        
+        if let subuserCount = self.subusers?.count {
+            guard 1...10 ~= subuserCount else {
+                throw Exception.Statistic.invalidNumberOfSubusers
+            }
+        }
     }
     
     /// :nodoc:

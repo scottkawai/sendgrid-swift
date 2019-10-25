@@ -25,7 +25,20 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class RetrieveSubusers: ModeledRequest<[Subuser], RetrieveSubusers.Parameters> {
+public class RetrieveSubusers: Request {
+    /// :nodoc:
+    public typealias ResponseType = [Subuser]
+    
+    /// :nodoc:
+    public var method: HTTPMethod = .GET
+    
+    /// :nodoc:
+    public var path: String = "/v3/subusers"
+    
+    /// :nodoc:
+    public var parameters: RetrieveSubusers.Parameters?
+    
+    
     // MARK: - Initialization
     
     /// Initializes the request with pagination info and a username search.
@@ -40,29 +53,14 @@ public class RetrieveSubusers: ModeledRequest<[Subuser], RetrieveSubusers.Parame
     ///                 instance, if you have a subuser with the username
     ///                 `foobar`, searching for `foo` will return it.
     public init(page: Page? = nil, username: String? = nil) {
-        super.init(
-            method: .GET,
-            path: "/v3/subusers",
-            parameters: Parameters(page: page, username: username)
-        )
-    }
-    
-    // MARK: - Methods
-    
-    /// Validates that the `limit` value isn't over 500.
-    public override func validate() throws {
-        try super.validate()
-        if let limit = self.parameters?.page?.limit {
-            let range = 1...500
-            guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
-        }
+        self.parameters = Parameters(page: page, username: username)
     }
 }
 
 public extension RetrieveSubusers /* Parameters Struct */ {
     /// The `RetrieveSubusers.Parameters` struct holds all the parameters that
     /// can be used in the `RetrieveSubusers` call.
-    struct Parameters: Codable {
+    struct Parameters: Codable, Validatable {
         // MARK: - Properties
         
         /// The page range to retrieve.
@@ -106,6 +104,14 @@ public extension RetrieveSubusers /* Parameters Struct */ {
             case limit
             case offset
             case username
+        }
+        
+        /// Validates that the `limit` value isn't over 500.
+        public func validate() throws {
+            if let limit = self.page?.limit {
+                let range = 1...500
+                guard range ~= limit else { throw Exception.Global.limitOutOfRange(limit, range) }
+            }
         }
     }
 }

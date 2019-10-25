@@ -3,7 +3,7 @@ import Foundation
 public extension Statistic {
     /// The `Statistic.Sample` struct represents a single group of statistics,
     /// with the raw stats being made available via the `metrics` property.
-    struct Sample: Codable {
+    struct Sample: Decodable {
         // MARK: - Properties
         
         /// The raw metrics for each email event type.
