@@ -47,7 +47,7 @@ public struct Pagination {
             guard let regex = try? NSRegularExpression(pattern: pattern),
                 let result = regex.firstMatch(in: str, range: NSRange(range, in: str)),
                 let matchRange = Range(result.range, in: str)
-                else { return nil }
+            else { return nil }
             return String(str[matchRange])
         }
         let rawPages = link.split(separator: ",").compactMap { (item) -> (String, Page)? in
@@ -57,7 +57,7 @@ public struct Pagination {
                 let limit = Int(limitStr),
                 let offsetStr = first(match: #"(?<=offset=)\d+"#, in: partial),
                 let offset = Int(offsetStr)
-                else { return nil }
+            else { return nil }
             let info = Page(limit: limit, offset: offset)
             return (name, info)
         }
