@@ -4,7 +4,7 @@ import Foundation
 /// request and sent through the `send` function in `Session`.
 public protocol Request: CustomStringConvertible, Validatable {
     /// The type used for the request's parameters.
-    associatedtype Parameters: Encodable
+    associatedtype Params: Encodable
     
     /// The type returned from the API response.
     ///
@@ -35,7 +35,7 @@ public protocol Request: CustomStringConvertible, Validatable {
     /// The parameters that should be sent with the API call. These parameters
     /// will either be encoded into the body of the request or the query items
     /// of the request
-    var parameters: Parameters? { get }
+    var parameters: Params? { get }
     
     /// Before a `Session` instance makes an API call, it will call this method
     /// to double check that the auth method it's about to use is supported by
@@ -82,7 +82,7 @@ public extension Request {
         let path = self.path
         let parameterString: String?
         paramEncoding: do {
-            if Parameters.self == Never.self {
+            if Params.self == Never.self {
                 parameterString = nil
                 break paramEncoding
             } else {
