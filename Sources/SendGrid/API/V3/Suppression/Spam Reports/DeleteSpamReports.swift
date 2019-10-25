@@ -49,7 +49,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class DeleteSpamReports: SuppressionListDeleter<SpamReport> {
+public class DeleteSpamReports: SuppressionListDeleter<SpamReport>, Request {
     // MARK: - Properties
     
     /// Returns a request that will delete *all* the entries on your spam

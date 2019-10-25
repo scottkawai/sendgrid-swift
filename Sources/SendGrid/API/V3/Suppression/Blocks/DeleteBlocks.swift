@@ -48,7 +48,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class DeleteBlocks: SuppressionListDeleter<Block> {
+public class DeleteBlocks: SuppressionListDeleter<Block>, Request {
     // MARK: - Properties
     
     /// Returns a request that will delete *all* the entries on your block

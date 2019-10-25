@@ -3,7 +3,7 @@ import Foundation
 /// The `SuppressionListDeleter` class is base class inherited by requests that
 /// delete entries from a supression list. You should not use this class
 /// directly.
-public class SuppressionListDeleter<T: EmailEventRepresentable>: Request {
+public class SuppressionListDeleter<T: EmailEventRepresentable> {
     /// :nodoc:
     public typealias ResponseType = Never
     

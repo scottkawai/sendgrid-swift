@@ -49,7 +49,7 @@ import Foundation
 ///     print(error)
 /// }
 /// ```
-public class DeleteBounces: SuppressionListDeleter<Bounce> {
+public class DeleteBounces: SuppressionListDeleter<Bounce>, Request {
     // MARK: - Properties
     
     /// Returns a request that will delete *all* the entries on your bounce
