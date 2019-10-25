@@ -13,7 +13,7 @@ import Foundation
 ///         endDate: now,
 ///         aggregatedBy: .week
 ///     )
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` property will be an array of `Statistic` structs.

@@ -11,7 +11,7 @@ import Foundation
 /// ```swift
 /// do {
 ///     let search = RetrieveSubusers(username: "foo")
-///     try Session.shared.send(modeledRequest: search) { result in
+///     try Session.shared.send(request: search) { result in
 ///         switch result {
 ///         case .success(_, let list):
 ///             // The `list` variable will be an array of

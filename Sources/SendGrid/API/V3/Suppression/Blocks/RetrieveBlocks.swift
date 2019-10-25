@@ -17,7 +17,7 @@ import Foundation
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire block list will be fetched:
 ///     let request = RetrieveBlocks()
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(let response, let model):
 ///             // The `model` property will be an array of `Block` structs.
@@ -49,7 +49,7 @@ import Foundation
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
 ///     let request = RetrieveBlocks(start: start, end: now, page: page)
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` variable will be an array of `Block` structs.
@@ -71,7 +71,7 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = RetrieveBlocks(email: "foo@example.none")
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` property will be an array of `Block` structs.

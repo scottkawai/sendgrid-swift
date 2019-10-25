@@ -18,7 +18,7 @@ import Foundation
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire global unsubscribe list will be fetched:
 ///     let request = RetrieveGlobalUnsubscribes()
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(let response, let model):
 ///             // The `model` property will be an array of `GlobalUnsubscribe` structs.
@@ -50,7 +50,7 @@ import Foundation
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
 ///     let request = RetrieveGlobalUnsubscribes(start: start, end: now, page: page)
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             model.forEach { print($0.email) }
@@ -72,7 +72,7 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = RetrieveGlobalUnsubscribes(email: "foo@example")
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             if let unsub = model.first {

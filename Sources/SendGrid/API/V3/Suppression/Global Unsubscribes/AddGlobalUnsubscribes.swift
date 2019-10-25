@@ -9,7 +9,7 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = AddGlobalUnsubscribes(emails: "foo@example.none", "bar@example.none")
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(let response, _):
 ///             print(response.statusCode)

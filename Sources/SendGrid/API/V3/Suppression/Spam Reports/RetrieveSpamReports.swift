@@ -18,7 +18,7 @@ import Foundation
 ///     // If you don't specify any parameters, then the first page of your
 ///     // entire spam report list will be fetched:
 ///     let request = RetrieveSpamReports()
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(let response, let model):
 ///             // The `model` property will be an array of `SpamReport` structs.
@@ -50,7 +50,7 @@ import Foundation
 ///     let start = now.addingTimeInterval(-86400) // 24 hours
 ///
 ///     let request = RetrieveSpamReports(start: start, end: now, page: page)
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` property will be an array of `SpamReport`
@@ -73,7 +73,7 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = RetrieveSpamReports(email: "foo@example.none")
-///     try Session.shared.send(modeledRequest: request) { result in
+///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` value will be an array of `SpamReport`
