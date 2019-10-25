@@ -185,7 +185,7 @@ private class _FormURLEncoder: Encoder {
         }
         guard let thisKey = key else { return nil }
         if let array = rawValue as? [_FormURLEncoderValueWrapper] {
-            let path = thisKey + "[]"
+            let path = thisKey
             for item in array {
                 guard let converted = self._queryItems(from: item, forKey: path) else { continue }
                 list.append(contentsOf: converted)

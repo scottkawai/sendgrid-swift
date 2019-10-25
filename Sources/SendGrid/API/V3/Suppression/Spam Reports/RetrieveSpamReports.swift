@@ -89,7 +89,7 @@ import Foundation
 /// ```
 public class RetrieveSpamReports: SuppressionListReader, Request {
     /// :nodoc:
-    public typealias ResponseType = SpamReport
+    public typealias ResponseType = [SpamReport]
     
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {

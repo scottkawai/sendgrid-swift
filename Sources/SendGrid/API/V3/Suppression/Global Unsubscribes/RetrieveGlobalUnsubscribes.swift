@@ -88,7 +88,7 @@ import Foundation
 /// ```
 public class RetrieveGlobalUnsubscribes: SuppressionListReader, Request {
     /// :nodoc:
-    public typealias ResponseType = GlobalUnsubscribe
+    public typealias ResponseType = [GlobalUnsubscribe]
     
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {

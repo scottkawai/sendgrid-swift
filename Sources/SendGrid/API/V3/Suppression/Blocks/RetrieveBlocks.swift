@@ -88,7 +88,7 @@ import Foundation
 /// ```
 public class RetrieveBlocks: SuppressionListReader, Request {
     /// :nodoc:
-    public typealias ResponseType = Block
+    public typealias ResponseType = [Block]
     
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
