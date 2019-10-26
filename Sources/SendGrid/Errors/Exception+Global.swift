@@ -11,9 +11,6 @@ public extension Exception {
         /// Thrown if a `limit` property has an out-of-range value.
         case limitOutOfRange(Int, CountableClosedRange<Int>)
         
-        /// Thrown if the `parameter` property is `nil` when it is required.
-        case missingParameters
-        
         // MARK: - Properties
         
         /// A description for the error.
@@ -23,8 +20,6 @@ public extension Exception {
                 return "The `\(methodName)` method on \(klass) is no longer available."
             case .limitOutOfRange(let value, let range):
                 return "The `limit` value must be between \(range.lowerBound) and \(range.upperBound) (inclusive). You specified \(value)."
-            case .missingParameters:
-                return "The `parameter` property cannot be `nil`."
             }
         }
     }
