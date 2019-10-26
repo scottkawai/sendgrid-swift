@@ -7,12 +7,19 @@ import Foundation
 /// packages. See [SendGrid's website](https://sendgrid.com/solutions/email-validation-api/)
 /// for more information.
 ///
+/// **Also Note!** When using the Email Validation API, you need a separate API
+/// key. The Email Validation API keys are unique in that they can only call the
+/// email validation endpoint. You cannot use an existing key that can call 
+/// other endpoints.
+///
 /// When using this class, you need to specify an email address to validate:
 ///
 /// ```swift
 /// do {
 ///     let request = ValidateEmail(email: "john.doe@example.none")
-///     try Session.shared.send(request: request) { result in
+///     // We'll create a separate session that uses our validation specific API key.
+///     let validationSession = Session(auth: .apiKey(ProcessInfo.processInfo.environment["VALIDATION_API_KEY"]!))
+///     try validationSession.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` variable will be an instance of
@@ -45,7 +52,9 @@ import Foundation
 ///
 /// do {
 ///     let request = ValidateEmail(email: "john.doe@example.none", source: .signUpForm)
-///     try Session.shared.send(request: request) { result in
+///     // We'll create a separate session that uses our validation specific API key.
+///     let validationSession = Session(auth: .apiKey(ProcessInfo.processInfo.environment["VALIDATION_API_KEY"]!))
+///     try validationSession.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` variable will be an instance of
@@ -65,7 +74,9 @@ import Foundation
 /// ```swift
 /// do {
 ///     let request = ValidateEmail(email: "john.doe@example.none", source: "Sign Up Form")
-///     try Session.shared.send(request: request) { result in
+///     // We'll create a separate session that uses our validation specific API key.
+///     let validationSession = Session(auth: .apiKey(ProcessInfo.processInfo.environment["VALIDATION_API_KEY"]!))
+///     try validationSession.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
 ///             // The `model` variable will be an instance of
@@ -128,11 +139,21 @@ public extension ValidateEmail /* Source */ {
     ///
     /// You can also use a normal `String` wherever a `ValidateEmail.Source`
     /// type is requested.
-    struct Source: CustomStringConvertible, ExpressibleByStringLiteral, Encodable {
+    struct Source: CustomStringConvertible, ExpressibleByStringLiteral, Codable, Equatable {
         // MARK: - Properties
         
+        /// The internal storage for the string value.
+        private var _rawValue: String
+        
         /// The string value of the source.
-        public var description: String
+        public var description: String {
+            get {
+                self._rawValue.uppercased()
+            }
+            set {
+                self._rawValue = newValue.uppercased()
+            }
+        }
         
         /// :nodoc:
         public func encode(to encoder: Encoder) throws {
@@ -145,12 +166,25 @@ public extension ValidateEmail /* Source */ {
         /// Initializes the source with a `String` value.
         /// - Parameter description: The `String` value of the source.
         public init(_ description: String) {
-            self.description = description
+            self._rawValue = description.uppercased()
         }
         
         /// :nodoc:
         public init(stringLiteral value: String) {
             self.init(value)
+        }
+        
+        /// :nodoc:
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            try self.init(container.decode(String.self))
+        }
+        
+        // MARK: - Methods
+        
+        /// :nodoc:
+        public static func == (lhs: ValidateEmail.Source, rhs: ValidateEmail.Source) -> Bool {
+            lhs.description == rhs.description
         }
     }
 }

@@ -27,6 +27,9 @@ public struct EmailValidationResult: ResponseRepresentable {
     /// The results of the individual checks performed on the email address.
     public let checks: EmailValidationResult.Checks
 
+    /// The source that was sent with the email.
+    public let source: ValidateEmail.Source?
+
     /// The IP address of the requester.
     public let ipAddress: String?
 
@@ -53,6 +56,7 @@ public struct EmailValidationResult: ResponseRepresentable {
                 host: String? = nil,
                 suggestion: String? = nil,
                 checks: EmailValidationResult.Checks,
+                source: ValidateEmail.Source? = nil,
                 ipAddress: String? = nil) {
         self.email = email
         self.verdict = verdict
@@ -61,6 +65,7 @@ public struct EmailValidationResult: ResponseRepresentable {
         self.host = host
         self.suggestion = suggestion
         self.checks = checks
+        self.source = source
         self.ipAddress = ipAddress
     }
 
@@ -69,14 +74,15 @@ public struct EmailValidationResult: ResponseRepresentable {
         let wrapper = try decoder.container(keyedBy: EmailValidationResult.WrapperCodingKeys.self)
         let container = try wrapper.nestedContainer(keyedBy: EmailValidationResult.CodingKeys.self,
                                                     forKey: .result)
-        self.init(email: try container.decode(String.self, forKey: .email),
-                  verdict: try container.decode(EmailValidationResult.Verdict.self, forKey: .verdict),
-                  score: try container.decode(Float.self, forKey: .score),
-                  local: try container.decodeIfPresent(String.self, forKey: .local),
-                  host: try container.decodeIfPresent(String.self, forKey: .host),
-                  suggestion: try container.decodeIfPresent(String.self, forKey: .suggestion),
-                  checks: try container.decode(EmailValidationResult.Checks.self, forKey: .checks),
-                  ipAddress: try container.decodeIfPresent(String.self, forKey: .ipAddress))
+        try self.init(email: container.decode(String.self, forKey: .email),
+                      verdict: container.decode(EmailValidationResult.Verdict.self, forKey: .verdict),
+                      score: container.decode(Float.self, forKey: .score),
+                      local: container.decodeIfPresent(String.self, forKey: .local),
+                      host: container.decodeIfPresent(String.self, forKey: .host),
+                      suggestion: container.decodeIfPresent(String.self, forKey: .suggestion),
+                      checks: container.decode(EmailValidationResult.Checks.self, forKey: .checks),
+                      source: container.decodeIfPresent(ValidateEmail.Source.self, forKey: .source),
+                      ipAddress: container.decodeIfPresent(String.self, forKey: .ipAddress))
     }
 
     /// :nodoc:
@@ -88,6 +94,7 @@ public struct EmailValidationResult: ResponseRepresentable {
         case host
         case suggestion
         case checks
+        case source
         case ipAddress = "ip_address"
     }
 
@@ -175,19 +182,19 @@ public extension EmailValidationResult /* Checks */ {
         /// disposable email address service, in which the addresses are only
         /// good for a short period of time.
         public let isSuspectedDisposableAddress: Bool
-        
+
         // MARK: - Initialization
-        
+
         /// Initializes the struct with check results.
-        /// 
+        ///
         /// - Parameters:
-        ///   - hasValidAddressSyntax:          Whether the email address has 
+        ///   - hasValidAddressSyntax:          Whether the email address has
         ///                                     the correct format.
-        ///   - hasMxOrARecord:                 Whether the email address' 
-        ///                                     domain has the required DNS 
+        ///   - hasMxOrARecord:                 Whether the email address'
+        ///                                     domain has the required DNS
         ///                                     records.
-        ///   - isSuspectedDisposableAddress:   Whether the email address is 
-        ///                                     using a suspected disposable 
+        ///   - isSuspectedDisposableAddress:   Whether the email address is
+        ///                                     using a suspected disposable
         ///                                     email service.
         public init(hasValidAddressSyntax: Bool, hasMxOrARecord: Bool, isSuspectedDisposableAddress: Bool) {
             self.hasValidAddressSyntax = hasValidAddressSyntax
@@ -212,11 +219,11 @@ public extension EmailValidationResult /* Checks */ {
         /// If true, the local part of the email address (before the @ sign)
         /// appears to be a group email address such as “hr” or “admin”.
         public let isSuspectedRoleAddress: Bool
-        
+
         // MARK: - Initialization
-        
+
         /// Initializes the struct with check results.
-        /// - Parameter isSuspectedRoleAddress: Indicates if the address appears 
+        /// - Parameter isSuspectedRoleAddress: Indicates if the address appears
         ///                                     to be a group address.
         public init(isSuspectedRoleAddress: Bool) {
             self.isSuspectedRoleAddress = isSuspectedRoleAddress
@@ -240,13 +247,13 @@ public extension EmailValidationResult /* Checks */ {
         /// If true, SendGrid's machine learning model suspects that the email address
         /// might bounce.
         public let hasSuspectedBounces: Bool
-        
+
         // MARK: - Initialization
-        
+
         /// Initializes the struct with the check results.
-        /// - Parameter hasKnownBounces:        Indicates if the address has 
+        /// - Parameter hasKnownBounces:        Indicates if the address has
         ///                                     bounced previously.
-        /// - Parameter hasSuspectedBounces:    Indicates if the address is 
+        /// - Parameter hasSuspectedBounces:    Indicates if the address is
         ///                                     predicted to bounce.
         internal init(hasKnownBounces: Bool, hasSuspectedBounces: Bool) {
             self.hasKnownBounces = hasKnownBounces

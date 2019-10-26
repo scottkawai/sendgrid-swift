@@ -53,7 +53,7 @@ class ValidateEmailTests: XCTestCase {
 
             + Body
 
-                    {"email":"foo@example.none","source":"Sign Up Form"}
+                    {"email":"foo@example.none","source":"SIGN UP FORM"}
 
         """)
         
@@ -71,7 +71,7 @@ class ValidateEmailTests: XCTestCase {
 
             + Body
 
-                    {"email":"foo@example.none","source":"Support Form"}
+                    {"email":"foo@example.none","source":"SUPPORT FORM"}
 
         """)
     }
