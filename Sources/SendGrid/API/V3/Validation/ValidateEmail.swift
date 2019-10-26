@@ -81,7 +81,7 @@ import Foundation
 /// ```
 public class ValidateEmail: Request {
     // MARK: - Properties
-
+    
     /// :nodoc:
     public typealias ResponseType = EmailValidationResult
     
@@ -92,7 +92,7 @@ public class ValidateEmail: Request {
     public let method: HTTPMethod = .POST
     
     /// :nodoc:
-    public var parameters: ValidateEmail.Parameters
+    public private(set) var parameters: ValidateEmail.Parameters
     
     // MARK: - Initialization
     

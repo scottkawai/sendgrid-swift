@@ -593,7 +593,7 @@ public class Email: Request {
     public let path: String = "/v3/mail/send"
     
     /// The parameters sent in the API call.
-    public var parameters: Email.Parameters
+    public private(set) var parameters: Email.Parameters
     
     // MARK: - Properties
     
@@ -665,7 +665,7 @@ public extension Email /* Parameters Struct */ {
         /// The content sections of the email.
         public var content: [Content]?
         
-        /// The subject of the email. If the personalizations in the email 
+        /// The subject of the email. If the personalizations in the email
         /// contain subjects, those will override this subject.
         public var subject: String?
         
@@ -687,8 +687,8 @@ public extension Email /* Parameters Struct */ {
         /// Categories to associate with the email.
         public var categories: [String]?
         
-        /// A dictionary of key/value pairs that define large blocks of content 
-        /// that can be inserted into your emails using substitution tags. An 
+        /// A dictionary of key/value pairs that define large blocks of content
+        /// that can be inserted into your emails using substitution tags. An
         /// example of this might look like the following:
         ///
         /// ```swift
@@ -741,14 +741,14 @@ public extension Email /* Parameters Struct */ {
         public var sections: [String: String]?
         
         /// A set of custom arguments to add to the email. The keys of the
-        /// dictionary should be the names of the custom arguments, while the 
-        /// values should represent the value of each custom argument. If 
+        /// dictionary should be the names of the custom arguments, while the
+        /// values should represent the value of each custom argument. If
         /// personalizations in the email also contain custom arguments, they
-        /// will be merged with these custom arguments, taking a preference to 
+        /// will be merged with these custom arguments, taking a preference to
         /// the personalization's custom arguments in the case of a conflict.
         public var customArguments: [String: String]?
         
-        /// An `ASM` instance representing the unsubscribe group settings to 
+        /// An `ASM` instance representing the unsubscribe group settings to
         /// apply to the email.
         public var asm: ASM?
         
@@ -759,11 +759,11 @@ public extension Email /* Parameters Struct */ {
         /// email) to be associated to each other for scheduling. Including a
         /// `batch_id` in your request allows you to include this email in that
         /// batch, and also enables you to cancel or pause the delivery of that
-        /// entire batch. For more information, please read about [Cancel 
+        /// entire batch. For more information, please read about [Cancel
         /// Scheduled Sends](https://sendgrid.com/docs/API_Reference/Web_API_v3/cancel_schedule_send.html).
         public var batchID: String?
         
-        /// The IP Pool that you would like to send this email from. See the 
+        /// The IP Pool that you would like to send this email from. See the
         /// [docs page](https://sendgrid.com/docs/API_Reference/Web_API_v3/IP_Management/ip_pools.html#-POST)
         /// for more information about creating IP Pools.
         public var ipPoolName: String?

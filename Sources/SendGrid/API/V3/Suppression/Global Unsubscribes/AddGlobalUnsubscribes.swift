@@ -32,7 +32,7 @@ public class AddGlobalUnsubscribes: Request {
     public let method: HTTPMethod = .POST
     
     /// :nodoc:
-    public var parameters: AddGlobalUnsubscribes.Parameters
+    public private(set) var parameters: AddGlobalUnsubscribes.Parameters
     
     // MARK: - Initialization
     
