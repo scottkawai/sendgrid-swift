@@ -80,7 +80,7 @@ class EmailTests: XCTestCase, EncodingTester {
                 ]
             ]
         ]
-        XCTAssertEncodedObject(min.parameters!, equals: minExpectations)
+        XCTAssertEncodedObject(min.parameters, equals: minExpectations)
         
         let max = Email(
             personalizations: self.generatePersonalizations(1),
@@ -88,30 +88,30 @@ class EmailTests: XCTestCase, EncodingTester {
             content: goodContent,
             subject: "Root Subject"
         )
-        max.parameters?.replyTo = "reply_to@example.none"
+        max.parameters.replyTo = "reply_to@example.none"
         let data = Data(AttachmentTests.redDotBytes)
-        max.parameters?.attachments = [Attachment(filename: "red.png", content: data)]
-        max.parameters?.templateID = "1334949C-CE58-4A21-A633-47638EFA358A"
-        max.parameters?.sections = [
+        max.parameters.attachments = [Attachment(filename: "red.png", content: data)]
+        max.parameters.templateID = "1334949C-CE58-4A21-A633-47638EFA358A"
+        max.parameters.sections = [
             ":male": "Mr. :name",
             ":female": "Ms. :name",
             ":neutral": ":name",
             ":event1": "New User Event on :event_date",
             ":event2": "Veteran User Appreciation on :event_date"
         ]
-        max.parameters?.headers = [
+        max.parameters.headers = [
             "Foo": "Bar"
         ]
-        max.parameters?.categories = ["Foo", "Bar"]
-        max.parameters?.customArguments = [
+        max.parameters.categories = ["Foo", "Bar"]
+        max.parameters.customArguments = [
             "foo": "bar"
         ]
-        max.parameters?.sendAt = Date(timeIntervalSince1970: 1505705165)
-        max.parameters?.batchID = "foobar"
-        max.parameters?.asm = ASM(groupID: 1234)
-        max.parameters?.ipPoolName = "Marketing"
-        max.parameters?.mailSettings.sandboxMode = SandboxMode()
-        max.parameters?.trackingSettings.clickTracking = ClickTracking(section: .off)
+        max.parameters.sendAt = Date(timeIntervalSince1970: 1505705165)
+        max.parameters.batchID = "foobar"
+        max.parameters.asm = ASM(groupID: 1234)
+        max.parameters.ipPoolName = "Marketing"
+        max.parameters.mailSettings.sandboxMode = SandboxMode()
+        max.parameters.trackingSettings.clickTracking = ClickTracking(section: .off)
         let maxExpectations: [String: Any] = [
             "personalizations": [
                 [
@@ -178,7 +178,7 @@ class EmailTests: XCTestCase, EncodingTester {
                 ]
             ]
         ]
-        XCTAssertEncodedObject(max.parameters!, equals: maxExpectations)
+        XCTAssertEncodedObject(max.parameters, equals: maxExpectations)
     }
     
     func testInitialization() {
@@ -186,13 +186,13 @@ class EmailTests: XCTestCase, EncodingTester {
         let goodContent = Content.emailBody(plain: "plain", html: "html")
         
         let good = Email(personalizations: personalization, from: self.goodFrom, content: goodContent)
-        XCTAssertEqual(good.parameters!.personalizations.count, Constants.PersonalizationLimit)
-        XCTAssertEqual(good.parameters!.personalizations[0].to[0].email, "test0@example.none")
-        XCTAssertEqual(good.parameters!.from.email, "from@example.none")
-        XCTAssertEqual(good.parameters!.content?.count, 2)
-        XCTAssertEqual(good.parameters!.content?[0].value, "plain")
-        XCTAssertEqual(good.parameters!.content?[1].value, "html")
-        XCTAssertNil(good.parameters!.subject)
+        XCTAssertEqual(good.parameters.personalizations.count, Constants.PersonalizationLimit)
+        XCTAssertEqual(good.parameters.personalizations[0].to[0].email, "test0@example.none")
+        XCTAssertEqual(good.parameters.from.email, "from@example.none")
+        XCTAssertEqual(good.parameters.content?.count, 2)
+        XCTAssertEqual(good.parameters.content?[0].value, "plain")
+        XCTAssertEqual(good.parameters.content?[1].value, "html")
+        XCTAssertNil(good.parameters.subject)
     }
     
     func testPersonalizationValidation() {
@@ -310,7 +310,7 @@ class EmailTests: XCTestCase, EncodingTester {
         do {
             let personalizations: [Personalization] = [Personalization(recipients: "test@example.none")]
             let replyToTest = Email(personalizations: personalizations, from: self.goodFrom, content: [Content.plainText(body: "uh oh")], subject: "Hello World")
-            replyToTest.parameters?.replyTo = "reply"
+            replyToTest.parameters.replyTo = "reply"
             try replyToTest.validate()
             XCTFail("Expected error to be thrown when an email has a malformed Reply To address, but nothing was thrown.")
         } catch SendGrid.Exception.Mail.malformedEmailAddress(_) {
@@ -409,7 +409,7 @@ class EmailTests: XCTestCase, EncodingTester {
         do {
             let personalization = Personalization(recipients: "test@example.none")
             let noContentEmail = Email(personalizations: [personalization], from: self.goodFrom, content: [], subject: "Hello world")
-            noContentEmail.parameters?.content = nil
+            noContentEmail.parameters.content = nil
             try noContentEmail.validate()
         } catch SendGrid.Exception.Mail.missingContent {
             XCTAssertTrue(true)
@@ -439,7 +439,7 @@ class EmailTests: XCTestCase, EncodingTester {
         do {
             let personalization = Personalization(recipients: "test@example.none")
             let emptyTemplatedEmail = Email(personalizations: [personalization], from: self.goodFrom, templateID: "ABCDEFG", subject: "Hello world")
-            emptyTemplatedEmail.parameters?.content = []
+            emptyTemplatedEmail.parameters.content = []
             XCTAssertNoThrow(try emptyTemplatedEmail.validate())
         }
         
@@ -447,7 +447,7 @@ class EmailTests: XCTestCase, EncodingTester {
         do {
             let personalization = Personalization(recipients: "test@example.none")
             let templatedEmail = Email(personalizations: [personalization], from: self.goodFrom, templateID: "ABCDEFG", subject: "Hello world")
-            templatedEmail.parameters?.content = Content.emailBody(plain: "foobar", html: "<p>foobar</p>")
+            templatedEmail.parameters.content = Content.emailBody(plain: "foobar", html: "<p>foobar</p>")
             XCTAssertNoThrow(try templatedEmail.validate())
         }
     }
@@ -520,7 +520,7 @@ class EmailTests: XCTestCase, EncodingTester {
                 Personalization(recipients: "recipient2@example.none")
             ]
             let valid = Email(personalizations: personalizations, from: Address(email: "from@example.none"), content: Content.emailBody(plain: "plain", html: "html"))
-            valid.parameters?.templateID = "696DC347-E82F-44EB-8CB1-59320BA1F136"
+            valid.parameters.templateID = "696DC347-E82F-44EB-8CB1-59320BA1F136"
             try valid.validate()
             XCTAssertTrue(true)
         } catch {
@@ -531,7 +531,7 @@ class EmailTests: XCTestCase, EncodingTester {
     func testHeaderValidation() {
         do {
             let good = self.generateBaseEmail()
-            good.parameters!.headers = [
+            good.parameters.headers = [
                 "X-Custom-Header": "Foo",
                 "X-UID": "12345"
             ]
@@ -543,7 +543,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         do {
             let bad = self.generateBaseEmail()
-            bad.parameters!.headers = [
+            bad.parameters.headers = [
                 "X-Custom-Header": "Foo",
                 "subject": "12345"
             ]
@@ -557,7 +557,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         do {
             let bad = self.generateBaseEmail()
-            bad.parameters!.headers = [
+            bad.parameters.headers = [
                 "X-Custom Header": "Foo"
             ]
             try bad.validate()
@@ -572,7 +572,7 @@ class EmailTests: XCTestCase, EncodingTester {
     func testCategoryValidation() {
         do {
             let good = self.generateBaseEmail()
-            good.parameters?.categories = ["Category1", "Category2", "Category3", "Category4", "Category5", "Category6", "Category7", "Category8", "Category9", "Category10"]
+            good.parameters.categories = ["Category1", "Category2", "Category3", "Category4", "Category5", "Category6", "Category7", "Category8", "Category9", "Category10"]
             try good.validate()
             XCTAssertTrue(true)
         } catch {
@@ -581,7 +581,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         do {
             let good = self.generateBaseEmail()
-            good.parameters?.categories = ["Category1", "Category2", "Category3", "Category4", "Category5", "Category6", "Category7", "Category8", "Category9", "category3"]
+            good.parameters.categories = ["Category1", "Category2", "Category3", "Category4", "Category5", "Category6", "Category7", "Category8", "Category9", "category3"]
             try good.validate()
             XCTFail("Expected error when there are duplicate categories, but nothing was thrown.")
         } catch let SendGrid.Exception.Mail.duplicateCategory(dupe) {
@@ -592,7 +592,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         do {
             let bad = self.generateBaseEmail()
-            bad.parameters?.categories = ["Category1", "Category2", "Category3", "Category4", "Category5", "Category6", "Category7", "Category8", "Category9", "Category10", "Category11"]
+            bad.parameters.categories = ["Category1", "Category2", "Category3", "Category4", "Category5", "Category6", "Category7", "Category8", "Category9", "Category10", "Category11"]
             try bad.validate()
             XCTFail("Expected error when there are too many categories, but nothing was thrown.")
         } catch SendGrid.Exception.Mail.tooManyCategories {
@@ -605,7 +605,7 @@ class EmailTests: XCTestCase, EncodingTester {
         let longCategory = characters.joined(separator: "")
         do {
             let bad = self.generateBaseEmail()
-            bad.parameters?.categories = [longCategory]
+            bad.parameters.categories = [longCategory]
             try bad.validate()
             XCTFail("Expected error when a category name is too long, but nothing was thrown.")
         } catch SendGrid.Exception.Mail.categoryTooLong(_) {
@@ -617,8 +617,8 @@ class EmailTests: XCTestCase, EncodingTester {
     
     func testCustomArgs() {
         let email = self.generateBaseEmail()
-        email.parameters?.customArguments = ["foo": "bar"]
-        XCTAssertEqual(email.parameters!.customArguments!["foo"], "bar")
+        email.parameters.customArguments = ["foo": "bar"]
+        XCTAssertEqual(email.parameters.customArguments!["foo"], "bar")
         
         let new = Personalization(recipients: "test@example.none")
         new.customArguments = ["foo": "bar"]
@@ -627,7 +627,7 @@ class EmailTests: XCTestCase, EncodingTester {
         for i in 0..<300 {
             args["custom_arg_\(i)"] = "custom value \(i)"
         }
-        over.parameters?.customArguments = args
+        over.parameters.customArguments = args
         do {
             try over.validate()
             XCTFail("Expected an error when the custom arguments exceed \(Constants.CustomArguments.MaximumBytes) bytes, but nothing was thrown.")
@@ -641,10 +641,10 @@ class EmailTests: XCTestCase, EncodingTester {
     func testSendAt() {
         let test = self.generateBaseEmail()
         let goodDate = Date(timeIntervalSinceNow: 4 * 60 * 60)
-        test.parameters?.sendAt = goodDate
+        test.parameters.sendAt = goodDate
         do {
             try test.validate()
-            XCTAssertEqual(test.parameters?.sendAt?.timeIntervalSince1970, goodDate.timeIntervalSince1970)
+            XCTAssertEqual(test.parameters.sendAt?.timeIntervalSince1970, goodDate.timeIntervalSince1970)
         } catch SendGrid.Exception.Mail.invalidScheduleDate {
             XCTAssertTrue(true)
         } catch {
@@ -653,7 +653,7 @@ class EmailTests: XCTestCase, EncodingTester {
         
         let failTest = self.generateBaseEmail()
         let badDate = Date(timeIntervalSinceNow: 80 * 60 * 60)
-        failTest.parameters?.sendAt = badDate
+        failTest.parameters.sendAt = badDate
         do {
             try failTest.validate()
             XCTFail("Expected a failure when scheduling a date further than 72 hours out, but nothing was thrown.")

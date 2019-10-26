@@ -4,12 +4,12 @@ import Foundation
 /// request and sent through the `send` function in `Session`.
 public protocol Request: CustomStringConvertible, Validatable {
     /// The type used for the request's parameters.
-    associatedtype Params: Encodable
+    associatedtype ParameterType: Encodable
     
     /// The type returned from the API response.
     ///
-    /// This is used to automatically convert the JSON response into the 
-    /// specified type. If the API call doesn't return a response, then the 
+    /// This is used to automatically convert the JSON response into the
+    /// specified type. If the API call doesn't return a response, then the
     /// request should specify `Never` as it's `ResponseType`.
     associatedtype ResponseType: Decodable
     
@@ -35,7 +35,7 @@ public protocol Request: CustomStringConvertible, Validatable {
     /// The parameters that should be sent with the API call. These parameters
     /// will either be encoded into the body of the request or the query items
     /// of the request
-    var parameters: Params? { get }
+    var parameters: ParameterType { get }
     
     /// Before a `Session` instance makes an API call, it will call this method
     /// to double check that the auth method it's about to use is supported by
@@ -53,7 +53,7 @@ public extension Request {
     /// The default implementation returns `true`.
     var supportsImpersonation: Bool { true }
     
-    /// The default implementation includes `Content-Type` and `Accept` headers 
+    /// The default implementation includes `Content-Type` and `Accept` headers
     /// specifying JSON.
     var headers: [String: String] {
         [
@@ -73,28 +73,26 @@ public extension Request {
     
     /// The default implementation validates the parameters, if validatable.
     func validate() throws {
-        try (self.parameters as? Validatable)?.validate()
+        guard ParameterType.self != Never.self, let params = self.parameters as? Validatable
+        else { return }
+        try params.validate()
     }
     
-    /// The default description returns an 
+    /// The default description returns an
     /// [API Blueprint](https://apiblueprint.org/) of the request.
     var description: String {
         let path = self.path
         let parameterString: String?
         paramEncoding: do {
-            if Params.self == Never.self {
+            if ParameterType.self == Never.self {
                 parameterString = nil
                 break paramEncoding
             } else {
-                guard let params = self.parameters else {
-                    parameterString = nil
-                    break paramEncoding
-                }
                 if self.method.hasBody {
                     let encoder = JSONEncoder()
                     encoder.dateEncodingStrategy = self.encodingStrategy.dates
                     encoder.dataEncodingStrategy = self.encodingStrategy.data
-                    guard let data = try? encoder.encode(params) else {
+                    guard let data = try? encoder.encode(self.parameters) else {
                         parameterString = nil
                         break paramEncoding
                     }
@@ -102,7 +100,7 @@ public extension Request {
                 } else {
                     let encoder = FormURLEncoder()
                     encoder.dateEncodingStrategy = self.encodingStrategy.dates
-                    parameterString = try? encoder.stringEncode(params, percentEncoded: true)
+                    parameterString = try? encoder.stringEncode(self.parameters, percentEncoded: true)
                 }
             }
         }
@@ -142,6 +140,13 @@ public extension Request {
             """
         }
         return blueprint
+    }
+}
+
+public extension Request where ParameterType == Never {
+    /// :nodoc:
+    var parameters: Never {
+        fatalError("Attempted to access the parameters of a request who never has parameters. There should have been an explicit check for the `Never` type on `ParameterType` to take a different action.")
     }
 }
 

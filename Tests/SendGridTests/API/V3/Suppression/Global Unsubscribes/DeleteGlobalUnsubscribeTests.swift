@@ -24,4 +24,9 @@ class DeleteGlobalUnsubscribeTests: XCTestCase {
         let request = DeleteGlobalUnsubscribe(event: event)
         assert(request: request)
     }
+    
+    func testValidation() {
+        let request = DeleteGlobalUnsubscribe(email: "foo@example.none")
+        XCTAssertNoThrow(try request.validate())
+    }
 }

@@ -11,7 +11,7 @@ open class SuppressionListReader {
     public let method: HTTPMethod = .GET
     
     /// :nodoc:
-    public var parameters: SuppressionListReaderParameters?
+    public var parameters: SuppressionListReaderParameters
     
     /// :nodoc:
     public let encodingStrategy: EncodingStrategy
@@ -71,7 +71,7 @@ open class SuppressionListReader {
 
 /// The `SuppressionListReaderParameters` serves as the parameters used by the
 /// "get suppressions" API calls.
-public struct SuppressionListReaderParameters: Codable, Validatable {
+public struct SuppressionListReaderParameters: Encodable, Validatable {
     /// The date to start looking for events.
     public let startDate: Date?
     

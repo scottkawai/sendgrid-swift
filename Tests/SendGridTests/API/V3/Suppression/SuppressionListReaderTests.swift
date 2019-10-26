@@ -4,15 +4,15 @@ import XCTest
 class SuppressionListReaderTests: XCTestCase {
     func testInitialization() {
         let email = SuppressionListReader(email: "foo@bar.com")
-        XCTAssertNil(email.parameters!.startDate)
-        XCTAssertNil(email.parameters!.endDate)
-        XCTAssertNil(email.parameters!.page)
+        XCTAssertNil(email.parameters.startDate)
+        XCTAssertNil(email.parameters.endDate)
+        XCTAssertNil(email.parameters.page)
         XCTAssertEqual(email.path, "//foo@bar.com")
 
         let all = SuppressionListReader(start: Date(), end: Date(), page: Page(limit: 1, offset: 1))
-        XCTAssertNotNil(all.parameters!.startDate)
-        XCTAssertNotNil(all.parameters!.endDate)
-        XCTAssertEqual(all.parameters!.page, Page(limit: 1, offset: 1))
+        XCTAssertNotNil(all.parameters.startDate)
+        XCTAssertNotNil(all.parameters.endDate)
+        XCTAssertEqual(all.parameters.page, Page(limit: 1, offset: 1))
         XCTAssertEqual(all.path, "/")
     }
 }

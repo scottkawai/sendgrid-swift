@@ -27,13 +27,13 @@ public class DeleteGlobalUnsubscribe: Request {
     public typealias ResponseType = Never
     
     /// :nodoc:
+    public typealias ParameterType = Never
+    
+    /// :nodoc:
     public let method: HTTPMethod = .DELETE
     
     /// :nodoc:
     public let path: String
-    
-    /// :nodoc:
-    public let parameters: Never? = nil
         
     // MARK: - Initializer
     

@@ -14,7 +14,7 @@ public class SuppressionListDeleter<T: EmailEventRepresentable> {
     public let path: String
     
     /// :nodoc:
-    public var parameters: SuppressionListDeleterParameters?
+    public var parameters: SuppressionListDeleterParameters
     
     // MARK: - Initializer
     

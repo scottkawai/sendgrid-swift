@@ -36,7 +36,7 @@ public class RetrieveSubusers: Request {
     public var path: String = "/v3/subusers"
     
     /// :nodoc:
-    public var parameters: RetrieveSubusers.Parameters?
+    public var parameters: RetrieveSubusers.Parameters
     
     
     // MARK: - Initialization

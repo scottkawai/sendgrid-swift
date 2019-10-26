@@ -11,7 +11,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
     func testMinimalInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: "foo")
         XCTAssertEqual(request.description, """
-        # GET /v3/subusers/stats?start_date=2017-09-20&subusers%5B%5D=foo
+        # GET /v3/subusers/stats?start_date=2017-09-20&subusers=foo
 
         + Request (application/json)
 
@@ -25,7 +25,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
         let testSub = Subuser(id: 1, username: "foo", email: "foobar@example.nonet", disabled: false)
         let subRequest = RetrieveSubuserStatistics(startDate: date(day: 20), subusers: testSub)
         XCTAssertEqual(subRequest.description, """
-        # GET /v3/subusers/stats?start_date=2017-09-20&subusers%5B%5D=foo
+        # GET /v3/subusers/stats?start_date=2017-09-20&subusers=foo
 
         + Request (application/json)
 
@@ -40,7 +40,7 @@ class RetrieveSubuserStatisticsTests: XCTestCase {
     func testMaxInitialization() {
         let request = RetrieveSubuserStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, subusers: "Foo", "Bar")
         XCTAssertEqual(request.description, """
-        # GET /v3/subusers/stats?aggregated_by=week&end_date=2017-09-27&start_date=2017-09-20&subusers%5B%5D=Foo&subusers%5B%5D=Bar
+        # GET /v3/subusers/stats?aggregated_by=week&end_date=2017-09-27&start_date=2017-09-20&subusers=Foo&subusers=Bar
 
         + Request (application/json)
 

@@ -593,7 +593,7 @@ public class Email: Request {
     public let path: String = "/v3/mail/send"
     
     /// The parameters sent in the API call.
-    public var parameters: Email.Parameters?
+    public var parameters: Email.Parameters
     
     // MARK: - Properties
     
