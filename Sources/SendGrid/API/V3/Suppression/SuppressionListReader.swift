@@ -72,6 +72,8 @@ open class SuppressionListReader {
 /// The `SuppressionListReaderParameters` serves as the parameters used by the
 /// "get suppressions" API calls.
 public struct SuppressionListReaderParameters: Encodable, Validatable {
+    // MARK: - Properties
+    
     /// The date to start looking for events.
     public let startDate: Date?
     
@@ -80,6 +82,8 @@ public struct SuppressionListReaderParameters: Encodable, Validatable {
     
     /// The page of results to look for.
     public let page: Page?
+    
+    // MARK: - Initialization
     
     /// Initializes the struct.
     ///
@@ -110,6 +114,8 @@ public struct SuppressionListReaderParameters: Encodable, Validatable {
         }
         self.page = Page(limit: limit, offset: offset)
     }
+    
+    // MARK: - Methods
     
     /// :nodoc:
     public func encode(to encoder: Encoder) throws {

@@ -90,7 +90,9 @@ import Foundation
 public class RetrieveSpamReports: SuppressionListReader, Request {
     /// :nodoc:
     public typealias ResponseType = [SpamReport]
-    
+
+    // MARK: - Initialization
+
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(

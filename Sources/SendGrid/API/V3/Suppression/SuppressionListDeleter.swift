@@ -71,12 +71,16 @@ public class SuppressionListDeleter<T: EmailEventRepresentable> {
 /// The `SuppressionListDeleterParameters` struct houses all the parameters that
 /// can be made for the suppression delete calls.
 public struct SuppressionListDeleterParameters: Codable {
+    // MARK: - Properties
+    
     /// A `Bool` indicating if all the events on the suppression list should be
     /// deleted.
     public let deleteAll: Bool?
     
     /// An array of emails to delete from the suppression list.
     public let emails: [String]?
+    
+    // MARK: - Initialization
     
     /// Initializes the struct.
     ///

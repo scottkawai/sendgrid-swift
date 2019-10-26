@@ -4,14 +4,15 @@
 
 This library allows you to quickly and easily send emails through SendGrid using Swift.
 
-## Important: Version 2.0.0 Breaking Changes
+## Important: Version 3.0.0 Breaking Changes
 
-Versions 2.0.0 and higher have been migrated to Swift 5. Some existing classes, properties, and functions have been renamed or removed. Deprecation warnings will populate where appropriate.
+Versions 3.0.0 and higher have been migrated to Swift 5.1. Some existing classes, properties, and functions have been renamed or removed. Deprecation warnings will populate where appropriate.
 
-Version 2 of this library re-architects how requests are sent. Previously a `Request` instance housed it's API parameters alongside other properties. Now, `Request` instances hold all their API-related parameters in a new `parameters` property. The `parameters` property is an `Encodable` instance, which simplifies how a request transforms its properties into the API parameters. In addition, the `Session` class's callback now utilize's Swift 5's `Result` enum to provide back either the API response or any errors that arose.
+Version 3 changes `Request` from a class to a protocol. Conforming types specify a `ParameterType` and a `ResponseType` to reflect how their parameters are bundled and the expected type we'll decode the JSON response into. If a request doesn't have parameters or expects a response, then `Never` is specified as the type. As a result of this, `ModeledResponse` is no longer needed and has been deprecated. `Session`'s `send(modeledRequest:completionHandler:)` method has also been deprecated. All requests are now sent through `send(request:completionHandler:)`.
 
 **Previous Breaking Changes**
 
+- Version 2.0.0 and higher migrated to Swift 5. Some existing classes, properties, and functions were renamed or removed. Requests were changed to have a `parameters` property. Response callbacks also utilized Swift 5's `Result` enum.
 - Versions 1.0.0 and higher have been migrated to Swift 4 and adds Linux support, which contains code-breaking API changes.
 - Versions 0.2.0 and higher uses Swift 3, which introduces breaking changes from previous versions.
 - Versions 0.1.0 and higher have been migrated over to use SendGrid's [V3 Mail Send Endpoint](https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html), which contains code-breaking changes.
@@ -54,7 +55,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/scottkawai/sendgrid-swift.git",
-            from: "2.2.0"
+            from: "3.0.0"
         )
     ],
     targets: [
@@ -119,14 +120,14 @@ session.authentication = Authentication.apiKey(myApiKey)
 All the available API calls are located in their own folders under the `./Sources/SendGrid/API` folder, and each one has its own README explaining how to use it. Below is a list of the currently available API calls:
 
 - Statistics
-    + [Global Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Global.html)
-    + [Category Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Category.html)
-    + [Subuser Stats](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Statistic/Subuser.html)
+    + [Global Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveGlobalStatistics.html)
+    + [Category Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveCategoryStatistics.html)
+    + [Subuser Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveSubuserStatistics.html)
 - Subuser API
-    + [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Subuser/Get.html)
+    + [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveSubusers.html)
 - Suppressions
     + Blocks API
-        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block.html#/s:8SendGrid5BlockV3GetC)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes.html#/s:8SendGrid14RetrieveBlocksC)
         * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block/Delete.html)
     + Bounces API
         * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce.html#/s:8SendGrid6BounceV3GetC)

@@ -34,8 +34,8 @@ public class DeleteGlobalUnsubscribe: Request {
     
     /// :nodoc:
     public let path: String
-        
-    // MARK: - Initializer
+    
+    // MARK: - Initialization
     
     /// Initializes the request with an email address to delete from the
     /// global unsubscribe list.

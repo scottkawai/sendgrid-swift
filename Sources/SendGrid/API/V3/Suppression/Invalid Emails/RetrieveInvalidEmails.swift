@@ -87,7 +87,9 @@ import Foundation
 public class RetrieveInvalidEmails: SuppressionListReader, Request {
     /// :nodoc:
     public typealias ResponseType = [InvalidEmail]
-    
+
+    // MARK: - Initialization
+
     /// :nodoc:
     internal override init(path: String?, email: String?, start: Date?, end: Date?, page: Page?) {
         super.init(
