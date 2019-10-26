@@ -38,7 +38,6 @@ public class RetrieveSubusers: Request {
     /// :nodoc:
     public var parameters: RetrieveSubusers.Parameters
     
-    
     // MARK: - Initialization
     
     /// Initializes the request with pagination info and a username search.

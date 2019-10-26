@@ -80,6 +80,8 @@ import Foundation
 /// }
 /// ```
 public class ValidateEmail: Request {
+    // MARK: - Properties
+
     /// :nodoc:
     public typealias ResponseType = EmailValidationResult
     
