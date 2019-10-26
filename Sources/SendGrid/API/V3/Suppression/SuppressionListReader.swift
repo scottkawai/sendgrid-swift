@@ -11,7 +11,7 @@ open class SuppressionListReader {
     public let method: HTTPMethod = .GET
     
     /// :nodoc:
-    public private(set) var parameters: SuppressionListReaderParameters
+    public var parameters: SuppressionListReaderParameters
     
     /// :nodoc:
     public let encodingStrategy: EncodingStrategy

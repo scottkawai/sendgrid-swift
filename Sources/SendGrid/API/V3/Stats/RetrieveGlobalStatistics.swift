@@ -39,7 +39,7 @@ public class RetrieveGlobalStatistics: Request {
     public let method: HTTPMethod = .GET
     
     /// :nodoc:
-    public private(set) var parameters: RetrieveStatisticsParameters
+    public var parameters: RetrieveStatisticsParameters
     
     /// :nodoc:
     public let encodingStrategy: EncodingStrategy

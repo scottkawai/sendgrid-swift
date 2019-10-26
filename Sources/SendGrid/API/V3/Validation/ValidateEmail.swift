@@ -92,7 +92,7 @@ public class ValidateEmail: Request {
     public let method: HTTPMethod = .POST
     
     /// :nodoc:
-    public private(set) var parameters: ValidateEmail.Parameters
+    public var parameters: ValidateEmail.Parameters
     
     // MARK: - Initialization
     
