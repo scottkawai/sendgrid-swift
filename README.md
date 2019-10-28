@@ -117,8 +117,10 @@ session.authentication = Authentication.apiKey(myApiKey)
 
 ### API Calls
 
-All the available API calls are located in their own folders under the `./Sources/SendGrid/API` folder, and each one has its own README explaining how to use it. Below is a list of the currently available API calls:
+All the available API calls are located in their own folders under the `./Sources/SendGrid/API` folder. Below is a list of the currently available API calls:
 
+- [Email Address Validation](http://scottkawai.github.io/sendgrid-swift/docs/Classes/ValidateEmail.html)
+- [Mail Send](http://scottkawai.github.io/sendgrid-swift/docs/Classes/Email.html)
 - Statistics
     + [Global Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveGlobalStatistics.html)
     + [Category Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveCategoryStatistics.html)
@@ -128,21 +130,20 @@ All the available API calls are located in their own folders under the `./Source
 - Suppressions
     + Blocks API
         * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes.html#/s:8SendGrid14RetrieveBlocksC)
-        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Block/Delete.html)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Classes/DeleteBlocks.html)
     + Bounces API
-        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce.html#/s:8SendGrid6BounceV3GetC)
-        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/Bounce/Delete.html)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes.html#/s:8SendGrid15RetrieveBouncesC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Classes/DeleteBounces.html)
     + Invalid Emails API
-        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail.html#/s:8SendGrid12InvalidEmailV3GetC)
-        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/InvalidEmail/Delete.html)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes.html#/s:8SendGrid21RetrieveInvalidEmailsC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/file:///Users/skawai/Desktop/docs/Classes/DeleteInvalidEmails.html)
     + Global Unsubscribes API
-        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe.html#/s:8SendGrid17GlobalUnsubscribeV3GetC)
-        * [Add](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe/Add.html)
-        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/GlobalUnsubscribe/Delete.html)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes.html#/s:8SendGrid26RetrieveGlobalUnsubscribesC)
+        * [Add](http://scottkawai.github.io/sendgrid-swift/docs/Classes/AddGlobalUnsubscribes.html)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Classes/DeleteGlobalUnsubscribe.html)
     + Spam Reports API
-        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport.html#/s:8SendGrid10SpamReportV3GetC)
-        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Structs/SpamReport/Delete.html)
-- [Mail Send](http://scottkawai.github.io/sendgrid-swift/docs/Classes/Email.html)
+        * [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes.html#/s:8SendGrid19RetrieveSpamReportsC)
+        * [Delete](http://scottkawai.github.io/sendgrid-swift/docs/Classes/DeleteSpamReports.html)
 
 ## Development
 
