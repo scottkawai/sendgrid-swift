@@ -12,5 +12,8 @@ public extension Statistic {
 
         /// Represents statistics grouped by subuser.
         case subuser
+        
+        /// Represents statistics grouped by device.
+        case device
     }
 }
