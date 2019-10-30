@@ -18,5 +18,8 @@ public extension Statistic {
         
         /// Represents statistics grouped by country.
         case country
+        
+        /// Represents statistics grouped by client.
+        case client
     }
 }

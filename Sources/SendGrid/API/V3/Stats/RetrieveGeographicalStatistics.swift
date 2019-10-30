@@ -41,6 +41,7 @@ public class RetrieveGeographicalStatistics: StatReader<RetrieveGeographicalStat
     ///   - startDate:      The starting date of the statistics to retrieve.
     ///   - endDate:        The end date of the statistics to retrieve.
     ///   - aggregatedBy:   Indicates how the statistics should be grouped.
+    ///   - country:        The country to retrieve stats for.
     public init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil, country: RetrieveGeographicalStatistics.Country? = nil) {
         let params = RetrieveGeographicalStatistics.Parameters(
             startDate: startDate,
