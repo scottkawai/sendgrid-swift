@@ -1,0 +1,2 @@
+/// :nodoc:
+public struct Metric {}

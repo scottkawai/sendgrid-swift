@@ -1,9 +1,9 @@
 import Foundation
 
-public extension Statistic {
-    /// The `Statistic.Metric` struct represents the raw statistics for a given
+public extension Metric {
+    /// The `Metric.All` struct represents all the raw statistics for a given
     /// time period.
-    struct Metric: Decodable {
+    struct All: Decodable {
         // MARK: - Properties
         
         /// The number of block events for the given period.
@@ -132,8 +132,7 @@ public extension Statistic {
     }
 }
 
-/// Decodable conformance.
-public extension Statistic.Metric {
+public extension Metric.All /* Decodable Conformance */ {
     /// :nodoc:
     enum CodingKeys: String, CodingKey {
         case blocks

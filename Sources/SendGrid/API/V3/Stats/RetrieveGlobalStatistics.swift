@@ -16,7 +16,7 @@ import Foundation
 ///     try Session.shared.send(request: request) { result in
 ///         switch result {
 ///         case .success(_, let model):
-///             // The `model` property will be an array of `Statistic` structs.
+///             // The `model` property will be an array of `Statistic.Set` structs.
 ///             model.forEach { _ in
 ///                 // Do something with the stats here...
 ///             }
@@ -30,7 +30,7 @@ import Foundation
 /// ```
 public class RetrieveGlobalStatistics: StatReader<RetrieveGlobalStatistics.Parameters>, Request {
     /// :nodoc:
-    public typealias ResponseType = [Statistic]
+    public typealias ResponseType = [Statistic.Set<Metric.All>]
     
     // MARK: - Initialization
     
