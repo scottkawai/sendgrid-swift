@@ -15,5 +15,8 @@ public extension Statistic {
         
         /// Represents statistics grouped by device.
         case device
+        
+        /// Represents statistics grouped by country.
+        case country
     }
 }
