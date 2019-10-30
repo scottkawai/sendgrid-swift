@@ -96,7 +96,9 @@ public class RetrieveSubuserStatistics: StatReader<RetrieveSubuserStatistics.Par
 }
 
 public extension RetrieveSubuserStatistics /* Parameters */ {
-    /// The `RetrieveStatisticsParameters` class represents the
+    /// The `RetrieveSubuserStatistics.Parameters` struct represents the various
+    /// parameters that can be specified with the 
+    /// `RetrieveSubuserStatistics` API request.
     struct Parameters: Encodable, Validatable {
         /// Indicates how the statistics should be grouped.
         public let aggregatedBy: Statistic.Aggregation?

@@ -52,7 +52,9 @@ public class RetrieveGlobalStatistics: StatReader<RetrieveGlobalStatistics.Param
 }
 
 public extension RetrieveGlobalStatistics /* Parameters */ {
-    /// The `RetrieveStatisticsParameters` class represents the
+    /// The `RetrieveGlobalStatistics.Parameters` struct represents the various
+    /// parameters that can be specified with the 
+    /// `RetrieveGlobalStatistics` API request.
     struct Parameters: Encodable, Validatable {
         /// Indicates how the statistics should be grouped.
         public let aggregatedBy: Statistic.Aggregation?
