@@ -41,12 +41,27 @@ public class RetrieveClientStatistics: StatReader<RetrieveGlobalStatistics.Param
     ///   - startDate:      The starting date of the statistics to retrieve.
     ///   - endDate:        The end date of the statistics to retrieve.
     ///   - aggregatedBy:   Indicates how the statistics should be grouped.
-    public init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil) {
+    public init(startDate: Date, endDate: Date? = nil, aggregatedBy: Statistic.Aggregation? = nil, client: RetrieveClientStatistics.ClientType? = nil) {
         let params = RetrieveGlobalStatistics.Parameters(
             startDate: startDate,
             endDate: endDate,
             aggregatedBy: aggregatedBy
         )
-        super.init(path: "/v3/clients/stats", parameters: params)
+        let path: String
+        if let c = client {
+            path = "/v3/clients/\(c)/stats"
+        } else {
+            path = "/v3/clients/stats"
+        }
+        super.init(path: path, parameters: params)
+    }
+}
+
+public extension RetrieveClientStatistics /* Client Types */ {
+    enum ClientType: String {
+        case phone
+        case tablet
+        case webmail
+        case desktop
     }
 }

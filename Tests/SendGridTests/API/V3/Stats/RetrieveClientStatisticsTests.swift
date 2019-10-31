@@ -36,6 +36,19 @@ class RetrieveClientStatisticsTests: XCTestCase {
                     Content-Type: application/json
 
         """)
+
+        let clientRequest = RetrieveClientStatistics(startDate: date(day: 20), endDate: date(day: 27), aggregatedBy: .week, client: .tablet)
+        XCTAssertEqual(clientRequest.description, """
+        # GET /v3/clients/tablet/stats?aggregated_by=week&end_date=2017-09-27&start_date=2017-09-20
+
+        + Request (application/json)
+
+            + Headers
+
+                    Accept: application/json
+                    Content-Type: application/json
+
+        """)
     }
 
     func testValidation() {
