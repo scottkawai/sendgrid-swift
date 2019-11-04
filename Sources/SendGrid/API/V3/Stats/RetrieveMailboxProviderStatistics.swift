@@ -50,7 +50,7 @@ public class RetrieveMailboxProviderStatistics: StatReader<RetrieveMailboxProvid
             aggregatedBy: aggregatedBy,
             mailboxProviders: mailboxProviders
         )
-        super.init(path: "/v3/geo/stats", parameters: params)
+        super.init(path: "/v3/mailbox_providers/stats", parameters: params)
     }
     
     /// Initializes the request with a start date, as well as an end date and/or
