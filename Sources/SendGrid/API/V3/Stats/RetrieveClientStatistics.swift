@@ -30,7 +30,7 @@ import Foundation
 /// ```
 public class RetrieveClientStatistics: StatReader<RetrieveGlobalStatistics.Parameters>, Request {
     /// :nodoc:
-    public typealias ResponseType = [Statistic.Set<Metric.Open>]
+    public typealias ResponseType = [Statistic.Set<RetrieveClientStatistics.ResponseMetric>]
 
     // MARK: - Initialization
 
@@ -63,5 +63,39 @@ public extension RetrieveClientStatistics /* Client Types */ {
         case tablet
         case webmail
         case desktop
+    }
+}
+
+public extension RetrieveClientStatistics /* Response Type */ {
+    /// The `RetrieveClientStatistics.ResponseMetric` struct represents the raw 
+    /// open statistics for a given time period.
+    struct ResponseMetric: Decodable {
+        // MARK: - Properties
+
+        /// The number of open events for the given period.
+        public let opens: Int
+
+        /// The number of unique open events for the given period.
+        public let uniqueOpens: Int
+
+        // MARK: - Initialization
+
+        /// Initializes the struct.
+        ///
+        /// - Parameters:
+        ///   - opens:              The number of open events for the given
+        ///                         period.
+        ///   - uniqueOpens:        The number of unique open events for the
+        ///                         given period.
+        public init(opens: Int, uniqueOpens: Int) {
+            self.opens = opens
+            self.uniqueOpens = uniqueOpens
+        }
+
+        /// :nodoc:
+        enum CodingKeys: String, CodingKey {
+            case opens
+            case uniqueOpens = "unique_opens"
+        }
     }
 }

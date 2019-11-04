@@ -31,7 +31,7 @@ import Foundation
 /// ```
 public class RetrieveCategoryStatistics: StatReader<RetrieveCategoryStatistics.Parameters>, Request {
     /// :nodoc:
-    public typealias ResponseType = [Statistic.Set<Metric.All>]
+    public typealias ResponseType = [Statistic.Set<RetrieveGlobalStatistics.ResponseMetric>]
     
     // MARK: - Initialization
     

@@ -30,7 +30,7 @@ import Foundation
 /// ```
 public class RetrieveDeviceStatistics: StatReader<RetrieveGlobalStatistics.Parameters>, Request {
     /// :nodoc:
-    public typealias ResponseType = [Statistic.Set<Metric.Open>]
+    public typealias ResponseType = [Statistic.Set<RetrieveClientStatistics.ResponseMetric>]
 
     // MARK: - Initialization
 

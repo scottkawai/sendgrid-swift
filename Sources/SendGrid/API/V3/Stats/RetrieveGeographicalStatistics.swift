@@ -30,7 +30,7 @@ import Foundation
 /// ```
 public class RetrieveGeographicalStatistics: StatReader<RetrieveGeographicalStatistics.Parameters>, Request {
     /// :nodoc:
-    public typealias ResponseType = [Statistic.Set<Metric.Engagement>]
+    public typealias ResponseType = [Statistic.Set<RetrieveGeographicalStatistics.ResponseMetric>]
     
     // MARK: - Initialization
     
@@ -54,7 +54,7 @@ public class RetrieveGeographicalStatistics: StatReader<RetrieveGeographicalStat
 }
 
 public extension RetrieveGeographicalStatistics /* Parameters */ {
-    /// `RetrieveGeographicalStatistics.Country` represents the various 
+    /// `RetrieveGeographicalStatistics.Country` represents the various
     /// countries that statistics can be retrieved for.
     enum Country: String, Encodable {
         case UnitedStates = "US"
@@ -62,7 +62,7 @@ public extension RetrieveGeographicalStatistics /* Parameters */ {
     }
     
     /// The `RetrieveGeographicalStatistics.Parameters` struct represents the
-    /// various parameters that can be specified with the 
+    /// various parameters that can be specified with the
     /// `RetrieveGeographicalStatistics` API request.
     struct Parameters: Encodable, Validatable {
         /// Indicates how the statistics should be grouped.
@@ -108,6 +108,54 @@ public extension RetrieveGeographicalStatistics /* Parameters */ {
             case endDate = "end_date"
             case aggregatedBy = "aggregated_by"
             case country
+        }
+    }
+}
+
+public extension RetrieveGeographicalStatistics /* Response Metric */ {
+    /// The `RetrieveGeographicalStatistics.ResponseMetric` struct represents
+    /// all the engagement statistics for a given time period.
+    struct ResponseMetric: Decodable {
+        // MARK: - Properties
+        
+        /// The number of click events for the given period.
+        public let clicks: Int
+        
+        /// The number of open events for the given period.
+        public let opens: Int
+        
+        /// The number of unique click events for the given period.
+        public let uniqueClicks: Int
+        
+        /// The number of unique open events for the given period.
+        public let uniqueOpens: Int
+        
+        // MARK: - Initialization
+        
+        /// Initializes the struct.
+        ///
+        /// - Parameters:
+        ///   - clicks:             The number of click events for the given
+        ///                         period.
+        ///   - opens:              The number of open events for the given
+        ///                         period.
+        ///   - uniqueClicks:       The number of unique click events for the
+        ///                         given period.
+        ///   - uniqueOpens:        The number of unique open events for the
+        ///                         given period.
+        public init(clicks: Int, opens: Int, uniqueClicks: Int, uniqueOpens: Int) {
+            self.clicks = clicks
+            self.opens = opens
+            self.uniqueClicks = uniqueClicks
+            self.uniqueOpens = uniqueOpens
+        }
+        
+        /// :nodoc:
+        enum CodingKeys: String, CodingKey {
+            case clicks
+            case opens
+            case uniqueClicks = "unique_clicks"
+            case uniqueOpens = "unique_opens"
         }
     }
 }

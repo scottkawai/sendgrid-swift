@@ -31,7 +31,7 @@ import Foundation
 /// ```
 public class RetrieveSubuserStatistics: StatReader<RetrieveSubuserStatistics.Parameters>, Request {
     /// :nodoc:
-    public typealias ResponseType = [Statistic.Set<Metric.All>]
+    public typealias ResponseType = [Statistic.Set<RetrieveGlobalStatistics.ResponseMetric>]
     
     // MARK: - Initialization
     
@@ -97,7 +97,7 @@ public class RetrieveSubuserStatistics: StatReader<RetrieveSubuserStatistics.Par
 
 public extension RetrieveSubuserStatistics /* Parameters */ {
     /// The `RetrieveSubuserStatistics.Parameters` struct represents the various
-    /// parameters that can be specified with the 
+    /// parameters that can be specified with the
     /// `RetrieveSubuserStatistics` API request.
     struct Parameters: Encodable, Validatable {
         /// Indicates how the statistics should be grouped.
