@@ -130,6 +130,8 @@ public extension RetrieveMailboxProviderStatistics /* Parameters */ {
 }
 
 public extension RetrieveMailboxProviderStatistics /* Response Type */ {
+    /// The `RetrieveMailboxProviderStatistics.ResponseMetric` struct represents
+    ///  all the raw mailbox provider statistics for a given time period.
     struct ResponseMetric: Decodable {
         // MARK: - Properties
         
