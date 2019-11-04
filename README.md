@@ -8,7 +8,7 @@ This library allows you to quickly and easily send emails through SendGrid using
 
 Versions 3.0.0 and higher have been migrated to Swift 5.1. Some existing classes, properties, and functions have been renamed or removed. Deprecation warnings will populate where appropriate.
 
-Version 3 changes `Request` from a class to a protocol. Conforming types specify a `ParameterType` and a `ResponseType` to reflect how their parameters are bundled and the expected type we'll decode the JSON response into. If a request doesn't have parameters or expects a response, then `Never` is specified as the type. As a result of this, `ModeledResponse` is no longer needed and has been deprecated. `Session`'s `send(modeledRequest:completionHandler:)` method has also been deprecated. All requests are now sent through `send(request:completionHandler:)`.
+Version 3 changes `Request` from a class to a protocol. Conforming types specify a `ParameterType` and a `ResponseType` to define their parameters and specify the expected type to decode the HTTP response into. If a request doesn't have parameters or never expects a response, then `Never` is specified as the type. As a result of this, `ModeledResponse` is no longer needed and has been deprecated. `Session`'s `send(modeledRequest:completionHandler:)` method has also been deprecated. All requests are now sent through `send(request:completionHandler:)`.
 
 **Previous Breaking Changes**
 
@@ -123,7 +123,12 @@ All the available API calls are located in their own folders under the `./Source
 - [Mail Send](http://scottkawai.github.io/sendgrid-swift/docs/Classes/Email.html)
 - Statistics
     + [Global Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveGlobalStatistics.html)
+    + [Browser Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveBrowserStatistics.html)
     + [Category Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveCategoryStatistics.html)
+    + [Client Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveClientStatistics.html)
+    + [Device Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveDeviceStatistics.html)
+    + [Geographical Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveGeographicalStatistics.html)
+    + [Mailbox Provider Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveMailboxProviderStatistics.html)
     + [Subuser Stats](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveSubuserStatistics.html)
 - Subuser API
     + [Retrieve](http://scottkawai.github.io/sendgrid-swift/docs/Classes/RetrieveSubusers.html)
