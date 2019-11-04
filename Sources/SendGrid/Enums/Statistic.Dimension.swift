@@ -21,5 +21,8 @@ public extension Statistic {
         
         /// Represents statistics grouped by client.
         case client
+        
+        /// Represents statistics grouped by mailbox provider.
+        case mailboxProvider = "mailbox_provider"
     }
 }

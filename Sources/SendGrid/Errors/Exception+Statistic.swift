@@ -15,15 +15,20 @@ public extension Exception {
         /// call.
         case invalidNumberOfSubusers
         
+        /// Thrown if more than 10 mailbox providers are specified.
+        case invalidNumberOfMailboxProviders
+        
         /// A description of the error.
         public var description: String {
             switch self {
             case .invalidEndDate:
                 return "The end date cannot be any earlier in time than the start date."
             case .invalidNumberOfCategories:
-                return "Invalid number of categories specified. You must specify at least 1 category, and no more than 10."
+                return "Invalid number of categories specified. You must specify at least 1, and no more than 10."
             case .invalidNumberOfSubusers:
-                return "Invalid number of subusers specified. You must specify at least 1 subuser, and no more than 10."
+                return "Invalid number of subusers specified. You must specify at least 1, and no more than 10."
+            case .invalidNumberOfMailboxProviders:
+                return "Invalid number of mailbox providers specified. You must specify at least 1, and no more than 10."
             }
         }
     }

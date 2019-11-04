@@ -93,8 +93,7 @@ public extension RetrieveGeographicalStatistics /* Parameters */ {
         }
         
         /// Validates that the end date (if present) is not earlier than the start
-        /// date, that there are no more than 10 categories specified, and that
-        /// there are no more than 10 subusers specified.
+        /// date.
         public func validate() throws {
             if let e = self.endDate {
                 guard self.startDate < e else {
