@@ -57,7 +57,10 @@ public extension RetrieveGeographicalStatistics /* Parameters */ {
     /// `RetrieveGeographicalStatistics.Country` represents the various
     /// countries that statistics can be retrieved for.
     enum Country: String, Encodable {
+        /// Represent an email opened in The United States of America.
         case UnitedStates = "US"
+        
+        /// Represent an email opened in Canada.
         case Canada = "CA"
     }
     

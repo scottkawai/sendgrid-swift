@@ -58,10 +58,19 @@ public class RetrieveClientStatistics: StatReader<RetrieveGlobalStatistics.Param
 }
 
 public extension RetrieveClientStatistics /* Client Types */ {
+    /// The `RetrieveClientStatistics.ClientType` enum represents the various
+    /// segmentations of client stats.
     enum ClientType: String {
+        /// Represents an email viewed on a phone.
         case phone
+
+        /// Represents an email viewed on a tablet.
         case tablet
+
+        /// Represents an email viewed in a web client.
         case webmail
+        
+        /// Represents an email viewed in a desktop client.
         case desktop
     }
 }

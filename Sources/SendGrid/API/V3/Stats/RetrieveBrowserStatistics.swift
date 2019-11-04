@@ -128,6 +128,8 @@ public extension RetrieveBrowserStatistics /* Parameters */ {
 }
 
 public extension RetrieveBrowserStatistics /* Response Type */ {
+    /// The `RetrieveBrowserStatistics.ResponseMetric` struct represents the raw
+    /// click statistics for a given time period.
     struct ResponseMetric: Decodable {
         // MARK: - Properties
         
