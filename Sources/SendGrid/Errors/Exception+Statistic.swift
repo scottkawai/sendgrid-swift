@@ -18,6 +18,9 @@ public extension Exception {
         /// Thrown if more than 10 mailbox providers are specified.
         case invalidNumberOfMailboxProviders
         
+        /// Thrown if more than 10 browsers providers are specified.
+        case invalidNumberOfBrowsers
+        
         /// A description of the error.
         public var description: String {
             switch self {
@@ -29,6 +32,8 @@ public extension Exception {
                 return "Invalid number of subusers specified. You must specify at least 1, and no more than 10."
             case .invalidNumberOfMailboxProviders:
                 return "Invalid number of mailbox providers specified. You must specify at least 1, and no more than 10."
+            case .invalidNumberOfBrowsers:
+                return "Invalid number of browsers specified. You must specify at least 1, and no more than 10."
             }
         }
     }

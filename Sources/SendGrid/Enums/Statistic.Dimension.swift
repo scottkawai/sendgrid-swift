@@ -3,13 +3,10 @@ import Foundation
 public extension Statistic {
     /// The `Statistic.Dimension` enum represents the different ways the
     /// statistics can be sliced.
-    ///
-    /// - category: Represents statistics grouped by category.
-    /// - subuser:  Represents statistics grouped by subuser.
     enum Dimension: String, Codable {
         /// Represents statistics grouped by category.
         case category
-
+        
         /// Represents statistics grouped by subuser.
         case subuser
         
@@ -24,5 +21,8 @@ public extension Statistic {
         
         /// Represents statistics grouped by mailbox provider.
         case mailboxProvider = "mailbox_provider"
+        
+        /// Represents statistics grouped by browser.
+        case browser
     }
 }
