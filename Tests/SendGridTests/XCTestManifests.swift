@@ -467,6 +467,7 @@ extension SessionTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__SessionTests = [
+        ("testSendImpersonation", testSendImpersonation),
         ("testSendWithoutAuth", testSendWithoutAuth),
     ]
 }

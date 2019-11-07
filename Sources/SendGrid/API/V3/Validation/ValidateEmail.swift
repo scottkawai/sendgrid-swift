@@ -9,7 +9,7 @@ import Foundation
 ///
 /// **Also Note!** When using the Email Validation API, you need a separate API
 /// key. The Email Validation API keys are unique in that they can only call the
-/// email validation endpoint. You cannot use an existing key that can call 
+/// email validation endpoint. You cannot use an existing key that can call
 /// other endpoints.
 ///
 /// When using this class, you need to specify an email address to validate:
@@ -147,12 +147,7 @@ public extension ValidateEmail /* Source */ {
         
         /// The string value of the source.
         public var description: String {
-            get {
-                self._rawValue.uppercased()
-            }
-            set {
-                self._rawValue = newValue.uppercased()
-            }
+            self._rawValue.uppercased()
         }
         
         /// :nodoc:
@@ -166,7 +161,7 @@ public extension ValidateEmail /* Source */ {
         /// Initializes the source with a `String` value.
         /// - Parameter description: The `String` value of the source.
         public init(_ description: String) {
-            self._rawValue = description.uppercased()
+            self._rawValue = description
         }
         
         /// :nodoc:

@@ -88,13 +88,6 @@ public extension AddGlobalUnsubscribes /* Parameters Struct */ {
             self.emails = emails
         }
         
-        /// Initializes the request with a list of email addresses.
-        ///
-        /// - Parameter emails: An array of email addresses.
-        public init(emails: String...) {
-            self.init(emails: emails)
-        }
-        
         /// :nodoc:
         public enum CodingKeys: String, CodingKey {
             case emails = "recipient_emails"

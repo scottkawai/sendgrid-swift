@@ -49,10 +49,10 @@ public extension Authentication {
     /// - parameter password:  The SendGrid password key to use.
     ///
     /// - returns: An `Authentication` instance.
-    static func credential(username: String, password: String) throws -> Authentication {
+    static func credential(username: String, password: String) -> Authentication {
         let str = "\(username):\(password)"
         guard let data = str.data(using: .utf8) else {
-            throw Exception.Authentication.unableToEncodeCredentials
+            fatalError(Exception.Authentication.unableToEncodeCredentials.description)
         }
         return Authentication(prefix: "Basic", value: data.base64EncodedString(), description: "credential")
     }

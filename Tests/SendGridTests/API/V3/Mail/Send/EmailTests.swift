@@ -25,7 +25,7 @@ class EmailTests: XCTestCase, EncodingTester {
     
     func testOnlyApiKeys() {
         do {
-            let auth = try Authentication.credential(username: "foo", password: "bar")
+            let auth = Authentication.credential(username: "foo", password: "bar")
             let session = Session(auth: auth)
             let goodContent = Content.emailBody(plain: "plain", html: "html")
             let email = Email(personalizations: self.generatePersonalizations(1), from: self.goodFrom, content: goodContent, subject: "Test")

@@ -20,7 +20,7 @@ class AuthenticationTests: XCTestCase {
     }
     
     func testCredential() {
-        let auth: Authentication? = try? .credential(username: "foo", password: "bar")
+        let auth: Authentication? = .credential(username: "foo", password: "bar")
         XCTAssertEqual(auth?.authorizationHeader, "Basic Zm9vOmJhcg==")
     }
 }

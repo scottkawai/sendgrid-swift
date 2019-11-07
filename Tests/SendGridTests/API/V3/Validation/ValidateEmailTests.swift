@@ -19,7 +19,7 @@ class ValidateEmailTests: XCTestCase {
                     {"email":"foo@example.none"}
 
         """)
-        
+
         let address = Address(email: "foo@example.none", name: "Foo Bar")
         let requestAddress = ValidateEmail(address: address)
         XCTAssertEqual(requestAddress.description, """
@@ -56,7 +56,7 @@ class ValidateEmailTests: XCTestCase {
                     {"email":"foo@example.none","source":"SIGN UP FORM"}
 
         """)
-        
+
         let address = Address(email: "foo@example.none", name: "Foo Bar")
         let requestAddress = ValidateEmail(address: address, source: .supportForm)
         XCTAssertEqual(requestAddress.description, """
