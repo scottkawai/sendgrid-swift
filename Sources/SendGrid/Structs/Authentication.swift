@@ -51,9 +51,7 @@ public extension Authentication {
     /// - returns: An `Authentication` instance.
     static func credential(username: String, password: String) -> Authentication {
         let str = "\(username):\(password)"
-        guard let data = str.data(using: .utf8) else {
-            fatalError(Exception.Authentication.unableToEncodeCredentials.description)
-        }
+        let data = Data(str.utf8)
         return Authentication(prefix: "Basic", value: data.base64EncodedString(), description: "credential")
     }
 }

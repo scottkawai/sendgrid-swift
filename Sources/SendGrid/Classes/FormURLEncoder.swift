@@ -58,9 +58,7 @@ open class FormURLEncoder {
     /// - Throws:           An `EncodingError` can be thrown.
     open func encode<T: Encodable>(_ value: T, percentEncoded: Bool = true) throws -> Data {
         let str = try self.stringEncode(value, percentEncoded: percentEncoded)
-        guard let data = str.data(using: .utf8) else {
-            throw self._noValueError(for: value)
-        }
+        let data = Data(str.utf8)
         return data
     }
     

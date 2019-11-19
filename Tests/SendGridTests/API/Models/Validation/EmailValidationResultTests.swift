@@ -4,7 +4,7 @@ import XCTest
 class EmailValidationResultTests: XCTestCase {
     func decode(json: String) throws -> EmailValidationResult {
         let decoder = JSONDecoder()
-        return try decoder.decode(EmailValidationResult.self, from: json.data(using: .utf8)!)
+        return try decoder.decode(EmailValidationResult.self, from: Data(json.utf8))
     }
     
     func testDecoding() {
