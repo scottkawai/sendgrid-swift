@@ -41,6 +41,7 @@ class ValidateEmailTests: XCTestCase {
 
     func testMaxInitialization() {
         let requestEmail = ValidateEmail(email: "foo@example.none", source: "Sign Up Form")
+        
         XCTAssertEqual(requestEmail.description, """
         # POST /v3/validations/email
 

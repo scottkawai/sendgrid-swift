@@ -92,6 +92,9 @@ public extension Request {
                     let encoder = JSONEncoder()
                     encoder.dateEncodingStrategy = self.encodingStrategy.dates
                     encoder.dataEncodingStrategy = self.encodingStrategy.data
+                    #if os(Linux)
+                    encoder.outputFormatting = [.sortedKeys]
+                    #endif
                     guard let data = try? encoder.encode(self.parameters) else {
                         parameterString = nil
                         break paramEncoding
