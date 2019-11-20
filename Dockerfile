@@ -1,4 +1,4 @@
-FROM swift:5.1
+FROM swift:5.1.1
 
 # Copy over source
 RUN mkdir -p /app
