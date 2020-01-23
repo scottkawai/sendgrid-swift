@@ -601,7 +601,14 @@ public class Email: Request<Email.Parameters> {
     ///   - subject:            An optional global subject line.
     public init(personalizations: [Personalization], from: Address, content: [Content], subject: String? = nil) {
         let params = Email.Parameters(personalizations: personalizations, from: from, content: content, subject: subject)
-        super.init(method: .POST, path: "/v3/mail/send", parameters: params)
+        let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { date, encoder in
+            var container = encoder.singleValueContainer()
+            try container.encode(Int(date.timeIntervalSince1970))
+        }
+        super.init(method: .POST,
+                   path: "/v3/mail/send",
+                   parameters: params,
+                   encodingStrategy: EncodingStrategy(dates: dateEncoder))
     }
     
     /// Initializes the email request with a list of personalizations, a from
