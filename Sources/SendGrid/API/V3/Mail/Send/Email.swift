@@ -595,6 +595,9 @@ public class Email: Request {
     /// The parameters sent in the API call.
     public var parameters: Email.Parameters
     
+    /// :nodoc:
+    public let encodingStrategy: EncodingStrategy
+    
     // MARK: - Properties
     
     /// A `Bool` indicating if the request supports the "On-behalf-of" header.
@@ -608,6 +611,11 @@ public class Email: Request {
     ///   - parameters: The parameters for the email request.
     public init(parameters: Email.Parameters) {
         self.parameters = parameters
+        let dateEncoder = JSONEncoder.DateEncodingStrategy.custom { date, encoder in
+            var container = encoder.singleValueContainer()
+            try container.encode(Int(date.timeIntervalSince1970))
+        }
+        self.encodingStrategy = EncodingStrategy(dates: dateEncoder)
     }
     
     /// Initializes the email request with a list of personalizations, a from
