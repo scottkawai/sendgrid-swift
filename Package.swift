@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "sendgrid",
+    name: "sendgrid-swift",
     products: [
         .library(
             name: "SendGrid",
