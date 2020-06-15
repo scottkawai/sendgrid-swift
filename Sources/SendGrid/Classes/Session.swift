@@ -159,7 +159,7 @@ open class Session {
             guard let callback = completionHandler else { return }
             callback(Result(catching: { () -> HTTPURLResponse in
                 switch result {
-                case .success(let response, let data):
+                case .success((let response, let data)):
                     switch response.statusCode {
                     case 200..<300:
                         return response
@@ -198,7 +198,7 @@ open class Session {
             guard let callback = completionHandler else { return }
             callback(Result(catching: { () -> (HTTPURLResponse, Payload.ResponseType) in
                 switch result {
-                case .success(let response, let data):
+                case .success((let response, let data)):
                     guard let d = data else { throw Exception.Session.noResponseReceived }
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = request.decodingStrategy.dates
